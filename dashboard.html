@@ -138,6 +138,10 @@ tbody tr:hover{background:rgba(255,255,255,.02)}
 .tl .it small{font-family:var(--mono);font-size:11px;color:var(--faint)}
 .tl .it p{font-size:.9rem;margin-top:3px;color:var(--txt)}
 
+#auPick .tab{font-family:var(--mono);font-size:12px;color:var(--muted);background:transparent;border:1px solid var(--line-2);padding:8px 14px;border-radius:3px;cursor:pointer;transition:.18s}
+#auPick .tab:hover{color:var(--txt);border-color:var(--accent)}
+#auPick .tab.active{background:var(--accent);color:#04130d;border-color:var(--accent);font-weight:600}
+html[data-theme="light"] #auPick .tab.active{color:#fff}
 .rtd{background:var(--bg-2);padding:16px 16px}
 .rtd .rn{font-size:.9rem;font-weight:600;display:block;margin-bottom:8px}
 .rtd .rm{font-family:var(--mono);font-size:11px;color:var(--faint)}
@@ -461,21 +465,22 @@ html[data-theme="light"] .tour-pop button.np{color:#fff}
       <button class="btn pri" data-act="Generated evidence pack · 214 controls · PDF + JSON">Export evidence pack</button></div>
 
     <div class="card" style="margin-bottom:16px;border-left:3px solid var(--accent)">
-      <div class="ch"><h3>ISO/IEC 42001 — AI Management System audit</h3>
-        <span style="display:flex;gap:10px"><button class="btn" id="isoExport" data-act="Exported ISO/IEC 42001 audit report · clauses 4–10 + Annex A · PDF">Export report</button><button class="btn pri" id="runISO">▶ Run ISO 42001 audit</button></span></div>
-      <p class="sub" style="margin:0 0 14px">Automated conformity assessment across Clauses 4–10 and the Annex A controls. Evidence is pulled live from discovery, identity, model assurance and the red-team layer.</p>
-      <div id="isoProgWrap" hidden style="margin-bottom:16px">
-        <div class="ch"><h3 id="isoStage" style="font-size:.92rem;color:var(--muted)">Initialising audit…</h3><span class="tag" id="isoPct">0%</span></div>
-        <div class="bar"><i id="isoBar" style="width:0%"></i></div>
+      <div class="ch"><h3>Automated framework audit</h3>
+        <span style="display:flex;gap:10px"><button class="btn" id="auExport">Export report</button><button class="btn pri" id="auRun">▶ Run audit</button></span></div>
+      <p class="sub" style="margin:0 0 14px">Pick a framework and run a live conformity audit. Evidence is pulled automatically from discovery, identity, model assurance, workforce-AI and the red-team layer.</p>
+      <div class="tabs" id="auPick" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px"></div>
+      <div id="auProgWrap" hidden style="margin-bottom:16px">
+        <div class="ch"><h3 id="auStage" style="font-size:.92rem;color:var(--muted)">Initialising audit…</h3><span class="tag" id="auPct">0%</span></div>
+        <div class="bar"><i id="auBar" style="width:0%"></i></div>
       </div>
-      <div class="grid g4" id="isoSummary" hidden style="margin-bottom:16px">
-        <div class="card kpi" style="background:var(--bg-2)"><span>CONTROLS ASSESSED</span><b id="isoTotal">0</b><em class="fl">clauses + Annex A</em></div>
-        <div class="card kpi" style="background:var(--bg-2)"><span>CONFORMANT</span><b id="isoConf" style="color:var(--accent)">0</b><em class="up">evidence attached</em></div>
-        <div class="card kpi" style="background:var(--bg-2)"><span>OBSERVATIONS</span><b id="isoObs" style="color:var(--warn)">0</b><em class="fl">improvement</em></div>
-        <div class="card kpi" style="background:var(--bg-2)"><span>NONCONFORMITIES</span><b id="isoNC" style="color:var(--danger)">0</b><em class="dn">minor</em></div>
+      <div class="grid g4" id="auSummary" hidden style="margin-bottom:16px">
+        <div class="card kpi" style="background:var(--bg-2)"><span>CONTROLS ASSESSED</span><b id="auTotal">0</b><em class="fl" id="auTotalL">controls</em></div>
+        <div class="card kpi" style="background:var(--bg-2)"><span>CONFORMANT</span><b id="auConf" style="color:var(--accent)">0</b><em class="up">evidence attached</em></div>
+        <div class="card kpi" style="background:var(--bg-2)"><span>OBSERVATIONS</span><b id="auObs" style="color:var(--warn)">0</b><em class="fl">improvement</em></div>
+        <div class="card kpi" style="background:var(--bg-2)"><span>NONCONFORMITIES</span><b id="auNC" style="color:var(--danger)">0</b><em class="dn">to remediate</em></div>
       </div>
-      <div class="card pad0" id="isoResult" hidden>
-        <table><thead><tr><th>Clause / control</th><th>Area</th><th>Evidence source</th><th>Result</th></tr></thead><tbody id="isoT"></tbody></table>
+      <div class="card pad0" id="auResult" hidden>
+        <table><thead><tr><th id="auColA">Control</th><th>Area</th><th>Evidence source</th><th>Result</th></tr></thead><tbody id="auT"></tbody></table>
       </div>
     </div>
 
@@ -749,7 +754,7 @@ document.getElementById("corrList").innerHTML=[
 /* fairness + compliance + assurance bars */
 function barBlock(rows){return rows.map(function(r){return '<div style="margin:14px 0"><div class="lbl"><span>'+r[0]+'</span><span>'+r[1]+'%</span></div><div class="bar '+(r[2]||'')+'"><i style="width:0" data-w="'+r[1]+'"></i></div></div>';}).join("");}
 document.getElementById("fairBars").innerHTML=barBlock([["Gender · approval parity",97],["Age 18–25 · parity",88,"wn"],["Postcode (geo proxy)",79,"dng"],["Disparate impact ratio",82,"wn"]]);
-document.getElementById("cmpBars").innerHTML=barBlock([["EU AI Act · Annex IV",96],["NIST AI RMF",92],["ISO/IEC 42001",88,"wn"],["OWASP LLM Top 10",94],["OWASP Agentic Top 10",90],["SOC 2 · AI controls",98]]);
+document.getElementById("cmpBars").innerHTML=barBlock([["EU AI Act · Annex IV",91,"wn"],["NIST AI RMF",90,"wn"],["ISO/IEC 42001",88,"wn"],["Singapore IMDA · MGF + GenAI",86,"wn"],["MAS FEAT principles",93],["OWASP LLM Top 10",94],["OWASP Agentic Top 10",90],["SOC 2 · AI controls",98]]);
 function fillBars(){document.querySelectorAll(".bar i[data-w]").forEach(function(i){requestAnimationFrame(function(){i.style.width=i.dataset.w+"%";});});}
 setTimeout(fillBars,400);
 
@@ -824,57 +829,74 @@ document.getElementById("runRT").addEventListener("click",function(){
  },360);
 });
 
-/* ISO/IEC 42001 audit */
-var isoControls=[
- ["Clause 4 · Context of the organisation","Governance","Asset discovery + AI policy","ok","Conformant"],
- ["Clause 5 · Leadership &amp; AI policy","Governance","Admin &amp; audit log","ok","Conformant"],
- ["Clause 6 · Planning &amp; AI risk assessment","Risk","Model assurance","ok","Conformant"],
- ["Clause 7 · Support, resources &amp; competence","Operations","Integrations registry","warn","Observation"],
- ["Clause 8 · Operation &amp; AI lifecycle","Lifecycle","Provenance + telemetry","ok","Conformant"],
- ["Clause 9 · Performance evaluation","Monitoring","Assurance + correlation","ok","Conformant"],
- ["Clause 10 · Improvement &amp; nonconformity","Improvement","Investigations","ok","Conformant"],
- ["A.2 · AI policy","Governance","Policy engine","ok","Conformant"],
- ["A.3 · Internal organisation &amp; roles","Identity","NHI governance","ok","Conformant"],
- ["A.4 · Resources for AI systems","Inventory","Asset discovery","ok","Conformant"],
- ["A.5 · AI system impact assessment","Risk","Disparate-impact (credit-risk-pd)","bad","Minor NC"],
- ["A.6 · AI system lifecycle","Lifecycle","Provenance","ok","Conformant"],
- ["A.7 · Data for AI systems","Data","Dataset provenance &amp; licence","warn","Observation"],
- ["A.8 · Information for interested parties","Transparency","Evidence packs","ok","Conformant"],
- ["A.9 · Responsible use of AI systems","Workforce","Workforce-AI &amp; DLP","ok","Conformant"],
- ["A.10 · Third-party &amp; suppliers","Supply chain","Provenance + red team","ok","Conformant"]
-];
-var isoStages=["Loading ISO/IEC 42001 control set","Clause 4–5 · context &amp; leadership","Clause 6 · AI risk &amp; impact assessment","Clause 7 · support &amp; competence","Clause 8 · AI system lifecycle","Clause 9 · performance evaluation","Clause 10 · improvement","Annex A · operational controls","Scoring conformity &amp; generating report"];
-document.getElementById("runISO").addEventListener("click",function(){
- var btn=this;btn.disabled=true;btn.textContent="● Auditing…";
- document.getElementById("isoProgWrap").hidden=false;
- document.getElementById("isoSummary").hidden=true;
- document.getElementById("isoResult").hidden=true;
+/* ---------- multi-framework audit engine ---------- */
+function animTo(id,to){var el=document.getElementById(id);if(!el)return;if(reduce){el.textContent=to.toLocaleString();return;}var s=performance.now();(function r(n){var q=Math.min((n-s)/900,1);el.textContent=Math.round(to*(1-Math.pow(1-q,3))).toLocaleString();if(q<1)requestAnimationFrame(r);})(s);}
+
+var AUDITS={
+ iso42001:{name:"ISO/IEC 42001",short:"ISO 42001",bar:/ISO\/IEC 42001/,lift:93,col:"Clause / control",totalL:"clauses + Annex A",total:112,conf:104,obs:5,nc:3,
+  stages:["Loading ISO/IEC 42001 control set","Clause 4–5 · context &amp; leadership","Clause 6 · AI risk &amp; impact","Clause 7 · support &amp; competence","Clause 8 · AI lifecycle","Clause 9 · performance","Clause 10 · improvement","Annex A · operational controls","Scoring &amp; signing report"],
+  rows:[["Clause 4 · Context","Governance","Asset discovery + policy","ok","Conformant"],["Clause 5 · Leadership &amp; policy","Governance","Admin &amp; audit log","ok","Conformant"],["Clause 6 · AI risk assessment","Risk","Model assurance","ok","Conformant"],["Clause 7 · Support &amp; competence","Operations","Integrations registry","warn","Observation"],["Clause 8 · AI lifecycle","Lifecycle","Provenance + telemetry","ok","Conformant"],["Clause 9 · Performance evaluation","Monitoring","Assurance + correlation","ok","Conformant"],["Clause 10 · Improvement","Improvement","Investigations","ok","Conformant"],["A.3 · Internal organisation","Identity","NHI governance","ok","Conformant"],["A.4 · Resources","Inventory","Asset discovery","ok","Conformant"],["A.5 · Impact assessment","Risk","Disparate-impact (credit-risk-pd)","bad","Minor NC"],["A.7 · Data for AI systems","Data","Dataset provenance &amp; licence","warn","Observation"],["A.9 · Responsible use","Workforce","Workforce-AI &amp; DLP","ok","Conformant"],["A.10 · Third-party","Supply chain","Provenance + red team","ok","Conformant"]]},
+
+ euaiact:{name:"EU AI Act",short:"EU AI Act",bar:/EU AI Act/,lift:95,col:"Article / Annex",totalL:"high-risk obligations",total:46,conf:41,obs:3,nc:2,
+  stages:["Classifying system risk tier (high-risk)","Art. 9 · risk management system","Art. 10 · data governance","Annex IV · technical documentation","Art. 12–13 · logging &amp; transparency","Art. 14 · human oversight","Art. 15 · accuracy, robustness, cyber","Art. 72–73 · post-market &amp; incidents","Conformity assessment &amp; report"],
+  rows:[["Art. 9 · Risk management system","Risk","Model assurance + red team","ok","Conformant"],["Art. 10 · Data &amp; data governance","Data","Dataset provenance","warn","Observation"],["Annex IV · Technical documentation","Docs","Evidence packs","ok","Conformant"],["Art. 12 · Record-keeping / logging","Logging","Telemetry data lake","ok","Conformant"],["Art. 13 · Transparency to users","Transparency","Disclosure register","ok","Conformant"],["Art. 14 · Human oversight","Oversight","Investigations / HITL","ok","Conformant"],["Art. 15 · Accuracy &amp; robustness","Robustness","Continuous red team","ok","Conformant"],["Art. 15 · Cybersecurity","Security","Identity + correlation","ok","Conformant"],["Art. 43 · Conformity assessment","Conformity","Audit engine","ok","Conformant"],["Art. 72 · Post-market monitoring","Monitoring","Drift + correlation","ok","Conformant"],["Art. 73 · Serious incident reporting","Incidents","SEC/blast-radius export","bad","Gap"],["Art. 53/55 · GPAI obligations","GPAI","Provenance + model cards","warn","Observation"]]},
+
+ nist:{name:"NIST AI RMF 1.0",short:"NIST AI RMF",bar:/NIST AI RMF/,lift:94,col:"Function · subcategory",totalL:"GOVERN/MAP/MEASURE/MANAGE",total:72,conf:66,obs:4,nc:2,
+  stages:["Loading NIST AI RMF profile","GOVERN · policies &amp; accountability","MAP · context &amp; risk framing","MEASURE · metrics &amp; evaluation","MEASURE · TEVV / red team","MANAGE · risk treatment","MANAGE · monitoring &amp; response","Generating RMF profile report"],
+  rows:[["GOVERN 1 · Policies &amp; processes","Governance","AI policy + audit log","ok","Implemented"],["GOVERN 2 · Accountability","Governance","NHI governance","ok","Implemented"],["GOVERN 4 · Culture &amp; risk","Governance","Workforce-AI","ok","Implemented"],["MAP 1 · Context","Mapping","Asset discovery","ok","Implemented"],["MAP 2 · Categorisation","Mapping","Dependency graph","ok","Implemented"],["MAP 5 · Impact","Risk","Disparate-impact","warn","Partial"],["MEASURE 1 · Methods","Measurement","Model assurance","ok","Implemented"],["MEASURE 2 · Trustworthiness","Measurement","Drift + bias + robustness","ok","Implemented"],["MEASURE 3 · TEVV / red team","Measurement","Continuous red team","ok","Implemented"],["MANAGE 1 · Risk prioritised","Management","Correlation engine","ok","Implemented"],["MANAGE 4 · Monitoring &amp; recovery","Management","Investigations","bad","Gap"]]},
+
+ imda:{name:"Singapore IMDA — Model AI Governance Framework",short:"Singapore IMDA",bar:/Singapore IMDA/,lift:92,col:"Dimension / control",totalL:"MGF + GenAI + AI Verify",total:38,conf:34,obs:3,nc:1,
+  stages:["Loading IMDA MGF + GenAI dimensions","Internal governance structures","Human-in-the-loop decision-making","Operations management &amp; data","GenAI · accountability &amp; provenance","GenAI · safety, security &amp; testing","AI Verify · technical testing","Generating IMDA self-assessment"],
+  rows:[["MGF · Internal governance","Governance","AI policy + roles","ok","Adopted"],["MGF · Human oversight (HITL)","Oversight","Investigations","ok","Adopted"],["MGF · Operations management","Operations","Telemetry + provenance","ok","Adopted"],["MGF · Stakeholder communication","Transparency","Disclosure register","ok","Adopted"],["GenAI · Accountability","Governance","Audit log","ok","Adopted"],["GenAI · Data","Data","Dataset provenance","warn","Partial"],["GenAI · Trusted development","Lifecycle","Provenance + ML-BOM","ok","Adopted"],["GenAI · Incident reporting","Incidents","Investigations","ok","Adopted"],["GenAI · Testing &amp; assurance","Assurance","Continuous red team","ok","Adopted"],["GenAI · Security","Security","Identity + correlation","ok","Adopted"],["GenAI · Content provenance","Provenance","Watermark / C2PA check","warn","Partial"],["GenAI · Safety &amp; alignment","Safety","Red team + drift","ok","Adopted"],["AI Verify · Fairness testing","Testing","Disparate-impact (credit-risk-pd)","bad","Action needed"],["AI Verify · Robustness testing","Testing","Continuous red team","ok","Adopted"]]},
+
+ feat:{name:"MAS FEAT Principles (Singapore)",short:"MAS FEAT",bar:/MAS FEAT/,lift:96,col:"Principle / control",totalL:"Fairness·Ethics·Accountability·Transparency",total:28,conf:25,obs:2,nc:1,
+  stages:["Loading MAS FEAT principles","Fairness · objective &amp; bias","Fairness · data &amp; proxies","Ethics · alignment to values","Accountability · internal &amp; external","Transparency · explainability","Generating FEAT assessment"],
+  rows:[["F1 · Decisions justified by data","Fairness","Model assurance","ok","Met"],["F3 · Regularly reviewed for bias","Fairness","Disparate-impact monitor","bad","Action needed"],["F4 · Personal attributes / proxies","Fairness","Postcode proxy flagged","warn","Partial"],["E1 · Ethical standards aligned","Ethics","AI policy","ok","Met"],["E2 · Aligned to firm values","Ethics","Governance","ok","Met"],["A1 · Internal accountability","Accountability","NHI + audit log","ok","Met"],["A2 · External accountability","Accountability","Evidence packs","ok","Met"],["T1 · Proactive disclosure","Transparency","Disclosure register","ok","Met"],["T2 · Explainability on request","Transparency","SHAP / lineage","warn","Partial"]]},
+
+ owasp:{name:"OWASP LLM &amp; Agentic Top 10",short:"OWASP Top 10",bar:/OWASP LLM Top 10/,lift:96,col:"Risk ID",totalL:"LLM + Agentic Top 10",total:20,conf:18,obs:1,nc:1,
+  stages:["Loading OWASP LLM + Agentic Top 10","LLM01–03 · injection / data / supply","LLM04–07 · poisoning / disclosure","LLM08–10 · agency / theft","Agentic · memory, tools, identity","Mapping to red-team coverage","Generating coverage report"],
+  rows:[["LLM01 · Prompt injection","LLM","Red team (142 variants)","ok","Covered"],["LLM02 · Sensitive info disclosure","Data","DLP + workforce-AI","ok","Covered"],["LLM03 · Supply chain","Supply chain","Provenance + red team","ok","Covered"],["LLM04 · Data &amp; model poisoning","Data","Provenance scan","ok","Covered"],["LLM06 · Excessive agency","Agents","Identity + intent policy","bad","Finding"],["LLM07 · System prompt leakage","LLM","Correlation","ok","Covered"],["LLM08 · Vector / embedding weakness","Data","Vector-store egress test","ok","Covered"],["LLM10 · Unbounded consumption","Infra","Rate-limit + correlation","warn","Partial"],["Agentic · Tool misuse","Agents","Agent kill-chain red team","ok","Covered"],["Agentic · Identity &amp; impersonation","Identity","NHI governance","ok","Covered"]]}
+};
+var auKeys=["iso42001","euaiact","nist","imda","feat","owasp"],auCur="iso42001";
+var auPick=document.getElementById("auPick");
+auPick.innerHTML=auKeys.map(function(k){return '<button class="tab'+(k===auCur?' active':'')+'" data-fw="'+k+'">'+AUDITS[k].short+'</button>';}).join("");
+auPick.querySelectorAll(".tab").forEach(function(b){b.addEventListener("click",function(){auPick.querySelectorAll(".tab").forEach(function(x){x.classList.remove("active");});b.classList.add("active");auCur=b.dataset.fw;});});
+
+function runAudit(){
+ var fw=AUDITS[auCur],btn=document.getElementById("auRun");
+ btn.disabled=true;btn.textContent="● Auditing "+fw.short+"…";
+ document.getElementById("auProgWrap").hidden=false;
+ document.getElementById("auSummary").hidden=true;
+ document.getElementById("auResult").hidden=true;
+ document.getElementById("auColA").textContent=fw.col;
  var p=0;
  var iv=setInterval(function(){
   p+=Math.random()*6+4;if(p>100)p=100;
-  var si=Math.min(isoStages.length-1,Math.floor(p/100*isoStages.length));
-  document.getElementById("isoBar").style.width=p+"%";
-  document.getElementById("isoPct").textContent=Math.round(p)+"%";
-  document.getElementById("isoStage").innerHTML=isoStages[si];
+  var si=Math.min(fw.stages.length-1,Math.floor(p/100*fw.stages.length));
+  document.getElementById("auBar").style.width=p+"%";
+  document.getElementById("auPct").textContent=Math.round(p)+"%";
+  document.getElementById("auStage").innerHTML=fw.stages[si];
   if(p>=100){
    clearInterval(iv);
-   document.getElementById("isoT").innerHTML=isoControls.map(function(c){return '<tr><td>'+c[0]+'</td><td><span class="pill">'+c[1]+'</span></td><td>'+c[2]+'</td><td>'+st(c[3],c[4])+'</td></tr>';}).join("");
-   var conf=0,obs=0,nc=0;isoControls.forEach(function(c){c[3]==="ok"?conf++:c[3]==="warn"?obs++:nc++;});
-   var total=112;
-   animTo("isoTotal",total);animTo("isoConf",104);animTo("isoObs",5);animTo("isoNC",3);
-   document.getElementById("isoSummary").hidden=false;
-   document.getElementById("isoResult").hidden=false;
-   // lift the ISO/IEC 42001 framework-coverage bar
-   var isoBarEl=Array.prototype.slice.call(document.querySelectorAll("#cmpBars .lbl")).filter(function(l){return /ISO\/IEC 42001/.test(l.textContent);})[0];
-   if(isoBarEl){isoBarEl.querySelector("span:last-child").textContent="93%";var fill=isoBarEl.nextElementSibling.querySelector("i");fill.style.width="93%";isoBarEl.nextElementSibling.classList.remove("wn");}
-   document.getElementById("cmpFeed").insertAdjacentHTML("afterbegin",evRow("ok","ISO/IEC 42001 audit completed · 112 controls · report signed"));
-   notify("✓ ISO/IEC 42001 audit complete","104 conformant · 5 observations · 3 minor NC · report ready");
-   btn.disabled=false;btn.textContent="▶ Re-run ISO 42001 audit";
-   setTimeout(function(){document.getElementById("isoProgWrap").hidden=true;document.getElementById("isoBar").style.width="0%";},2200);
+   document.getElementById("auT").innerHTML=fw.rows.map(function(c){return '<tr><td>'+c[0]+'</td><td><span class="pill">'+c[1]+'</span></td><td>'+c[2]+'</td><td>'+st(c[3],c[4])+'</td></tr>';}).join("");
+   // small per-run variance so re-running looks live
+   var jc=Math.floor(Math.random()*3),conf=fw.conf+jc,obs=Math.max(0,fw.obs-(jc>1?1:0)),nc=fw.nc;
+   document.getElementById("auTotalL").textContent=fw.totalL;
+   animTo("auTotal",fw.total);animTo("auConf",conf);animTo("auObs",obs);animTo("auNC",nc);
+   document.getElementById("auSummary").hidden=false;
+   document.getElementById("auResult").hidden=false;
+   var lift=Math.min(99,fw.lift+jc);
+   var barEl=Array.prototype.slice.call(document.querySelectorAll("#cmpBars .lbl")).filter(function(l){return fw.bar.test(l.textContent);})[0];
+   if(barEl){barEl.querySelector("span:last-child").textContent=lift+"%";var nx=barEl.nextElementSibling;nx.querySelector("i").style.width=lift+"%";nx.classList.remove("wn","dng");}
+   document.getElementById("cmpFeed").insertAdjacentHTML("afterbegin",evRow(nc>0?"warn":"ok",fw.name.replace(/&amp;/g,"&")+" audit completed · "+fw.total+" controls · report signed"));
+   notify("✓ "+fw.short+" audit complete",conf+" conformant · "+obs+" observations · "+nc+" to remediate");
+   btn.disabled=false;btn.textContent="▶ Run audit";
+   setTimeout(function(){document.getElementById("auProgWrap").hidden=true;document.getElementById("auBar").style.width="0%";},2200);
   }
- },340);
-});
-function animTo(id,to){var el=document.getElementById(id);if(reduce){el.textContent=to.toLocaleString();return;}var s=performance.now();(function r(n){var q=Math.min((n-s)/900,1);el.textContent=Math.round(to*(1-Math.pow(1-q,3))).toLocaleString();if(q<1)requestAnimationFrame(r);})(s);}
+ },330);
+}
+document.getElementById("auRun").addEventListener("click",runAudit);
+document.getElementById("auExport").addEventListener("click",function(){notify("✓ Exported "+AUDITS[auCur].short+" audit report","PDF + JSON · "+AUDITS[auCur].total+" controls · signed");});
 
 /* global search filter (assets table) */
 document.getElementById("globalSearch").addEventListener("input",function(){
@@ -911,7 +933,7 @@ var TOUR=[
  {v:"killchain",sel:"#kcFlow",t:"The AI kill chain",b:"Four low-signal events become one critical incident. Click ‘Replay correlation’ to animate how single-tool stacks miss this."},
  {v:"incidents",sel:"#incDetail",t:"Investigate & respond",b:"Full session reconstruction, output-to-source lineage, and one-click response: revoke, quarantine, roll back, isolate."},
  {v:"redteam",sel:"#runRT",t:"Continuous full-stack red team",b:"The differentiator. It attacks the whole stack — model, agents, MCP, identity, supply chain and cloud infra. Run a campaign: it tunes detections and opens a real incident on any gap."},
- {v:"compliance",sel:"#runISO",t:"One-click ISO 42001 audit",b:"Run a live conformity audit across ISO/IEC 42001 clauses 4–10 and Annex A — evidence pulled from discovery, identity, assurance and red team. Plus EU AI Act, NIST AI RMF and OWASP coverage."}
+ {v:"compliance",sel:"#auPick",t:"One-click framework audits",b:"Pick a framework — ISO/IEC 42001, EU AI Act, NIST AI RMF, Singapore IMDA, MAS FEAT or OWASP — and run a live conformity audit with scoring and an exportable report. Evidence is pulled automatically from the platform."}
 ];
 var ring,pop,tIdx=0,tTimer=null,tDur=6500,tStart=0;
 function buildTour(){
