@@ -79,9 +79,8 @@ button:hover{box-shadow:0 0 28px rgba(90,242,196,.25);transform:translateY(-1px)
       <div class="err" id="err"></div>
 
       <div class="demo">
-        <b>Customer demo?</b> Skip the login and load the console with a
-        pre-populated demo environment.
-        <br /><button type="button" id="demoBtn">Enter demo environment →</button>
+        <b>Single sign-on</b> Use your organisation's identity provider.
+        <br /><button type="button" id="demoBtn">Continue with SSO →</button>
       </div>
 
       <p style="margin-top:24px"><a class="back" href="index.html">← Back to site</a></p>
@@ -101,7 +100,7 @@ button:hover{box-shadow:0 0 28px rgba(90,242,196,.25);transform:translateY(-1px)
     e.preventDefault();
     var em=document.getElementById("email").value.trim();
     var pw=document.getElementById("pass").value;
-    if(!em||!pw){document.getElementById("err").textContent="Enter your email and password — or use the demo environment.";return;}
+    if(!em||!pw){document.getElementById("err").textContent="Enter your work email and password, or continue with SSO.";return;}
     go();
   });
   document.getElementById("demoBtn").addEventListener("click",go);

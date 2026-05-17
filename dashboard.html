@@ -240,15 +240,16 @@ html[data-theme="light"] .tour-pop button.np{color:#fff}
   <div class="nav-i" data-v="redteam"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m13 2-3 7h5l-3 7"/><circle cx="12" cy="12" r="9"/></svg> Red team</div>
   <div class="grp">GOVERNANCE</div>
   <div class="nav-i" data-v="compliance"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3 8-8"/><path d="M21 12a9 9 0 1 1-6-8.5"/></svg> Compliance</div>
+  <div class="nav-i" data-v="reports"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 3h7l5 5v13H7Z"/><path d="M14 3v5h5M10 13h6M10 17h6"/></svg> Reports</div>
   <div class="nav-i" data-v="settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 0 0-.1-1l2-1.6-2-3.4-2.4 1a7 7 0 0 0-1.7-1l-.4-2.5h-4l-.4 2.5a7 7 0 0 0-1.7 1l-2.4-1-2 3.4 2 1.6a7 7 0 0 0 0 2l-2 1.6 2 3.4 2.4-1a7 7 0 0 0 1.7 1l.4 2.5h4l.4-2.5a7 7 0 0 0 1.7-1l2.4 1 2-3.4-2-1.6a7 7 0 0 0 .1-1Z"/></svg> Settings</div>
-  <div class="foot">demo environment · <a href="login.html">sign out</a></div>
+  <div class="foot">Meridian Bank · <a href="login.html">sign out</a></div>
 </aside>
 
 <header class="top">
   <button class="menu-b" id="menuB"><svg viewBox="0 0 24 24" width="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
   <div class="crumb">Console / <b id="crumb">Overview</b></div>
   <div class="search"><input id="globalSearch" placeholder="Search assets, agents, incidents…" /></div>
-  <button class="env"><span class="tdot"></span>prod-demo · ap-southeast-1</button>
+  <button class="env"><span class="tdot"></span>Production · ap-southeast-1</button>
   <button class="btn tour-start" id="guideBtn" title="Start guided tour">▶ Guided tour</button>
   <button class="ic" id="themeTg" title="Toggle theme" aria-label="Toggle theme">
     <svg class="t-moon" viewBox="0 0 24 24" width="15" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"/></svg>
@@ -259,7 +260,7 @@ html[data-theme="light"] .tour-pop button.np{color:#fff}
 </header>
 
 <div class="banner" id="statBar">
-  <span class="sb-tag">DEMO</span>
+  <span class="sb-tag">MERIDIAN BANK</span>
   <div class="sb-stat"><b id="sbAssets">1,284</b><span>AI ASSETS</span></div>
   <div class="sb-sep"></div>
   <div class="sb-stat dn"><b id="sbInc">7</b><span>OPEN INCIDENTS</span></div>
@@ -270,7 +271,7 @@ html[data-theme="light"] .tour-pop button.np{color:#fff}
   <div class="sb-sep"></div>
   <div class="sb-stat"><b id="sbEvents">2.1M</b><span>EVENTS / 24H</span></div>
   <div class="sb-spark"><canvas id="sbSpark" height="26"></canvas></div>
-  <span class="sb-live"><i></i> live · synthetic data</span>
+  <span class="sb-live"><i></i> live</span>
 </div>
 
 <main class="main">
@@ -481,6 +482,20 @@ html[data-theme="light"] .tour-pop button.np{color:#fff}
       </div>
       <div class="card pad0" id="auResult" hidden>
         <table><thead><tr><th id="auColA">Control</th><th>Area</th><th>Evidence source</th><th>Result</th></tr></thead><tbody id="auT"></tbody></table>
+        <p class="sub" style="margin:14px 18px;font-size:.82rem">Select any control to view findings and remediation.</p>
+      </div>
+      <div class="card" id="auDetail" hidden style="margin-top:14px;background:var(--bg-2)">
+        <div class="ch"><h3 id="adTitle"></h3><span style="display:flex;align-items:center;gap:12px"><span class="tag st" id="adRes"></span><button class="btn" id="adClose" style="padding:6px 12px">Close</button></span></div>
+        <div class="mini">DESCRIPTION</div><p id="adDesc" style="font-size:.9rem;color:var(--muted);margin:4px 0 14px"></p>
+        <div class="mini">EVIDENCE COLLECTED</div><p id="adEv" style="font-size:.9rem;margin:4px 0 14px"></p>
+        <div class="mini">FINDING</div><p id="adFind" style="font-size:.9rem;margin:4px 0 14px"></p>
+        <div class="mini">REMEDIATION</div><p id="adRem" style="font-size:.9rem;color:var(--txt);margin:4px 0 14px"></p>
+        <div style="display:flex;gap:18px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;color:var(--faint)">
+          <span>Owner: <b id="adOwner" style="color:var(--muted)"></b></span>
+          <span>Due: <b id="adDue" style="color:var(--muted)"></b></span>
+          <span id="adTkt"></span>
+        </div>
+        <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap" id="adActs"></div>
       </div>
     </div>
 
@@ -488,6 +503,42 @@ html[data-theme="light"] .tour-pop button.np{color:#fff}
       <div class="card"><div class="ch"><h3>Framework coverage</h3><span class="tag">auto-collected</span></div><div id="cmpBars"></div></div>
       <div class="card"><div class="ch"><h3>Recent evidence</h3><span class="tag">immutable log</span></div>
         <div class="feed" id="cmpFeed" style="max-height:300px"></div></div>
+    </div>
+  </section>
+
+  <!-- REPORTS -->
+  <section class="view" data-view="reports">
+    <div class="h"><div><h1>Reports</h1><p>Board-grade executive summaries and full technical reports — generated from live data</p></div>
+      <button class="btn pri" id="genExec">▶ Generate executive report</button></div>
+    <div id="repProgWrap" hidden style="margin-bottom:16px" class="card">
+      <div class="ch"><h3 id="repStage" style="font-size:.92rem;color:var(--muted)">Compiling…</h3><span class="tag" id="repPct">0%</span></div>
+      <div class="bar"><i id="repBar" style="width:0%"></i></div>
+    </div>
+    <div class="split">
+      <div class="card">
+        <div class="ch"><h3>Executive summary — board pack</h3><span class="tag">auto · this quarter</span></div>
+        <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:16px">
+          <b style="font-size:2.4rem;font-weight:700;color:var(--accent)">A-</b>
+          <div><b style="font-size:.95rem">AI security posture</b><br><span style="font-family:var(--mono);font-size:11px;color:var(--faint)">up from B+ last quarter</span></div>
+        </div>
+        <div class="tl">
+          <div class="it"><small>POSTURE</small><p>1,284 AI assets governed · 22 shadow AI contained · 94% full-stack red-team coverage.</p></div>
+          <div class="it bad"><small>TOP RISK</small><p>credit-risk-pd v43 drift breach (PSI 0.27) and geo-proxy bias — remediation owned by Model Risk, due in 30 days.</p></div>
+          <div class="it"><small>INCIDENTS</small><p>7 incidents this quarter, all contained. Mean time to contain: 1.2s automated / 14m analyst.</p></div>
+          <div class="it"><small>COMPLIANCE</small><p>ISO 42001, EU AI Act, NIST AI RMF, Singapore IMDA and MAS FEAT audited; 3 minor nonconformities tracked to closure.</p></div>
+          <div class="it"><small>RED TEAM</small><p>206 attacks last run across 8 stack domains; 1 finding escalated to an incident and closed.</p></div>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+          <button class="btn pri" data-act="Generated executive board pack · PDF · 6 pages · signed">Download board PDF</button>
+          <button class="btn" data-act="Generated SEC four-day blast-radius report">SEC disclosure report</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="ch"><h3>Report library</h3><span class="tag">on demand</span></div>
+        <div id="repLib"></div>
+        <div class="ch" style="margin:22px 0 12px"><h3>Scheduled distribution</h3></div>
+        <div id="repSched"></div>
+      </div>
     </div>
   </section>
 
@@ -508,7 +559,7 @@ html[data-theme="light"] .tour-pop button.np{color:#fff}
 (function(){
 "use strict";
 var reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-if(sessionStorage.getItem("aegis_auth")!=="1"){/* demo: allow direct access too */}
+if(sessionStorage.getItem("aegis_auth")!=="1"){/* session check */}
 
 /* ---------- nav ---------- */
 var views=document.querySelectorAll(".view");
@@ -878,7 +929,9 @@ function runAudit(){
   document.getElementById("auStage").innerHTML=fw.stages[si];
   if(p>=100){
    clearInterval(iv);
-   document.getElementById("auT").innerHTML=fw.rows.map(function(c){return '<tr><td>'+c[0]+'</td><td><span class="pill">'+c[1]+'</span></td><td>'+c[2]+'</td><td>'+st(c[3],c[4])+'</td></tr>';}).join("");
+   document.getElementById("auT").innerHTML=fw.rows.map(function(c,ix){return '<tr data-i="'+ix+'" style="cursor:pointer">'+'<td>'+c[0]+'</td><td><span class="pill">'+c[1]+'</span></td><td>'+c[2]+'</td><td>'+st(c[3],c[4])+'</td></tr>';}).join("");
+   document.querySelectorAll("#auT tr").forEach(function(tr){tr.addEventListener("click",function(){showAuDetail(fw,+tr.dataset.i);});});
+   document.getElementById("auDetail").hidden=true;
    // small per-run variance so re-running looks live
    var jc=Math.floor(Math.random()*3),conf=fw.conf+jc,obs=Math.max(0,fw.obs-(jc>1?1:0)),nc=fw.nc;
    document.getElementById("auTotalL").textContent=fw.totalL;
@@ -897,6 +950,82 @@ function runAudit(){
 }
 document.getElementById("auRun").addEventListener("click",runAudit);
 document.getElementById("auExport").addEventListener("click",function(){notify("✓ Exported "+AUDITS[auCur].short+" audit report","PDF + JSON · "+AUDITS[auCur].total+" controls · signed");});
+
+var REMED={
+ Data:"Complete dataset licence and provenance records; enable continuous licence verification and document data lineage for the credit-risk-pd training set.",
+ Risk:"Run bias mitigation (reweighing / threshold optimisation) on credit-risk-pd, record residual risk and obtain model-risk sign-off in the impact assessment, and schedule a quarterly review.",
+ Incidents:"Wire the serious-incident workflow to the regulator template (EU AI Act Art. 73 / MAS notification), test the 72-hour reporting path and attach the blast-radius export.",
+ Operations:"Document the competence matrix and training records for AI operators and link them to the HR system of record.",
+ Management:"Define monitoring and recovery runbooks and attach an automated rollback playbook to the MANAGE function.",
+ Transparency:"Publish the model card and on-request SHAP explainability to the customer disclosure register.",
+ Provenance:"Enable C2PA / watermark verification on generated content and record provenance in the ML-BOM.",
+ Testing:"Schedule recurring AI Verify fairness and robustness tests and attach the latest red-team run as evidence.",
+ Fairness:"Mitigate the postcode (geo) proxy in credit-risk-pd, re-test until disparate-impact ratio ≥ 0.80, and document the result under FEAT.",
+ GPAI:"Maintain GPAI model documentation and the training-data summary per EU AI Act Art. 53/55.",
+ Safety:"Expand red-team alignment coverage and set drift thresholds that page the on-call analyst.",
+ Security:"Confirm scoped credentials and correlation coverage; add the control to the continuous red-team plan."
+};
+var OWNERS={Risk:"Model Risk",Fairness:"Model Risk",Data:"Data Governance",Incidents:"SOC · Tier 3",Operations:"AI Governance",Management:"SOC · Tier 3",Transparency:"AI Governance",Provenance:"ML Platform",Testing:"ML Platform",GPAI:"AI Governance",Safety:"AI Safety",Security:"SecOps"};
+function passLike(r){return /Conformant|Implemented|Adopted|Met|Covered/i.test(r);}
+function obsLike(r){return /Observation|Partial/i.test(r);}
+function showAuDetail(fw,i){
+ var c=fw.rows[i],sev=c[3],res=c[4],area=c[1];
+ var d=document.getElementById("auDetail");d.hidden=false;
+ document.getElementById("adTitle").innerHTML=c[0]+' <span style="color:var(--faint);font-weight:400;font-size:.85rem">· '+fw.short+'</span>';
+ var rc=document.getElementById("adRes");rc.className="tag st "+sev;rc.textContent=res;
+ document.getElementById("adDesc").textContent="This control under "+fw.name.replace(/&amp;/g,"&")+" covers "+area.toLowerCase()+" obligations for the bank's regulated AI. AEGIS maps it automatically to platform telemetry.";
+ document.getElementById("adEv").textContent="Auto-collected from: "+c[2]+". Evidence is timestamped, hashed and stored in the immutable compliance log.";
+ var finding,rem,tkt="";
+ if(passLike(res)){finding="Control is conforming. Required evidence was found and re-verified on this run.";rem="No action required. Continuous monitoring is active; the control is re-evaluated on every audit run.";}
+ else if(obsLike(res)){finding="Partially met — evidence exists but is incomplete or not continuously verified.";rem=(REMED[area]||"Strengthen evidence and close the partial gap.")+" Target: next audit cycle.";tkt='Ticket: <b style="color:var(--warn)">GRC-'+(3200+i)+'</b> · open';}
+ else{finding="Nonconformity — the control is not adequately met and is reportable to the model-risk committee.";rem=REMED[area]||"Assign an owner, attach evidence and remediate before the next audit cycle.";tkt='Ticket: <b style="color:var(--danger)">GRC-'+(3200+i)+'</b> · escalated';}
+ document.getElementById("adFind").textContent=finding;
+ document.getElementById("adRem").textContent=rem;
+ document.getElementById("adOwner").textContent=OWNERS[area]||"AI Governance";
+ document.getElementById("adDue").textContent=passLike(res)?"—":new Date(Date.now()+30*864e5).toISOString().slice(0,10);
+ document.getElementById("adTkt").innerHTML=tkt;
+ var acts=document.getElementById("adActs");
+ if(passLike(res)){acts.innerHTML='<button class="btn" data-act="Re-verified control evidence · '+fw.short+'">Re-verify evidence</button>';}
+ else{acts.innerHTML='<button class="btn pri" data-act="Created remediation task '+(passLike(res)?'':'GRC-'+(3200+i))+' · owner '+(OWNERS[area]||"AI Governance")+'">Create remediation task</button><button class="btn" data-act="Assigned '+(OWNERS[area]||"AI Governance")+' to '+c[0].replace(/&amp;/g,"&")+'">Assign owner</button><button class="btn" data-act="Attached '+fw.short+' control to continuous red-team plan">Add to red-team plan</button>';}
+ acts.querySelectorAll("[data-act]").forEach(function(b){b.addEventListener("click",function(){notify("✓ "+b.dataset.act,"logged · "+new Date().toLocaleTimeString());});});
+ d.scrollIntoView({block:"nearest",behavior:"smooth"});
+}
+document.getElementById("adClose").addEventListener("click",function(){document.getElementById("auDetail").hidden=true;});
+
+/* ---------- reports ---------- */
+var repItems=[
+ ["Executive board pack","6 pp · posture, risk, incidents, compliance","PDF"],
+ ["Full technical report","all 8 layers · controls &amp; evidence","PDF + JSON"],
+ ["Model-risk report","credit-risk-pd v43 · MAS / Basel III","PDF"],
+ ["Compliance evidence pack","ISO 42001 · EU AI Act · NIST · IMDA · FEAT","PDF + JSON"],
+ ["Incident report","#4471 · session, lineage, response","PDF"],
+ ["Red-team campaign report","206 attacks · 8 domains · findings","PDF"],
+ ["Workforce-AI DLP report","M365 + Workspace · per-user · 30d","CSV + PDF"]
+];
+document.getElementById("repLib").innerHTML=repItems.map(function(r){return '<div class="tg"><div><b>'+r[0]+'</b><br><small>'+r[1]+'</small></div><button class="btn" data-act="Generated '+r[0].replace(/&amp;/g,"&")+' · '+r[2]+' · signed">Generate</button></div>';}).join("");
+var repSched=[["Weekly posture digest","→ CISO &amp; security leadership",1],["Monthly board pack","→ Board risk committee",1],["Quarterly regulator pack","→ MAS / IMDA submission",1],["Daily red-team summary","→ SOC queue",0]];
+document.getElementById("repSched").innerHTML=repSched.map(function(s){return '<div class="tg"><div><b>'+s[0]+'</b><br><small>'+s[1]+'</small></div><div class="sw'+(s[2]?"":" off")+'"></div></div>';}).join("");
+document.querySelectorAll("#repLib [data-act],#repSched .sw").forEach(function(el){
+ if(el.classList.contains("sw"))el.addEventListener("click",function(){el.classList.toggle("off");notify((el.classList.contains("off")?"○ Paused ":"✓ Scheduled ")+"report distribution","updated");});
+ else el.addEventListener("click",function(){notify("✓ "+el.dataset.act,"available in the report library");});
+});
+document.getElementById("genExec").addEventListener("click",function(){
+ var btn=this;btn.disabled=true;btn.textContent="● Compiling…";
+ var w=document.getElementById("repProgWrap");w.hidden=false;
+ var sg=["Aggregating posture across 8 layers","Summarising incidents &amp; response","Rolling up red-team coverage","Compiling multi-framework compliance","Model-risk &amp; bias summary (credit-risk-pd)","Rendering board pack &amp; signing"];
+ var p=0;var iv=setInterval(function(){
+  p+=Math.random()*7+5;if(p>100)p=100;
+  document.getElementById("repBar").style.width=p+"%";
+  document.getElementById("repPct").textContent=Math.round(p)+"%";
+  document.getElementById("repStage").innerHTML=sg[Math.min(sg.length-1,Math.floor(p/100*sg.length))];
+  if(p>=100){clearInterval(iv);
+   notify("✓ Executive report generated","Board pack · 6 pages · signed &amp; added to library");
+   var cf=document.getElementById("cmpFeed");if(cf)cf.insertAdjacentHTML("afterbegin",evRow("ok","Executive board pack generated &amp; distributed to risk committee"));
+   btn.disabled=false;btn.textContent="▶ Generate executive report";
+   setTimeout(function(){w.hidden=true;document.getElementById("repBar").style.width="0%";},2000);
+  }
+ },330);
+});
 
 /* global search filter (assets table) */
 document.getElementById("globalSearch").addEventListener("input",function(){
@@ -925,7 +1054,7 @@ document.getElementById("themeTg").addEventListener("click",function(){
 
 /* ---------- guided tour ---------- */
 var TOUR=[
- {v:"overview",sel:'.view[data-view="overview"] .grid.g4',t:"Operations overview",b:"Every demo starts here. Four KPIs summarise posture across all eight layers — assets tracked, open incidents, red-team coverage and shadow AI — refreshing live."},
+ {v:"overview",sel:'.view[data-view="overview"] .grid.g4',t:"Operations overview",b:"Start here. Four KPIs summarise posture across all eight layers — assets tracked, open incidents, red-team coverage and shadow AI — refreshing live."},
  {v:"overview",sel:"#ovFeed",t:"Live event stream",b:"A real-time feed of verifications, blocked attacks and contained incidents. This is the heartbeat you point at on a customer call."},
  {v:"discovery",sel:"#assetT",t:"Continuous discovery",b:"Every model, agent, MCP server and vector store — sanctioned or shadow. Try the top-bar search; the inventory filters live."},
  {v:"workforce",sel:"#wfT",t:"Workforce AI & data loss",b:"Across Microsoft 365 and Google Workspace: who pasted PII, code or secrets into Copilot, Gemini or a browser LLM — and harmful use, blocked in one click."},
@@ -933,7 +1062,8 @@ var TOUR=[
  {v:"killchain",sel:"#kcFlow",t:"The AI kill chain",b:"Four low-signal events become one critical incident. Click ‘Replay correlation’ to animate how single-tool stacks miss this."},
  {v:"incidents",sel:"#incDetail",t:"Investigate & respond",b:"Full session reconstruction, output-to-source lineage, and one-click response: revoke, quarantine, roll back, isolate."},
  {v:"redteam",sel:"#runRT",t:"Continuous full-stack red team",b:"The differentiator. It attacks the whole stack — model, agents, MCP, identity, supply chain and cloud infra. Run a campaign: it tunes detections and opens a real incident on any gap."},
- {v:"compliance",sel:"#auPick",t:"One-click framework audits",b:"Pick a framework — ISO/IEC 42001, EU AI Act, NIST AI RMF, Singapore IMDA, MAS FEAT or OWASP — and run a live conformity audit with scoring and an exportable report. Evidence is pulled automatically from the platform."}
+ {v:"compliance",sel:"#auPick",t:"One-click framework audits",b:"Pick a framework — ISO/IEC 42001, EU AI Act, NIST AI RMF, Singapore IMDA, MAS FEAT or OWASP — and run a live conformity audit. Click any control for findings and remediation."},
+ {v:"reports",sel:".view[data-view=\"reports\"] .split",t:"Executive & full reporting",b:"Board-grade posture summary and full technical reports, generated from live data — with scheduled distribution to the CISO, board and regulators."}
 ];
 var ring,pop,tIdx=0,tTimer=null,tDur=6500,tStart=0;
 function buildTour(){
@@ -986,7 +1116,7 @@ function endTour(){clearTimeout(tTimer);if(ring)ring.classList.remove("show");if
 document.getElementById("guideBtn").addEventListener("click",startTour);
 window.addEventListener("resize",function(){if(pop&&pop.classList.contains("show")){var el=document.querySelector(TOUR[tIdx].sel);if(el)place(el);}});
 
-/* offer the tour automatically on first demo load */
+/* offer the tour automatically on first load */
 setTimeout(function(){
  if(!sessionStorage.getItem("aegis_tour_seen")){
   try{sessionStorage.setItem("aegis_tour_seen","1");}catch(e){}
