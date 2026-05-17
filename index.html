@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="styles.css" />
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2 4 7v9c0 7.5 5.1 12.6 12 14 6.9-1.4 12-6.5 12-14V7Z' fill='none' stroke='%235af2c4' stroke-width='2.4'/%3E%3C/svg%3E" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' fill='none' stroke='%235af2c4' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M16 2.6 27 6.9V14.8C27 21.8 22.4 26.9 16 29.4 9.6 26.9 5 21.8 5 14.8V6.9Z'/%3E%3Cpath d='M10.8 15.4 16 10.6l5.2 4.8'/%3E%3Cpath d='M10.8 19.8 16 15l5.2 4.8'/%3E%3Ccircle cx='16' cy='22.8' r='1.4' fill='%235af2c4' stroke='none'/%3E%3C/svg%3E" />
 <script>try{var t=localStorage.getItem("aegis_theme");if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
 </head>
 <body>
@@ -23,7 +23,7 @@
 <header class="nav" id="nav">
   <a class="brand" href="#top" aria-label="AEGIS AI home">
     <span class="brand-mark" aria-hidden="true">
-      <svg viewBox="0 0 32 32" width="22" height="22"><path d="M16 2 4 7v9c0 7.5 5.1 12.6 12 14 6.9-1.4 12-6.5 12-14V7Z" fill="none" stroke="currentColor" stroke-width="2.4"/></svg>
+      <svg viewBox="0 0 32 32" width="23" height="23" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M16 2.6 27 6.9V14.8C27 21.8 22.4 26.9 16 29.4 9.6 26.9 5 21.8 5 14.8V6.9Z"/><path d="M10.8 15.4 16 10.6l5.2 4.8"/><path d="M10.8 19.8 16 15l5.2 4.8"/><circle cx="16" cy="22.8" r="1.4" fill="currentColor" stroke="none"/></svg>
     </span>
     <span class="brand-text">AEGIS<span class="dot">·</span>AI</span>
   </a>
@@ -196,14 +196,15 @@
               <i>Overview</i><i>Discovery</i><i>Identities</i><i>Telemetry</i><i>Kill chain</i><i class="on">Red team</i><i>Compliance</i>
             </div>
             <div class="ui-main">
-              <div class="ui-panel-h">Continuous red team · run rt-2026-0517</div>
+              <div class="ui-panel-h">Continuous full-stack red team · run rt-2026-0517</div>
               <div class="rt-rows">
-                <div class="rt-row"><span class="rt-tag pass">PASS</span>Indirect prompt injection · 142 variants</div>
-                <div class="rt-row"><span class="rt-tag pass">PASS</span>Confused-deputy tool abuse · 64 variants</div>
-                <div class="rt-row"><span class="rt-tag fail">FINDING</span>Compositional exfiltration · 1 chain reached data</div>
-                <div class="rt-row"><span class="rt-tag pass">PASS</span>Model namespace substitution · 9 attempts</div>
+                <div class="rt-row"><span class="rt-tag pass">PASS</span>LLM · indirect prompt injection · 142 variants</div>
+                <div class="rt-row"><span class="rt-tag pass">PASS</span>Agent kill-chain · confused-deputy tool abuse</div>
+                <div class="rt-row"><span class="rt-tag fail">FINDING</span>Identity · over-scoped agent token reachable</div>
+                <div class="rt-row"><span class="rt-tag pass">PASS</span>Supply chain · model namespace substitution</div>
+                <div class="rt-row"><span class="rt-tag pass">PASS</span>Cloud infra · IMDS / GPU node escape attempts</div>
               </div>
-              <p class="kc-note">Every finding opens an incident in the same console as a real attack.</p>
+              <p class="kc-note">Model, agents, identity, supply chain and the cloud underneath — every finding opens an incident in the same console.</p>
             </div>
           </div>
         </figure>
@@ -301,10 +302,13 @@
         <article class="layer flagship reveal">
           <div class="layer-no"><span>08</span><em>Flagship</em></div>
           <div class="layer-body">
-            <h3>Continuous red team</h3>
+            <h3>Continuous full-stack red team</h3>
             <p>Red teaming stops being a PDF from six weeks ago. It runs every day, inside the
-            same data plane as your detections. Every finding sharpens a defence; every defence
-            invites the next attack. Attack and defence become one loop — and that loop is the
+            same data plane as your detections — and it doesn't just probe the model. It attacks
+            the whole stack that hosts your AI: agents and their kill chains, MCP servers and
+            tools, the model supply chain, non-human identities and secrets, the vector and data
+            plane, and the cloud infrastructure underneath. Every finding sharpens a defence;
+            every defence invites the next attack. Attack and defence become one loop — the
             product no point tool can rebuild.</p>
           </div>
         </article>

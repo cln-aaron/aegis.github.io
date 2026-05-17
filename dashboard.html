@@ -8,18 +8,18 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2 4 7v9c0 7.5 5.1 12.6 12 14 6.9-1.4 12-6.5 12-14V7Z' fill='none' stroke='%235af2c4' stroke-width='2.4'/%3E%3C/svg%3E" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' fill='none' stroke='%235af2c4' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M16 2.6 27 6.9V14.8C27 21.8 22.4 26.9 16 29.4 9.6 26.9 5 21.8 5 14.8V6.9Z'/%3E%3Cpath d='M10.8 15.4 16 10.6l5.2 4.8'/%3E%3Cpath d='M10.8 19.8 16 15l5.2 4.8'/%3E%3Ccircle cx='16' cy='22.8' r='1.4' fill='%235af2c4' stroke='none'/%3E%3C/svg%3E" />
 <script>try{var t=localStorage.getItem("aegis_theme");if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
 <style>
 :root{--bg:#06070a;--bg-2:#080a0f;--panel:#0d1018;--panel-2:#11151f;--line:rgba(255,255,255,.08);--line-2:rgba(255,255,255,.16);--txt:#e8ecf2;--muted:#8b94a6;--faint:#5b6479;--accent:#5af2c4;--accent-dim:rgba(90,242,196,.14);--danger:#ff5d6c;--danger-dim:rgba(255,93,108,.13);--warn:#ffb454;--mono:'JetBrains Mono',ui-monospace,monospace;--sans:'Space Grotesk',-apple-system,sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--txt);font-family:var(--sans);font-size:15px;-webkit-font-smoothing:antialiased;display:grid;grid-template-columns:236px 1fr;grid-template-rows:auto 1fr;min-height:100vh}
+body{background:var(--bg);color:var(--txt);font-family:var(--sans);font-size:15px;-webkit-font-smoothing:antialiased;display:grid;grid-template-columns:236px 1fr;grid-template-rows:auto auto 1fr;min-height:100vh}
 a{color:inherit;text-decoration:none}
 ::selection{background:var(--accent);color:#04130d}
 ::-webkit-scrollbar{width:9px;height:9px}::-webkit-scrollbar-thumb{background:var(--line-2);border-radius:6px}
 
 /* sidebar */
-.side{grid-row:1/3;background:var(--bg-2);border-right:1px solid var(--line);display:flex;flex-direction:column;padding:18px 0}
+.side{grid-row:1/-1;background:var(--bg-2);border-right:1px solid var(--line);display:flex;flex-direction:column;padding:18px 0}
 .side .brand{display:flex;align-items:center;gap:9px;font-weight:700;font-size:16px;padding:6px 22px 22px}
 .side .brand svg{color:var(--accent)}
 .side .grp{font-family:var(--mono);font-size:10.5px;color:var(--faint);letter-spacing:1.5px;padding:18px 22px 8px}
@@ -32,7 +32,7 @@ a{color:inherit;text-decoration:none}
 .side .foot a{color:var(--accent)}
 
 /* topbar */
-.top{grid-column:2;display:flex;align-items:center;gap:18px;padding:14px 26px;border-bottom:1px solid var(--line);background:rgba(8,10,15,.85);backdrop-filter:blur(10px);position:sticky;top:0;z-index:20}
+.top{grid-column:2;grid-row:1;display:flex;align-items:center;gap:18px;padding:14px 26px;border-bottom:1px solid var(--line);background:rgba(8,10,15,.85);backdrop-filter:blur(10px);position:sticky;top:0;z-index:20}
 .crumb{font-family:var(--mono);font-size:12px;color:var(--muted)}
 .crumb b{color:var(--txt)}
 .search{margin-left:8px;flex:1;max-width:360px}
@@ -49,11 +49,20 @@ a{color:inherit;text-decoration:none}
 .user small{display:block;color:var(--faint);font-family:var(--mono);font-size:10.5px}
 
 /* banner */
-.banner{grid-column:2;background:var(--bg-2);border-bottom:1px solid var(--line);font-family:var(--mono);font-size:11.5px;color:var(--faint);padding:6px 26px;text-align:center;letter-spacing:.3px}
-.banner b{color:var(--muted)}
+.banner{grid-column:2;grid-row:2;display:flex;align-items:center;gap:26px;background:var(--bg-2);border-bottom:1px solid var(--line);padding:10px 26px;overflow-x:auto}
+.sb-tag{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;color:var(--accent);border:1px solid rgba(90,242,196,.4);border-radius:3px;padding:3px 8px;flex:none}
+.sb-stat{display:flex;flex-direction:column;line-height:1.15;flex:none}
+.sb-stat b{font-size:.95rem;font-weight:600}
+.sb-stat span{font-family:var(--mono);font-size:10px;color:var(--faint);letter-spacing:.3px}
+.sb-stat.dn b{color:var(--danger)}
+.sb-sep{width:1px;height:24px;background:var(--line);flex:none}
+.sb-spark{flex:1;min-width:80px;height:26px}
+.sb-spark canvas{width:100%;height:26px;display:block}
+.sb-live{font-family:var(--mono);font-size:10.5px;color:var(--accent);display:flex;align-items:center;gap:6px;flex:none}
+.sb-live i{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 1.6s infinite}
 
 /* main */
-.main{grid-column:2;padding:28px 30px 60px;overflow-x:hidden}
+.main{grid-column:2;grid-row:3;padding:28px 30px 60px;overflow-x:hidden}
 .view{display:none;animation:fade .35s ease}
 .view.on{display:block}
 @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1}}
@@ -129,6 +138,9 @@ tbody tr:hover{background:rgba(255,255,255,.02)}
 .tl .it small{font-family:var(--mono);font-size:11px;color:var(--faint)}
 .tl .it p{font-size:.9rem;margin-top:3px;color:var(--txt)}
 
+.rtd{background:var(--bg-2);padding:16px 16px}
+.rtd .rn{font-size:.9rem;font-weight:600;display:block;margin-bottom:8px}
+.rtd .rm{font-family:var(--mono);font-size:11px;color:var(--faint)}
 .findrow{display:flex;align-items:center;gap:14px;font-family:var(--mono);font-size:12.5px;padding:12px 0;border-bottom:1px solid var(--line)}
 .findrow:last-child{border:0}
 .ft{font-size:10px;font-weight:600;padding:3px 8px;border-radius:2px;flex:none}
@@ -208,7 +220,7 @@ html[data-theme="light"] .tour-pop button.np{color:#fff}
 <body>
 
 <aside class="side" id="side">
-  <div class="brand"><svg viewBox="0 0 32 32" width="20" height="20"><path d="M16 2 4 7v9c0 7.5 5.1 12.6 12 14 6.9-1.4 12-6.5 12-14V7Z" fill="none" stroke="currentColor" stroke-width="2.4"/></svg> AEGIS·AI</div>
+  <div class="brand"><svg viewBox="0 0 32 32" width="21" height="21" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M16 2.6 27 6.9V14.8C27 21.8 22.4 26.9 16 29.4 9.6 26.9 5 21.8 5 14.8V6.9Z"/><path d="M10.8 15.4 16 10.6l5.2 4.8"/><path d="M10.8 19.8 16 15l5.2 4.8"/><circle cx="16" cy="22.8" r="1.4" fill="currentColor" stroke="none"/></svg> AEGIS·AI</div>
   <div class="grp">OPERATIONS</div>
   <div class="nav-i on" data-v="overview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg> Overview</div>
   <div class="nav-i" data-v="discovery"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/></svg> Asset discovery</div>
@@ -242,7 +254,20 @@ html[data-theme="light"] .tour-pop button.np{color:#fff}
   <div class="user"><div class="av">JD</div><div>Jordan Diaz<small>SOC · Tier 3</small></div></div>
 </header>
 
-<div class="banner"><b>Demo environment</b> · synthetic data · every control below is live and interactive</div>
+<div class="banner" id="statBar">
+  <span class="sb-tag">DEMO</span>
+  <div class="sb-stat"><b id="sbAssets">1,284</b><span>AI ASSETS</span></div>
+  <div class="sb-sep"></div>
+  <div class="sb-stat dn"><b id="sbInc">7</b><span>OPEN INCIDENTS</span></div>
+  <div class="sb-sep"></div>
+  <div class="sb-stat"><b id="sbThreats">37</b><span>THREATS BLOCKED / 24H</span></div>
+  <div class="sb-sep"></div>
+  <div class="sb-stat"><b id="sbCov">94%</b><span>RED-TEAM COVERAGE</span></div>
+  <div class="sb-sep"></div>
+  <div class="sb-stat"><b id="sbEvents">2.1M</b><span>EVENTS / 24H</span></div>
+  <div class="sb-spark"><canvas id="sbSpark" height="26"></canvas></div>
+  <span class="sb-live"><i></i> live · synthetic data</span>
+</div>
 
 <main class="main">
 
@@ -388,27 +413,40 @@ html[data-theme="light"] .tour-pop button.np{color:#fff}
 
   <!-- ASSURANCE -->
   <section class="view" data-view="assurance">
-    <div class="h"><div><h1>Model assurance</h1><p>Drift, bias and hallucination — wired into the same engine the SOC reads</p></div></div>
-    <div class="grid g3">
-      <div class="card"><div class="ch"><h3>Data drift</h3><span class="tag">PSI · 14d</span></div><canvas id="cDrift" height="160"></canvas></div>
-      <div class="card"><div class="ch"><h3>Hallucination rate</h3><span class="tag">calibrated</span></div><canvas id="cHall" height="160"></canvas></div>
-      <div class="card"><div class="ch"><h3>Fairness regression</h3><span class="tag">protected attrs</span></div>
+    <div class="h"><div><h1>Model assurance</h1><p>Drift, bias and explainability — wired into the same engine the SOC reads</p></div>
+      <button class="btn" data-act="Exported model-risk pack · MAS/Basel · credit-risk-pd v43">Export model-risk pack</button></div>
+    <div class="card" style="margin-bottom:16px;border-left:3px solid var(--accent)">
+      <div class="ch"><h3>Monitored model · credit-risk-pd <span style="color:var(--faint);font-weight:400">v43</span></h3><span class="tag st warn">regulated · MAS / Basel III</span></div>
+      <p class="sub" style="margin:0">Retail bank probability-of-default scoring model for unsecured lending. Decisions affect credit limits and approvals — drift, bias and explainability are board- and regulator-reportable, and feed the SOC as security signals.</p>
+    </div>
+    <div class="grid g4">
+      <div class="card kpi"><span>POPULATION STABILITY</span><b>0.27</b><em class="dn">PSI · drift threshold 0.25</em></div>
+      <div class="card kpi"><span>AUC / GINI</span><b>0.81</b><em class="fl">Gini 0.62 · stable</em></div>
+      <div class="card kpi"><span>UNEXPLAINED DECISIONS</span><b>1.2%</b><em class="up">SHAP coverage 98.8%</em></div>
+      <div class="card kpi"><span>FAIRNESS BREACH</span><b>1</b><em class="dn">geo proxy · age</em></div>
+    </div>
+    <div class="grid g3" style="margin-top:16px">
+      <div class="card"><div class="ch"><h3>Feature drift</h3><span class="tag">PSI · 8 features · 14d</span></div><canvas id="cDrift" height="160"></canvas></div>
+      <div class="card"><div class="ch"><h3>Override / exception rate</h3><span class="tag">credit officers · %</span></div><canvas id="cHall" height="160"></canvas></div>
+      <div class="card"><div class="ch"><h3>Disparate impact</h3><span class="tag">protected · vs control</span></div>
         <div id="fairBars" style="margin-top:8px"></div></div>
     </div>
-    <div class="card" style="margin-top:16px"><div class="ch"><h3>Model registry</h3><span class="tag">in-house</span></div>
-      <table><thead><tr><th>Model</th><th>Version</th><th>Drift</th><th>Hallucination</th><th>Status</th></tr></thead><tbody id="mdlT"></tbody></table></div>
+    <div class="card" style="margin-top:16px"><div class="ch"><h3>Bank model registry</h3><span class="tag">in-house · regulated</span></div>
+      <table><thead><tr><th>Model</th><th>Version</th><th>Drift (PSI)</th><th>Bias</th><th>Status</th></tr></thead><tbody id="mdlT"></tbody></table></div>
   </section>
 
   <!-- RED TEAM -->
   <section class="view" data-view="redteam">
-    <div class="h"><div><h1>Continuous red team</h1><p>Automated adversarial testing inside the same data plane as your detections</p></div>
+    <div class="h"><div><h1>Continuous full-stack red team</h1><p>Adversarial testing of the whole AI stack — model, agents, MCP, identity, supply chain and the cloud infra that hosts it</p></div>
       <button class="btn pri" id="runRT">▶ Run red-team campaign</button></div>
     <div class="grid g4">
       <div class="card kpi"><span>LAST RUN</span><b style="font-size:1.05rem;margin-top:14px" id="rtLast">2h ago</b><em class="fl">rt-2026-0517</em></div>
-      <div class="card kpi"><span>ATTACKS / RUN</span><b id="rtAtk">206</b><em class="fl">refreshed libs</em></div>
+      <div class="card kpi"><span>ATTACKS / RUN</span><b id="rtAtk">206</b><em class="fl">across 8 domains</em></div>
       <div class="card kpi"><span>OPEN FINDINGS</span><b id="rtFind">1</b><em class="dn">→ incident</em></div>
-      <div class="card kpi"><span>COVERAGE</span><b id="rtCov">94%</b><em class="up">OWASP LLM</em></div>
+      <div class="card kpi"><span>COVERAGE</span><b id="rtCov">94%</b><em class="up">stack-wide</em></div>
     </div>
+    <div class="card" style="margin-top:16px"><div class="ch"><h3>Attack surface coverage</h3><span class="tag">whole stack · last run</span></div>
+      <div class="grid g4" id="rtDomains" style="gap:1px;background:var(--line);border:1px solid var(--line)"></div></div>
     <div class="card" style="margin-top:16px" id="rtProgWrap" hidden>
       <div class="ch"><h3 id="rtStage">Initialising campaign…</h3><span class="tag" id="rtPct">0%</span></div>
       <div class="bar"><i id="rtBar" style="width:0%"></i></div>
@@ -457,6 +495,8 @@ function show(v){
   document.getElementById("crumb").textContent=t?t.textContent.trim().replace(/\s*\d+$/,""):v;
   document.getElementById("side").classList.remove("open");
   window.scrollTo(0,0);
+  if(v==="overview")requestAnimationFrame(initOverview);
+  if(v==="assurance")requestAnimationFrame(drawAssurance);
 }
 navs.forEach(function(n){n.addEventListener("click",function(){show(n.dataset.v);});});
 document.querySelectorAll("[data-go]").forEach(function(b){b.addEventListener("click",function(){show(b.dataset.go);});});
@@ -516,6 +556,31 @@ var telOn=true;
 document.getElementById("streamToggle").addEventListener("click",function(){telOn=!telOn;this.textContent=telOn?"⏸ Pause stream":"▶ Resume stream";});
 if(!reduce){setInterval(function(){pushFeed("ovFeed",8);},2800);setInterval(function(){if(telOn)pushTel();},900);}
 
+/* ---------- live status strip ---------- */
+(function(){
+ var spark=document.getElementById("sbSpark");
+ var threats=37,evBase=2100000;
+ var data=[];for(var i=0;i<40;i++)data.push(40+Math.random()*60);
+ function draw(){
+  if(!spark)return;var o=fit(spark),X=o.x,W=o.w,H=o.h,mx=Math.max.apply(null,data)*1.15;
+  X.clearRect(0,0,W,H);X.beginPath();
+  data.forEach(function(v,i){var px=i/(data.length-1)*W,py=H-(v/mx)*(H-4)-2;i?X.lineTo(px,py):X.moveTo(px,py);});
+  X.strokeStyle="#5af2c4";X.lineWidth=1.5;X.stroke();
+  X.lineTo(W,H);X.lineTo(0,H);X.closePath();
+  var g=X.createLinearGradient(0,0,0,H);g.addColorStop(0,"rgba(90,242,196,.25)");g.addColorStop(1,"rgba(90,242,196,0)");
+  X.fillStyle=g;X.fill();
+ }
+ draw();
+ function fmtM(n){return (n/1e6).toFixed(2)+"M";}
+ if(!reduce)setInterval(function(){
+  data.push(40+Math.random()*60);data.shift();draw();
+  evBase+=Math.floor(Math.random()*900+300);
+  document.getElementById("sbEvents").textContent=fmtM(evBase);
+  if(Math.random()<.35){threats++;var t=document.getElementById("sbThreats");t.textContent=threats;t.style.color="var(--accent)";setTimeout(function(){t.style.color="";},600);}
+ },2400);
+ window.addEventListener("resize",draw,{passive:true});
+})();
+
 /* ---------- canvas charts ---------- */
 function fit(c){var r=c.getBoundingClientRect(),d=window.devicePixelRatio||1;c.width=r.width*d;c.height=c.height*d;var x=c.getContext("2d");x.scale(d,d);return{x:x,w:r.width,h:c.height/d};}
 function lineChart(id,series,live){
@@ -556,16 +621,21 @@ function bars(id,vals){
  vals.forEach(function(v,i){var bh=v/mx*(H-14);X.fillStyle=i===vals.length-1?"#ff5d6c":"#5af2c4";X.fillRect(i*gap+gap*.22,H-bh,bw,bh);});
 }
 
-/* build charts when overview/assurance visible (after layout) */
-setTimeout(function(){
+/* charts are drawn when their view is on-screen (a hidden canvas measures 0) */
+var ovInit=false;
+function initOverview(){
+ if(ovInit)return;ovInit=true;
  lineChart("cMain",[
    {d:[120,180,140,260,210,330,300,420,380,520,470,560],c:"#5af2c4",f:"rgba(90,242,196,.22)",v:140},
    {d:[8,14,6,22,12,30,18,26,20,38,24,33],c:"#ff5d6c",f:"rgba(255,93,108,.18)",v:18}
  ],true);
  donut("cDonut");
- bars("cDrift",[12,18,15,22,19,28,24,41]);
- lineChart("cHall",[{d:[6,5,7,4,5,3,4,3],c:"#5af2c4",f:"rgba(90,242,196,.2)",v:4}],false);
-},300);
+}
+function drawAssurance(){
+ bars("cDrift",[0.08,0.11,0.09,0.14,0.12,0.19,0.17,0.27]);
+ lineChart("cHall",[{d:[1.1,0.9,1.3,0.8,1.0,0.7,0.9,1.2],c:"#5af2c4",f:"rgba(90,242,196,.2)",v:1}],false);
+}
+setTimeout(initOverview,300);
 window.addEventListener("resize",function(){location.reload();},{passive:true});
 
 /* ---------- tables ---------- */
@@ -603,10 +673,11 @@ var ids=[
 document.getElementById("idT").innerHTML=ids.map(function(i){return '<tr><td>'+i[0]+'</td><td><span class="pill">'+i[1]+'</span></td><td>'+i[2]+'</td><td>'+st(i[3],i[4])+'</td><td><button class="btn dng" data-act="Revoked '+i[0]+' · all tokens destroyed">Revoke</button></td></tr>';}).join("");
 
 var mdls=[
- ["llama-fraud","v43","High","4.1%","warn","At risk"],
- ["checkout-rank","v12","Low","1.2%","ok","Healthy"],
- ["support-router","v8","Medium","2.8%","warn","Watch"],
- ["embed-search","v3","Low","0.6%","ok","Healthy"]
+ ["credit-risk-pd · unsecured lending","v43","0.27","Geo / age","warn","Drift breach"],
+ ["credit-risk-lgd · recovery","v19","0.11","Within tol.","ok","Healthy"],
+ ["txn-fraud-detection","v58","0.08","Within tol.","ok","Healthy"],
+ ["aml-kyc-screening","v22","0.14","Watch","warn","Watch"],
+ ["collections-propensity","v7","0.09","Within tol.","ok","Healthy"]
 ];
 document.getElementById("mdlT").innerHTML=mdls.map(function(m){return '<tr><td>'+m[0]+'</td><td>'+m[1]+'</td><td>'+m[2]+'</td><td>'+m[3]+'</td><td>'+st(m[4],m[5])+'</td></tr>';}).join("");
 
@@ -657,7 +728,7 @@ document.getElementById("corrList").innerHTML=[
 
 /* fairness + compliance + assurance bars */
 function barBlock(rows){return rows.map(function(r){return '<div style="margin:14px 0"><div class="lbl"><span>'+r[0]+'</span><span>'+r[1]+'%</span></div><div class="bar '+(r[2]||'')+'"><i style="width:0" data-w="'+r[1]+'"></i></div></div>';}).join("");}
-document.getElementById("fairBars").innerHTML=barBlock([["Gender parity",97],["Age parity",94],["Geo parity",89,"wn"],["Regression vs v42",4,"dng"]]);
+document.getElementById("fairBars").innerHTML=barBlock([["Gender · approval parity",97],["Age 18–25 · parity",88,"wn"],["Postcode (geo proxy)",79,"dng"],["Disparate impact ratio",82,"wn"]]);
 document.getElementById("cmpBars").innerHTML=barBlock([["EU AI Act · Annex IV",96],["NIST AI RMF",92],["ISO/IEC 42001",88,"wn"],["OWASP LLM Top 10",94],["OWASP Agentic Top 10",90],["SOC 2 · AI controls",98]]);
 function fillBars(){document.querySelectorAll(".bar i[data-w]").forEach(function(i){requestAnimationFrame(function(){i.style.width=i.dataset.w+"%";});});}
 setTimeout(fillBars,400);
@@ -676,16 +747,29 @@ document.getElementById("intB").innerHTML=intBlock([["Okta","NHI sync · 611 ide
 document.querySelectorAll(".sw").forEach(function(s){s.addEventListener("click",function(){s.classList.toggle("off");notify((s.classList.contains("off")?"○ Disconnected ":"✓ Connected ")+"integration","sync state updated");});});
 
 /* red team campaign */
+var rtDomains=[
+ ["LLM / prompt","ok","142 attacks · 0 gaps"],
+ ["Agent kill-chain","ok","64 attacks · 0 gaps"],
+ ["MCP &amp; tools","warn","poisoning · 1 finding"],
+ ["Supply chain","ok","21 attacks · 0 gaps"],
+ ["Identity &amp; secrets","bad","over-scoped token"],
+ ["Cloud &amp; infra","ok","IMDS/GPU · 0 gaps"],
+ ["Data &amp; vector","ok","18 attacks · 0 gaps"],
+ ["Network / egress","ok","DLP egress · 0 gaps"]
+];
+document.getElementById("rtDomains").innerHTML=rtDomains.map(function(d){return '<div class="rtd"><span class="rn">'+d[0]+'</span><span class="st '+d[1]+'"></span> <span class="rm">'+d[2]+'</span></div>';}).join("");
 var rtFindings=[
- ["p","PASS","Indirect prompt injection · 142 variants"],
- ["p","PASS","Confused-deputy tool abuse · 64 variants"],
- ["f","FINDING","Compositional exfiltration · 1 chain reached data"],
- ["p","PASS","Model namespace substitution · 9 attempts"],
- ["p","PASS","Pickle deserialisation (nullifAI) · 12 payloads"]
+ ["p","PASS","LLM · indirect prompt injection · 142 variants"],
+ ["p","PASS","Agent · confused-deputy tool abuse · 64 variants"],
+ ["f","FINDING","Identity · agent svc-rag-07 token over-scoped, reachable"],
+ ["p","PASS","Supply chain · model namespace substitution · 9 attempts"],
+ ["p","PASS","Supply chain · pickle deserialisation (nullifAI) · 12 payloads"],
+ ["p","PASS","Cloud infra · IMDSv2 / GPU node escape · 16 attempts"],
+ ["p","PASS","Network · vector-store egress &amp; DLP bypass · 22 attempts"]
 ];
 function renderRT(){document.getElementById("rtRows").innerHTML=rtFindings.map(function(f){return '<div class="findrow"><span class="ft '+f[0]+'">'+f[1]+'</span>'+f[2]+'<span style="margin-left:auto;color:var(--faint)">rt-2026-0517</span></div>';}).join("");}
 renderRT();
-var stages=["Generating adversarial prompts (OWASP LLM Top 10)","Multi-turn injection simulation","Agent kill-chain execution","Supply-chain attack simulation","Model robustness · membership inference","Scoring & tuning detections"];
+var stages=["Generating adversarial prompts (OWASP LLM Top 10)","Agent kill-chain execution","MCP & tool-poisoning simulation","Supply-chain attack (namespace, pickle)","Identity & secrets · token/credential abuse","Cloud infra · IMDS, GPU node, container escape","Network & data-plane egress / DLP bypass","Scoring & tuning detections"];
 document.getElementById("runRT").addEventListener("click",function(){
  var btn=this;btn.disabled=true;btn.textContent="● Campaign running…";
  var wrap=document.getElementById("rtProgWrap");wrap.hidden=false;
@@ -754,7 +838,7 @@ var TOUR=[
  {v:"identities",sel:"#idT",t:"Non-human identities",b:"Each agent is its own identity with a short-lived, scoped token. Hit Revoke on any row to destroy its credentials instantly."},
  {v:"killchain",sel:"#kcFlow",t:"The AI kill chain",b:"Four low-signal events become one critical incident. Click ‘Replay correlation’ to animate how single-tool stacks miss this."},
  {v:"incidents",sel:"#incDetail",t:"Investigate & respond",b:"Full session reconstruction, output-to-source lineage, and one-click response: revoke, quarantine, roll back, isolate."},
- {v:"redteam",sel:"#runRT",t:"Continuous red team",b:"The differentiator. Run a campaign — it executes attacks, tunes detections, and opens a real incident when it finds a gap."},
+ {v:"redteam",sel:"#runRT",t:"Continuous full-stack red team",b:"The differentiator. It attacks the whole stack — model, agents, MCP, identity, supply chain and cloud infra. Run a campaign: it tunes detections and opens a real incident on any gap."},
  {v:"compliance",sel:"#cmpBars",t:"Audit-ready evidence",b:"Coverage auto-mapped to EU AI Act, NIST AI RMF, ISO 42001 and OWASP. Export a signed evidence pack in one click."}
 ];
 var ring,pop,tIdx=0,tTimer=null,tDur=6500,tStart=0;
