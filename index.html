@@ -14,6 +14,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="styles.css" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2 4 7v9c0 7.5 5.1 12.6 12 14 6.9-1.4 12-6.5 12-14V7Z' fill='none' stroke='%235af2c4' stroke-width='2.4'/%3E%3C/svg%3E" />
+<script>try{var t=localStorage.getItem("aegis_theme");if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
 </head>
 <body>
 <div class="grid-bg" aria-hidden="true"></div>
@@ -34,6 +35,10 @@
     <a href="#integrations">Integrations</a>
   </nav>
   <div class="nav-cta">
+    <button class="theme-tg" id="themeTg" aria-label="Toggle dark or light theme" title="Toggle theme">
+      <svg class="t-moon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"/></svg>
+      <svg class="t-sun" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19"/></svg>
+    </button>
     <a href="login.html" class="nav-login">Sign in</a>
     <a href="#demo" class="btn btn-sm">Book a demo</a>
   </div>
@@ -81,6 +86,7 @@
               <div><b id="hAgents">0</b><small>agents watched</small></div>
               <div><b id="hThreats">0</b><small>threats blocked / 24h</small></div>
             </div>
+            <div class="cm-cap">Inference volume · last 24h</div>
             <svg class="cm-chart" viewBox="0 0 320 90" preserveAspectRatio="none">
               <defs>
                 <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
@@ -91,6 +97,7 @@
               <path class="cm-area" d="M0,70 L40,55 L80,62 L120,38 L160,46 L200,24 L240,34 L280,18 L320,28 L320,90 L0,90 Z" fill="url(#g1)"/>
               <path class="cm-line" d="M0,70 L40,55 L80,62 L120,38 L160,46 L200,24 L240,34 L280,18 L320,28" fill="none" stroke="#5af2c4" stroke-width="2"/>
             </svg>
+            <div class="cm-cap">Live activity</div>
             <div class="cm-feed" id="hFeed"></div>
           </div>
         </div>
@@ -123,6 +130,15 @@
         <button class="tab" data-tab="killchain">Kill chain</button>
         <button class="tab" data-tab="redteam">Red team</button>
         <button class="tab" data-tab="assets">Asset inventory</button>
+      </div>
+
+      <div class="tour reveal" id="tour">
+        <button class="tour-btn" id="tourBtn" aria-label="Pause tour">
+          <span class="t-pause">❚❚</span><span class="t-play">▶</span>
+          <em id="tourState">Auto-tour</em>
+        </button>
+        <p class="tour-cap" id="tourCap">A single posture view across all eight layers — assets, incidents, red-team coverage and shadow AI, live.</p>
+        <div class="tour-prog"><i id="tourBar"></i></div>
       </div>
 
       <div class="shot reveal">
@@ -228,9 +244,10 @@
         <article class="layer reveal">
           <div class="layer-no"><span>01</span></div>
           <div class="layer-body">
-            <h3>Asset discovery</h3>
-            <p>A live inventory of every model, agent, MCP server, vector store, and prompt —
-            across code, cloud, browsers, and OAuth grants. Sanctioned or shadow, you see it.</p>
+            <h3>Asset &amp; workforce AI discovery</h3>
+            <p>A live inventory of every model, agent, MCP server, vector store and prompt — plus
+            how employees use AI across Microsoft 365 and Google Workspace. Copilot, Gemini and
+            browser LLMs included. Sanctioned or shadow, you see it.</p>
           </div>
         </article>
         <article class="layer reveal">
@@ -295,8 +312,41 @@
     </div>
   </section>
 
+  <!-- HOW IT WORKS -->
+  <section class="section" id="how">
+    <div class="wrap">
+      <p class="sec-label reveal">How it works</p>
+      <h2 class="sec-title reveal">Live in a day. Value in a week.</h2>
+      <p class="lede reveal">No agents on every box, no rip-and-replace. AEGIS reads the
+      signals your stack already emits and adds the ones it doesn't.</p>
+      <div class="steps">
+        <article class="step reveal">
+          <span class="step-n">01</span>
+          <h3>Connect</h3>
+          <p>Point AEGIS at your clouds, gateways and SIEM with read-only roles and an
+          OpenTelemetry collector. No code changes to your apps. Typical first connection: under
+          an hour.</p>
+        </article>
+        <article class="step reveal">
+          <span class="step-n">02</span>
+          <h3>Discover</h3>
+          <p>Within the first sweep you get a live inventory of every model, agent, MCP server
+          and vector store — including the shadow AI nobody told you about — with owners and a
+          dependency graph.</p>
+        </article>
+        <article class="step reveal">
+          <span class="step-n">03</span>
+          <h3>Defend</h3>
+          <p>Correlation and the continuous red team turn on. Detections are exercised against
+          live attacks daily, and every finding lands as an incident in the same console your SOC
+          already works in.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <!-- TEAMS -->
-  <section class="section" id="teams">
+  <section class="section alt" id="teams">
     <div class="wrap">
       <p class="sec-label reveal">Who uses it</p>
       <h2 class="sec-title reveal">Three teams. One source of truth.</h2>
@@ -328,7 +378,7 @@
   </section>
 
   <!-- WHY -->
-  <section class="section alt" id="why">
+  <section class="section" id="why">
     <div class="wrap">
       <p class="sec-label reveal">Why AEGIS</p>
       <h2 class="sec-title reveal">The other options leave a gap.</h2>
@@ -374,7 +424,7 @@
   </section>
 
   <!-- METRICS -->
-  <section class="section" id="metrics">
+  <section class="section alt" id="metrics">
     <div class="wrap">
       <p class="sec-label reveal">The stakes</p>
       <h2 class="sec-title reveal">The exposure is already here.</h2>
@@ -404,7 +454,7 @@
   </section>
 
   <!-- INTEGRATIONS -->
-  <section class="section alt" id="integrations">
+  <section class="section" id="integrations">
     <div class="wrap">
       <p class="sec-label reveal">Integrations</p>
       <h2 class="sec-title reveal">Sits on top of what you run.</h2>
@@ -419,9 +469,9 @@
         </article>
         <article class="eco-col reveal">
           <p class="persona-tag">SIEM, XDR &amp; identity</p>
-          <p>Splunk, Sentinel, Elastic, Datadog, Chronicle. CrowdStrike, Defender XDR,
-          SentinelOne, Cortex. CyberArk, Okta, Entra, SailPoint. ServiceNow, Jira, PagerDuty,
-          Slack, Teams.</p>
+          <p>Microsoft 365 &amp; Copilot, Google Workspace &amp; Gemini for workforce-AI DLP.
+          Splunk, Sentinel, Elastic, Datadog, Chronicle. CrowdStrike, Defender XDR, SentinelOne,
+          Cortex. CyberArk, Okta, Entra, SailPoint. ServiceNow, Jira, PagerDuty, Slack, Teams.</p>
         </article>
         <article class="eco-col reveal">
           <p class="persona-tag">Compliance</p>
@@ -432,8 +482,74 @@
     </div>
   </section>
 
+  <!-- SPECS -->
+  <section class="section alt" id="specs">
+    <div class="wrap">
+      <p class="sec-label reveal">The detail</p>
+      <h2 class="sec-title reveal">What you actually get.</h2>
+      <p class="lede reveal">The questions security, legal and procurement ask before a
+      proof-of-value — answered up front.</p>
+      <div class="specs">
+        <div class="spec reveal"><span>Deployment</span><b>SaaS or in-VPC</b><p>Fully managed, or
+        deployed inside your own cloud account. The data plane can run air-gapped.</p></div>
+        <div class="spec reveal"><span>Your data</span><b>Stays in your tenant</b><p>Telemetry is
+        processed in your region. Prompt and completion content never leaves your boundary by
+        default.</p></div>
+        <div class="spec reveal"><span>Access</span><b>SSO · SAML · SCIM</b><p>Okta, Entra and
+        Ping. Role-based access, scoped API tokens, full admin audit log.</p></div>
+        <div class="spec reveal"><span>Inline latency</span><b>&lt; 40 ms p50</b><p>The optional
+        inline gateway adds single-digit-to-low-tens of milliseconds. Monitor-only mode adds
+        zero.</p></div>
+        <div class="spec reveal"><span>Availability</span><b>99.9% SLA</b><p>Multi-region,
+        active-active. Detections degrade safe — telemetry is never dropped silently.</p></div>
+        <div class="spec reveal"><span>Regions</span><b>SG · EU · US</b><p>ap-southeast-1,
+        eu-west-1, us-east-1. Data residency pinned per tenant.</p></div>
+        <div class="spec reveal"><span>Assurance</span><b>SOC 2 Type II</b><p>ISO 27001 in
+        progress. Penetration-tested quarterly; the platform red-teams itself continuously.</p></div>
+        <div class="spec reveal"><span>Commercial</span><b>Platform + usage</b><p>Annual platform
+        fee plus asset- and event-based metering, so cost rolls to the AI initiative budget.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="wrap">
+      <p class="sec-label reveal">Questions</p>
+      <h2 class="sec-title reveal">Before you ask.</h2>
+      <div class="faq">
+        <details class="reveal"><summary>Do you replace our SIEM?</summary><p>No. AEGIS is built
+        to sit on top of Splunk, Sentinel, Elastic and the rest. We make the SIEM you already pay
+        for AI-fluent and feed it correlated incidents in OCSF.</p></details>
+        <details class="reveal"><summary>How is this different from an AI firewall?</summary><p>A
+        prompt firewall sees text in and text out. AEGIS also sees tool calls, agent identity,
+        model lineage and supply chain — and correlates them. The gateway is one of eight layers,
+        not the whole product.</p></details>
+        <details class="reveal"><summary>Does our prompt data leave our environment?</summary><p>Not
+        by default. The data plane runs in your region or your VPC. You choose what is redacted
+        before anything is stored, and content can stay entirely in your tenant.</p></details>
+        <details class="reveal"><summary>Can you see employee AI use across Microsoft 365 and
+        Google Workspace?</summary><p>Yes. AEGIS watches workforce AI across both suites — Copilot,
+        Gemini, connected GPTs and browser LLMs — and flags data loss (PII, source code, secrets
+        or regulated data leaving into an AI surface) and harmful use, with the user, the data
+        class and a one-click block. It complements your CASB and DLP rather than replacing
+        them.</p></details>
+        <details class="reveal"><summary>What does onboarding look like?</summary><p>Read-only
+        cloud roles plus a collector. First inventory inside the first sweep, correlation and
+        continuous red team typically live within the first week. No app code changes.</p></details>
+        <details class="reveal"><summary>Which models and frameworks are supported?</summary><p>OpenAI,
+        Anthropic, Google, Meta, Mistral, Bedrock and Azure OpenAI; LangChain, LlamaIndex, AutoGen,
+        CrewAI; MCP and A2A; self-hosted vLLM, TGI and Ollama — same telemetry, same controls.</p></details>
+        <details class="reveal"><summary>Is the continuous red team safe to run in
+        production?</summary><p>Yes. Attacks run with safe-execution scaffolding against
+        production-equivalent targets. Findings open as incidents in the same console — purple-team
+        by design.</p></details>
+      </div>
+    </div>
+  </section>
+
   <!-- DEMO / CTA -->
-  <section class="section cta-section" id="demo">
+  <section class="section alt cta-section" id="demo">
     <div class="wrap cta-wrap reveal">
       <h2 class="sec-title">See it on your own stack.</h2>
       <p class="lede">Book a 30-minute walkthrough, or jump straight into the live console

@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2 4 7v9c0 7.5 5.1 12.6 12 14 6.9-1.4 12-6.5 12-14V7Z' fill='none' stroke='%235af2c4' stroke-width='2.4'/%3E%3C/svg%3E" />
+<script>try{var t=localStorage.getItem("aegis_theme");if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
 <style>
 :root{--bg:#06070a;--bg-2:#080a0f;--panel:#0d1018;--panel-2:#11151f;--line:rgba(255,255,255,.08);--line-2:rgba(255,255,255,.16);--txt:#e8ecf2;--muted:#8b94a6;--faint:#5b6479;--accent:#5af2c4;--accent-dim:rgba(90,242,196,.14);--danger:#ff5d6c;--danger-dim:rgba(255,93,108,.13);--warn:#ffb454;--mono:'JetBrains Mono',ui-monospace,monospace;--sans:'Space Grotesk',-apple-system,sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -48,7 +49,8 @@ a{color:inherit;text-decoration:none}
 .user small{display:block;color:var(--faint);font-family:var(--mono);font-size:10.5px}
 
 /* banner */
-.banner{grid-column:2;background:var(--accent-dim);border-bottom:1px solid var(--line);font-family:var(--mono);font-size:12px;color:var(--accent);padding:8px 26px;text-align:center}
+.banner{grid-column:2;background:var(--bg-2);border-bottom:1px solid var(--line);font-family:var(--mono);font-size:11.5px;color:var(--faint);padding:6px 26px;text-align:center;letter-spacing:.3px}
+.banner b{color:var(--muted)}
 
 /* main */
 .main{grid-column:2;padding:28px 30px 60px;overflow-x:hidden}
@@ -150,6 +152,47 @@ tbody tr:hover{background:rgba(255,255,255,.02)}
 .sw::after{content:"";position:absolute;top:2px;left:21px;width:19px;height:19px;border-radius:50%;background:#04130d;transition:.2s}
 .sw.off::after{left:2px;background:var(--muted)}
 
+/* theme toggle + guided-tour button */
+.tour-start{border-color:rgba(90,242,196,.4);color:var(--accent);font-weight:600}
+.tour-start:hover{background:var(--accent-dim)}
+#themeTg .t-sun{display:none}
+html[data-theme="light"] #themeTg .t-sun{display:block}
+html[data-theme="light"] #themeTg .t-moon{display:none}
+
+/* light theme */
+html{transition:background-color .3s}
+html[data-theme="light"]{
+  --bg:#f5f7fb;--bg-2:#eef2f8;--panel:#ffffff;--panel-2:#f3f6fb;
+  --line:rgba(13,20,34,.10);--line-2:rgba(13,20,34,.18);
+  --txt:#0e1726;--muted:#54607a;--faint:#8b95ab;
+  --accent:#0c9b78;--accent-dim:rgba(12,155,120,.12);
+  --danger:#d83246;--danger-dim:rgba(216,50,70,.12);--warn:#b27414;
+}
+html[data-theme="light"] body{background:var(--bg)}
+html[data-theme="light"] .top{background:rgba(245,247,251,.92)}
+html[data-theme="light"] .btn.pri,html[data-theme="light"] .badge,html[data-theme="light"] .ic .n{color:#fff}
+html[data-theme="light"] .av{color:#fff}
+html[data-theme="light"] ::selection{background:var(--accent);color:#fff}
+
+/* guided tour */
+.tour-ring{position:fixed;z-index:90;border-radius:8px;border:2px solid var(--accent);box-shadow:0 0 0 9999px rgba(2,4,8,.68);pointer-events:none;transition:all .35s cubic-bezier(.16,1,.3,1);opacity:0}
+html[data-theme="light"] .tour-ring{box-shadow:0 0 0 9999px rgba(13,20,34,.45)}
+.tour-ring.show{opacity:1}
+.tour-pop{position:fixed;z-index:91;width:320px;max-width:calc(100vw - 32px);background:var(--panel-2);border:1px solid var(--line-2);border-radius:8px;padding:18px 20px;box-shadow:0 24px 50px -20px rgba(0,0,0,.7);transition:all .35s cubic-bezier(.16,1,.3,1);opacity:0}
+.tour-pop.show{opacity:1}
+.tour-pop .tp-step{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:1px}
+.tour-pop h4{font-size:1.05rem;margin:8px 0 7px;font-weight:600}
+.tour-pop p{font-size:.9rem;color:var(--muted);line-height:1.55}
+.tour-pop .tp-bar{height:3px;background:var(--line);border-radius:3px;margin:14px 0;overflow:hidden}
+.tour-pop .tp-bar i{display:block;height:100%;width:0;background:var(--accent)}
+.tour-pop .tp-row{display:flex;align-items:center;gap:8px}
+.tour-pop .tp-row .sp{flex:1}
+.tour-pop button{font-family:var(--mono);font-size:12px;border:1px solid var(--line-2);background:transparent;color:var(--txt);padding:7px 13px;border-radius:3px;cursor:pointer}
+.tour-pop button:hover{border-color:var(--accent);color:var(--accent)}
+.tour-pop button.np{background:var(--accent);color:#04130d;border-color:var(--accent);font-weight:600}
+html[data-theme="light"] .tour-pop button.np{color:#fff}
+.tour-pop .tp-x{color:var(--faint);padding:7px 9px}
+
 @media(max-width:980px){
   body{grid-template-columns:1fr}
   .side{position:fixed;left:0;top:0;bottom:0;width:236px;z-index:60;transform:translateX(-100%);transition:.25s}
@@ -169,6 +212,7 @@ tbody tr:hover{background:rgba(255,255,255,.02)}
   <div class="grp">OPERATIONS</div>
   <div class="nav-i on" data-v="overview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg> Overview</div>
   <div class="nav-i" data-v="discovery"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/></svg> Asset discovery</div>
+  <div class="nav-i" data-v="workforce"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.4"/><path d="M3 20c0-3.3 2.7-5 6-5s6 1.7 6 5M15 20c0-2.4 1.4-4 3.5-4S22 17.6 22 20"/></svg> Workforce AI <span class="badge" id="wfBadge">5</span></div>
   <div class="nav-i" data-v="provenance"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6Z"/></svg> Provenance</div>
   <div class="nav-i" data-v="identities"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg> Identities</div>
   <div class="nav-i" data-v="telemetry"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg> Telemetry</div>
@@ -189,11 +233,16 @@ tbody tr:hover{background:rgba(255,255,255,.02)}
   <div class="crumb">Console / <b id="crumb">Overview</b></div>
   <div class="search"><input id="globalSearch" placeholder="Search assets, agents, incidents…" /></div>
   <button class="env"><span class="tdot"></span>prod-demo · ap-southeast-1</button>
+  <button class="btn tour-start" id="guideBtn" title="Start guided tour">▶ Guided tour</button>
+  <button class="ic" id="themeTg" title="Toggle theme" aria-label="Toggle theme">
+    <svg class="t-moon" viewBox="0 0 24 24" width="15" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"/></svg>
+    <svg class="t-sun" viewBox="0 0 24 24" width="15" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19"/></svg>
+  </button>
   <div class="ic" id="bell" title="Alerts"><svg viewBox="0 0 24 24" width="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg><span class="n" id="bellN">3</span></div>
   <div class="user"><div class="av">JD</div><div>Jordan Diaz<small>SOC · Tier 3</small></div></div>
 </header>
 
-<div class="banner">Demo environment — synthetic data. Every action below is live and interactive.</div>
+<div class="banner"><b>Demo environment</b> · synthetic data · every control below is live and interactive</div>
 
 <main class="main">
 
@@ -234,6 +283,25 @@ tbody tr:hover{background:rgba(255,255,255,.02)}
     </div>
     <div class="card pad0" style="margin-top:16px">
       <table><thead><tr><th>Asset</th><th>Type</th><th>Owner</th><th>Source</th><th>Status</th></tr></thead><tbody id="assetT"></tbody></table>
+    </div>
+  </section>
+
+  <!-- WORKFORCE AI -->
+  <section class="view" data-view="workforce">
+    <div class="h"><div><h1>Workforce AI &amp; data loss</h1><p>Employee AI use across Microsoft 365 &amp; Google Workspace — data loss and harmful use</p></div>
+      <button class="btn" data-act="Exported workforce-AI DLP report · 30 days · per-user">Export DLP report</button></div>
+    <div class="grid g4">
+      <div class="card kpi"><span>MONITORED USERS</span><b data-cu="8420">0</b><em class="fl">M365 + Workspace</em></div>
+      <div class="card kpi"><span>DLP EVENTS / 24H</span><b data-cu="143">0</b><em class="dn">31 blocked</em></div>
+      <div class="card kpi"><span>HARMFUL USE</span><b data-cu="5">0</b><em class="dn">policy violations</em></div>
+      <div class="card kpi"><span>SHADOW AI APPS</span><b data-cu="34">0</b><em class="dn">unsanctioned</em></div>
+    </div>
+    <div class="grid g2" style="margin-top:16px">
+      <div class="card pad0"><table><thead><tr><th>User</th><th>AI surface</th><th>Action</th><th>Sensitive data</th><th>Decision</th></tr></thead><tbody id="wfT"></tbody></table></div>
+      <div class="card"><div class="ch"><h3>By AI surface</h3><span class="tag">24h</span></div>
+        <div id="wfBars" style="margin-top:8px"></div>
+        <div class="ch" style="margin:22px 0 12px"><h3>Top data classes at risk</h3></div>
+        <div id="wfClass" style="font-family:var(--mono);font-size:12px;line-height:2.1"></div></div>
     </div>
   </section>
 
@@ -542,6 +610,21 @@ var mdls=[
 ];
 document.getElementById("mdlT").innerHTML=mdls.map(function(m){return '<tr><td>'+m[0]+'</td><td>'+m[1]+'</td><td>'+m[2]+'</td><td>'+m[3]+'</td><td>'+st(m[4],m[5])+'</td></tr>';}).join("");
 
+/* workforce AI / DLP */
+var wf=[
+ ["m.chen@acme.com","Copilot (M365)","Summarised contract","ok","Source: legal","Allowed"],
+ ["r.osei@acme.com","ChatGPT (browser)","Pasted customer list","bad","PII · 4,100 records","Blocked"],
+ ["j.park@acme.com","Gemini (Workspace)","Drafted email","ok","None","Allowed"],
+ ["s.idris@acme.com","ChatGPT (browser)","Pasted API keys","bad","Secrets · 3 keys","Blocked"],
+ ["a.gupta@acme.com","Claude (browser)","Uploaded source repo","bad","Source code","Blocked"],
+ ["t.nwosu@acme.com","Copilot (M365)","Generated report","ok","Internal","Allowed"],
+ ["k.lim@acme.com","Perplexity (browser)","Asked self-harm prompt","bad","Harmful use","Escalated"],
+ ["d.roy@acme.com","Gemini (Workspace)","Shared PHI in prompt","bad","PHI · regulated","Blocked"]
+];
+document.getElementById("wfT").innerHTML=wf.map(function(w){return '<tr><td>'+w[0]+'</td><td><span class="pill">'+w[1]+'</span></td><td>'+w[2]+'</td><td>'+w[4]+'</td><td>'+st(w[3],w[5])+'</td></tr>';}).join("");
+document.getElementById("wfBars").innerHTML=barBlock([["ChatGPT (browser)",46,"dng"],["Microsoft Copilot",28],["Google Gemini",18],["Claude / other",8,"wn"]]);
+document.getElementById("wfClass").innerHTML=[["PII / customer records",41,"var(--danger)"],["Source code",23,"var(--warn)"],["Secrets & keys",17,"var(--danger)"],["Regulated (PHI/PCI)",12,"var(--warn)"],["Internal docs",7,"var(--faint)"]].map(function(c){return '<div><span style="color:'+c[2]+'">●</span> '+c[0]+' · '+c[1]+'%</div>';}).join("");
+
 /* re-bind data-act after dynamic tables */
 function rebind(){document.querySelectorAll("[data-act]:not([data-bound])").forEach(function(b){b.setAttribute("data-bound","1");b.addEventListener("click",function(){notify("✓ "+b.dataset.act,"action logged · "+new Date().toLocaleTimeString());});});}
 rebind();
@@ -653,6 +736,85 @@ document.getElementById("replayKC").addEventListener("click",function(){
 document.querySelectorAll("#kcFlow .kn").forEach(function(n){n.classList.add("lit");});
 
 rebind();
+
+/* ---------- theme toggle ---------- */
+document.getElementById("themeTg").addEventListener("click",function(){
+ var light=document.documentElement.dataset.theme==="light";
+ if(light)document.documentElement.removeAttribute("data-theme");
+ else document.documentElement.dataset.theme="light";
+ try{localStorage.setItem("aegis_theme",light?"":"light");}catch(e){}
+});
+
+/* ---------- guided tour ---------- */
+var TOUR=[
+ {v:"overview",sel:'.view[data-view="overview"] .grid.g4',t:"Operations overview",b:"Every demo starts here. Four KPIs summarise posture across all eight layers — assets tracked, open incidents, red-team coverage and shadow AI — refreshing live."},
+ {v:"overview",sel:"#ovFeed",t:"Live event stream",b:"A real-time feed of verifications, blocked attacks and contained incidents. This is the heartbeat you point at on a customer call."},
+ {v:"discovery",sel:"#assetT",t:"Continuous discovery",b:"Every model, agent, MCP server and vector store — sanctioned or shadow. Try the top-bar search; the inventory filters live."},
+ {v:"workforce",sel:"#wfT",t:"Workforce AI & data loss",b:"Across Microsoft 365 and Google Workspace: who pasted PII, code or secrets into Copilot, Gemini or a browser LLM — and harmful use, blocked in one click."},
+ {v:"identities",sel:"#idT",t:"Non-human identities",b:"Each agent is its own identity with a short-lived, scoped token. Hit Revoke on any row to destroy its credentials instantly."},
+ {v:"killchain",sel:"#kcFlow",t:"The AI kill chain",b:"Four low-signal events become one critical incident. Click ‘Replay correlation’ to animate how single-tool stacks miss this."},
+ {v:"incidents",sel:"#incDetail",t:"Investigate & respond",b:"Full session reconstruction, output-to-source lineage, and one-click response: revoke, quarantine, roll back, isolate."},
+ {v:"redteam",sel:"#runRT",t:"Continuous red team",b:"The differentiator. Run a campaign — it executes attacks, tunes detections, and opens a real incident when it finds a gap."},
+ {v:"compliance",sel:"#cmpBars",t:"Audit-ready evidence",b:"Coverage auto-mapped to EU AI Act, NIST AI RMF, ISO 42001 and OWASP. Export a signed evidence pack in one click."}
+];
+var ring,pop,tIdx=0,tTimer=null,tDur=6500,tStart=0;
+function buildTour(){
+ ring=document.createElement("div");ring.className="tour-ring";
+ pop=document.createElement("div");pop.className="tour-pop";
+ pop.innerHTML='<div class="tp-step" id="tpStep"></div><h4></h4><p id="tpBody"></p><div class="tp-bar"><i id="tpBar"></i></div><div class="tp-row"><button class="tp-x" id="tpExit">Exit</button><span class="sp"></span><button id="tpPrev">Prev</button><button class="np" id="tpNext">Next</button></div>';
+ document.body.appendChild(ring);document.body.appendChild(pop);
+ pop.querySelector("#tpExit").addEventListener("click",endTour);
+ pop.querySelector("#tpPrev").addEventListener("click",function(){goStep(tIdx-1);});
+ pop.querySelector("#tpNext").addEventListener("click",function(){tIdx>=TOUR.length-1?endTour():goStep(tIdx+1);});
+ pop.addEventListener("mouseenter",function(){clearTimeout(tTimer);freezeBar();});
+ pop.addEventListener("mouseleave",function(){if(pop.classList.contains("show"))armBar();});
+ document.addEventListener("keydown",function(e){if(e.key==="Escape"&&pop.classList.contains("show"))endTour();});
+}
+function freezeBar(){var i=document.getElementById("tpBar");i.style.transition="none";i.style.width=getComputedStyle(i).width;}
+function armBar(){var i=document.getElementById("tpBar");var done=parseFloat(getComputedStyle(i).width)/i.parentElement.offsetWidth||0;var remain=tDur*(1-done);i.style.transition="width "+remain+"ms linear";requestAnimationFrame(function(){i.style.width="100%";});clearTimeout(tTimer);tTimer=setTimeout(function(){tIdx>=TOUR.length-1?endTour():goStep(tIdx+1);},remain);}
+function place(el){
+ var r=el.getBoundingClientRect(),pad=8;
+ ring.style.left=(r.left-pad)+"px";ring.style.top=(r.top-pad)+"px";
+ ring.style.width=(r.width+pad*2)+"px";ring.style.height=(r.height+pad*2)+"px";
+ var pw=320,ph=pop.offsetHeight||190,gap=16;
+ var top=r.bottom+gap, left=r.left;
+ if(top+ph>window.innerHeight-12)top=Math.max(12,r.top-ph-gap);
+ if(left+pw>window.innerWidth-12)left=window.innerWidth-pw-12;
+ if(left<12)left=12;
+ pop.style.left=left+"px";pop.style.top=top+"px";
+}
+function goStep(n){
+ if(n<0)n=0;tIdx=n;var s=TOUR[n];
+ show(s.v);
+ clearTimeout(tTimer);
+ setTimeout(function(){
+  var el=document.querySelector(s.sel)||document.querySelector('.view[data-view="'+s.v+'"]');
+  el.scrollIntoView({block:"center",behavior:"smooth"});
+  setTimeout(function(){
+   document.getElementById("tpStep").textContent="STEP "+(n+1)+" / "+TOUR.length;
+   pop.querySelector("h4").textContent=s.t;
+   document.getElementById("tpBody").textContent=s.b;
+   pop.querySelector("#tpPrev").style.visibility=n===0?"hidden":"visible";
+   pop.querySelector("#tpNext").textContent=n>=TOUR.length-1?"Finish":"Next";
+   place(el);
+   ring.classList.add("show");pop.classList.add("show");
+   var bar=document.getElementById("tpBar");bar.style.transition="none";bar.style.width="0%";void bar.offsetWidth;
+   armBar();
+  },420);
+ },120);
+}
+function startTour(){if(!ring)buildTour();document.getElementById("side").classList.remove("open");goStep(0);}
+function endTour(){clearTimeout(tTimer);if(ring)ring.classList.remove("show");if(pop)pop.classList.remove("show");notify("Tour ended","Replay anytime via ‘Guided tour’");}
+document.getElementById("guideBtn").addEventListener("click",startTour);
+window.addEventListener("resize",function(){if(pop&&pop.classList.contains("show")){var el=document.querySelector(TOUR[tIdx].sel);if(el)place(el);}});
+
+/* offer the tour automatically on first demo load */
+setTimeout(function(){
+ if(!sessionStorage.getItem("aegis_tour_seen")){
+  try{sessionStorage.setItem("aegis_tour_seen","1");}catch(e){}
+  notify("👋 First time here? Press ‘Guided tour’","An auto-playing walkthrough of every capability");
+ }
+},1400);
 })();
 </script>
 </body>

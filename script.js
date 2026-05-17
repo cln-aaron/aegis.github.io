@@ -101,19 +101,104 @@
     if (!reduce) setInterval(emit, 2600);
   }
 
-  // product tabs
+  // theme toggle
+  var themeTg = document.getElementById("themeTg");
+  if (themeTg) {
+    themeTg.addEventListener("click", function () {
+      var light = document.documentElement.dataset.theme === "light";
+      var next = light ? "" : "light";
+      if (next) document.documentElement.dataset.theme = next;
+      else document.documentElement.removeAttribute("data-theme");
+      try { localStorage.setItem("aegis_theme", next); } catch (e) {}
+    });
+  }
+
+  // product tour — auto-playing, video-style
   var tabWrap = document.getElementById("prodTabs");
   if (tabWrap) {
-    var tabs = tabWrap.querySelectorAll(".tab");
+    var tabs = Array.prototype.slice.call(tabWrap.querySelectorAll(".tab"));
     var panes = document.querySelectorAll(".shot-pane");
-    tabs.forEach(function (t) {
-      t.addEventListener("click", function () {
-        tabs.forEach(function (x) { x.classList.remove("active"); });
-        panes.forEach(function (p) { p.classList.remove("active"); });
-        t.classList.add("active");
-        var pane = document.querySelector('[data-pane="' + t.dataset.tab + '"]');
-        if (pane) pane.classList.add("active");
-      });
+    var tour = document.getElementById("tour");
+    var tourBtn = document.getElementById("tourBtn");
+    var tourCap = document.getElementById("tourCap");
+    var tourBar = document.getElementById("tourBar");
+    var tourState = document.getElementById("tourState");
+    var DUR = 5200;
+    var caps = {
+      overview: "A single posture view across all eight layers — assets, incidents, red-team coverage and shadow AI, live.",
+      killchain: "Four low-signal events become one critical incident. Single-tool stacks never connect them.",
+      redteam: "Continuous red team runs inside the data plane — every finding opens an incident in the same console.",
+      assets: "Continuous discovery of every model, agent and MCP server — sanctioned or shadow."
+    };
+    var i = 0, timer = null, playing = false;
+
+    function bar0() {
+      if (!tourBar) return;
+      tourBar.style.transition = "none";
+      tourBar.style.width = "0%";
+      void tourBar.offsetWidth;
+    }
+    function barRun() {
+      if (!tourBar) return;
+      tourBar.style.transition = "width " + DUR + "ms linear";
+      tourBar.style.width = "100%";
+    }
+    function barFreeze() {
+      if (!tourBar) return;
+      var w = getComputedStyle(tourBar).width;
+      tourBar.style.transition = "none";
+      tourBar.style.width = w;
+    }
+    function select(idx, run) {
+      i = (idx + tabs.length) % tabs.length;
+      var key = tabs[i].dataset.tab;
+      tabs.forEach(function (x) { x.classList.remove("active"); });
+      panes.forEach(function (p) { p.classList.remove("active"); });
+      tabs[i].classList.add("active");
+      var pane = document.querySelector('[data-pane="' + key + '"]');
+      if (pane) pane.classList.add("active");
+      if (tourCap) tourCap.textContent = caps[key] || "";
+      bar0();
+      if (run) requestAnimationFrame(barRun);
+    }
+    function schedule() {
+      clearTimeout(timer);
+      if (!playing) return;
+      timer = setTimeout(function () { select(i + 1, true); schedule(); }, DUR);
+    }
+    function play() {
+      if (reduce) return;
+      playing = true;
+      tour.classList.remove("paused");
+      if (tourState) tourState.textContent = "Pause tour";
+      requestAnimationFrame(barRun);
+      schedule();
+    }
+    function pause() {
+      playing = false;
+      clearTimeout(timer);
+      barFreeze();
+      tour.classList.add("paused");
+      if (tourState) tourState.textContent = "Play tour";
+    }
+
+    tabs.forEach(function (t, idx) {
+      t.addEventListener("click", function () { pause(); select(idx); });
     });
+    if (tourBtn) tourBtn.addEventListener("click", function () { playing ? pause() : play(); });
+
+    // start the tour only when it scrolls into view; pause when off-screen
+    if ("IntersectionObserver" in window && !reduce) {
+      var tObs = new IntersectionObserver(function (en) {
+        en.forEach(function (e) {
+          if (e.isIntersecting && !tour.dataset.started) { tour.dataset.started = "1"; play(); }
+          else if (!e.isIntersecting && playing) { pause(); }
+        });
+      }, { threshold: 0.3 });
+      tObs.observe(document.querySelector(".shot"));
+    } else {
+      select(0);
+      pause();
+    }
   }
 })();
