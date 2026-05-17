@@ -220,10 +220,10 @@
               <div class="ui-panel-h">AI asset inventory · 1,284 discovered</div>
               <table class="ui-table">
                 <tr><th>Asset</th><th>Type</th><th>Owner</th><th>Status</th></tr>
-                <tr><td>gpt-4o · checkout-assistant</td><td>Model</td><td>Payments</td><td><span class="ok">Verified</span></td></tr>
+                <tr><td>llm-prod · loan-assistant</td><td>Model</td><td>Lending</td><td><span class="ok">Verified</span></td></tr>
                 <tr><td>svc-rag-07</td><td>Agent</td><td>Support</td><td><span class="ok">Verified</span></td></tr>
-                <tr><td>hf:internal/llama-fraud</td><td>Model</td><td>Risk</td><td><span class="warn">Re-scan</span></td></tr>
-                <tr><td>notion-mcp-bridge</td><td>MCP server</td><td>—</td><td><span class="bad">Shadow</span></td></tr>
+                <tr><td>internal · credit-risk-pd</td><td>Model</td><td>Risk</td><td><span class="warn">Re-scan</span></td></tr>
+                <tr><td>unsanctioned-mcp-bridge</td><td>MCP server</td><td>—</td><td><span class="bad">Shadow</span></td></tr>
               </table>
             </div>
           </div>
@@ -248,8 +248,8 @@
           <div class="layer-body">
             <h3>Asset &amp; workforce AI discovery</h3>
             <p>A live inventory of every model, agent, MCP server, vector store and prompt — plus
-            how employees use AI across Microsoft 365 and Google Workspace. Copilot, Gemini and
-            browser LLMs included. Sanctioned or shadow, you see it.</p>
+            how employees use AI across the major productivity suites — built-in office AI
+            assistants and browser LLMs included. Sanctioned or shadow, you see it.</p>
           </div>
         </article>
         <article class="layer reveal">
@@ -331,7 +331,7 @@
           <ul>
             <li>Continuous inventory: models, agents, MCP servers, vector stores, prompts, datasets</li>
             <li>Shadow-AI discovery via browser, OAuth, network and code scanning</li>
-            <li>Employee AI use across Microsoft 365 (Copilot) and Google Workspace (Gemini)</li>
+            <li>Employee AI use across the major productivity suites &amp; their office AI assistants</li>
             <li>Data-loss detection: PII, source code, secrets, PHI/PCI into any AI surface</li>
             <li>Harmful-use detection with one-click block; complements CASB/DLP</li>
             <li>Live dependency graph: which app uses which model, agent and tool</li>
@@ -357,7 +357,7 @@
             <li>Just-in-time, short-lived scoped credentials, destroyed on session end</li>
             <li>Attribute- and intent-based access control for tool invocation</li>
             <li>Tamper-evident audit receipt for every action</li>
-            <li>Native CyberArk, Okta, Entra, SailPoint, Saviynt integration</li>
+            <li>Native integration with your identity, PAM and access-governance tooling</li>
           </ul>
         </article>
 
@@ -368,7 +368,7 @@
             <li>Agent-to-agent (A2A) and MCP transaction capture</li>
             <li>RAG retrieval, embedding query and vector-store events</li>
             <li>GPU / DPU-level inference event capture</li>
-            <li>Pipes natively into Splunk, Sentinel, Elastic, Datadog, Sumo Logic</li>
+            <li>Pipes natively into your existing SIEM and observability stack</li>
           </ul>
         </article>
 
@@ -403,7 +403,7 @@
             <li>Disparate-impact &amp; bias on protected attributes (e.g. age, geo proxy)</li>
             <li>Explainability / SHAP coverage and unexplained-decision rate</li>
             <li>Regulated-model risk packs (e.g. credit-risk PD under MAS / Basel III)</li>
-            <li>MLflow, Weights &amp; Biases, SageMaker, Vertex AI integrations</li>
+            <li>Integrates with your experiment-tracking and ML platform tools</li>
           </ul>
         </article>
 
@@ -601,15 +601,15 @@
       <div class="eco">
         <article class="eco-col reveal">
           <p class="persona-tag">Models &amp; frameworks</p>
-          <p>OpenAI, Anthropic, Google, Meta, Mistral, Cohere, Bedrock, Azure OpenAI.
-          LangChain, LlamaIndex, AutoGen, CrewAI. MCP and A2A. Self-hosted vLLM, TGI, Ollama —
+          <p>Every major commercial LLM provider and managed model service, the common agent and
+          orchestration frameworks, open agent protocols, and self-hosted inference servers —
           same telemetry, same controls.</p>
         </article>
         <article class="eco-col reveal">
           <p class="persona-tag">SIEM, XDR &amp; identity</p>
-          <p>Microsoft 365 &amp; Copilot, Google Workspace &amp; Gemini for workforce-AI DLP.
-          Splunk, Sentinel, Elastic, Datadog, Chronicle. CrowdStrike, Defender XDR, SentinelOne,
-          Cortex. CyberArk, Okta, Entra, SailPoint. ServiceNow, Jira, PagerDuty, Slack, Teams.</p>
+          <p>The major productivity suites and their built-in AI assistants for workforce-AI DLP.
+          Your existing SIEM, XDR and observability stack. Your identity, PAM and governance
+          tooling. Your ITSM and incident-workflow channels.</p>
         </article>
         <article class="eco-col reveal">
           <p class="persona-tag">Compliance</p>
@@ -633,8 +633,9 @@
         <div class="spec reveal"><span>Your data</span><b>Stays in your tenant</b><p>Telemetry is
         processed in your region. Prompt and completion content never leaves your boundary by
         default.</p></div>
-        <div class="spec reveal"><span>Access</span><b>SSO · SAML · SCIM</b><p>Okta, Entra and
-        Ping. Role-based access, scoped API tokens, full admin audit log.</p></div>
+        <div class="spec reveal"><span>Access</span><b>SSO · SAML · SCIM</b><p>Works with any
+        standards-based identity provider. Role-based access, scoped API tokens, full admin audit
+        log.</p></div>
         <div class="spec reveal"><span>Inline latency</span><b>&lt; 40 ms p50</b><p>The optional
         inline gateway adds single-digit-to-low-tens of milliseconds. Monitor-only mode adds
         zero.</p></div>
@@ -657,8 +658,8 @@
       <h2 class="sec-title reveal">Before you ask.</h2>
       <div class="faq">
         <details class="reveal"><summary>Do you replace our SIEM?</summary><p>No. AEGIS is built
-        to sit on top of Splunk, Sentinel, Elastic and the rest. We make the SIEM you already pay
-        for AI-fluent and feed it correlated incidents in OCSF.</p></details>
+        to sit on top of the SIEM you already run. We make it AI-fluent and feed it correlated
+        incidents in OCSF.</p></details>
         <details class="reveal"><summary>How is this different from an AI firewall?</summary><p>A
         prompt firewall sees text in and text out. AEGIS also sees tool calls, agent identity,
         model lineage and supply chain — and correlates them. The gateway is one of eight layers,
@@ -666,18 +667,19 @@
         <details class="reveal"><summary>Does our prompt data leave our environment?</summary><p>Not
         by default. The data plane runs in your region or your VPC. You choose what is redacted
         before anything is stored, and content can stay entirely in your tenant.</p></details>
-        <details class="reveal"><summary>Can you see employee AI use across Microsoft 365 and
-        Google Workspace?</summary><p>Yes. AEGIS watches workforce AI across both suites — Copilot,
-        Gemini, connected GPTs and browser LLMs — and flags data loss (PII, source code, secrets
-        or regulated data leaving into an AI surface) and harmful use, with the user, the data
-        class and a one-click block. It complements your CASB and DLP rather than replacing
-        them.</p></details>
+        <details class="reveal"><summary>Can you see employee AI use across our office
+        suites?</summary><p>Yes. AEGIS watches workforce AI across the major productivity suites —
+        their built-in office AI assistants, connected GPTs and browser LLMs — and flags data loss
+        (PII, source code, secrets or regulated data leaving into an AI surface) and harmful use,
+        with the user, the data class and a one-click block. It complements your CASB and DLP
+        rather than replacing them.</p></details>
         <details class="reveal"><summary>What does onboarding look like?</summary><p>Read-only
         cloud roles plus a collector. First inventory inside the first sweep, correlation and
         continuous red team typically live within the first week. No app code changes.</p></details>
-        <details class="reveal"><summary>Which models and frameworks are supported?</summary><p>OpenAI,
-        Anthropic, Google, Meta, Mistral, Bedrock and Azure OpenAI; LangChain, LlamaIndex, AutoGen,
-        CrewAI; MCP and A2A; self-hosted vLLM, TGI and Ollama — same telemetry, same controls.</p></details>
+        <details class="reveal"><summary>Which models and frameworks are supported?</summary><p>Every
+        major commercial LLM provider and managed model service, the common agent and orchestration
+        frameworks, open agent protocols, and self-hosted inference servers — same telemetry, same
+        controls, wherever the AI runs.</p></details>
         <details class="reveal"><summary>Can it audit us against ISO 42001, the EU AI Act and
         Singapore's frameworks?</summary><p>Yes. AEGIS runs one-click, scored conformity audits for
         ISO/IEC 42001, the EU AI Act, NIST AI RMF, the Singapore IMDA Model AI Governance
