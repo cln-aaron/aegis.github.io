@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AEGIS·AI — The Unified AI Security Operations Platform</title>
+<meta name="description" content="AEGIS·AI is a single AI-native security operations platform: eight layers, one data plane, one console — continuously red-teamed by design. A concept reference architecture by Hesed & Emet Advisory." />
+<meta name="theme-color" content="#06070a" />
+<meta property="og:title" content="AEGIS·AI — The Unified AI Security Operations Platform" />
+<meta property="og:description" content="Eight layers. One data plane. One console. Continuously red-teamed by design." />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2 4 7v9c0 7.5 5.1 12.6 12 14 6.9-1.4 12-6.5 12-14V7Z' fill='none' stroke='%235af2c4' stroke-width='2.4'/%3E%3C/svg%3E" />
+</head>
+<body>
+<div class="grid-bg" aria-hidden="true"></div>
+<div class="noise" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <a class="brand" href="#top" aria-label="AEGIS AI home">
+    <span class="brand-mark" aria-hidden="true">
+      <svg viewBox="0 0 32 32" width="22" height="22"><path d="M16 2 4 7v9c0 7.5 5.1 12.6 12 14 6.9-1.4 12-6.5 12-14V7Z" fill="none" stroke="currentColor" stroke-width="2.4"/></svg>
+    </span>
+    <span class="brand-text">AEGIS<span class="dot">·</span>AI</span>
+  </a>
+  <nav class="nav-links" aria-label="Primary">
+    <a href="#problem">Problem</a>
+    <a href="#platform">Platform</a>
+    <a href="#personas">Teams</a>
+    <a href="#positioning">Difference</a>
+    <a href="#timing">Why now</a>
+  </nav>
+  <a href="#next" class="btn btn-sm">Get involved</a>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <p class="kicker reveal">// PRODUCT BROCHURE · CONCEPT REFERENCE · 2026</p>
+      <h1 class="hero-title reveal">
+        The unified AI Security<br />Operations Platform.
+      </h1>
+      <p class="hero-sub reveal">
+        Eight layers. One data plane. One console.
+        <span class="hl">Continuously red-teamed by design.</span>
+      </p>
+      <div class="hero-cta reveal">
+        <a href="#platform" class="btn btn-primary">Explore the platform</a>
+        <a href="#next" class="btn btn-ghost">Become a design partner</a>
+      </div>
+      <div class="hero-strip reveal" aria-hidden="true">
+        <span>DISCOVER</span><i></i><span>GOVERN</span><i></i><span>MONITOR</span><i></i><span>CORRELATE</span><i></i><span>INVESTIGATE</span><i></i><span>RED-TEAM</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION -->
+  <section class="section" id="mission">
+    <div class="wrap">
+      <p class="sec-label reveal">// MISSION</p>
+      <h2 class="sec-title reveal">AI runs in production.<br />AI security does not.</h2>
+      <p class="lede reveal">
+        Most enterprises run seven or more disconnected AI security tools and still cannot answer
+        the question: <em>is our AI safe right now?</em> AEGIS·AI replaces the patchwork with a
+        single AI-native platform that discovers every model and agent, governs every non-human
+        identity, monitors every prompt and tool call, validates every defence with continuous
+        red teaming, and gives the SOC one console for the whole AI stack.
+      </p>
+      <div class="stat-row">
+        <div class="stat reveal">
+          <div class="stat-num">USD&nbsp;1.366T</div>
+          <div class="stat-desc">Forecast 2026 AI infrastructure spend</div>
+          <div class="stat-src">Gartner, Jan 2026</div>
+        </div>
+        <div class="stat reveal">
+          <div class="stat-num">97%</div>
+          <div class="stat-desc">of AI-breached orgs lacked proper access controls</div>
+          <div class="stat-src">IBM, 2025</div>
+        </div>
+        <div class="stat reveal">
+          <div class="stat-num">USD&nbsp;670k</div>
+          <div class="stat-desc">added breach cost per shadow AI incident</div>
+          <div class="stat-src">IBM, 2025</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="section alt" id="problem">
+    <div class="wrap">
+      <p class="sec-label reveal">// SECTION 01 · THE PROBLEM</p>
+      <h2 class="sec-title reveal">Six fragmented categories.<br />Six dashboards. Zero correlation.</h2>
+      <div class="cards">
+        <article class="card reveal">
+          <span class="card-idx">[ 01 ]</span>
+          <h3>Agents nobody inventoried</h3>
+          <p>Forrester reported a Fortune 500 organisation discovering 600+ AI agents in its
+          environment that had never been catalogued. Microsoft confirms 80% of the Fortune 500
+          now run active agents. Inventory is broken.</p>
+        </article>
+        <article class="card reveal">
+          <span class="card-idx">[ 02 ]</span>
+          <h3>Shadow AI is the silent breach</h3>
+          <p>20% of breached organisations had a breach linked to shadow AI, adding USD 670k per
+          incident (IBM, 2025). 63% of organisations have no functional AI governance policy.
+          Visibility ends at the browser tab.</p>
+        </article>
+        <article class="card reveal">
+          <span class="card-idx">[ 03 ]</span>
+          <h3>Models you don't trust, in pipelines you don't see</h3>
+          <p>Protect AI found ~352,000 unsafe issues across 51,700 Hugging Face models. Unit 42
+          demonstrated namespace-reuse attacks substituting backdoored models into Vertex AI and
+          Azure AI Foundry catalogues.</p>
+        </article>
+        <article class="card reveal">
+          <span class="card-idx">[ 04 ]</span>
+          <h3>Defences nobody is testing</h3>
+          <p>Red teaming is still a separate, point-in-time procurement — a report dated six weeks
+          ago describing a system that no longer exists. No vendor validates AI controls
+          continuously inside the same data plane.</p>
+        </article>
+      </div>
+      <p class="closer reveal">AEGIS·AI is the one platform that ties them together.</p>
+    </div>
+  </section>
+
+  <!-- PLATFORM / ARCHITECTURE -->
+  <section class="section" id="platform">
+    <div class="wrap">
+      <p class="sec-label reveal">// SECTION 02 · ARCHITECTURE</p>
+      <h2 class="sec-title reveal">Eight layers,<br />one AI-native data plane.</h2>
+      <p class="lede reveal">From discovery at the edge to continuous offence at the core — every
+      layer feeds a single correlation engine and a single investigation console.</p>
+
+      <div class="layers">
+        <article class="layer reveal">
+          <div class="layer-no"><span>01</span></div>
+          <div class="layer-body">
+            <h3>Continuous AI asset discovery</h3>
+            <p>Real-time inventory of every AI-related asset across code, cloud, browsers, OAuth
+            grants, network flows, and SaaS — sanctioned, in-house, or shadow.</p>
+            <ul>
+              <li>Browser, OAuth, and network-based shadow AI discovery</li>
+              <li>Code and container scanning for AI frameworks and SDKs</li>
+              <li>Cloud-native AI service detection across AWS, Azure, GCP</li>
+              <li>MCP server and agent skill enumeration</li>
+              <li>Live dependency graph: which app uses which model, agent, and tool</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="layer reveal">
+          <div class="layer-no"><span>02</span></div>
+          <div class="layer-body">
+            <h3>Model &amp; supply chain provenance</h3>
+            <p>Every model and dataset entering the enterprise carries a cryptographically
+            verifiable provenance record, enforced at ingestion and continuously re-verified.</p>
+            <ul>
+              <li>Signature verification and model namespace-reuse detection</li>
+              <li>Pickle and safetensors deserialisation scanning (nullifAI class)</li>
+              <li>CycloneDX ML-BOM and SPDX 3.0.1 AI / Dataset Profile compliance</li>
+              <li>Dataset licence verification and provenance tracing</li>
+              <li>Continuous re-scan of deployed models against new CVEs and threat intel</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="layer reveal">
+          <div class="layer-no"><span>03</span></div>
+          <div class="layer-body">
+            <h3>Identity &amp; access for AI</h3>
+            <p>Every AI agent, MCP server, and inference call is a first-class non-human identity.
+            Scoped, short-lived credentials. Just-in-time access. Tamper-evident receipts.</p>
+            <ul>
+              <li>Non-human identity (NHI) governance for models, agents, MCP servers</li>
+              <li>Just-in-time scoped credentials, destroyed on session completion</li>
+              <li>Attribute- and intent-based access control for tool invocation</li>
+              <li>Native integration with CyberArk, Okta, Microsoft Entra, Saviynt</li>
+              <li>AARM-aligned session context evaluation, not just static permissions</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="layer reveal">
+          <div class="layer-no"><span>04</span></div>
+          <div class="layer-body">
+            <h3>AI security data lake</h3>
+            <p>The architectural keystone: an open AI security telemetry schema capturing every
+            prompt, completion, tool call, identity exchange, and inference event.</p>
+            <ul>
+              <li>Open telemetry schema (OCSF extension proposal)</li>
+              <li>Prompts, completions, system-prompt state changes, tool invocations</li>
+              <li>Agent-to-agent (A2A) and MCP transaction capture</li>
+              <li>GPU and DPU-level inference event capture</li>
+              <li>RAG retrieval, embedding query, and vector store events</li>
+              <li>Pipes natively into Splunk, Sentinel, Elastic, Datadog, Sumo Logic</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="layer reveal">
+          <div class="layer-no"><span>05</span></div>
+          <div class="layer-body">
+            <h3>Correlation &amp; the AI kill chain</h3>
+            <p>AI-specific kill-chain detection logic that converts low-fidelity signals into
+            high-fidelity incidents — surfacing multi-stage attacks single tools cannot see.</p>
+            <ul>
+              <li>Prompt injection → unauthorised tool invocation chains</li>
+              <li>Compositional exfiltration: permitted actions that constitute breach</li>
+              <li>System prompt drift and tampering detection</li>
+              <li>Cross-session credential reuse by an agent identity</li>
+              <li>Membership inference and training-data extraction detection</li>
+              <li>Model namespace substitution between SDK pull and provenance</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="layer reveal">
+          <div class="layer-no"><span>06</span></div>
+          <div class="layer-body">
+            <h3>Investigation &amp; response (AI-SOC)</h3>
+            <p>An investigation console built for the AI-SOC analyst. Full session
+            reconstruction, lineage views, and orchestrated AI-native response playbooks.</p>
+            <ul>
+              <li>Full multi-turn session reconstruction across prompts, tools, identities</li>
+              <li>Lineage view: output → model → training data → retrieval source</li>
+              <li>Hallucination, jailbreak, and exfiltration triage workflows</li>
+              <li>One-click: revoke credentials, quarantine models, roll back prompts</li>
+              <li>Usage- and asset-based metering tied to the AI initiative budget</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="layer reveal">
+          <div class="layer-no"><span>07</span></div>
+          <div class="layer-body">
+            <h3>Drift, bias &amp; in-house model assurance</h3>
+            <p>MLOps-grade dashboards for teams building proprietary models — wired directly into
+            the security correlation engine. Drift becomes a detection signal.</p>
+            <ul>
+              <li>Model drift, data drift, and concept drift monitoring</li>
+              <li>Fairness, bias regression, and protected-attribute analysis</li>
+              <li>Hallucination rate tracking with confidence calibration</li>
+              <li>Toxic output and policy-violation rate dashboards</li>
+              <li>Bridge between MLOps notebooks and the SOC analyst's queue</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="layer flagship reveal">
+          <div class="layer-no"><span>08</span><em>FLAGSHIP</em></div>
+          <div class="layer-body">
+            <h3>Continuous AI red teaming</h3>
+            <p>The differentiator. Red teaming moves from a procured report to a continuous,
+            automated capability running inside the same data plane as your detections. Every
+            finding tunes defences. Every defence improvement spawns new attacks.</p>
+            <ul>
+              <li>Adversarial prompt generation vs. OWASP LLM Top 10 &amp; refreshed jailbreak libs</li>
+              <li>Multi-turn simulation: indirect injection, confused-deputy, compositional exfil</li>
+              <li>Agent kill-chain execution against real agents, with safe-execution scaffolding</li>
+              <li>Supply chain simulation: namespace-reuse, pickle deser, MCP tool poisoning</li>
+              <li>Model robustness: adversarial examples, membership inference, model extraction</li>
+              <li>Purple-team workflow: every finding opens an incident in the same console</li>
+              <li>Compliance-aligned: NIST AI RMF, EU AI Act Annex IV, ISO/IEC 42001, OWASP</li>
+            </ul>
+            <p class="flagship-note">The defensive stack and the offensive stack become a single
+            feedback loop — the flywheel no point vendor can build.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PERSONAS -->
+  <section class="section alt" id="personas">
+    <div class="wrap">
+      <p class="sec-label reveal">// SECTION 03 · WHO IT'S FOR</p>
+      <h2 class="sec-title reveal">One platform.<br />Three personas. Three workflows.</h2>
+      <div class="personas">
+        <article class="persona reveal">
+          <p class="persona-tag">// FOR THE CISO</p>
+          <h3>Board-grade evidence, not anecdotes</h3>
+          <p>Answer the questions the board now asks: how many AI agents do we operate, who can
+          they reach, how do we know our controls work, and what did our red team prove this
+          quarter? AEGIS·AI produces the audit trail — not the assertion.</p>
+          <ul>
+            <li>Single executive dashboard across all eight layers</li>
+            <li>EU AI Act Annex IV, NIST AI RMF, ISO/IEC 42001 evidence packs</li>
+            <li>SEC four-day disclosure-ready blast radius reports</li>
+            <li>Quarterly red-team coverage tied to OWASP LLM &amp; Agentic Top 10</li>
+            <li>Per-business-unit consumption, cost rolled to the AI budget</li>
+          </ul>
+        </article>
+        <article class="persona reveal">
+          <p class="persona-tag">// FOR THE SOC ANALYST</p>
+          <h3>A console designed for AI incidents</h3>
+          <p>Stop pivoting between seven tools. Start with the incident, get the full session,
+          see the lineage, run the playbook. Built around AI-specific kill chains, not retrofitted
+          from legacy SIEM templates.</p>
+          <ul>
+            <li>Single pane: prompts, tool calls, identities, models, data flows</li>
+            <li>AI-native MITRE-style ATT&amp;CK mapping for LLM and agent attacks</li>
+            <li>One-click response: revoke, quarantine, roll back, isolate</li>
+            <li>Native into Splunk, Sentinel, Elastic, Datadog — we don't replace your SIEM</li>
+            <li>Continuous validation: detections exercised live by the red team layer</li>
+          </ul>
+        </article>
+        <article class="persona reveal">
+          <p class="persona-tag">// FOR THE ML &amp; PRODUCT TEAM</p>
+          <h3>Ship in-house AI with confidence</h3>
+          <p>Drift, bias, fairness, hallucination, and robustness signals — surfaced where data
+          scientists already work — with the security team consuming the same signals downstream.
+          Build velocity without building exposure.</p>
+          <ul>
+            <li>Model-card-aware drift and fairness dashboards</li>
+            <li>Pre-deployment adversarial testing, push-button</li>
+            <li>Continuous evaluation against fresh adversarial prompts</li>
+            <li>Automatic regression alerts on model version updates</li>
+            <li>MLOps integrations: MLflow, W&amp;B, SageMaker, Vertex AI</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- POSITIONING -->
+  <section class="section" id="positioning">
+    <div class="wrap">
+      <p class="sec-label reveal">// SECTION 04 · POSITIONING</p>
+      <h2 class="sec-title reveal">Built where the gap<br />actually is.</h2>
+      <div class="compare">
+        <div class="cmp reveal">
+          <div class="cmp-x"><span class="mark">✖</span>
+            <h3>Point AI firewalls</h3>
+            <p>See prompts in, completions out. Blind to tool calls, agent identity, model
+            lineage, and supply chain. No investigation layer.</p>
+          </div>
+          <div class="cmp-v"><span class="mark">✔</span>
+            <h3>AEGIS·AI</h3>
+            <p>Inline gateway is one of eight layers, all feeding a single correlation engine and
+            a single investigation console.</p>
+          </div>
+        </div>
+        <div class="cmp reveal">
+          <div class="cmp-x"><span class="mark">✖</span>
+            <h3>AI-BOM scanners</h3>
+            <p>Static inventory at a moment in time. Disconnected from runtime alerts. No
+            continuous re-verification, no response capability.</p>
+          </div>
+          <div class="cmp-v"><span class="mark">✔</span>
+            <h3>AEGIS·AI</h3>
+            <p>Inventory is continuous, cryptographically verified, and feeds correlation rules
+            that detect runtime model substitution.</p>
+          </div>
+        </div>
+        <div class="cmp reveal">
+          <div class="cmp-x"><span class="mark">✖</span>
+            <h3>Stand-alone red-teaming firms</h3>
+            <p>A report dated six weeks ago. No connection to your live detections. No way to
+            verify whether the gap has been closed today.</p>
+          </div>
+          <div class="cmp-v"><span class="mark">✔</span>
+            <h3>AEGIS·AI</h3>
+            <p>Red teaming runs continuously inside the same data plane. Every finding tunes
+            detections. Every detection improvement spawns the next attack.</p>
+          </div>
+        </div>
+        <div class="cmp reveal">
+          <div class="cmp-x"><span class="mark">✖</span>
+            <h3>Hyperscaler platform bundles</h3>
+            <p>Lock-in to one cloud's identity, one cloud's SIEM, one cloud's models. Multi-cloud
+            enterprises are stranded.</p>
+          </div>
+          <div class="cmp-v"><span class="mark">✔</span>
+            <h3>AEGIS·AI</h3>
+            <p>Cloud-agnostic, model-agnostic, SIEM-agnostic. Designed to integrate with the
+            incumbent platform, not replace it.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ECOSYSTEM -->
+  <section class="section alt" id="ecosystem">
+    <div class="wrap">
+      <p class="sec-label reveal">// SECTION 05 · ECOSYSTEM</p>
+      <h2 class="sec-title reveal">Designed to coexist with<br />everything you already run.</h2>
+      <div class="eco">
+        <article class="eco-col reveal">
+          <p class="persona-tag">// MODELS &amp; GATEWAYS</p>
+          <h3>Every major LLM, every major framework</h3>
+          <p>Model- and framework-agnostic. We instrument where the AI runs, not where it was
+          built.</p>
+          <ul>
+            <li>OpenAI, Anthropic, Google, Meta, Mistral, Cohere, Bedrock, Azure OpenAI</li>
+            <li>LangChain, LlamaIndex, Semantic Kernel, Haystack, AutoGen, CrewAI</li>
+            <li>MCP, A2A, OpenAI Assistants, Anthropic Claude tools</li>
+            <li>Hugging Face, Replicate, Together, Modal — provenance-verified on pull</li>
+            <li>Self-hosted: vLLM, TGI, Ollama, llama.cpp — same telemetry, same controls</li>
+          </ul>
+        </article>
+        <article class="eco-col reveal">
+          <p class="persona-tag">// SIEM, XDR &amp; IAM</p>
+          <h3>Integrate with what you already pay for</h3>
+          <p>We don't ask you to rip and replace your SIEM. We make it AI-fluent.</p>
+          <ul>
+            <li>Splunk, Sentinel, Elastic Security, Datadog, Sumo Logic, Chronicle</li>
+            <li>CrowdStrike Falcon, Defender XDR, SentinelOne, Cortex XDR</li>
+            <li>CyberArk, Okta, Entra, Ping, Saviynt, SailPoint, Astrix, Oasis</li>
+            <li>ServiceNow, Jira, PagerDuty, Slack, Microsoft Teams</li>
+            <li>OCSF-aligned export — every event portable, every detection auditable</li>
+          </ul>
+        </article>
+        <article class="eco-col reveal">
+          <p class="persona-tag">// COMPLIANCE &amp; GOVERNANCE</p>
+          <h3>Audit-ready out of the box</h3>
+          <p>Evidence mapped to the frameworks regulators actually ask for, not generic
+          checklists.</p>
+          <ul>
+            <li>EU AI Act — Annex IV technical documentation &amp; adversarial evidence</li>
+            <li>NIST AI RMF (GOVERN, MAP, MEASURE, MANAGE)</li>
+            <li>ISO/IEC 42001 AI management system controls</li>
+            <li>OWASP LLM Top 10 and Agentic AI Top 10 coverage maps</li>
+            <li>SEC four-day blast-radius reports; HIPAA, PCI DSS, SOC 2, GDPR</li>
+            <li>IMDA, CSA, MAS (Singapore); FCA, ECB, OCC, Federal Reserve</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMING -->
+  <section class="section" id="timing">
+    <div class="wrap">
+      <p class="sec-label reveal">// SECTION 06 · TIMING</p>
+      <h2 class="sec-title reveal">The window is open.<br />It will not stay open.</h2>
+      <div class="stat-row">
+        <div class="stat reveal">
+          <div class="stat-num">80%</div>
+          <div class="stat-desc">of Fortune 500 run active AI agents</div>
+          <div class="stat-src">Microsoft, Feb 2026</div>
+        </div>
+        <div class="stat reveal">
+          <div class="stat-num">92%</div>
+          <div class="stat-desc">of orgs lack full visibility into AI identities</div>
+          <div class="stat-src">Cybersecurity Insiders, 2026</div>
+        </div>
+        <div class="stat reveal">
+          <div class="stat-num">5%</div>
+          <div class="stat-desc">of CISOs confident they could contain a compromised agent</div>
+          <div class="stat-src">Cybersecurity Insiders, 2026</div>
+        </div>
+      </div>
+      <p class="band reveal">EU AI Act enforcement: <strong>August 2026</strong>.&nbsp;&nbsp;SEC
+      disclosure rule: <strong>4 business days</strong>.&nbsp;&nbsp;Mandiant: median attacker
+      hand-off <strong>22 seconds</strong>.</p>
+      <div class="stat-row">
+        <div class="stat reveal">
+          <div class="stat-num">USD&nbsp;414M</div>
+          <div class="stat-desc">total AI-specific security funding, 2024–25</div>
+          <div class="stat-src">Crunchbase / Software Strategies</div>
+        </div>
+        <div class="stat reveal">
+          <div class="stat-num">3,300×</div>
+          <div class="stat-desc">AI infrastructure spend vs. AI-specific security funding</div>
+          <div class="stat-src">Gartner + Crunchbase</div>
+        </div>
+        <div class="stat reveal">
+          <div class="stat-num">12–18&nbsp;mo</div>
+          <div class="stat-desc">window before incumbent platforms close the gap</div>
+          <div class="stat-src">Hesed &amp; Emet Advisory analysis</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEXT STEPS -->
+  <section class="section alt" id="next">
+    <div class="wrap">
+      <p class="sec-label reveal">// SECTION 07 · NEXT STEPS</p>
+      <h2 class="sec-title reveal">Design partners.<br />Investors. Talent.</h2>
+      <div class="next-grid">
+        <article class="next-card reveal">
+          <h3>For enterprises</h3>
+          <p>Join the design-partner programme. Limited cohort across financial services,
+          healthcare, technology, and regulated public sector. Co-design the detection library and
+          the audit pack for your jurisdiction. Locked pricing through general availability.</p>
+          <a class="btn btn-primary" href="https://www.hesedemet.asia" target="_blank" rel="noopener">Apply as a design partner</a>
+        </article>
+        <article class="next-card reveal">
+          <h3>For investors</h3>
+          <p>Investor briefing on request. <em>The Missing Layer</em> white paper accompanies this
+          brochure with full market sizing, comparable category trajectories, competitive
+          analysis, and risk mitigation. Available to qualified institutional investors under NDA.</p>
+          <a class="btn btn-ghost" href="https://www.hesedemet.asia" target="_blank" rel="noopener">Request the briefing</a>
+        </article>
+        <article class="next-card reveal">
+          <h3>For talent</h3>
+          <p>Founding team &amp; engineering. Hiring across Singapore, Tel Aviv, San Francisco,
+          and London. Offensive AI research, ML platform engineering, detection content, and
+          AI-native product design. The category-defining team for the category itself.</p>
+          <a class="btn btn-ghost" href="https://www.hesedemet.asia" target="_blank" rel="noopener">See open roles</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-in">
+    <div class="footer-brand">
+      <span class="brand-text">AEGIS<span class="dot">·</span>AI</span>
+      <p>The unified AI Security Operations Platform.</p>
+    </div>
+    <div class="footer-meta">
+      <a href="https://www.hesedemet.asia" target="_blank" rel="noopener">www.hesedemet.asia</a>
+      <p>AEGIS·AI is a concept reference architecture published by Hesed &amp; Emet Advisory.</p>
+      <p class="muted">© 2026 Hesed &amp; Emet Advisory. Singapore · Tel Aviv · San Francisco · London.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
