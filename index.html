@@ -30,6 +30,7 @@
   <nav class="nav-links" aria-label="Primary">
     <a href="#product">Product</a>
     <a href="#platform">Platform</a>
+    <a href="#capabilities">Capabilities</a>
     <a href="#teams">Teams</a>
     <a href="#why">Why AEGIS</a>
     <a href="#integrations">Integrations</a>
@@ -312,6 +313,126 @@
             product no point tool can rebuild.</p>
           </div>
         </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPABILITIES -->
+  <section class="section alt" id="capabilities">
+    <div class="wrap">
+      <p class="sec-label reveal">Capabilities</p>
+      <h2 class="sec-title reveal">Everything in AEGIS.</h2>
+      <p class="lede reveal">Not a feature checklist for its own sake — this is the surface area
+      it takes to actually answer “is our AI safe right now?”. One platform, end to end.</p>
+      <div class="caps">
+
+        <article class="cap reveal">
+          <h3><span>01</span> Discovery &amp; workforce AI</h3>
+          <ul>
+            <li>Continuous inventory: models, agents, MCP servers, vector stores, prompts, datasets</li>
+            <li>Shadow-AI discovery via browser, OAuth, network and code scanning</li>
+            <li>Employee AI use across Microsoft 365 (Copilot) and Google Workspace (Gemini)</li>
+            <li>Data-loss detection: PII, source code, secrets, PHI/PCI into any AI surface</li>
+            <li>Harmful-use detection with one-click block; complements CASB/DLP</li>
+            <li>Live dependency graph: which app uses which model, agent and tool</li>
+          </ul>
+        </article>
+
+        <article class="cap reveal">
+          <h3><span>02</span> Supply chain &amp; provenance</h3>
+          <ul>
+            <li>Cryptographic signature verification at ingestion and re-verification over time</li>
+            <li>Model namespace-reuse / substitution detection</li>
+            <li>Pickle &amp; safetensors deserialisation scanning (nullifAI class)</li>
+            <li>CycloneDX ML-BOM and SPDX 3.0.1 AI/Dataset profiles</li>
+            <li>Dataset licence verification and provenance tracing</li>
+            <li>Continuous re-scan against new CVEs and threat intel</li>
+          </ul>
+        </article>
+
+        <article class="cap reveal">
+          <h3><span>03</span> Identity for AI</h3>
+          <ul>
+            <li>Non-human identity governance for models, agents and MCP servers</li>
+            <li>Just-in-time, short-lived scoped credentials, destroyed on session end</li>
+            <li>Attribute- and intent-based access control for tool invocation</li>
+            <li>Tamper-evident audit receipt for every action</li>
+            <li>Native CyberArk, Okta, Entra, SailPoint, Saviynt integration</li>
+          </ul>
+        </article>
+
+        <article class="cap reveal">
+          <h3><span>04</span> Telemetry &amp; data lake</h3>
+          <ul>
+            <li>Open, OCSF-aligned schema for every prompt, completion and tool call</li>
+            <li>Agent-to-agent (A2A) and MCP transaction capture</li>
+            <li>RAG retrieval, embedding query and vector-store events</li>
+            <li>GPU / DPU-level inference event capture</li>
+            <li>Pipes natively into Splunk, Sentinel, Elastic, Datadog, Sumo Logic</li>
+          </ul>
+        </article>
+
+        <article class="cap reveal">
+          <h3><span>05</span> Correlation &amp; the AI kill chain</h3>
+          <ul>
+            <li>Prompt injection → unauthorised tool-call chains</li>
+            <li>Compositional exfiltration: permitted actions that add up to a breach</li>
+            <li>System-prompt drift and tampering detection</li>
+            <li>Cross-session credential reuse by an agent identity</li>
+            <li>Membership inference and training-data extraction detection</li>
+            <li>Model namespace substitution between SDK pull and provenance</li>
+          </ul>
+        </article>
+
+        <article class="cap reveal">
+          <h3><span>06</span> Investigation &amp; response</h3>
+          <ul>
+            <li>Full multi-turn session reconstruction</li>
+            <li>Lineage: output → model → training data → retrieval source</li>
+            <li>Hallucination, jailbreak and exfiltration triage workflows</li>
+            <li>One-click: revoke agent, quarantine model, roll back prompt, isolate store</li>
+            <li>AI-native MITRE-style ATT&amp;CK mapping</li>
+          </ul>
+        </article>
+
+        <article class="cap reveal">
+          <h3><span>07</span> Model assurance &amp; in-house AI</h3>
+          <ul>
+            <li>Population stability (PSI) and per-feature drift monitoring</li>
+            <li>AUC / Gini performance tracking with regression alerts on new versions</li>
+            <li>Disparate-impact &amp; bias on protected attributes (e.g. age, geo proxy)</li>
+            <li>Explainability / SHAP coverage and unexplained-decision rate</li>
+            <li>Regulated-model risk packs (e.g. credit-risk PD under MAS / Basel III)</li>
+            <li>MLflow, Weights &amp; Biases, SageMaker, Vertex AI integrations</li>
+          </ul>
+        </article>
+
+        <article class="cap reveal flag">
+          <h3><span>08</span> Continuous full-stack red team</h3>
+          <ul>
+            <li>LLM: OWASP LLM Top 10, refreshed jailbreak &amp; injection libraries</li>
+            <li>Agents: kill-chain execution, confused-deputy, compositional exfiltration</li>
+            <li>MCP &amp; tools: tool-poisoning and description-injection</li>
+            <li>Supply chain: namespace-reuse, pickle deserialisation</li>
+            <li>Identity &amp; secrets: over-scoped tokens, credential abuse</li>
+            <li>Cloud &amp; infra: IMDS, GPU-node and container escape attempts</li>
+            <li>Data &amp; network: vector-store egress and DLP-bypass simulation</li>
+            <li>Purple-team: every finding opens an incident in the same console</li>
+          </ul>
+        </article>
+
+        <article class="cap reveal">
+          <h3><span>09</span> Compliance &amp; governance</h3>
+          <ul>
+            <li><b>One-click ISO/IEC 42001 audit</b> — clauses 4–10 + Annex A controls, with conformity scoring and an exportable audit report</li>
+            <li>EU AI Act Annex IV technical documentation incl. adversarial evidence</li>
+            <li>NIST AI RMF (GOVERN, MAP, MEASURE, MANAGE) mapping</li>
+            <li>OWASP LLM &amp; Agentic Top 10 coverage maps</li>
+            <li>SEC four-day blast-radius reports; SOC 2, GDPR, HIPAA, PCI DSS</li>
+            <li>Singapore IMDA, CSA, MAS; FCA, ECB, OCC evidence packs</li>
+          </ul>
+        </article>
+
       </div>
     </div>
   </section>
