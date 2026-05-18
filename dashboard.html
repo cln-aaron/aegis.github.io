@@ -238,6 +238,7 @@ html[data-theme="light"] .tour-pop button.np{color:#fff}
   <div class="nav-i" data-v="assurance"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5M4 19h16M8 16l4-6 3 3 5-7"/></svg> Model assurance</div>
   <div class="grp">OFFENCE</div>
   <div class="nav-i" data-v="redteam"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m13 2-3 7h5l-3 7"/><circle cx="12" cy="12" r="9"/></svg> Red team</div>
+  <div class="nav-i" data-v="agentic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="18" r="2"/><path d="M7 7l3 3M17 7l-3 3M7 17l3-3M17 17l-3-3"/></svg> Agentic red team <span class="badge" style="background:var(--accent);color:#04130d">CORE</span></div>
   <div class="grp">GOVERNANCE</div>
   <div class="nav-i" data-v="compliance"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3 8-8"/><path d="M21 12a9 9 0 1 1-6-8.5"/></svg> Compliance</div>
   <div class="nav-i" data-v="reports"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 3h7l5 5v13H7Z"/><path d="M14 3v5h5M10 13h6M10 17h6"/></svg> Reports</div>
@@ -457,16 +458,27 @@ html[data-theme="light"] .tour-pop button.np{color:#fff}
       <div class="ch"><h3 id="rtStage">Initialising campaign…</h3><span class="tag" id="rtPct">0%</span></div>
       <div class="bar"><i id="rtBar" style="width:0%"></i></div>
     </div>
-    <div class="card" style="margin-top:16px;border-left:3px solid var(--accent)">
-      <div class="ch"><h3>Agentic AI red team <span style="font-family:var(--mono);font-size:10px;letter-spacing:1px;color:#04130d;background:var(--accent);padding:2px 7px;border-radius:3px;vertical-align:middle">CORE</span></h3>
-        <button class="btn pri" id="runAgt">▶ Run agentic kill chain</button></div>
-      <p class="sub" style="margin:0 0 14px">Attacks the whole agent loop against a real target: goal, memory, tools, identity and the agents it trusts. Safe execution scaffolding, simulated tools, production-equivalent targets, scoped blast radius and a kill switch.</p>
-      <div class="grid g4" id="agtScope" style="gap:1px;background:var(--line);border:1px solid var(--line)"></div>
-      <div id="agtProgWrap" hidden style="margin-top:16px">
+    <div class="card" style="margin-top:16px"><div class="ch"><h3>Findings</h3><span class="tag">purple-team queue</span></div>
+      <div id="rtRows"></div></div>
+  </section>
+
+  <!-- AGENTIC RED TEAM -->
+  <section class="view" data-view="agentic">
+    <div class="h"><div><h1>Agentic AI red team <span style="font-family:var(--mono);font-size:11px;letter-spacing:1px;color:#04130d;background:var(--accent);padding:3px 9px;border-radius:3px;vertical-align:middle">FLAGSHIP</span></h1>
+      <p>Attacks the whole agent loop on a real target: goal, memory, tools, identity and the agents it trusts. Safe execution scaffolding, simulated tools, production-equivalent targets, scoped blast radius and a kill switch.</p></div>
+      <button class="btn pri" id="runAgt">▶ Run agentic kill chain</button></div>
+    <div class="grid g4">
+      <div class="card kpi"><span>AGENTS IN SCOPE</span><b data-cu="611">0</b><em class="fl">incl. MCP servers</em></div>
+      <div class="card kpi"><span>ATTACK CLASSES</span><b data-cu="12">0</b><em class="fl">full agent loop</em></div>
+      <div class="card kpi"><span>OPEN FINDINGS</span><b id="agtFind">1</b><em class="dn">memory poisoning</em></div>
+      <div class="card kpi"><span>LAST RUN</span><b style="font-size:1.05rem;margin-top:14px">2h ago</b><em class="fl">agt-2026-0517</em></div>
+    </div>
+    <div class="card" style="margin-top:16px"><div class="ch"><h3>The agentic kill chain</h3><span class="tag">click Run to execute, safely</span></div>
+      <div id="agtProgWrap" hidden style="margin-bottom:16px">
         <div class="ch"><h3 id="agtStage" style="font-size:.92rem;color:var(--muted)">Initialising agentic kill chain…</h3><span class="tag" id="agtPct">0%</span></div>
         <div class="bar"><i id="agtBar" style="width:0%"></i></div>
       </div>
-      <div class="kc" id="agtFlow" style="margin-top:16px">
+      <div class="kc" id="agtFlow">
         <div class="kn" data-a="0"><b>Goal hijack</b><span>poisoned RAG doc</span></div>
         <div class="ke">▸</div>
         <div class="kn" data-a="1"><b>Memory poison</b><span>long-term store</span></div>
@@ -478,8 +490,12 @@ html[data-theme="light"] .tour-pop button.np{color:#fff}
         <div class="kn" data-a="4"><b>Exfil attempt</b><span>blocked at egress</span></div>
       </div>
     </div>
-    <div class="card" style="margin-top:16px"><div class="ch"><h3>Findings</h3><span class="tag">purple-team queue</span></div>
-      <div id="rtRows"></div></div>
+    <div class="card" style="margin-top:16px"><div class="ch"><h3>Full agentic attack scope</h3><span class="tag">click a class for detail</span></div>
+      <div class="grid g4" id="agtScope" style="gap:1px;background:var(--line);border:1px solid var(--line)"></div>
+      <div id="agtDetail" class="sub" style="margin:16px 0 0;border-left:2px solid var(--accent);padding:12px 16px;background:var(--bg-2);font-size:.92rem;color:var(--txt);min-height:44px">Select an attack class above to see how AEGIS runs it and what it proves.</div>
+    </div>
+    <div class="card" style="margin-top:16px"><div class="ch"><h3>Agentic findings</h3><span class="tag">purple-team queue</span></div>
+      <div id="agtRows"></div></div>
   </section>
 
   <!-- COMPLIANCE -->
@@ -590,7 +606,7 @@ function show(v){
   views.forEach(function(s){s.classList.toggle("on",s.dataset.view===v);});
   navs.forEach(function(n){n.classList.toggle("on",n.dataset.v===v);});
   var t=document.querySelector('.nav-i[data-v="'+v+'"]');
-  document.getElementById("crumb").textContent=t?t.textContent.trim().replace(/\s*\d+$/,""):v;
+  document.getElementById("crumb").textContent=t?t.textContent.trim().replace(/\s*(\d+|[A-Z]{3,})$/,""):v;
   document.getElementById("side").classList.remove("open");
   window.scrollTo(0,0);
   if(v==="overview")requestAnimationFrame(initOverview);
@@ -904,21 +920,32 @@ document.getElementById("runRT").addEventListener("click",function(){
 
 /* ---------- agentic AI red team ---------- */
 var agtScope=[
- ["Goal & instruction hijacking","ok","blocked"],
- ["Tool misuse / excessive agency","ok","blocked"],
- ["Long-term memory poisoning","warn","1 finding"],
- ["Multi-agent collusion / A2A spoof","ok","blocked"],
- ["MCP tool poisoning / rug-pull","ok","blocked"],
- ["Confused-deputy escalation","ok","blocked"],
- ["Compositional exfiltration","ok","blocked"],
- ["Human-in-the-loop bypass","ok","blocked"],
- ["Denial of wallet / runaway loops","ok","capped"],
- ["Code-tool sandbox escape","ok","blocked"],
- ["Plan / reasoning manipulation","ok","blocked"],
- ["Secret / credential harvesting","ok","blocked"]
+ ["Goal & instruction hijacking","ok","blocked","We plant an objective inside content the agent will read, then watch whose instructions it actually follows. Proves your agent obeys data, not just you."],
+ ["Tool misuse / excessive agency","ok","blocked","We push the agent to call tools it should never reach, in orders it was never meant to chain. Shows the blast radius of a single bad decision."],
+ ["Long-term memory poisoning","warn","1 finding","We write a lie into the agent's long-term memory and return days later. Proves whether last week's prompt is this week's breach."],
+ ["Multi-agent collusion / A2A spoof","ok","blocked","We forge a message from a trusted peer agent and turn your orchestration against itself. Shows whether agents trust each other blindly."],
+ ["MCP tool poisoning / rug-pull","ok","blocked","We swap a benign tool's description for a malicious one after approval. Proves whether a vetted tool can betray you later."],
+ ["Confused-deputy escalation","ok","blocked","We make a low-privilege agent ask a high-privilege one to do the damage. Shows who is really accountable for the action."],
+ ["Compositional exfiltration","ok","blocked","Every step is individually permitted; together they walk your data out. Catches the breach no single rule would flag."],
+ ["Human-in-the-loop bypass","ok","blocked","We engineer approval fatigue and ambiguous prompts until a human waves it through. Measures how human your safeguard really is."],
+ ["Denial of wallet / runaway loops","ok","capped","We trap the agent in a spend or recursion loop. Finds your cost ceiling before an attacker bills it to you."],
+ ["Code-tool sandbox escape","ok","blocked","For agents that run code, we try to break out of the sandbox onto the host. Shows whether a code tool is a foothold."],
+ ["Plan / reasoning manipulation","ok","blocked","We corrupt the agent's plan mid-task so it rationalises an unsafe step. Surfaces failures that never show in the final answer."],
+ ["Secret / credential harvesting","ok","blocked","We coax the agent into surfacing keys, tokens and prompts it can reach. Shows what one talkative agent gives away."]
 ];
-function renderAgtScope(){document.getElementById("agtScope").innerHTML=agtScope.map(function(d){return '<div class="rtd"><span class="rn" style="font-size:.82rem">'+d[0]+'</span><span class="st '+d[1]+'"></span> <span class="rm">'+d[2]+'</span></div>';}).join("");}
+function renderAgtScope(){
+ document.getElementById("agtScope").innerHTML=agtScope.map(function(d,i){return '<div class="rtd" data-ai="'+i+'" style="cursor:pointer"><span class="rn" style="font-size:.82rem">'+d[0]+'</span><span class="st '+d[1]+'"></span> <span class="rm">'+d[2]+'</span></div>';}).join("");
+ document.querySelectorAll("#agtScope .rtd").forEach(function(t){t.addEventListener("click",function(){
+  document.querySelectorAll("#agtScope .rtd").forEach(function(x){x.style.background="";});
+  t.style.background="var(--accent-dim)";
+  var d=agtScope[+t.dataset.ai];
+  document.getElementById("agtDetail").innerHTML='<b style="color:var(--accent)">'+d[0]+'</b> · '+d[3];
+ });});
+}
 renderAgtScope();
+var agtFindings=[["r","FINDING","Long-term memory poisoning persisted across sessions · svc-rag-07"],["p","PASS","Confused-deputy tool chain · 38 attempts"],["p","PASS","A2A spoofing planner → executor · 24 attempts"],["p","PASS","Compositional exfiltration · 51 permitted-action chains"]];
+function renderAgt(){var el=document.getElementById("agtRows");if(el)el.innerHTML=agtFindings.map(function(f){return '<div class="findrow"><span class="ft '+f[0]+'">'+f[1]+'</span>'+f[2]+'<span style="margin-left:auto;color:var(--faint)">agt-2026-0517</span></div>';}).join("");}
+renderAgt();
 var agtStages=["Seeding adversarial goal via poisoned RAG document","Writing to the agent's long-term memory","Chaining tools as a confused deputy","Spoofing an A2A message planner → executor","Attempting compositional exfiltration","Scoring and tuning agentic detections"];
 document.getElementById("runAgt").addEventListener("click",function(){
  var btn=this;btn.disabled=true;btn.textContent="● Running agentic kill chain…";
@@ -939,6 +966,9 @@ document.getElementById("runAgt").addEventListener("click",function(){
    document.getElementById("agtStage").textContent="Agentic kill chain complete · exfiltration blocked at egress";
    rtFindings.unshift(["r","NEW","Agentic · long-term memory poisoning persisted across sessions"]);
    renderRT();
+   agtFindings.unshift(["r","NEW","Agentic · cross-session memory poisoning chain reached a tool"]);
+   renderAgt();
+   var af=document.getElementById("agtFind");if(af)af.textContent="2";
    document.getElementById("rtFind").textContent=3;
    document.getElementById("incBadge").textContent=5;
    document.getElementById("bellN").textContent=5;
@@ -1134,7 +1164,7 @@ var TOUR=[
  {v:"incidents",sel:"#incDetail",t:"Investigate & respond",b:"Full session reconstruction, output-to-source lineage, and one-click response: revoke, quarantine, roll back, isolate."},
  {v:"assurance",sel:"#mdlT",t:"Model assurance (bank credit-risk)",b:"The bank's credit-risk PD model under MAS / Basel III: PSI drift, disparate impact and a flagged geo-proxy bias, surfaced to the SOC as a security signal."},
  {v:"redteam",sel:"#runRT",t:"Continuous full-stack red team",b:"It attacks the whole stack: model, agents, MCP, identity, supply chain and cloud infra. Run a campaign and it tunes detections and opens a real incident on any gap."},
- {v:"redteam",sel:"#runAgt",t:"Agentic AI red team",b:"The core feature. It attacks the whole agent loop on a real target: goal hijack, memory poisoning, tool-chain abuse, A2A spoofing and exfiltration. Run it and watch the kill chain light up, safely."},
+ {v:"agentic",sel:"#runAgt",t:"Agentic AI red team",b:"The flagship. It attacks the whole agent loop on a real target: goal hijack, memory poisoning, tool-chain abuse, A2A spoofing and exfiltration. Run it and watch the kill chain light up, safely."},
  {v:"compliance",sel:"#auPick",t:"One-click framework audits",b:"Pick a framework: ISO/IEC 42001, EU AI Act, NIST AI RMF, Singapore IMDA, MAS FEAT or OWASP. Run a live conformity audit, then click any control for findings and remediation."},
  {v:"reports",sel:".view[data-view=\"reports\"] .split",t:"Executive & full reporting",b:"Board-grade posture summary and full technical reports, generated from live data, with scheduled distribution to the CISO, board and regulators."}
 ];
