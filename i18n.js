@@ -73,17 +73,17 @@
 
     // product section
     "The product": "產品",
-    "One pane of glass for your whole AI stack.": "整個 AI 技術棧,一個主控視窗看到底。",
-    "Start from an incident, not a tool. See the full session, trace the lineage, and shut it down — without pivoting between dashboards that were never built to talk.":
-      "從事件出發,而不是從工具出發。看見完整對話、追溯資料來源,並一鍵阻斷——不必在彼此不相通的儀表板之間來回切換。",
+    "Stop tab-hopping between tools that don't talk.": "別再在互不相通的工具之間切來切去。",
+    "When your AI does something it shouldn't, the clock is already running. You shouldn't be logging into five consoles to work out what happened — start at the incident, see the whole session and where it led, and shut it down in one click.":
+      "當你的 AI 出狀況,時間就在倒數。你不該為了搞清楚發生什麼事而登入五個主控台——直接從事件看起,掌握整段對話與它的去向,一鍵阻斷。",
     "Live overview": "即時總覽",
     "Asset inventory": "資產清單",
 
     // platform
     "The platform": "平台",
     "Eight layers. One data plane.": "八個層次,同一個資料平面。",
-    "Discovery at the edge, continuous offence at the core. Every layer writes to the same telemetry, so a weak signal in one place becomes a high-confidence incident everywhere.":
-      "邊緣負責探索,核心持續演練攻擊。每一層都寫入同一份遙測,因此某處的微弱訊號,能在全局成為高可信度的事件。",
+    "You bought seven point tools and still can't connect them. AEGIS is eight layers writing to one record — so the weak signal everyone else ignores becomes an incident you can act on.":
+      "你買了七套單點工具,卻仍兜不起來。AEGIS 是寫入同一份紀錄的八個層次——別人忽略的微弱訊號,在這裡會成為你能著手處理的事件。",
     "Asset & workforce AI discovery": "資產與員工 AI 使用探索",
     "A live inventory of every model, agent, MCP server, vector store and prompt — plus how employees use AI across the major productivity suites — built-in office AI assistants and browser LLMs included. Sanctioned or shadow, you see it.":
       "即時盤點每一個模型、代理、MCP 伺服器、向量資料庫與提示,並掌握員工在主要辦公生產力套裝中如何使用 AI——含內建的辦公 AI 助理與瀏覽器 LLM。無論經核可或屬影子資產,皆一覽無遺。",
@@ -112,8 +112,8 @@
 
     // capabilities
     "Everything in AEGIS.": "AEGIS 的完整能力。",
-    "Not a feature checklist for its own sake — this is the surface area it takes to actually answer “is our AI safe right now?”. One platform, end to end.":
-      "這不是為了湊數的功能清單——而是真正要回答「我們的 AI 現在安全嗎?」所需涵蓋的範圍。一個平台,端到端。",
+    "AI risk isn't in one neat place — it's across your models, your agents, your supply chain and your people. Here's every gap we close, so you're not buying ten more tools to find out where you stand.":
+      "AI 風險不會乖乖待在一個地方——它散落在你的模型、代理、供應鏈與員工之間。以下是我們補上的每一個破口,讓你不必再買十套工具才搞清楚自己的處境。",
     "01 Discovery & workforce AI": '<span>01</span> 探索與員工 AI 使用',
     "Continuous inventory: models, agents, MCP servers, vector stores, prompts, datasets": "持續盤點:模型、代理、MCP 伺服器、向量資料庫、提示、資料集",
     "Shadow-AI discovery via browser, OAuth, network and code scanning": "透過瀏覽器、OAuth、網路與程式碼掃描探索影子 AI",
@@ -202,7 +202,7 @@
 
     // teams
     "Who uses it": "誰在使用",
-    "Three teams. One source of truth.": "三個團隊,同一份事實來源。",
+    "The teams who never agree, finally on one screen.": "從來喬不攏的幾個團隊,終於看同一個畫面。",
     "Security leadership": "資安管理層",
     "Answer the board with evidence": "用證據向董事會交代",
     "How many agents do we run? What can they reach? Did our controls actually hold last quarter? AEGIS gives you the audit trail behind the answer — dashboards, evidence packs mapped to the EU AI Act, NIST AI RMF and ISO 42001, and disclosure-ready blast-radius reports.":
@@ -218,7 +218,9 @@
 
     // why
     "Why AEGIS": "為何選 AEGIS",
-    "The other options leave a gap.": "其他選項都留有破口。",
+    "The tools you've already bought don't cover this.": "你已經買的那些工具,守不到這一塊。",
+    "What you run today": "你現在用的",
+    "With AEGIS": "改用 AEGIS",
     "Prompt firewalls": "提示防火牆",
     "See text in, text out. Blind to tool calls, identity, lineage and supply chain. Nowhere to investigate.":
       "只看到文字進、文字出。看不到工具呼叫、身分、資料譜系與供應鏈,也無從調查。",
@@ -268,8 +270,8 @@
     // specs
     "The detail": "細節",
     "What you actually get.": "你實際得到什麼。",
-    "The questions security, legal and procurement ask before a proof-of-value — answered up front.":
-      "資安、法務與採購在 POV 之前會問的問題——先講清楚。",
+    "The questions your security, legal and procurement teams will ask in week one — answered here, not after you've signed an NDA.":
+      "你的資安、法務與採購團隊第一週就會問的問題——這裡先答清楚,不必等簽完 NDA。",
     "Deployment": "部署", "SaaS or in-VPC": "SaaS 或 VPC 內",
     "Fully managed, or deployed inside your own cloud account. The data plane can run air-gapped.":
       "完全受管,或部署在你自己的雲端帳號內。資料平面可在離線(air-gapped)環境運行。",
@@ -325,8 +327,13 @@
 
     // cta
     "See it on your own stack.": "在你自己的技術棧上看看。",
-    "Book a 30-minute walkthrough, or jump straight into the live console with the demo environment.":
-      "預約 30 分鐘導覽,或直接進入即時主控台體驗。",
+    "Book a 30-minute walkthrough, or skip the call and click around the live console yourself.":
+      "預約 30 分鐘導覽,或乾脆跳過會議,自己進即時主控台點點看。",
+    "That's the whole platform — not a slide deck, a working console.":
+      "這就是平台的全部——不是簡報,是一個能用的主控台。",
+    "Sign in and click through every one of these yourself, on synthetic data.":
+      "用合成資料登入,親自把上面每一項點過一遍。",
+    "Open the live console": "開啟即時主控台",
     "Enterprises": "企業",
     "Design-partner cohort across financial services, healthcare and regulated sectors. Co-design detections for your jurisdiction.":
       "橫跨金融、醫療與受監管產業的設計夥伴計畫。一起為你的司法管轄區共同設計偵測。",
@@ -341,8 +348,10 @@
     "Security operations for AI.": "AI 的資安維運平台。",
     "Sign in to the console →": "登入主控台 →",
     "AEGIS·AI is a product of Hesed & Emet.": "AEGIS·AI 是 Hesed & Emet 的產品。",
-    "© 2026 Hesed & Emet · Singapore · Tel Aviv · San Francisco · London":
-      "© 2026 Hesed & Emet · 新加坡 · 特拉維夫 · 舊金山 · 倫敦"
+    "← Back to Hesed & Emet": "← 返回 Hesed & Emet",
+    "Contact: hello@hesedemet.asia": "聯絡:hello@hesedemet.asia",
+    "© 2026 Hesed & Emet. All rights reserved.":
+      "© 2026 Hesed & Emet. 版權所有。"
   };
 
   var SEL = [
@@ -350,7 +359,8 @@
     ".kicker", ".hero-title", ".hero-sub", ".hero-cta a", ".hero-trust span",
     ".cm-title", ".cm-cap", ".ui-side i", ".ui-kpi span", ".ui-panel-h",
     ".kc-node b", ".kc-node span", ".kc-note", ".ui-table th", ".ui-table td",
-    ".tab", ".sec-label", ".sec-title", ".lede", ".strip-line",
+    ".tab", ".sec-label", ".sec-title", ".lede", ".strip-line", ".vs-head span",
+    ".cap-cta p", ".cap-cta .btn",
     ".layer-body h3", ".layer-body p", ".layer-no em",
     ".cap h3", ".cap li", ".step h3", ".step p",
     ".persona-tag", ".persona h3", ".persona p",
@@ -359,7 +369,7 @@
     ".eco-col p", ".spec span", ".spec b", ".spec p",
     ".faq summary", ".faq details > p",
     ".cta-wrap h2", ".cta-wrap .lede", ".cta-cols b", ".cta-cols p",
-    ".footer-brand p", ".footer-login", ".footer-meta p"
+    ".footer-brand p", ".footer-login", ".footer-back", ".footer-meta p"
   ].join(",");
 
   function norm(s) {
@@ -378,7 +388,7 @@
     });
     document.documentElement.lang = lang === "zh" ? "zh-Hant" : "en";
     var btn = document.getElementById("langTg");
-    if (btn) btn.textContent = lang === "zh" ? "EN" : "中文";
+    if (btn) btn.textContent = lang === "zh" ? "English" : "繁體中文";
     try { localStorage.setItem("aegis_lang", lang); } catch (e) {}
   }
 
@@ -395,7 +405,7 @@
       });
     }
     if (current() === "zh") apply("zh");
-    else if (btn) btn.textContent = "中文";
+    else if (btn) btn.textContent = "繁體中文";
   }
 
   if (document.readyState === "loading") {
