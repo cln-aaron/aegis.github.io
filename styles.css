@@ -234,10 +234,16 @@ html[data-theme="light"] .theme-tg .t-moon{display:none}
 .scope-i{font-family:var(--mono);font-size:12.5px;color:var(--muted);background:var(--bg-alt);border:1px solid var(--line);border-radius:30px;padding:9px 16px;cursor:pointer;transition:.18s}
 .scope-i:hover{color:var(--txt);border-color:var(--line-strong)}
 .scope-i.active{color:#04130d;background:var(--accent);border-color:var(--accent);font-weight:600}
-.scope-detail{border:1px solid var(--line-strong);border-left:2px solid var(--accent);border-radius:6px;background:var(--bg-alt);padding:26px 28px;margin-bottom:30px;min-height:96px;display:flex;align-items:center}
-.scope-detail .sd{display:none;margin:0;font-size:clamp(1rem,1.7vw,1.2rem);color:var(--txt);line-height:1.55}
-.scope-detail .sd.active{display:block;animation:fadeIn .25s ease}
+.scope-detail{border:1px solid var(--line-strong);border-left:3px solid var(--accent);border-radius:8px;background:var(--bg-alt);padding:28px;margin-bottom:30px;display:flex;gap:30px;align-items:flex-start;flex-wrap:wrap;min-height:120px}
+.scope-detail>div{animation:fadeIn .25s ease}
+.sd-stat{flex:none;min-width:150px;font-size:clamp(2rem,3.4vw,2.8rem);font-weight:700;color:var(--accent);line-height:1.02;letter-spacing:-.02em}
+.sd-stat small{display:block;margin-top:10px;font-family:var(--mono);font-size:11px;font-weight:500;color:var(--faint);letter-spacing:.3px;line-height:1.5;max-width:210px}
+.sd-body{flex:1;min-width:260px}
+.sd-body p{margin:0 0 13px;font-size:1rem;color:var(--muted);line-height:1.55}
+.sd-body b{display:block;font-family:var(--mono);font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--accent);margin-bottom:3px;font-weight:600}
+.sd-sure{border-top:1px solid var(--line);padding-top:13px;margin:16px 0 0!important;color:var(--txt)}
 @keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1}}
+@media(max-width:680px){.scope-detail{gap:18px}.sd-stat{min-width:0}}
 .agentic-edge{font-size:clamp(1.05rem,1.9vw,1.35rem);color:var(--txt);font-weight:500;max-width:820px;margin:-26px 0 44px;border-left:2px solid var(--accent);padding-left:20px;line-height:1.5}
 .mini-h{font-family:var(--mono);font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
 .agentic-safe{font-size:.95rem;color:var(--muted);max-width:820px;margin-bottom:30px}

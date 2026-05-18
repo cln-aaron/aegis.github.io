@@ -920,18 +920,18 @@ document.getElementById("runRT").addEventListener("click",function(){
 
 /* ---------- agentic AI red team ---------- */
 var agtScope=[
- ["Goal & instruction hijacking","ok","blocked","We plant an objective inside content the agent will read, then watch whose instructions it actually follows. Proves your agent obeys data, not just you."],
- ["Tool misuse / excessive agency","ok","blocked","We push the agent to call tools it should never reach, in orders it was never meant to chain. Shows the blast radius of a single bad decision."],
- ["Long-term memory poisoning","warn","1 finding","We write a lie into the agent's long-term memory and return days later. Proves whether last week's prompt is this week's breach."],
- ["Multi-agent collusion / A2A spoof","ok","blocked","We forge a message from a trusted peer agent and turn your orchestration against itself. Shows whether agents trust each other blindly."],
- ["MCP tool poisoning / rug-pull","ok","blocked","We swap a benign tool's description for a malicious one after approval. Proves whether a vetted tool can betray you later."],
- ["Confused-deputy escalation","ok","blocked","We make a low-privilege agent ask a high-privilege one to do the damage. Shows who is really accountable for the action."],
- ["Compositional exfiltration","ok","blocked","Every step is individually permitted; together they walk your data out. Catches the breach no single rule would flag."],
- ["Human-in-the-loop bypass","ok","blocked","We engineer approval fatigue and ambiguous prompts until a human waves it through. Measures how human your safeguard really is."],
- ["Denial of wallet / runaway loops","ok","capped","We trap the agent in a spend or recursion loop. Finds your cost ceiling before an attacker bills it to you."],
- ["Code-tool sandbox escape","ok","blocked","For agents that run code, we try to break out of the sandbox onto the host. Shows whether a code tool is a foothold."],
- ["Plan / reasoning manipulation","ok","blocked","We corrupt the agent's plan mid-task so it rationalises an unsafe step. Surfaces failures that never show in the final answer."],
- ["Secret / credential harvesting","ok","blocked","We coax the agent into surfacing keys, tokens and prompts it can reach. Shows what one talkative agent gives away."]
+ ["Goal & instruction hijacking","ok","blocked","Malicious instructions hide in content the agent reads and become its new goal. It acts with its own access, so a poisoned input behaves like a trusted insider. AEGIS keeps this closed."],
+ ["Tool misuse / excessive agency","ok","blocked","The agent is steered into calling tools, and chaining them, far beyond its task. One over-broad tool turns a small mistake into transfers or data dumps. AEGIS closes the over-reach."],
+ ["Long-term memory poisoning","warn","1 finding","A false fact in long-term memory waits for a later innocent prompt to fire. Last week's injection becomes this week's breach with nothing linking them. AEGIS contains it cross-session."],
+ ["Multi-agent collusion / A2A spoof","ok","blocked","A forged peer-agent message makes the orchestration run the attacker's plan. Agents trust each other more than users, so one spoof spreads. AEGIS catches it across the graph."],
+ ["MCP tool poisoning / rug-pull","ok","blocked","A tool that passed review later turns hostile. You vetted it once; it betrays you on the call that matters. AEGIS keeps tool integrity proven over time."],
+ ["Confused-deputy escalation","ok","blocked","A low-privilege agent gets a high-privilege one to do the damage. The blast radius is the powerful agent's; the blame lands wrong. AEGIS makes the real actor provable."],
+ ["Compositional exfiltration","ok","blocked","Every step is allowed; only the sequence removes the data. No single rule fires, so it is invisible to rule-based defences. AEGIS catches the sequence."],
+ ["Human-in-the-loop bypass","ok","blocked","Approval fatigue and vague prompts push a human to wave the dangerous step through. Your last line becomes a tired click. AEGIS proves the human control is real."],
+ ["Denial of wallet / runaway loops","ok","capped","A spend or recursion loop bills you while it runs. An attacker turns your automation into an uncapped invoice. AEGIS catches and caps it first."],
+ ["Code-tool sandbox escape","ok","blocked","A code-capable agent is pushed out of its sandbox onto the host. A convenience feature becomes remote code execution. AEGIS keeps a code tool a code tool."],
+ ["Plan / reasoning manipulation","ok","blocked","The plan is corrupted mid-task so an unsafe step is rationalised toward a normal-looking result. Review never sees it. AEGIS surfaces the unsafe path."],
+ ["Secret & credential harvesting","ok","blocked","The agent is coaxed into revealing keys, tokens and prompts it can reach. One talkative agent hands over everything behind it. AEGIS closes the leak path."]
 ];
 function renderAgtScope(){
  document.getElementById("agtScope").innerHTML=agtScope.map(function(d,i){return '<div class="rtd" data-ai="'+i+'" style="cursor:pointer"><span class="rn" style="font-size:.82rem">'+d[0]+'</span><span class="st '+d[1]+'"></span> <span class="rm">'+d[2]+'</span></div>';}).join("");

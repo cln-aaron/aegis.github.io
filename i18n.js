@@ -1156,7 +1156,7 @@
     ".eco-col p", ".spec span", ".spec b", ".spec p",
     ".faq summary", ".faq details > p",
     ".cta-wrap h2", ".cta-wrap .lede", ".demo-form label span", ".demo-form button",
-    ".agentic-edge", ".mini-h", ".scope-i", ".scope-detail .sd", ".agt-step b", ".agt-step p", ".agentic-safe",
+    ".agentic-edge", ".mini-h", ".scope-i", ".agt-step b", ".agt-step p", ".agentic-safe",
     ".footer-brand p", ".footer-login", ".footer-back", ".footer-meta p"
   ].join(",");
 
@@ -1186,6 +1186,7 @@
       li.setAttribute("aria-selected", li.dataset.lang === lang ? "true" : "false");
     });
     try { localStorage.setItem("aegis_lang", lang); } catch (e) {}
+    try { window.dispatchEvent(new CustomEvent("aegis:lang", { detail: lang })); } catch (e) {}
   }
 
   function current() {
