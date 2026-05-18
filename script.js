@@ -202,6 +202,51 @@
     }
   }
 
+  // demo request form (Formspree)
+  var demoForm = document.getElementById("demoForm");
+  if (demoForm) {
+    var dfMsg = document.getElementById("dfMsg");
+    var zh = function () { return document.documentElement.lang === "zh-Hant"; };
+    demoForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (demoForm.querySelector('[name="_gotcha"]').value) return; // bot
+      var action = demoForm.getAttribute("action");
+      dfMsg.className = "df-msg";
+      if (action.indexOf("REPLACE_WITH_FORM_ID") > -1) {
+        dfMsg.className = "df-msg err";
+        dfMsg.textContent = zh()
+          ? "表單尚未設定。請來信 hello@hesedemet.asia。"
+          : "Form not yet configured. Please email hello@hesedemet.asia.";
+        return;
+      }
+      var btn = demoForm.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      btn.textContent = zh() ? "送出中…" : "Sending…";
+      fetch(action, {
+        method: "POST",
+        body: new FormData(demoForm),
+        headers: { Accept: "application/json" }
+      }).then(function (r) {
+        if (r.ok) {
+          demoForm.classList.add("sent");
+          dfMsg.className = "df-msg ok";
+          dfMsg.textContent = zh()
+            ? "已收到,謝謝。我們會在一個工作日內與你聯絡。"
+            : "Got it — thank you. We'll be in touch within one business day.";
+        } else {
+          throw new Error("bad response");
+        }
+      }).catch(function () {
+        btn.disabled = false;
+        btn.textContent = zh() ? "預約展示" : "Request a demo";
+        dfMsg.className = "df-msg err";
+        dfMsg.textContent = zh()
+          ? "送出失敗。請稍後再試,或來信 hello@hesedemet.asia。"
+          : "Couldn't send. Please try again, or email hello@hesedemet.asia.";
+      });
+    });
+  }
+
   // expandable platform layers
   var layers = document.querySelectorAll(".layer");
   layers.forEach(function (l) {

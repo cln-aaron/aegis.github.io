@@ -27,6 +27,7 @@
     </span>
     <span class="brand-text">AEGIS<span class="dot">·</span>AI</span>
   </a>
+  <a class="nav-parent" href="https://www.hesedemet.asia" target="_blank" rel="noopener">by Hesed &amp; Emet Advisory ↗</a>
   <nav class="nav-links" aria-label="Primary">
     <a href="#product">Product</a>
     <a href="#platform">Platform</a>
@@ -65,8 +66,7 @@
           actually hold. One console, instead of seven tools that don't talk to each other.
         </p>
         <div class="hero-cta reveal">
-          <a href="login.html" class="btn btn-primary">Launch the console</a>
-          <a href="#demo" class="btn btn-ghost">Book a live demo</a>
+          <a href="#demo" class="btn btn-primary">Book a demo</a>
         </div>
         <div class="hero-trust reveal">
           <span>Built for the SOC</span><i></i>
@@ -483,10 +483,10 @@
 
         <article class="cap cap-cta reveal">
           <div>
-            <h3 class="cta-h">That's the whole platform — not a slide deck, a working console.</h3>
-            <p>Sign in and click through every one of these yourself, on synthetic data.</p>
+            <h3 class="cta-h">That's the whole platform — not a slide deck.</h3>
+            <p>See it running on your own AI stack in a 30-minute walkthrough.</p>
           </div>
-          <a href="login.html" class="btn btn-primary">Open the live console</a>
+          <a href="#demo" class="btn btn-primary">Book a demo</a>
         </article>
 
       </div>
@@ -742,20 +742,25 @@
   <section class="section alt cta-section" id="demo">
     <div class="wrap cta-wrap reveal">
       <h2 class="sec-title">See it on your own stack.</h2>
-      <p class="lede">Book a 30-minute walkthrough, or skip the call and click around the live
-      console yourself.</p>
-      <div class="hero-cta">
-        <a href="login.html" class="btn btn-primary">Launch the console</a>
-        <a href="https://www.hesedemet.asia" target="_blank" rel="noopener" class="btn btn-ghost">Book a demo</a>
-      </div>
-      <div class="cta-cols">
-        <div><b>Enterprises</b><p>Design-partner cohort across financial services, healthcare and
-        regulated sectors. Co-design detections for your jurisdiction.</p></div>
-        <div><b>Investors</b><p>Market sizing, competitive analysis and risk review available to
-        qualified institutional investors under NDA.</p></div>
-        <div><b>Engineers</b><p>Hiring in Singapore, Tel Aviv, San Francisco and London —
-        offensive AI research, ML platform, detection content.</p></div>
-      </div>
+      <p class="lede">A 30-minute walkthrough on your environment. Tell us a little about your AI
+      and your regulators, and we'll tailor it.</p>
+      <form class="demo-form" id="demoForm" action="https://formspree.io/f/REPLACE_WITH_FORM_ID" method="POST">
+        <div class="df-row">
+          <label><span>Name</span><input type="text" name="name" required autocomplete="name" /></label>
+          <label><span>Work email</span><input type="email" name="email" required autocomplete="email" /></label>
+        </div>
+        <div class="df-row">
+          <label><span>Company</span><input type="text" name="company" required autocomplete="organization" /></label>
+          <label><span>Role</span><input type="text" name="role" placeholder="CISO, SOC lead, ML lead…" /></label>
+        </div>
+        <label><span>What would you like to see?</span><textarea name="message" rows="4" placeholder="Your AI stack, the regulators in scope, and the one thing that worries you most."></textarea></label>
+        <input type="hidden" name="_subject" value="AEGIS·AI — demo request" />
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="df-hp" />
+        <div class="df-foot">
+          <button type="submit" class="btn btn-primary">Request a demo</button>
+          <p class="df-msg" id="dfMsg" role="status" aria-live="polite"></p>
+        </div>
+      </form>
     </div>
   </section>
 
@@ -766,8 +771,6 @@
     <div class="footer-brand">
       <span class="brand-text">AEGIS<span class="dot">·</span>AI</span>
       <p>Security operations for AI.</p>
-      <a href="login.html" class="footer-login">Sign in to the console →</a>
-      <a href="https://www.hesedemet.asia" class="footer-back" target="_blank" rel="noopener">← Back to Hesed &amp; Emet</a>
     </div>
     <div class="footer-meta">
       <a href="https://www.hesedemet.asia" target="_blank" rel="noopener">www.hesedemet.asia</a>

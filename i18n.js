@@ -363,13 +363,18 @@
 
     // cta
     "See it on your own stack.": "在你自己的技術棧上看看。",
-    "Book a 30-minute walkthrough, or skip the call and click around the live console yourself.":
-      "預約 30 分鐘導覽,或乾脆跳過會議,自己進即時主控台點點看。",
-    "That's the whole platform — not a slide deck, a working console.":
-      "這就是平台的全部——不是簡報,是一個能用的主控台。",
-    "Sign in and click through every one of these yourself, on synthetic data.":
-      "用合成資料登入,親自把上面每一項點過一遍。",
-    "Open the live console": "開啟即時主控台",
+    "A 30-minute walkthrough on your environment. Tell us a little about your AI and your regulators, and we'll tailor it.":
+      "針對你的環境做 30 分鐘導覽。簡單告訴我們你的 AI 與適用的監理機關,我們會量身調整內容。",
+    "That's the whole platform — not a slide deck.":
+      "這就是平台的全部——不是一份簡報。",
+    "See it running on your own AI stack in a 30-minute walkthrough.":
+      "用 30 分鐘導覽,看它在你自己的 AI 技術棧上實際運行。",
+    "Name": "姓名",
+    "Work email": "公司電子郵件",
+    "Company": "公司",
+    "Role": "職稱",
+    "What would you like to see?": "你想看到什麼?",
+    "Request a demo": "預約展示",
     "Enterprises": "企業",
     "Design-partner cohort across financial services, healthcare and regulated sectors. Co-design detections for your jurisdiction.":
       "橫跨金融、醫療與受監管產業的設計夥伴計畫。一起為你的司法管轄區共同設計偵測。",
@@ -406,7 +411,7 @@
     ".stat-desc", ".stat-src", ".band",
     ".eco-col p", ".spec span", ".spec b", ".spec p",
     ".faq summary", ".faq details > p",
-    ".cta-wrap h2", ".cta-wrap .lede", ".cta-cols b", ".cta-cols p",
+    ".cta-wrap h2", ".cta-wrap .lede", ".demo-form label span", ".demo-form button",
     ".footer-brand p", ".footer-login", ".footer-back", ".footer-meta p"
   ].join(",");
 
