@@ -128,6 +128,7 @@
       overview: "A single posture view across all eight layers: assets, incidents, red-team coverage and shadow AI, live.",
       killchain: "Four low-signal events become one critical incident. Single-tool stacks never connect them.",
       redteam: "Continuous red team runs inside the data plane, and every finding opens an incident in the same console.",
+      agentic: "A full agentic kill chain against your real agents: goal, memory, tools and the agents they trust.",
       assets: "Continuous discovery of every model, agent and MCP server, sanctioned or shadow."
     };
     var i = 0, timer = null, playing = false;
