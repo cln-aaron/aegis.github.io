@@ -463,9 +463,9 @@ html[data-theme="light"] .lang-menu{background:#fff}
   </section>
 
   <!-- AGENTIC RED TEAM -->
-  <section class="section" id="agentic">
+  <section class="section flagship-sec" id="agentic">
     <div class="wrap">
-      <p class="sec-label reveal">Core capability</p>
+      <p class="sec-label reveal">Flagship</p>
       <h2 class="sec-title reveal">Your agents will be attacked. We get there first.</h2>
       <p class="lede reveal">Agents plan, remember, call tools and talk to each other. Every one
       of those is a way in. AEGIS runs a full agentic red team against your real agents, with
@@ -473,21 +473,49 @@ html[data-theme="light"] .lang-menu{background:#fff}
       already seen and closed.</p>
       <p class="agentic-edge reveal">Point tools test a prompt. AEGIS attacks the whole agent
       loop: goal, memory, tools, identity and the agents it trusts. No one else closes that loop.</p>
-      <p class="mini-h reveal">Full agentic attack scope</p>
-      <div class="scope">
-        <span class="reveal">Goal &amp; instruction hijacking</span>
-        <span class="reveal">Tool misuse &amp; excessive agency</span>
-        <span class="reveal">Long-term memory poisoning</span>
-        <span class="reveal">Multi-agent collusion &amp; A2A spoofing</span>
-        <span class="reveal">MCP tool poisoning &amp; rug-pull</span>
-        <span class="reveal">Confused-deputy privilege escalation</span>
-        <span class="reveal">Compositional exfiltration</span>
-        <span class="reveal">Human-in-the-loop bypass</span>
-        <span class="reveal">Denial of wallet &amp; runaway loops</span>
-        <span class="reveal">Code-tool sandbox escape</span>
-        <span class="reveal">Plan &amp; reasoning manipulation</span>
-        <span class="reveal">Secret &amp; credential harvesting</span>
+
+      <p class="mini-h reveal">How the agentic red team actually runs</p>
+      <div class="agt-steps reveal">
+        <div class="agt-step"><span>01</span><b>Map the agent graph</b><p>Every tool, memory
+        store, sub-agent and trust edge the agent can reach, drawn before a single attack.</p></div>
+        <div class="agt-step"><span>02</span><b>Attack the loop</b><p>Multi-turn adversarial
+        objectives run against a production-equivalent replica with simulated tools, never your
+        live customers.</p></div>
+        <div class="agt-step"><span>03</span><b>Prove, then retest</b><p>Each finding becomes an
+        incident with the full transcript, and the same attack re-runs on every release until it
+        fails.</p></div>
       </div>
+
+      <p class="mini-h reveal">Full agentic attack scope</p>
+      <div class="scope expl reveal" id="agtScopeGrid">
+        <button class="scope-i active" data-sd="0">Goal &amp; instruction hijacking</button>
+        <button class="scope-i" data-sd="1">Tool misuse &amp; excessive agency</button>
+        <button class="scope-i" data-sd="2">Long-term memory poisoning</button>
+        <button class="scope-i" data-sd="3">Multi-agent collusion &amp; A2A spoofing</button>
+        <button class="scope-i" data-sd="4">MCP tool poisoning &amp; rug-pull</button>
+        <button class="scope-i" data-sd="5">Confused-deputy privilege escalation</button>
+        <button class="scope-i" data-sd="6">Compositional exfiltration</button>
+        <button class="scope-i" data-sd="7">Human-in-the-loop bypass</button>
+        <button class="scope-i" data-sd="8">Denial of wallet &amp; runaway loops</button>
+        <button class="scope-i" data-sd="9">Code-tool sandbox escape</button>
+        <button class="scope-i" data-sd="10">Plan &amp; reasoning manipulation</button>
+        <button class="scope-i" data-sd="11">Secret &amp; credential harvesting</button>
+      </div>
+      <div class="scope-detail reveal" id="agtDetail">
+        <p class="sd active">We plant an objective inside content the agent will read, then watch whose instructions it actually follows. You learn if your agent obeys data, not just you.</p>
+        <p class="sd">We push the agent to call tools it should never reach, in orders it was never meant to chain. You see the blast radius of a single bad decision.</p>
+        <p class="sd">We write a lie into the agent's long-term memory and come back days later. You find out if last week's prompt is this week's breach.</p>
+        <p class="sd">We forge a message from a trusted peer agent and turn your own orchestration against itself. You see whether your agents trust each other blindly.</p>
+        <p class="sd">We swap a benign tool's description for a malicious one after it was approved. You learn if a tool you vetted can betray you later.</p>
+        <p class="sd">We make a low-privilege agent ask a high-privilege one to do the damage. You see who is really accountable for the action.</p>
+        <p class="sd">Every step is individually permitted; together they walk your data out the door. You catch the breach no single rule would ever flag.</p>
+        <p class="sd">We engineer approval fatigue and ambiguous prompts until a human waves it through. You measure how human your safeguard really is.</p>
+        <p class="sd">We trap the agent in a spend or recursion loop. You learn your cost ceiling before an attacker bills it to you.</p>
+        <p class="sd">For agents that run code, we try to break out of the sandbox onto the host. You find out whether "just a code tool" is a foothold.</p>
+        <p class="sd">We corrupt the agent's plan mid-task so it rationalises an unsafe step. You see the failures that never show up in the final answer.</p>
+        <p class="sd">We coax the agent into surfacing keys, tokens and system prompts it can reach. You learn what one talkative agent gives away.</p>
+      </div>
+
       <p class="agentic-safe reveal">Every run uses safe execution scaffolding, simulated tools
       and production-equivalent targets, with a scoped blast radius and a kill switch. Findings
       land as incidents in the same console your SOC already lives in.</p>

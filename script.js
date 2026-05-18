@@ -268,4 +268,20 @@
       if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); }
     });
   });
+
+  // agentic attack-scope explorer
+  var sg = document.getElementById("agtScopeGrid");
+  if (sg) {
+    var sis = sg.querySelectorAll(".scope-i");
+    var sds = document.querySelectorAll("#agtDetail .sd");
+    sis.forEach(function (b) {
+      b.addEventListener("click", function () {
+        sis.forEach(function (x) { x.classList.remove("active"); });
+        sds.forEach(function (d) { d.classList.remove("active"); });
+        b.classList.add("active");
+        var d = sds[+b.dataset.sd];
+        if (d) d.classList.add("active");
+      });
+    });
+  }
 })();
