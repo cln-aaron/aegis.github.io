@@ -1,0 +1,41 @@
+# AEGIS·AI
+
+> AEGIS·AI is the unified AI Security Operations platform. It discovers every
+> model, agent and prompt running in a business (sanctioned or shadow),
+> governs non-human identities, correlates the AI kill chain into incidents,
+> and runs continuous full-stack red teaming, all from one console.
+
+Site: https://aegis.hesedemet.asia/
+Vendor: Hesed & Emet Advisory Pte Ltd, Singapore. Phone +65 6829 2146.
+Languages: English and Traditional Chinese (zh-Hant).
+
+## What it is
+AEGIS·AI is a security operations platform purpose-built for AI systems
+(LLMs, agents, MCP servers, RAG pipelines and the cloud infrastructure that
+hosts them). It is SIEM-, cloud- and model-agnostic and is designed to sit on
+top of the security stack an organisation already runs, not replace it.
+
+## The eight layers
+1. Asset and workforce-AI discovery (incl. shadow AI across productivity suites)
+2. Supply chain and provenance (signed models, namespace-substitution defence)
+3. Identity for AI (short-lived scoped non-human identities)
+4. Open, OCSF-aligned telemetry data lake
+5. Correlation and the AI kill chain
+6. Investigation and one-click response
+7. Model assurance (drift, bias, hallucination on in-house models)
+8. Continuous full-stack red team (model, agents, MCP, identity, supply chain, cloud)
+
+## Compliance
+One-click, scored conformity audits with exportable reports for:
+ISO/IEC 42001, the EU AI Act, NIST AI RMF, the Singapore IMDA Model AI
+Governance Framework (incl. GenAI and AI Verify), MAS FEAT, and the OWASP LLM
+and Agentic Top 10. Plus SEC disclosure, SOC 2, GDPR, HIPAA and PCI DSS
+evidence packs.
+
+## Who it is for
+Security leadership (board-grade evidence), the SOC (AI incident
+investigation), and ML and product teams (ship models without new exposure).
+
+## Contact
+Book a demo at https://aegis.hesedemet.asia/#demo
+Parent company: https://www.hesedemet.asia

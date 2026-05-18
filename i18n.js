@@ -1,4 +1,4 @@
-/* AEGIS·AI — Traditional Chinese (zh-Hant) localisation.
+/* AEGIS·AI · Traditional Chinese (zh-Hant) localisation.
    Keys are the normalised English text of each element; values are the
    Traditional Chinese rendering. Technical acronyms and proper nouns are
    intentionally kept in English, as is standard in Taiwan/HK tech writing. */
@@ -19,8 +19,8 @@
     // hero
     "Security operations for AI": "AI 的資安維運平台",
     "You can't secure the AI you can't see.": "看不見的 AI，就守不住。",
-    "AEGIS finds every model, agent, and prompt running in your business — sanctioned or not — watches what they do, and proves your defences actually hold. One console, instead of seven tools that don't talk to each other.":
-      "AEGIS 會找出企業內每一個模型、代理與提示——無論是否經過核可——持續監看它們的行為，並驗證你的防護是否真的守得住。一個主控台，取代七套各說各話的工具。",
+    "AEGIS finds every model, agent, and prompt running in your business, sanctioned or not. It watches what they do, and proves your defences actually hold. One console, instead of seven tools that don't talk to each other.":
+      "AEGIS 會找出企業內每一個模型、代理與提示,不論是否經過核可。它持續監看它們的行為,並驗證你的防護是否真的守得住。一個主控台,取代七套各說各話的工具。",
     "Launch the console": "進入主控台",
     "Book a live demo": "預約實機展示",
     "Built for the SOC": "為 SOC 而生",
@@ -60,33 +60,33 @@
     "Identity · over-scoped agent token reachable": "身分 · 權限過大的代理權杖可被取得",
     "Supply chain · model namespace substitution": "供應鏈 · 模型命名空間替換",
     "Cloud infra · IMDS / GPU node escape attempts": "雲端基礎設施 · IMDS / GPU 節點逃逸嘗試",
-    "Model, agents, identity, supply chain and the cloud underneath — every finding opens an incident in the same console.":
-      "模型、代理、身分、供應鏈,以至底層雲端——每一項發現都會在同一個主控台開立事件。",
+    "Model, agents, identity, supply chain and the cloud underneath: every finding opens an incident in the same console.":
+      "模型、代理、身分、供應鏈,以至底層雲端,每一項發現都會在同一個主控台開立事件。",
     "AI asset inventory · 1,284 discovered": "AI 資產清單 · 已探索 1,284 項",
     "Asset": "資產", "Type": "類型", "Owner": "負責單位", "Status": "狀態",
     "Model": "模型", "Agent": "代理", "MCP server": "MCP 伺服器",
     "Lending": "授信", "Support": "客服", "Risk": "風險",
     "Verified": "已驗證", "Re-scan": "待重掃", "Shadow": "影子資產",
 
-    "Most teams run seven or more disconnected AI security tools — and still can't answer one question: is our AI safe right now?":
+    "Most teams run seven or more disconnected AI security tools and still can't answer one question: is our AI safe right now?":
       "多數團隊用著七套以上彼此不相通的 AI 資安工具,卻仍答不出一個問題:<em>我們的 AI 現在安全嗎?</em>",
 
     // product section
     "The product": "產品",
     "Stop tab-hopping between tools that don't talk.": "別再在互不相通的工具之間切來切去。",
-    "When your AI does something it shouldn't, the clock is already running. You shouldn't be logging into five consoles to work out what happened — start at the incident, see the whole session and where it led, and shut it down in one click.":
-      "當你的 AI 出狀況,時間就在倒數。你不該為了搞清楚發生什麼事而登入五個主控台——直接從事件看起,掌握整段對話與它的去向,一鍵阻斷。",
+    "When your AI does something it shouldn't, the clock is already running. You shouldn't be logging into five consoles to work out what happened. Start at the incident, see the whole session and where it led, and shut it down in one click.":
+      "當你的 AI 出狀況,時間就在倒數。你不該為了搞清楚發生什麼事而登入五個主控台。直接從事件看起,掌握整段對話與它的去向,一鍵阻斷。",
     "Live overview": "即時總覽",
     "Asset inventory": "資產清單",
 
     // platform
     "The platform": "平台",
     "Eight layers. One data plane.": "八個層次,同一個資料平面。",
-    "You bought seven point tools and still can't connect them. AEGIS is eight layers writing to one record — so the weak signal everyone else ignores becomes an incident you can act on.":
-      "你買了七套單點工具,卻仍兜不起來。AEGIS 是寫入同一份紀錄的八個層次——別人忽略的微弱訊號,在這裡會成為你能著手處理的事件。",
+    "You bought seven point tools and still can't connect them. AEGIS is eight layers writing to one record, so the weak signal everyone else ignores becomes an incident you can act on.":
+      "你買了七套單點工具,卻仍兜不起來。AEGIS 是寫入同一份紀錄的八個層次,別人忽略的微弱訊號,在這裡會成為你能著手處理的事件。",
     "Asset & workforce AI discovery": "資產與員工 AI 使用探索",
-    "A live inventory of every model, agent, MCP server, vector store and prompt — plus how employees use AI across the major productivity suites — built-in office AI assistants and browser LLMs included. Sanctioned or shadow, you see it.":
-      "即時盤點每一個模型、代理、MCP 伺服器、向量資料庫與提示,並掌握員工在主要辦公生產力套裝中如何使用 AI——含內建的辦公 AI 助理與瀏覽器 LLM。無論經核可或屬影子資產,皆一覽無遺。",
+    "A live inventory of every model, agent, MCP server, vector store and prompt, plus how employees use AI across the major productivity suites, including built-in office AI assistants and browser LLMs. Sanctioned or shadow, you see it.":
+      "即時盤點每一個模型、代理、MCP 伺服器、向量資料庫與提示,並掌握員工在主要辦公生產力套裝中如何使用 AI,包含內建的辦公 AI 助理與瀏覽器 LLM。無論經核可或屬影子資產,皆一覽無遺。",
     "Supply chain & provenance": "供應鏈與來源驗證",
     "Every model and dataset is signed, verified at ingestion, and re-checked against new threats. Namespace-substitution and unsafe deserialisation get caught on the way in.":
       "每個模型與資料集都經簽章,於匯入時驗證,並持續對照新威脅重新檢查。命名空間替換與不安全的反序列化,在進入當下即被攔下。",
@@ -94,8 +94,8 @@
     "Treat every agent and inference call as its own identity. Short-lived scoped credentials, just-in-time access, and a tamper-evident receipt for every action.":
       "把每一個代理與推論呼叫都視為獨立身分。短效、限定範圍的憑證,即時授權,並為每個動作留下防竄改的存證。",
     "The data lake": "資料湖",
-    "An open telemetry schema that captures every prompt, completion, tool call, and inference event — and pipes straight into the SIEM you already run.":
-      "開放式遙測結構,完整擷取每個提示、回應、工具呼叫與推論事件——並直接導入你現有的 SIEM。",
+    "An open telemetry schema that captures every prompt, completion, tool call, and inference event, and pipes straight into the SIEM you already run.":
+      "開放式遙測結構,完整擷取每個提示、回應、工具呼叫與推論事件,並直接導入你現有的 SIEM。",
     "Correlation": "關聯分析",
     "AI kill-chain logic that turns scattered, low-signal events into one incident: injection to tool abuse to credential reuse to exfiltration.":
       "AI 攻擊鏈邏輯,把零散的低訊號事件收斂成一起事件:從注入、工具濫用、憑證重用,一路到資料外洩。",
@@ -103,53 +103,53 @@
     "Reconstruct the full session, trace output back to its source, and respond in one click: revoke an agent, quarantine a model, roll back a prompt, isolate a store.":
       "重建完整對話,把輸出追溯回源頭,並一鍵應變:撤銷代理、隔離模型、回滾提示、封鎖向量資料庫。",
     "Model assurance": "模型品質保證",
-    "Drift, bias, and hallucination tracking for the models you build — wired into the same engine, so a quality regression also reads as a security signal.":
-      "為你自建的模型追蹤漂移、偏誤與幻覺——接入同一套引擎,因此品質劣化同時也是一個資安訊號。",
+    "Drift, bias, and hallucination tracking for the models you build, wired into the same engine, so a quality regression also reads as a security signal.":
+      "為你自建的模型追蹤漂移、偏誤與幻覺,並接入同一套引擎,因此品質劣化同時也是一個資安訊號。",
     "Continuous full-stack red team": "全棧持續紅隊演練",
     "Flagship": "旗艦功能",
-    "Red teaming stops being a PDF from six weeks ago. It runs every day, inside the same data plane as your detections — and it doesn't just probe the model. It attacks the whole stack that hosts your AI: agents and their kill chains, MCP servers and tools, the model supply chain, non-human identities and secrets, the vector and data plane, and the cloud infrastructure underneath. Every finding sharpens a defence; every defence invites the next attack. Attack and defence become one loop — the product no point tool can rebuild.":
-      "紅隊不再是六週前的一份 PDF。它每天執行,與你的偵測共用同一個資料平面——而且不只測試模型,而是攻擊承載 AI 的整個技術棧:代理與其攻擊鏈、MCP 伺服器與工具、模型供應鏈、非人類身分與機密、向量與資料平面,以至底層雲端基礎設施。每一項發現都讓防護更銳利,每一次防護又招來下一波攻擊。攻與守合為一個循環——這是單點工具做不出來的產品。",
+    "Red teaming stops being a PDF from six weeks ago. It runs every day, inside the same data plane as your detections, and it doesn't just probe the model. It attacks the whole stack that hosts your AI: agents and their kill chains, MCP servers and tools, the model supply chain, non-human identities and secrets, the vector and data plane, and the cloud infrastructure underneath. Every finding sharpens a defence; every defence invites the next attack. Attack and defence become one loop. It is the product no point tool can rebuild.":
+      "紅隊不再是六週前的一份 PDF。它每天執行,與你的偵測共用同一個資料平面,而且不只測試模型,而是攻擊承載 AI 的整個技術棧:代理與其攻擊鏈、MCP 伺服器與工具、模型供應鏈、非人類身分與機密、向量與資料平面,以至底層雲端基礎設施。每一項發現都讓防護更銳利,每一次防護又招來下一波攻擊。攻與守合為一個循環。這是單點工具做不出來的產品。",
 
     // expandable layer detail
     "The gap today": "現在的破口",
     "Why you need it": "你為什麼需要它",
-    "Most teams can't say how many models and agents they actually run, and only see the AI that passes through the browser. Shadow-AI breaches add USD 670k each — you can't protect what you can't list.":
-      "多數團隊說不出自己到底跑了多少模型與代理,而且只看得到經過瀏覽器的 AI。影子 AI 外洩每次平均多花 67 萬美元——列不出來,就保護不了。",
-    "One live inventory across cloud, code, OAuth and the office suites, with owners and dependencies — so the board question \"how much AI do we run, and who owns it?\" finally has a real answer.":
-      "橫跨雲端、程式碼、OAuth 與辦公套裝的即時清單,附上負責單位與相依關係——讓董事會那句「我們到底跑了多少 AI?誰負責?」終於有確切答案。",
-    "Models arrive unsigned from public hubs — roughly 352,000 unsafe issues were found across 51,700 of them, and attackers have swapped backdoored models into cloud catalogues via namespace reuse.":
-      "模型多半未經簽章就從公開平台進來——其中 51,700 個模型被發現約 352,000 項不安全問題,攻擊者更曾以命名空間重用,把含後門的模型塞進雲端目錄。",
-    "Every model and dataset is signed and verified on the way in and re-checked against new CVEs — substitution and unsafe deserialisation are blocked before production, not found after a breach.":
-      "每個模型與資料集在進入時都經簽章驗證,並持續對照新 CVE 重檢——替換與不安全的反序列化在上線前就被擋下,而不是出事後才發現。",
+    "Most teams can't say how many models and agents they actually run, and only see the AI that passes through the browser. Shadow-AI breaches add USD 670k each. You can't protect what you can't list.":
+      "多數團隊說不出自己到底跑了多少模型與代理,而且只看得到經過瀏覽器的 AI。影子 AI 外洩每次平均多花 67 萬美元。列不出來,就保護不了。",
+    "One live inventory across cloud, code, OAuth and the office suites, with owners and dependencies, so the board question \"how much AI do we run, and who owns it?\" finally has a real answer.":
+      "橫跨雲端、程式碼、OAuth 與辦公套裝的即時清單,附上負責單位與相依關係,讓董事會那句「我們到底跑了多少 AI?誰負責?」終於有確切答案。",
+    "Models arrive unsigned from public hubs. Roughly 352,000 unsafe issues were found across 51,700 of them, and attackers have swapped backdoored models into cloud catalogues via namespace reuse.":
+      "模型多半未經簽章就從公開平台進來。其中 51,700 個模型被發現約 352,000 項不安全問題,攻擊者更曾以命名空間重用,把含後門的模型塞進雲端目錄。",
+    "Every model and dataset is signed and verified on the way in and re-checked against new CVEs. Substitution and unsafe deserialisation are blocked before production, not found after a breach.":
+      "每個模型與資料集在進入時都經簽章驗證,並持續對照新 CVE 重檢。替換與不安全的反序列化在上線前就被擋下,而不是出事後才發現。",
     "Agents run on broad, long-lived service keys; 97% of AI-breached organisations lacked proper access controls, so one compromised agent is a standing skeleton key.":
       "代理使用權限過大、長期有效的服務金鑰;97% 發生 AI 外洩的組織缺乏妥善的存取控管,因此一個被攻陷的代理,就是一把長期有效的萬能鑰匙。",
-    "Each agent gets its own short-lived, scoped identity with just-in-time access and a tamper-evident receipt — damage is contained to one session and provable afterwards.":
-      "每個代理都有自己短效、限定範圍的身分,搭配即時授權與防竄改存證——損害被侷限在單一工作階段,事後也可舉證。",
+    "Each agent gets its own short-lived, scoped identity with just-in-time access and a tamper-evident receipt. Damage is contained to one session and provable afterwards.":
+      "每個代理都有自己短效、限定範圍的身分,搭配即時授權與防竄改存證。損害被侷限在單一工作階段,事後也可舉證。",
     "Prompts, tool calls and inference events never reach your SIEM, so AI incidents leave no forensic trail and the SOC is effectively blind to them.":
       "提示、工具呼叫與推論事件從未進到你的 SIEM,因此 AI 事件沒有任何鑑識軌跡,SOC 形同看不見。",
-    "An open, OCSF-aligned record of everything the AI did flows into the SIEM you already run — AI finally has an audit trail you can investigate and retain for regulators.":
-      "一份對齊 OCSF 的開放紀錄,把 AI 做過的每件事導入你既有的 SIEM——AI 終於有了可調查、可留存供監理查核的稽核軌跡。",
+    "An open, OCSF-aligned record of everything the AI did flows into the SIEM you already run. AI finally has an audit trail you can investigate and retain for regulators.":
+      "一份對齊 OCSF 的開放紀錄,把 AI 做過的每件事導入你既有的 SIEM。AI 終於有了可調查、可留存供監理查核的稽核軌跡。",
     "Every tool sees one weak signal; nobody joins injection → tool abuse → credential reuse → exfiltration, so multi-stage AI attacks read as background noise.":
       "每個工具只看到一個微弱訊號;沒人把注入 → 工具濫用 → 憑證重用 → 資料外洩串起來,於是多階段 AI 攻擊被當成背景雜訊。",
-    "Cross-layer kill-chain logic fuses those scattered signals into one high-confidence incident in seconds — the attack single-tool stacks never see.":
-      "跨層攻擊鏈邏輯在數秒內把這些零散訊號融合成一起高可信度事件——這正是單點工具永遠看不到的攻擊。",
-    "After an AI incident, piecing together what the model saw, did and leaked across tools takes hours — but SEC disclosure is four days and attacker hand-off is 22 seconds.":
-      "AI 事件發生後,要跨工具拼湊模型看過、做過、外洩過什麼,得花上好幾個小時——但 SEC 揭露時限只有四天,攻擊者接手只要 22 秒。",
-    "Full session reconstruction and output-to-source lineage in one place, with one-click revoke, quarantine, rollback and isolate — contain in minutes, with the evidence already written.":
-      "在同一處完成完整對話重建與「輸出回溯來源」的譜系,並可一鍵撤銷、隔離、回滾與封鎖——數分鐘內圍堵,佐證也已自動寫好。",
+    "Cross-layer kill-chain logic fuses those scattered signals into one high-confidence incident in seconds: the attack single-tool stacks never see.":
+      "跨層攻擊鏈邏輯在數秒內把這些零散訊號融合成一起高可信度事件,這正是單點工具永遠看不到的攻擊。",
+    "After an AI incident, piecing together what the model saw, did and leaked across tools takes hours, but SEC disclosure is four days and attacker hand-off is 22 seconds.":
+      "AI 事件發生後,要跨工具拼湊模型看過、做過、外洩過什麼,得花上好幾個小時,但 SEC 揭露時限只有四天,攻擊者接手只要 22 秒。",
+    "Full session reconstruction and output-to-source lineage in one place, with one-click revoke, quarantine, rollback and isolate. Contain in minutes, with the evidence already written.":
+      "在同一處完成完整對話重建與「輸出回溯來源」的譜系,並可一鍵撤銷、隔離、回滾與封鎖。數分鐘內圍堵,佐證也已自動寫好。",
     "Drift, bias and hallucination sit in notebooks the SOC never sees; a regulated model going wrong is both a quality and a security failure, and nobody catches it in time.":
       "漂移、偏誤與幻覺都躺在 SOC 永遠看不到的 notebook 裡;受監管模型一旦出錯,既是品質問題也是資安事故,卻沒人來得及發現。",
-    "The same engine tracks PSI drift, disparate impact and hallucination on your own models — a quality regression also fires as a security signal, with regulator-ready evidence (e.g. credit-risk PD under MAS / Basel III).":
-      "同一套引擎追蹤你自有模型的 PSI 漂移、差別影響與幻覺——品質退步同時也觸發資安訊號,並附上可供監理查核的佐證(例如 MAS / Basel III 下的信用風險 PD)。",
-    "Red teaming is a six-week-old PDF describing a system that has already changed — and it only tested the model, not the agents, identity, supply chain or cloud beneath it.":
-      "紅隊報告是一份六週前的 PDF,描述的是早已改變的系統——而且它只測了模型,沒測底下的代理、身分、供應鏈與雲端。",
-    "Automated adversarial testing runs daily in the same data plane across the whole stack; every finding tunes a detection and opens a real incident — so you can answer \"did our controls actually hold this quarter?\" with proof.":
-      "自動化對抗測試每天在同一個資料平面、橫跨整個技術棧執行;每項發現都會調校偵測並開立真實事件——讓你能用證據回答「這一季我們的控制措施真的守住了嗎?」。",
+    "The same engine tracks PSI drift, disparate impact and hallucination on your own models. A quality regression also fires as a security signal, with regulator-ready evidence (e.g. credit-risk PD under MAS / Basel III).":
+      "同一套引擎追蹤你自有模型的 PSI 漂移、差別影響與幻覺。品質退步同時也觸發資安訊號,並附上可供監理查核的佐證(例如 MAS / Basel III 下的信用風險 PD)。",
+    "Red teaming is a six-week-old PDF describing a system that has already changed, and it only tested the model, not the agents, identity, supply chain or cloud beneath it.":
+      "紅隊報告是一份六週前的 PDF,描述的是早已改變的系統,而且它只測了模型,沒測底下的代理、身分、供應鏈與雲端。",
+    "Automated adversarial testing runs daily in the same data plane across the whole stack; every finding tunes a detection and opens a real incident, so you can answer \"did our controls actually hold this quarter?\" with proof.":
+      "自動化對抗測試每天在同一個資料平面、橫跨整個技術棧執行;每項發現都會調校偵測並開立真實事件,讓你能用證據回答「這一季我們的控制措施真的守住了嗎?」。",
 
     // capabilities
     "Everything in AEGIS.": "AEGIS 的完整能力。",
-    "AI risk isn't in one neat place — it's across your models, your agents, your supply chain and your people. Here's every gap we close, so you're not buying ten more tools to find out where you stand.":
-      "AI 風險不會乖乖待在一個地方——它散落在你的模型、代理、供應鏈與員工之間。以下是我們補上的每一個破口,讓你不必再買十套工具才搞清楚自己的處境。",
+    "AI risk isn't in one neat place. It's across your models, your agents, your supply chain and your people. Here's every gap we close, so you're not buying ten more tools to find out where you stand.":
+      "AI 風險不會乖乖待在一個地方。它散落在你的模型、代理、供應鏈與員工之間。以下是我們補上的每一個破口,讓你不必再買十套工具才搞清楚自己的處境。",
     "01 Discovery & workforce AI": '<span>01</span> 探索與員工 AI 使用',
     "Continuous inventory: models, agents, MCP servers, vector stores, prompts, datasets": "持續盤點:模型、代理、MCP 伺服器、向量資料庫、提示、資料集",
     "Shadow-AI discovery via browser, OAuth, network and code scanning": "透過瀏覽器、OAuth、網路與程式碼掃描探索影子 AI",
@@ -207,10 +207,10 @@
     "Purple-team: every finding opens an incident in the same console": "紫隊:每項發現都在同一主控台開立事件",
     "09 Compliance & governance": '<span>09</span> 法遵與治理',
     "One-click automated audits, scored with an exportable report, for:": "<b>一鍵自動化稽核</b>,評分並可匯出報告,涵蓋:",
-    "ISO/IEC 42001 — clauses 4–10 + Annex A": "ISO/IEC 42001——條款 4–10 與附錄 A",
-    "EU AI Act — Art. 9–15, Annex IV, post-market & incident duties": "EU AI Act——第 9–15 條、附錄 IV、上市後與事件通報義務",
-    "NIST AI RMF — GOVERN, MAP, MEASURE, MANAGE": "NIST AI RMF——GOVERN、MAP、MEASURE、MANAGE",
-    "Singapore IMDA — Model AI Governance Framework, GenAI & AI Verify": "Singapore IMDA——Model AI Governance Framework、GenAI 與 AI Verify",
+    "ISO/IEC 42001: clauses 4 to 10, plus Annex A": "ISO/IEC 42001:條款 4 至 10,以及附錄 A",
+    "EU AI Act: Art. 9 to 15, Annex IV, post-market & incident duties": "EU AI Act:第 9 至 15 條、附錄 IV、上市後與事件通報義務",
+    "NIST AI RMF: GOVERN, MAP, MEASURE, MANAGE": "NIST AI RMF:GOVERN、MAP、MEASURE、MANAGE",
+    "Singapore IMDA: Model AI Governance Framework, GenAI & AI Verify": "Singapore IMDA:Model AI Governance Framework、GenAI 與 AI Verify",
     "MAS FEAT principles & OWASP LLM / Agentic Top 10": "MAS FEAT 原則與 OWASP LLM / Agentic Top 10",
     "SEC four-day blast-radius; SOC 2, GDPR, HIPAA, PCI DSS evidence packs": "SEC 四日影響範圍報告;SOC 2、GDPR、HIPAA、PCI DSS 佐證包",
     "10 Executive & full reporting": '<span>10</span> 高階主管與完整報告',
@@ -230,8 +230,8 @@
     "Point AEGIS at your clouds, gateways and SIEM with read-only roles and an OpenTelemetry collector. No code changes to your apps. Typical first connection: under an hour.":
       "以唯讀角色與一個 OpenTelemetry 收集器,把 AEGIS 指向你的雲端、閘道與 SIEM。應用程式無需改任何程式碼。首次接入通常在一小時內完成。",
     "Discover": "探索",
-    "Within the first sweep you get a live inventory of every model, agent, MCP server and vector store — including the shadow AI nobody told you about — with owners and a dependency graph.":
-      "首次掃描即取得每個模型、代理、MCP 伺服器與向量資料庫的即時清單——含沒人告訴你的影子 AI——並附負責單位與相依圖。",
+    "Within the first sweep you get a live inventory of every model, agent, MCP server and vector store, including the shadow AI nobody told you about, with owners and a dependency graph.":
+      "首次掃描即取得每個模型、代理、MCP 伺服器與向量資料庫的即時清單,包含沒人告訴你的影子 AI,並附負責單位與相依圖。",
     "Defend": "防禦",
     "Correlation and the continuous red team turn on. Detections are exercised against live attacks daily, and every finding lands as an incident in the same console your SOC already works in.":
       "關聯分析與持續紅隊隨即啟動。偵測每天被實際攻擊演練,每項發現都落入你 SOC 既有的同一個主控台成為事件。",
@@ -241,16 +241,16 @@
     "The teams who never agree, finally on one screen.": "從來喬不攏的幾個團隊,終於看同一個畫面。",
     "Security leadership": "資安管理層",
     "Answer the board with evidence": "用證據向董事會交代",
-    "How many agents do we run? What can they reach? Did our controls actually hold last quarter? AEGIS gives you the audit trail behind the answer — dashboards, evidence packs mapped to the EU AI Act, NIST AI RMF and ISO 42001, and disclosure-ready blast-radius reports.":
-      "我們跑了多少個代理?它們能存取到什麼?上一季的控制措施真的守住了嗎?AEGIS 給你的是答案背後的稽核軌跡——儀表板、對應 EU AI Act、NIST AI RMF 與 ISO 42001 的佐證包,以及可直接揭露的影響範圍報告。",
+    "How many agents do we run? What can they reach? Did our controls actually hold last quarter? AEGIS gives you the audit trail behind the answer: dashboards, evidence packs mapped to the EU AI Act, NIST AI RMF and ISO 42001, and disclosure-ready blast-radius reports.":
+      "我們跑了多少個代理?它們能存取到什麼?上一季的控制措施真的守住了嗎?AEGIS 給你的是答案背後的稽核軌跡:儀表板、對應 EU AI Act、NIST AI RMF 與 ISO 42001 的佐證包,以及可直接揭露的影響範圍報告。",
     "The SOC": "資安維運中心(SOC)",
     "Investigate AI incidents, not tabs": "調查 AI 事件,而不是切分頁",
-    "One pane: prompts, tool calls, identities, models, and data flows. AI-native ATT&CK mapping, one-click containment, and detections that are exercised live by the red-team layer — so you know they work before an attacker tells you they don't.":
-      "一個視窗:提示、工具呼叫、身分、模型與資料流。AI 原生的 ATT&CK 對應、一鍵圍堵,偵測由紅隊層即時演練——讓你在攻擊者證明它失效之前,就先知道它有效。",
+    "One pane: prompts, tool calls, identities, models, and data flows. AI-native ATT&CK mapping, one-click containment, and detections that are exercised live by the red-team layer, so you know they work before an attacker tells you they don't.":
+      "一個視窗:提示、工具呼叫、身分、模型與資料流。AI 原生的 ATT&CK 對應、一鍵圍堵,偵測由紅隊層即時演練,讓你在攻擊者證明它失效之前,就先知道它有效。",
     "ML & product": "ML 與產品團隊",
     "Ship your models with confidence": "有把握地把模型送上線",
-    "Drift, bias, fairness and robustness checks where data scientists already work — push-button adversarial testing before release and regression alerts on every version. Security consumes the same signals downstream. Velocity without new exposure.":
-      "在資料科學家本來就在的地方做漂移、偏誤、公平性與穩健性檢查——上線前一鍵對抗測試,每個版本都有退步告警。資安在下游消費同一份訊號。要速度,但不增加曝險。",
+    "Drift, bias, fairness and robustness checks where data scientists already work. Push-button adversarial testing before release and regression alerts on every version. Security consumes the same signals downstream. Velocity without new exposure.":
+      "在資料科學家本來就在的地方做漂移、偏誤、公平性與穩健性檢查。上線前一鍵對抗測試,每個版本都有退步告警。資安在下游消費同一份訊號。要速度,但不增加曝險。",
 
     // why
     "Why AEGIS": "為何選 AEGIS",
@@ -261,8 +261,8 @@
     "See text in, text out. Blind to tool calls, identity, lineage and supply chain. Nowhere to investigate.":
       "只看到文字進、文字出。看不到工具呼叫、身分、資料譜系與供應鏈,也無從調查。",
     "AEGIS": "AEGIS",
-    "The inline gateway is one of eight layers — all feeding one engine and one investigation console.":
-      "行內閘道只是八層之一——全部匯入同一個引擎與同一個調查主控台。",
+    "The inline gateway is one of eight layers, all feeding one engine and one investigation console.":
+      "行內閘道只是八層之一,全部匯入同一個引擎與同一個調查主控台。",
     "AI-BOM scanners": "AI-BOM 掃描器",
     "A snapshot in time, disconnected from runtime. No re-verification, no response.":
       "只是某一刻的快照,與執行期脫節。沒有重新驗證,也沒有應變。",
@@ -292,11 +292,11 @@
 
     // integrations
     "Sits on top of what you run.": "疊在你既有系統之上。",
-    "We instrument where the AI runs, not where it was built — and we don't ask you to rip out your SIEM.":
-      "我們在 AI 實際運行的地方做檢測,而不是在它被建構的地方——而且我們不會要你把 SIEM 換掉。",
+    "We instrument where the AI runs, not where it was built, and we don't ask you to rip out your SIEM.":
+      "我們在 AI 實際運行的地方做檢測,而不是在它被建構的地方,而且我們不會要你把 SIEM 換掉。",
     "Models & frameworks": "模型與框架",
-    "Every major commercial LLM provider and managed model service, the common agent and orchestration frameworks, open agent protocols, and self-hosted inference servers — same telemetry, same controls.":
-      "各主要商用 LLM 供應商與受管模型服務、常見的代理與編排框架、開放代理協定,以及自架推論伺服器——同一份遙測,同一套控管。",
+    "Every major commercial LLM provider and managed model service, the common agent and orchestration frameworks, open agent protocols, and self-hosted inference servers. Same telemetry, same controls.":
+      "各主要商用 LLM 供應商與受管模型服務、常見的代理與編排框架、開放代理協定,以及自架推論伺服器。同一份遙測,同一套控管。",
     "SIEM, XDR & identity": "SIEM、XDR 與身分",
     "The major productivity suites and their built-in AI assistants for workforce-AI DLP. Your existing SIEM, XDR and observability stack. Your identity, PAM and governance tooling. Your ITSM and incident-workflow channels.":
       "主要生產力套裝及其內建 AI 助理,用於員工 AI 的 DLP。你既有的 SIEM、XDR 與可觀測性技術棧。你的身分、PAM 與治理工具。你的 ITSM 與事件流程管道。",
@@ -306,8 +306,8 @@
     // specs
     "The detail": "細節",
     "What you actually get.": "你實際得到什麼。",
-    "The questions your security, legal and procurement teams will ask in week one — answered here, not after you've signed an NDA.":
-      "你的資安、法務與採購團隊第一週就會問的問題——這裡先答清楚,不必等簽完 NDA。",
+    "The questions your security, legal and procurement teams will ask in week one, answered here, not after you've signed an NDA.":
+      "你的資安、法務與採購團隊第一週就會問的問題,這裡先答清楚,不必等簽完 NDA。",
     "Deployment": "部署", "SaaS or in-VPC": "SaaS 或 VPC 內",
     "Fully managed, or deployed inside your own cloud account. The data plane can run air-gapped.":
       "完全受管,或部署在你自己的雲端帳號內。資料平面可在離線(air-gapped)環境運行。",
@@ -321,8 +321,8 @@
     "The optional inline gateway adds single-digit-to-low-tens of milliseconds. Monitor-only mode adds zero.":
       "選用的行內閘道僅增加數毫秒至數十毫秒。純監看模式則完全不增加延遲。",
     "Availability": "可用性",
-    "Multi-region, active-active. Detections degrade safe — telemetry is never dropped silently.":
-      "多區域、雙活架構。偵測採安全降級——遙測絕不會被無聲丟棄。",
+    "Multi-region, active-active. Detections degrade safe; telemetry is never dropped silently.":
+      "多區域、雙活架構。偵測採安全降級,遙測絕不會被無聲丟棄。",
     "Regions": "區域",
     "ap-southeast-1, eu-west-1, us-east-1. Data residency pinned per tenant.":
       "ap-southeast-1、eu-west-1、us-east-1。資料落地依租戶綁定。",
@@ -340,33 +340,33 @@
     "No. AEGIS is built to sit on top of the SIEM you already run. We make it AI-fluent and feed it correlated incidents in OCSF.":
       "不會。AEGIS 設計上就是疊在你既有的 SIEM 之上。我們讓它聽得懂 AI,並以 OCSF 餵入關聯後的事件。",
     "How is this different from an AI firewall?": "這跟 AI 防火牆有什麼不同?",
-    "A prompt firewall sees text in and text out. AEGIS also sees tool calls, agent identity, model lineage and supply chain — and correlates them. The gateway is one of eight layers, not the whole product.":
-      "提示防火牆只看到文字進、文字出。AEGIS 還看得到工具呼叫、代理身分、模型譜系與供應鏈——並把它們關聯起來。閘道只是八層之一,不是產品全貌。",
+    "A prompt firewall sees text in and text out. AEGIS also sees tool calls, agent identity, model lineage and supply chain, and correlates them. The gateway is one of eight layers, not the whole product.":
+      "提示防火牆只看到文字進、文字出。AEGIS 還看得到工具呼叫、代理身分、模型譜系與供應鏈,並把它們關聯起來。閘道只是八層之一,不是產品全貌。",
     "Does our prompt data leave our environment?": "我們的提示資料會離開我們的環境嗎?",
     "Not by default. The data plane runs in your region or your VPC. You choose what is redacted before anything is stored, and content can stay entirely in your tenant.":
       "預設不會。資料平面在你所在區域或你的 VPC 內運行。儲存前由你決定要遮蔽什麼,內容可完全留在你的租戶內。",
     "Can you see employee AI use across our office suites?": "你們看得到員工在辦公套裝裡使用 AI 的情況嗎?",
-    "Yes. AEGIS watches workforce AI across the major productivity suites — their built-in office AI assistants, connected GPTs and browser LLMs — and flags data loss (PII, source code, secrets or regulated data leaving into an AI surface) and harmful use, with the user, the data class and a one-click block. It complements your CASB and DLP rather than replacing them.":
-      "可以。AEGIS 監看主要生產力套裝中的員工 AI 使用——內建辦公 AI 助理、連接的 GPT 與瀏覽器 LLM——並標記資料外洩(PII、原始碼、機密或受監管資料流入 AI 介面)與有害使用,附上使用者、資料類別與一鍵阻擋。它是你 CASB 與 DLP 的補強,而非取代。",
+    "Yes. AEGIS watches workforce AI across the major productivity suites: their built-in office AI assistants, connected GPTs and browser LLMs. It flags data loss (PII, source code, secrets or regulated data leaving into an AI surface) and harmful use, with the user, the data class and a one-click block. It complements your CASB and DLP rather than replacing them.":
+      "可以。AEGIS 監看主要生產力套裝中的員工 AI 使用:內建辦公 AI 助理、連接的 GPT 與瀏覽器 LLM。它會標記資料外洩(PII、原始碼、機密或受監管資料流入 AI 介面)與有害使用,附上使用者、資料類別與一鍵阻擋。它是你 CASB 與 DLP 的補強,而非取代。",
     "What does onboarding look like?": "導入流程是什麼樣子?",
     "Read-only cloud roles plus a collector. First inventory inside the first sweep, correlation and continuous red team typically live within the first week. No app code changes.":
       "唯讀雲端角色,加上一個收集器。首次掃描即產出清單,關聯分析與持續紅隊通常在第一週內上線。應用程式無需改任何程式碼。",
     "Which models and frameworks are supported?": "支援哪些模型與框架?",
-    "Every major commercial LLM provider and managed model service, the common agent and orchestration frameworks, open agent protocols, and self-hosted inference servers — same telemetry, same controls, wherever the AI runs.":
-      "各主要商用 LLM 供應商與受管模型服務、常見的代理與編排框架、開放代理協定,以及自架推論伺服器——不論 AI 在哪裡運行,都是同一份遙測、同一套控管。",
+    "Every major commercial LLM provider and managed model service, the common agent and orchestration frameworks, open agent protocols, and self-hosted inference servers. Same telemetry, same controls, wherever the AI runs.":
+      "各主要商用 LLM 供應商與受管模型服務、常見的代理與編排框架、開放代理協定,以及自架推論伺服器。不論 AI 在哪裡運行,都是同一份遙測、同一套控管。",
     "Can it audit us against ISO 42001, the EU AI Act and Singapore's frameworks?": "它能幫我們對 ISO 42001、EU AI Act 與新加坡的框架做稽核嗎?",
-    "Yes. AEGIS runs one-click, scored conformity audits for ISO/IEC 42001, the EU AI Act, NIST AI RMF, the Singapore IMDA Model AI Governance Framework (incl. GenAI & AI Verify), MAS FEAT and OWASP — each control mapped to live platform evidence, with findings, remediation and an exportable report. Executive board packs and full technical reports are generated from the same live data.":
-      "可以。AEGIS 對 ISO/IEC 42001、EU AI Act、NIST AI RMF、Singapore IMDA Model AI Governance Framework(含 GenAI 與 AI Verify)、MAS FEAT 與 OWASP 執行一鍵、評分式符合性稽核——每項控制都對應到平台的即時佐證,並附發現、改善建議與可匯出的報告。高階董事會包與完整技術報告皆由同一份即時資料產生。",
+    "Yes. AEGIS runs one-click, scored conformity audits for ISO/IEC 42001, the EU AI Act, NIST AI RMF, the Singapore IMDA Model AI Governance Framework (incl. GenAI & AI Verify), MAS FEAT and OWASP. Each control is mapped to live platform evidence, with findings, remediation and an exportable report. Executive board packs and full technical reports are generated from the same live data.":
+      "可以。AEGIS 對 ISO/IEC 42001、EU AI Act、NIST AI RMF、Singapore IMDA Model AI Governance Framework(含 GenAI 與 AI Verify)、MAS FEAT 與 OWASP 執行一鍵、評分式符合性稽核。每項控制都對應到平台的即時佐證,並附發現、改善建議與可匯出的報告。高階董事會包與完整技術報告皆由同一份即時資料產生。",
     "Is the continuous red team safe to run in production?": "持續紅隊在正式環境執行安全嗎?",
-    "Yes. Attacks run with safe-execution scaffolding against production-equivalent targets. Findings open as incidents in the same console — purple-team by design.":
-      "安全。攻擊在安全執行框架下,針對與正式環境等價的目標進行。發現會在同一主控台開立為事件——設計上即是紫隊。",
+    "Yes. Attacks run with safe-execution scaffolding against production-equivalent targets. Findings open as incidents in the same console; purple-team by design.":
+      "安全。攻擊在安全執行框架下,針對與正式環境等價的目標進行。發現會在同一主控台開立為事件;設計上即是紫隊。",
 
     // cta
     "See the platform in action.": "看平台實際運作。",
     "A 30-minute guided run-through of the platform. Tell us a little about your context and we'll focus on what matters to you.":
       "30 分鐘的平台導覽解說。簡單告訴我們你的情況,我們會聚焦在你最在意的地方。",
-    "That's the whole platform — not a slide deck.":
-      "這就是平台的全部——不是一份簡報。",
+    "That's the whole platform, not a slide deck.":
+      "這就是平台的全部,不是一份簡報。",
     "A 30-minute guided run-through of the whole platform.":
       "30 分鐘,完整導覽整個平台。",
     "Name": "姓名",
@@ -382,8 +382,8 @@
     "Market sizing, competitive analysis and risk review available to qualified institutional investors under NDA.":
       "市場規模、競爭分析與風險評估,於 NDA 下提供予合格機構投資人。",
     "Engineers": "工程人才",
-    "Hiring in Singapore, Tel Aviv, San Francisco and London — offensive AI research, ML platform, detection content.":
-      "於新加坡、特拉維夫、舊金山與倫敦招募——攻擊性 AI 研究、ML 平台、偵測內容。",
+    "Hiring in Singapore, Tel Aviv, San Francisco and London: offensive AI research, ML platform, detection content.":
+      "於新加坡、特拉維夫、舊金山與倫敦招募:攻擊性 AI 研究、ML 平台、偵測內容。",
 
     // footer
     "Security operations for AI.": "AI 的資安維運平台。",

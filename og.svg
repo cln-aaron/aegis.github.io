@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" font-family="'Space Grotesk',Segoe UI,sans-serif">
+  <rect width="1200" height="630" fill="#06070a"/>
+  <g stroke="rgba(255,255,255,0.06)">
+    <path d="M0 158H1200M0 316H1200M0 474H1200M300 0V630M600 0V630M900 0V630"/>
+  </g>
+  <circle cx="980" cy="170" r="320" fill="#5af2c4" opacity="0.08"/>
+  <g transform="translate(96,250)" fill="none" stroke="#5af2c4" stroke-width="3.4" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M40 6 67 17V37C67 55 56 67 40 73 24 67 13 55 13 37V17Z"/>
+    <path d="M27 38 40 26l13 12"/>
+    <path d="M27 49 40 37l13 12"/>
+    <circle cx="40" cy="56" r="3.4" fill="#5af2c4" stroke="none"/>
+  </g>
+  <text x="190" y="312" fill="#e8ecf2" font-size="44" font-weight="700" letter-spacing="1">AEGIS·AI</text>
+  <text x="96" y="420" fill="#ffffff" font-size="64" font-weight="600">Security operations for AI.</text>
+  <text x="96" y="486" fill="#8b94a6" font-size="30">Discover every model and agent. Watch what they do.</text>
+  <text x="96" y="528" fill="#8b94a6" font-size="30">Prove your defences hold. One console.</text>
+  <text x="96" y="590" fill="#5af2c4" font-size="24" font-family="monospace">aegis.hesedemet.asia · by Hesed &amp; Emet Advisory</text>
+</svg>

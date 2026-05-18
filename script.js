@@ -113,7 +113,7 @@
     });
   }
 
-  // product tour — auto-playing, video-style
+  // product tour: auto-playing, video-style
   var tabWrap = document.getElementById("prodTabs");
   if (tabWrap) {
     var tabs = Array.prototype.slice.call(tabWrap.querySelectorAll(".tab"));
@@ -125,10 +125,10 @@
     var tourState = document.getElementById("tourState");
     var DUR = 5200;
     var caps = {
-      overview: "A single posture view across all eight layers — assets, incidents, red-team coverage and shadow AI, live.",
+      overview: "A single posture view across all eight layers: assets, incidents, red-team coverage and shadow AI, live.",
       killchain: "Four low-signal events become one critical incident. Single-tool stacks never connect them.",
-      redteam: "Continuous red team runs inside the data plane — every finding opens an incident in the same console.",
-      assets: "Continuous discovery of every model, agent and MCP server — sanctioned or shadow."
+      redteam: "Continuous red team runs inside the data plane, and every finding opens an incident in the same console.",
+      assets: "Continuous discovery of every model, agent and MCP server, sanctioned or shadow."
     };
     var i = 0, timer = null, playing = false;
 
@@ -232,7 +232,7 @@
           dfMsg.className = "df-msg ok";
           dfMsg.textContent = zh()
             ? "已收到,謝謝。我們會在一個工作日內與你聯絡。"
-            : "Got it — thank you. We'll be in touch within one business day.";
+            : "Got it, thank you. We'll be in touch within one business day.";
         } else {
           throw new Error("bad response");
         }
