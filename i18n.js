@@ -347,11 +347,13 @@
     // footer
     "Security operations for AI.": "AI 的資安維運平台。",
     "Sign in to the console →": "登入主控台 →",
-    "AEGIS·AI is a product of Hesed & Emet.": "AEGIS·AI 是 Hesed & Emet 的產品。",
+    "AEGIS·AI is a product of Hesed & Emet Advisory Pte Ltd.": "AEGIS·AI 是 Hesed & Emet Advisory Pte Ltd 的產品。",
     "← Back to Hesed & Emet": "← 返回 Hesed & Emet",
-    "Contact: hello@hesedemet.asia": "聯絡:hello@hesedemet.asia",
-    "© 2026 Hesed & Emet. All rights reserved.":
-      "© 2026 Hesed & Emet. 版權所有。"
+    "#42-00, Suntec Tower Three, 8 Temasek Blvd, Singapore 038988":
+      "新加坡 Suntec Tower Three #42-00,8 Temasek Blvd,038988",
+    "+65 6829 2146": "+65 6829 2146",
+    "© 2026 Hesed & Emet Advisory Pte Ltd. All rights reserved.":
+      "© 2026 Hesed & Emet Advisory Pte Ltd. 版權所有。"
   };
 
   var SEL = [
