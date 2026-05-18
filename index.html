@@ -584,30 +584,34 @@ html[data-theme="light"] .lang-menu{background:#fff}
   <section class="section" id="how">
     <div class="wrap">
       <p class="sec-label reveal">How it works</p>
-      <h2 class="sec-title reveal">Live in a day. Value in a week.</h2>
-      <p class="lede reveal">No agents on every box, no rip-and-replace. AEGIS reads the
-      signals your stack already emits and adds the ones it doesn't.</p>
+      <h2 class="sec-title reveal">See your AI in a day. Hardened over weeks.</h2>
+      <p class="lede reveal">No agents on every box, no rip-and-replace. Passive visibility
+      starts read-only on day one; the deeper controls are switched on in stages, once you've
+      seen the inventory and chosen what to enforce.</p>
       <div class="steps">
         <article class="step reveal">
           <span class="step-n">01</span>
           <h3>Connect</h3>
-          <p>Point AEGIS at your clouds, gateways and SIEM with read-only roles and an
-          OpenTelemetry collector. No code changes to your apps. Typical first connection: under
-          an hour.</p>
+          <p>Connect read-only roles to your clouds and SIEM and drop in an OpenTelemetry
+          collector. Most apps need no code change; the optional inline gateway and agent-identity
+          broker come later, only where you want enforcement. The first read-only connection is
+          typically same-day.</p>
         </article>
         <article class="step reveal">
           <span class="step-n">02</span>
           <h3>Discover</h3>
-          <p>Within the first sweep you get a live inventory of every model, agent, MCP server
-          and vector store, including the shadow AI nobody told you about, with owners and a
-          dependency graph.</p>
+          <p>The first sweeps build a live inventory of the models, agents, MCP servers and
+          vector stores AEGIS can reach, including shadow AI surfaced through browser, OAuth and
+          network. Coverage and the dependency graph deepen over the first weeks as more sources
+          connect.</p>
         </article>
         <article class="step reveal">
           <span class="step-n">03</span>
           <h3>Defend</h3>
-          <p>Correlation and the continuous red team turn on. Detections are exercised against
-          live attacks daily, and every finding lands as an incident in the same console your SOC
-          already works in.</p>
+          <p>Telemetry, correlation and the continuous red team come online in stages. Detections
+          need a short baseline against your own traffic before they run at high confidence; red
+          teaming starts at the LLM layer and expands outward against production-equivalent
+          targets.</p>
         </article>
       </div>
     </div>
@@ -805,8 +809,11 @@ html[data-theme="light"] .lang-menu{background:#fff}
         with the user, the data class and a one-click block. It complements your CASB and DLP
         rather than replacing them.</p></details>
         <details class="reveal"><summary>What does onboarding look like?</summary><p>Read-only
-        cloud roles plus a collector. First inventory inside the first sweep, correlation and
-        continuous red team typically live within the first week. No app code changes.</p></details>
+        cloud roles plus a collector get you a first inventory and a SIEM feed within days.
+        Correlation needs a short baseline and tuning window, and the deeper layers (inline
+        gateway, non-human identity, continuous red team) are enabled in phases over the first
+        few weeks. Passive layers need no app code changes; enforcement points require a
+        lightweight integration only where you choose to deploy them.</p></details>
         <details class="reveal"><summary>Which models and frameworks are supported?</summary><p>Every
         major commercial LLM provider and managed model service, the common agent and orchestration
         frameworks, open agent protocols, and self-hosted inference servers. Same telemetry, same

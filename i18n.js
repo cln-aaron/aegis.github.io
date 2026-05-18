@@ -183,18 +183,18 @@
     "Per-incident, red-team campaign and workforce-AI DLP reports": "單一事件、紅隊行動與員工 AI DLP 報告",
     "Signed, exportable PDF / JSON; immutable evidence log": "可簽章匯出的 PDF / JSON;不可竄改的佐證紀錄",
     "Scheduled distribution to the CISO, board and regulators": "排程派送給 CISO、董事會與監理機關",
-    "How it works": "運作方式", "Live in a day. Value in a week.": "一天上線,一週見效。",
-    "No agents on every box, no rip-and-replace. AEGIS reads the signals your stack already emits and adds the ones it doesn't.":
-      "不必在每台主機裝代理,也不必汰換現有系統。AEGIS 讀取你技術棧已產生的訊號,並補上它原本沒有的訊號。",
+    "How it works": "運作方式", "See your AI in a day. Hardened over weeks.": "一天看見你的 AI,數週內逐步強化。",
+    "No agents on every box, no rip-and-replace. Passive visibility starts read-only on day one; the deeper controls are switched on in stages, once you've seen the inventory and chosen what to enforce.":
+      "不必在每台主機裝代理,也不必汰換現有系統。被動可視性第一天即以唯讀方式啟動;待你看過清單、決定要強制什麼之後,較深入的控制再分階段開啟。",
     "Connect": "接入",
-    "Point AEGIS at your clouds, gateways and SIEM with read-only roles and an OpenTelemetry collector. No code changes to your apps. Typical first connection: under an hour.":
-      "以唯讀角色與一個 OpenTelemetry 收集器,把 AEGIS 指向你的雲端、閘道與 SIEM。應用程式無需改任何程式碼。首次接入通常在一小時內完成。",
+    "Connect read-only roles to your clouds and SIEM and drop in an OpenTelemetry collector. Most apps need no code change; the optional inline gateway and agent-identity broker come later, only where you want enforcement. The first read-only connection is typically same-day.":
+      "以唯讀角色連接你的雲端與 SIEM,並放入一個 OpenTelemetry 收集器。多數應用無需改程式碼;選用的行內閘道與代理身分代管之後再加,且僅在你要強制的地方。首次唯讀連接通常當天完成。",
     "Discover": "探索",
-    "Within the first sweep you get a live inventory of every model, agent, MCP server and vector store, including the shadow AI nobody told you about, with owners and a dependency graph.":
-      "首次掃描即取得每個模型、代理、MCP 伺服器與向量資料庫的即時清單,包含沒人告訴你的影子 AI,並附負責單位與相依圖。",
+    "The first sweeps build a live inventory of the models, agents, MCP servers and vector stores AEGIS can reach, including shadow AI surfaced through browser, OAuth and network. Coverage and the dependency graph deepen over the first weeks as more sources connect.":
+      "首批掃描會建立 AEGIS 能觸及的模型、代理、MCP 伺服器與向量資料庫的即時清單,包含透過瀏覽器、OAuth 與網路浮現的影子 AI。隨著更多來源接入,涵蓋範圍與相依圖會在最初數週逐步加深。",
     "Defend": "防禦",
-    "Correlation and the continuous red team turn on. Detections are exercised against live attacks daily, and every finding lands as an incident in the same console your SOC already works in.":
-      "關聯分析與持續紅隊隨即啟動。偵測每天被實際攻擊演練,每項發現都落入你 SOC 既有的同一個主控台成為事件。",
+    "Telemetry, correlation and the continuous red team come online in stages. Detections need a short baseline against your own traffic before they run at high confidence; red teaming starts at the LLM layer and expands outward against production-equivalent targets.":
+      "遙測、關聯分析與持續紅隊會分階段上線。偵測需要先對你自己的流量建立一段基準,才能以高可信度運作;紅隊從 LLM 層開始,針對與正式環境等價的目標逐步向外擴展。",
     "Who uses it": "誰在使用",
     "The teams who never agree, finally on one screen.": "從來喬不攏的幾個團隊,終於看同一個畫面。",
     "Security leadership": "資安管理層",
@@ -292,8 +292,8 @@
     "Yes. AEGIS watches workforce AI across the major productivity suites: their built-in office AI assistants, connected GPTs and browser LLMs. It flags data loss (PII, source code, secrets or regulated data leaving into an AI surface) and harmful use, with the user, the data class and a one-click block. It complements your CASB and DLP rather than replacing them.":
       "可以。AEGIS 監看主要生產力套裝中的員工 AI 使用:內建辦公 AI 助理、連接的 GPT 與瀏覽器 LLM。它會標記資料外洩(PII、原始碼、機密或受監管資料流入 AI 介面)與有害使用,附上使用者、資料類別與一鍵阻擋。它是你 CASB 與 DLP 的補強,而非取代。",
     "What does onboarding look like?": "導入流程是什麼樣子?",
-    "Read-only cloud roles plus a collector. First inventory inside the first sweep, correlation and continuous red team typically live within the first week. No app code changes.":
-      "唯讀雲端角色,加上一個收集器。首次掃描即產出清單,關聯分析與持續紅隊通常在第一週內上線。應用程式無需改任何程式碼。",
+    "Read-only cloud roles plus a collector get you a first inventory and a SIEM feed within days. Correlation needs a short baseline and tuning window, and the deeper layers (inline gateway, non-human identity, continuous red team) are enabled in phases over the first few weeks. Passive layers need no app code changes; enforcement points require a lightweight integration only where you choose to deploy them.":
+      "唯讀雲端角色加上一個收集器,幾天內就能取得首份清單與 SIEM 串流。關聯分析需要一段基準與調校期,較深入的層(行內閘道、非人類身分、持續紅隊)會在最初數週內分階段啟用。被動層無需更改應用程式碼;強制點僅在你選擇部署之處需要輕量整合。",
     "Which models and frameworks are supported?": "支援哪些模型與框架?",
     "Every major commercial LLM provider and managed model service, the common agent and orchestration frameworks, open agent protocols, and self-hosted inference servers. Same telemetry, same controls, wherever the AI runs.":
       "各主要商用 LLM 供應商與受管模型服務、常見的代理與編排框架、開放代理協定,以及自架推論伺服器。不論 AI 在哪裡運行,都是同一份遙測、同一套控管。",
@@ -508,18 +508,18 @@
     "Per-incident, red-team campaign and workforce-AI DLP reports": "单一事件、红队行动与员工 AI DLP 报告",
     "Signed, exportable PDF / JSON; immutable evidence log": "可签名导出的 PDF / JSON;不可篡改的证据记录",
     "Scheduled distribution to the CISO, board and regulators": "按计划分发给 CISO、董事会与监管机构",
-    "How it works": "运作方式", "Live in a day. Value in a week.": "一天上线,一周见效。",
-    "No agents on every box, no rip-and-replace. AEGIS reads the signals your stack already emits and adds the ones it doesn't.":
-      "不必在每台主机装代理,也不必更换现有系统。AEGIS 读取你技术栈已产生的信号,并补上它原本没有的信号。",
+    "How it works": "运作方式", "See your AI in a day. Hardened over weeks.": "一天看见你的 AI,数周内逐步加固。",
+    "No agents on every box, no rip-and-replace. Passive visibility starts read-only on day one; the deeper controls are switched on in stages, once you've seen the inventory and chosen what to enforce.":
+      "不必在每台主机装代理,也不必更换现有系统。被动可见性第一天即以只读方式启动;待你看过清单、决定要强制什么之后,较深入的控制再分阶段开启。",
     "Connect": "接入",
-    "Point AEGIS at your clouds, gateways and SIEM with read-only roles and an OpenTelemetry collector. No code changes to your apps. Typical first connection: under an hour.":
-      "用只读角色与一个 OpenTelemetry 采集器,把 AEGIS 指向你的云、网关与 SIEM。应用程序无需改任何代码。首次接入通常在一小时内完成。",
+    "Connect read-only roles to your clouds and SIEM and drop in an OpenTelemetry collector. Most apps need no code change; the optional inline gateway and agent-identity broker come later, only where you want enforcement. The first read-only connection is typically same-day.":
+      "用只读角色连接你的云与 SIEM,并放入一个 OpenTelemetry 采集器。多数应用无需改代码;可选的内联网关与智能体身份代管之后再加,且仅在你要强制的地方。首次只读连接通常当天完成。",
     "Discover": "发现",
-    "Within the first sweep you get a live inventory of every model, agent, MCP server and vector store, including the shadow AI nobody told you about, with owners and a dependency graph.":
-      "首次扫描即取得每个模型、智能体、MCP 服务器与向量数据库的实时清单,包含没人告诉你的影子 AI,并附负责单位与依赖图。",
+    "The first sweeps build a live inventory of the models, agents, MCP servers and vector stores AEGIS can reach, including shadow AI surfaced through browser, OAuth and network. Coverage and the dependency graph deepen over the first weeks as more sources connect.":
+      "首批扫描会建立 AEGIS 能触及的模型、智能体、MCP 服务器与向量数据库的实时清单,包含通过浏览器、OAuth 与网络浮现的影子 AI。随着更多来源接入,覆盖范围与依赖图会在最初数周逐步加深。",
     "Defend": "防御",
-    "Correlation and the continuous red team turn on. Detections are exercised against live attacks daily, and every finding lands as an incident in the same console your SOC already works in.":
-      "关联分析与持续红队随即启动。检测每天被真实攻击演练,每项发现都落入你 SOC 既有的同一个控制台成为事件。",
+    "Telemetry, correlation and the continuous red team come online in stages. Detections need a short baseline against your own traffic before they run at high confidence; red teaming starts at the LLM layer and expands outward against production-equivalent targets.":
+      "遥测、关联分析与持续红队会分阶段上线。检测需要先对你自己的流量建立一段基线,才能以高可信度运作;红队从 LLM 层开始,针对与生产环境等价的目标逐步向外扩展。",
     "Who uses it": "谁在使用",
     "The teams who never agree, finally on one screen.": "向来谈不拢的几个团队,终于看同一个画面。",
     "Security leadership": "安全管理层",
@@ -617,8 +617,8 @@
     "Yes. AEGIS watches workforce AI across the major productivity suites: their built-in office AI assistants, connected GPTs and browser LLMs. It flags data loss (PII, source code, secrets or regulated data leaving into an AI surface) and harmful use, with the user, the data class and a one-click block. It complements your CASB and DLP rather than replacing them.":
       "可以。AEGIS 监控主流办公套件中的员工 AI 使用:内置办公 AI 助手、连接的 GPT 与浏览器 LLM。它会标记数据泄露(PII、源代码、密钥或受监管数据流入 AI 界面)与有害使用,附上用户、数据类别与一键拦截。它是你 CASB 与 DLP 的补强,而非取代。",
     "What does onboarding look like?": "导入流程是什么样子?",
-    "Read-only cloud roles plus a collector. First inventory inside the first sweep, correlation and continuous red team typically live within the first week. No app code changes.":
-      "只读云角色,加上一个采集器。首次扫描即产出清单,关联分析与持续红队通常在第一周内上线。应用程序无需改任何代码。",
+    "Read-only cloud roles plus a collector get you a first inventory and a SIEM feed within days. Correlation needs a short baseline and tuning window, and the deeper layers (inline gateway, non-human identity, continuous red team) are enabled in phases over the first few weeks. Passive layers need no app code changes; enforcement points require a lightweight integration only where you choose to deploy them.":
+      "只读云角色加上一个采集器,几天内就能取得首份清单与 SIEM 流。关联分析需要一段基线与调校期,较深入的层(内联网关、非人类身份、持续红队)会在最初数周内分阶段启用。被动层无需更改应用代码;强制点仅在你选择部署之处需要轻量集成。",
     "Which models and frameworks are supported?": "支持哪些模型与框架?",
     "Every major commercial LLM provider and managed model service, the common agent and orchestration frameworks, open agent protocols, and self-hosted inference servers. Same telemetry, same controls, wherever the AI runs.":
       "各主流商用 LLM 供应商与托管模型服务、常见的智能体与编排框架、开放智能体协议,以及自托管推理服务器。不论 AI 在哪里运行,都是同一份遥测、同一套控制。",
@@ -833,18 +833,18 @@
     "Per-incident, red-team campaign and workforce-AI DLP reports": "사고별·레드팀 캠페인·임직원 AI DLP 보고서",
     "Signed, exportable PDF / JSON; immutable evidence log": "서명되고 내보내기 가능한 PDF / JSON; 변조 불가 증거 로그",
     "Scheduled distribution to the CISO, board and regulators": "CISO·이사회·규제기관으로 예약 배포",
-    "How it works": "동작 방식", "Live in a day. Value in a week.": "하루면 가동, 일주일이면 가치.",
-    "No agents on every box, no rip-and-replace. AEGIS reads the signals your stack already emits and adds the ones it doesn't.":
-      "모든 서버에 에이전트를 깔 필요도, 기존 시스템을 들어낼 필요도 없습니다. AEGIS는 스택이 이미 내보내는 신호를 읽고, 없는 신호를 더합니다.",
+    "How it works": "동작 방식", "See your AI in a day. Hardened over weeks.": "AI는 하루면 보입니다. 방어는 몇 주에 걸쳐 단단해집니다.",
+    "No agents on every box, no rip-and-replace. Passive visibility starts read-only on day one; the deeper controls are switched on in stages, once you've seen the inventory and chosen what to enforce.":
+      "모든 서버에 에이전트를 깔 필요도, 기존 시스템을 들어낼 필요도 없습니다. 수동적 가시성은 첫날 읽기 전용으로 시작하고, 더 깊은 통제는 목록을 확인하고 무엇을 강제할지 정한 뒤 단계적으로 켜집니다.",
     "Connect": "연결",
-    "Point AEGIS at your clouds, gateways and SIEM with read-only roles and an OpenTelemetry collector. No code changes to your apps. Typical first connection: under an hour.":
-      "읽기 전용 역할과 OpenTelemetry 컬렉터로 AEGIS를 클라우드·게이트웨이·SIEM에 연결합니다. 앱 코드 변경은 없습니다. 첫 연결은 보통 한 시간 이내.",
+    "Connect read-only roles to your clouds and SIEM and drop in an OpenTelemetry collector. Most apps need no code change; the optional inline gateway and agent-identity broker come later, only where you want enforcement. The first read-only connection is typically same-day.":
+      "읽기 전용 역할로 클라우드와 SIEM을 연결하고 OpenTelemetry 컬렉터를 추가합니다. 대부분의 앱은 코드 변경이 없습니다. 선택형 인라인 게이트웨이와 에이전트 아이덴티티 브로커는 이후에, 강제가 필요한 곳에만 추가됩니다. 첫 읽기 전용 연결은 보통 당일에 됩니다.",
     "Discover": "탐지",
-    "Within the first sweep you get a live inventory of every model, agent, MCP server and vector store, including the shadow AI nobody told you about, with owners and a dependency graph.":
-      "첫 스캔만으로 모든 모델·에이전트·MCP 서버·벡터 스토어의 실시간 목록을, 아무도 알려주지 않은 섀도 AI까지 담당자·의존 그래프와 함께 얻습니다.",
+    "The first sweeps build a live inventory of the models, agents, MCP servers and vector stores AEGIS can reach, including shadow AI surfaced through browser, OAuth and network. Coverage and the dependency graph deepen over the first weeks as more sources connect.":
+      "초기 스캔은 AEGIS가 닿을 수 있는 모델·에이전트·MCP 서버·벡터 스토어의 실시간 목록을, 브라우저·OAuth·네트워크로 드러난 섀도 AI까지 포함해 만듭니다. 더 많은 소스가 연결될수록 커버리지와 의존 그래프는 초기 몇 주에 걸쳐 깊어집니다.",
     "Defend": "방어",
-    "Correlation and the continuous red team turn on. Detections are exercised against live attacks daily, and every finding lands as an incident in the same console your SOC already works in.":
-      "상관 분석과 상시 레드팀이 켜집니다. 탐지는 매일 실제 공격으로 단련되고, 모든 발견은 SOC가 이미 쓰는 동일 콘솔에 사고로 들어옵니다.",
+    "Telemetry, correlation and the continuous red team come online in stages. Detections need a short baseline against your own traffic before they run at high confidence; red teaming starts at the LLM layer and expands outward against production-equivalent targets.":
+      "텔레메트리·상관 분석·상시 레드팀은 단계적으로 가동됩니다. 탐지는 높은 신뢰도로 동작하기 전에 자체 트래픽에 대한 짧은 기준선이 필요합니다. 레드팀은 LLM 계층에서 시작해 운영 환경과 동등한 대상으로 점차 확장됩니다.",
     "Who uses it": "누가 쓰는가",
     "The teams who never agree, finally on one screen.": "한 번도 합의한 적 없는 팀들이 마침내 한 화면에서.",
     "Security leadership": "보안 리더십",
@@ -942,8 +942,8 @@
     "Yes. AEGIS watches workforce AI across the major productivity suites: their built-in office AI assistants, connected GPTs and browser LLMs. It flags data loss (PII, source code, secrets or regulated data leaving into an AI surface) and harmful use, with the user, the data class and a one-click block. It complements your CASB and DLP rather than replacing them.":
       "네. AEGIS는 주요 오피스 제품군 전반의 임직원 AI 사용을 감시합니다: 내장 오피스 AI 어시스턴트, 연결된 GPT, 브라우저 LLM. 데이터 유출(PII·소스코드·시크릿·규제 데이터가 AI 표면으로 나가는 것)과 유해 사용을 사용자·데이터 분류·원클릭 차단과 함께 표시합니다. CASB와 DLP를 대체하지 않고 보완합니다.",
     "What does onboarding look like?": "온보딩은 어떻게 진행되나요?",
-    "Read-only cloud roles plus a collector. First inventory inside the first sweep, correlation and continuous red team typically live within the first week. No app code changes.":
-      "읽기 전용 클라우드 역할과 컬렉터 하나. 첫 스캔에서 목록이 나오고, 상관 분석과 상시 레드팀은 보통 첫 주 안에 가동됩니다. 앱 코드 변경은 없습니다.",
+    "Read-only cloud roles plus a collector get you a first inventory and a SIEM feed within days. Correlation needs a short baseline and tuning window, and the deeper layers (inline gateway, non-human identity, continuous red team) are enabled in phases over the first few weeks. Passive layers need no app code changes; enforcement points require a lightweight integration only where you choose to deploy them.":
+      "읽기 전용 클라우드 역할과 컬렉터 하나면 며칠 안에 첫 목록과 SIEM 피드를 얻습니다. 상관 분석에는 짧은 기준선·튜닝 기간이 필요하고, 더 깊은 계층(인라인 게이트웨이, 비인간 아이덴티티, 상시 레드팀)은 처음 몇 주에 걸쳐 단계적으로 활성화됩니다. 수동 계층은 앱 코드 변경이 필요 없으며, 강제 지점은 배포를 선택한 곳에서만 가벼운 연동이 필요합니다.",
     "Which models and frameworks are supported?": "어떤 모델과 프레임워크를 지원하나요?",
     "Every major commercial LLM provider and managed model service, the common agent and orchestration frameworks, open agent protocols, and self-hosted inference servers. Same telemetry, same controls, wherever the AI runs.":
       "주요 상용 LLM 공급자와 매니지드 모델 서비스, 일반적인 에이전트·오케스트레이션 프레임워크, 개방형 에이전트 프로토콜, 자체 호스팅 추론 서버까지. AI가 어디서 동작하든 동일한 텔레메트리, 동일한 통제.",
