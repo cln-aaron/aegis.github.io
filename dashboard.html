@@ -1055,17 +1055,34 @@ document.getElementById("themeTg").addEventListener("click",function(){
 
 /* ---------- guided tour ---------- */
 var TOUR=[
- {v:"overview",sel:'.view[data-view="overview"] .grid.g4',t:"Operations overview",b:"Start here. Four KPIs summarise posture across all eight layers — assets tracked, open incidents, red-team coverage and shadow AI — refreshing live."},
+ {v:"overview",sel:'.view[data-view="overview"] .grid.g4',t:"Operations overview",b:"Start here. Four KPIs summarise posture across all eight layers: assets tracked, open incidents, red-team coverage and shadow AI, refreshing live."},
  {v:"overview",sel:"#ovFeed",t:"Live event stream",b:"A real-time feed of verifications, blocked attacks and contained incidents. This is the heartbeat you point at on a customer call."},
- {v:"discovery",sel:"#assetT",t:"Continuous discovery",b:"Every model, agent, MCP server and vector store — sanctioned or shadow. Try the top-bar search; the inventory filters live."},
- {v:"workforce",sel:"#wfT",t:"Workforce AI & data loss",b:"Across Microsoft 365 and Google Workspace: who pasted PII, code or secrets into Copilot, Gemini or a browser LLM — and harmful use, blocked in one click."},
+ {v:"discovery",sel:"#assetT",t:"Continuous discovery",b:"Every model, agent, MCP server and vector store, sanctioned or shadow. Try the top-bar search; the inventory filters live."},
+ {v:"workforce",sel:"#wfT",t:"Workforce AI & data loss",b:"Across the major office suites: who pasted PII, code or secrets into a copilot or browser LLM, plus harmful use, blocked in one click."},
+ {v:"provenance",sel:"#provT",t:"Supply chain & provenance",b:"Every model and dataset signed and re-verified. Run a re-scan to catch namespace substitution and unsafe deserialisation before production."},
  {v:"identities",sel:"#idT",t:"Non-human identities",b:"Each agent is its own identity with a short-lived, scoped token. Hit Revoke on any row to destroy its credentials instantly."},
+ {v:"telemetry",sel:"#telFeed",t:"Open telemetry data lake",b:"Every prompt, tool call and inference event in an OCSF-aligned stream, piped into the SIEM you already run. Pause it to read a line."},
  {v:"killchain",sel:"#kcFlow",t:"The AI kill chain",b:"Four low-signal events become one critical incident. Click ‘Replay correlation’ to animate how single-tool stacks miss this."},
  {v:"incidents",sel:"#incDetail",t:"Investigate & respond",b:"Full session reconstruction, output-to-source lineage, and one-click response: revoke, quarantine, roll back, isolate."},
- {v:"redteam",sel:"#runRT",t:"Continuous full-stack red team",b:"The differentiator. It attacks the whole stack — model, agents, MCP, identity, supply chain and cloud infra. Run a campaign: it tunes detections and opens a real incident on any gap."},
- {v:"compliance",sel:"#auPick",t:"One-click framework audits",b:"Pick a framework — ISO/IEC 42001, EU AI Act, NIST AI RMF, Singapore IMDA, MAS FEAT or OWASP — and run a live conformity audit. Click any control for findings and remediation."},
- {v:"reports",sel:".view[data-view=\"reports\"] .split",t:"Executive & full reporting",b:"Board-grade posture summary and full technical reports, generated from live data — with scheduled distribution to the CISO, board and regulators."}
+ {v:"assurance",sel:"#mdlT",t:"Model assurance (bank credit-risk)",b:"The bank's credit-risk PD model under MAS / Basel III: PSI drift, disparate impact and a flagged geo-proxy bias, surfaced to the SOC as a security signal."},
+ {v:"redteam",sel:"#runRT",t:"Continuous full-stack red team",b:"It attacks the whole stack: model, agents, MCP, identity, supply chain and cloud infra. Run a campaign and it tunes detections and opens a real incident on any gap."},
+ {v:"compliance",sel:"#auPick",t:"One-click framework audits",b:"Pick a framework: ISO/IEC 42001, EU AI Act, NIST AI RMF, Singapore IMDA, MAS FEAT or OWASP. Run a live conformity audit, then click any control for findings and remediation."},
+ {v:"reports",sel:".view[data-view=\"reports\"] .split",t:"Executive & full reporting",b:"Board-grade posture summary and full technical reports, generated from live data, with scheduled distribution to the CISO, board and regulators."}
 ];
+var TOUR_UI={
+ en:{exit:"Exit",prev:"Prev",next:"Next",finish:"Finish",step:function(a,b){return "STEP "+a+" / "+b;},guide:"▶ Guided tour",endedT:"Tour ended",endedB:"Replay anytime via ‘Guided tour’",seenT:"👋 First time here? Press ‘Guided tour’",seenB:"A guided walkthrough of every capability"},
+ "zh-Hant":{exit:"離開",prev:"上一步",next:"下一步",finish:"完成",step:function(a,b){return "步驟 "+a+" / "+b;},guide:"▶ 導覽",endedT:"導覽結束",endedB:"隨時可從「導覽」重新播放",seenT:"👋 第一次來?點「導覽」",seenB:"逐一介紹每項功能的導覽"},
+ "zh-Hans":{exit:"退出",prev:"上一步",next:"下一步",finish:"完成",step:function(a,b){return "步骤 "+a+" / "+b;},guide:"▶ 导览",endedT:"导览结束",endedB:"随时可从「导览」重新播放",seenT:"👋 第一次来?点「导览」",seenB:"逐一介绍每项功能的导览"},
+ ko:{exit:"종료",prev:"이전",next:"다음",finish:"마침",step:function(a,b){return a+" / "+b+" 단계";},guide:"▶ 가이드 투어",endedT:"투어 종료",endedB:"‘가이드 투어’에서 언제든 다시 재생",seenT:"👋 처음이신가요? ‘가이드 투어’를 눌러보세요",seenB:"모든 기능을 안내하는 가이드 투어"}
+};
+var TOUR_TX={
+ "zh-Hant":[["操作總覽","從這裡開始。四個 KPI 概括八個層次的整體態勢:已追蹤資產、未結事件、紅隊涵蓋率與影子 AI,即時更新。"],["即時事件串流","驗證、被阻擋的攻擊與已圍堵事件的即時動態。這是你在客戶會議上會指著看的脈搏。"],["持續資產探索","每一個模型、代理、MCP 伺服器與向量資料庫,無論經核可或屬影子。試試上方搜尋,清單會即時過濾。"],["員工 AI 與資料外洩","橫跨主要辦公套裝:誰把 PII、程式碼或機密貼進了 copilot 或瀏覽器 LLM,以及有害使用,皆可一鍵阻擋。"],["供應鏈與來源驗證","每個模型與資料集都經簽章並重新驗證。執行重掃,在上線前攔下命名空間替換與不安全的反序列化。"],["非人類身分","每個代理都是獨立身分,搭配短效、限定範圍的權杖。在任一列按「撤銷」即可立刻銷毀其憑證。"],["開放遙測資料湖","每個提示、工具呼叫與推論事件以對齊 OCSF 的串流呈現,導入你既有的 SIEM。可暫停以閱讀某一行。"],["AI 攻擊鏈","四個低訊號事件匯成一起重大事件。點「重播關聯」看單點工具如何漏掉它。"],["調查與應變","完整對話重建、輸出回溯來源的譜系,並一鍵應變:撤銷、隔離、回滾、封鎖。"],["模型品質保證(銀行信用風險)","MAS / Basel III 下的銀行信用風險 PD 模型:PSI 漂移、差別影響與被標記的地區代理偏誤,以資安訊號呈現給 SOC。"],["全棧持續紅隊","它攻擊整個技術棧:模型、代理、MCP、身分、供應鏈與雲端基礎設施。執行一次演練,它會調校偵測並對任何缺口開立真實事件。"],["一鍵框架稽核","挑一個框架:ISO/IEC 42001、EU AI Act、NIST AI RMF、Singapore IMDA、MAS FEAT 或 OWASP。執行即時符合性稽核,再點任一控制查看發現與改善建議。"],["高階主管與完整報告","董事會層級的態勢摘要與完整技術報告,由即時資料產生,並可排程派送給 CISO、董事會與監理機關。"]],
+ "zh-Hans":[["操作概览","从这里开始。四个 KPI 概括八个层次的整体态势:已追踪资产、未结事件、红队覆盖率与影子 AI,实时刷新。"],["实时事件流","验证、被拦截的攻击与已围堵事件的实时动态。这是你在客户会议上会指着看的脉搏。"],["持续资产发现","每一个模型、智能体、MCP 服务器与向量数据库,无论已审批或属影子。试试顶部搜索,清单会实时过滤。"],["员工 AI 与数据泄露","横跨主流办公套件:谁把 PII、代码或密钥粘进了 copilot 或浏览器 LLM,以及有害使用,均可一键拦截。"],["供应链与来源验证","每个模型与数据集都经签名并重新验证。执行重扫,在上线前拦下命名空间替换与不安全的反序列化。"],["非人类身份","每个智能体都是独立身份,配合短时效、限定范围的令牌。在任一行点「吊销」即可立刻销毁其凭据。"],["开放遥测数据湖","每个提示、工具调用与推理事件以对齐 OCSF 的流呈现,接入你现有的 SIEM。可暂停以阅读某一行。"],["AI 攻击链","四个低信号事件汇成一起重大事件。点「重放关联」看单点工具如何漏掉它。"],["调查与响应","完整会话重建、输出回溯来源的谱系,并一键响应:吊销、隔离、回滚、封锁。"],["模型质量保障(银行信用风险)","MAS / Basel III 下的银行信用风险 PD 模型:PSI 漂移、差别影响与被标记的地区代理偏差,以安全信号呈现给 SOC。"],["全栈持续红队","它攻击整个技术栈:模型、智能体、MCP、身份、供应链与云基础设施。运行一次演练,它会调校检测并对任何缺口开立真实事件。"],["一键框架审计","选一个框架:ISO/IEC 42001、EU AI Act、NIST AI RMF、Singapore IMDA、MAS FEAT 或 OWASP。运行实时合规审计,再点任一控制查看发现与整改建议。"],["高管与完整报告","董事会层级的态势摘要与完整技术报告,由实时数据生成,并可按计划分发给 CISO、董事会与监管机构。"]],
+ ko:[["운영 개요","여기서 시작합니다. 네 개의 KPI가 여덟 계층의 태세를 요약합니다: 추적 자산, 미해결 사고, 레드팀 커버리지, 섀도 AI. 실시간으로 갱신됩니다."],["실시간 이벤트 스트림","검증, 차단된 공격, 봉쇄된 사고의 실시간 피드. 고객 미팅에서 가리키게 되는 맥박입니다."],["상시 자산 탐지","모든 모델·에이전트·MCP 서버·벡터 스토어, 승인됐든 섀도든. 상단 검색을 써보면 목록이 실시간으로 필터링됩니다."],["임직원 AI와 데이터 유출","주요 오피스 제품군 전반: 누가 PII·코드·시크릿을 copilot이나 브라우저 LLM에 붙여 넣었는지, 그리고 유해 사용까지 원클릭 차단."],["공급망과 출처 검증","모든 모델과 데이터셋이 서명·재검증됩니다. 재스캔을 실행해 네임스페이스 치환과 안전하지 않은 역직렬화를 운영 전에 잡으십시오."],["비인간 아이덴티티","각 에이전트는 단기·범위 한정 토큰을 가진 고유 아이덴티티입니다. 아무 행에서 ‘폐기’를 누르면 자격 증명이 즉시 파기됩니다."],["개방형 텔레메트리 데이터 레이크","모든 프롬프트·도구 호출·추론 이벤트를 OCSF 정렬 스트림으로, 이미 운영 중인 SIEM으로 전달합니다. 일시정지하면 한 줄을 읽을 수 있습니다."],["AI 킬체인","약한 신호 4건이 하나의 중대 사고가 됩니다. ‘상관 재생’을 눌러 단일 도구 스택이 이를 어떻게 놓치는지 보십시오."],["조사 및 대응","전체 세션 재구성, 출력-출처 계보, 그리고 원클릭 대응: 폐기·격리·롤백·차단."],["모델 품질 보증 (은행 신용리스크)","MAS / Basel III 하 은행 신용리스크 PD 모델: PSI 드리프트, 차별적 영향, 표시된 지역 대리변수 편향을 SOC에 보안 신호로 노출합니다."],["풀스택 상시 레드팀","전체 스택을 공격합니다: 모델·에이전트·MCP·아이덴티티·공급망·클라우드 인프라. 캠페인을 실행하면 탐지를 보정하고 모든 빈틈에 실제 사고를 엽니다."],["원클릭 프레임워크 감사","프레임워크를 고르세요: ISO/IEC 42001, EU AI Act, NIST AI RMF, Singapore IMDA, MAS FEAT 또는 OWASP. 실시간 적합성 감사를 실행한 뒤, 아무 통제나 눌러 발견과 시정을 확인하세요."],["경영진 및 전체 리포팅","실시간 데이터에서 생성되는 이사회 수준 태세 요약과 전체 기술 보고서. CISO·이사회·규제기관으로 예약 배포됩니다."]]
+};
+function tourLang(){var v;try{v=localStorage.getItem("aegis_lang");}catch(e){v=null;}if(v==="zh")v="zh-Hant";return (v&&TOUR_TX[v])?v:"en";}
+function tourUI(){return TOUR_UI[tourLang()]||TOUR_UI.en;}
+function tourStep(n){var L=tourLang();if(L==="en"||!TOUR_TX[L])return{t:TOUR[n].t,b:TOUR[n].b};var x=TOUR_TX[L][n];return x?{t:x[0],b:x[1]}:{t:TOUR[n].t,b:TOUR[n].b};}
 var ring,pop,tIdx=0,tTimer=null,tDur=6500,tStart=0;
 function buildTour(){
  ring=document.createElement("div");ring.className="tour-ring";
@@ -1100,11 +1117,14 @@ function goStep(n){
   var el=document.querySelector(s.sel)||document.querySelector('.view[data-view="'+s.v+'"]');
   el.scrollIntoView({block:"center",behavior:"smooth"});
   setTimeout(function(){
-   document.getElementById("tpStep").textContent="STEP "+(n+1)+" / "+TOUR.length;
-   pop.querySelector("h4").textContent=s.t;
-   document.getElementById("tpBody").textContent=s.b;
+   var ui=tourUI(),tx=tourStep(n);
+   document.getElementById("tpStep").textContent=ui.step(n+1,TOUR.length);
+   pop.querySelector("h4").textContent=tx.t;
+   document.getElementById("tpBody").textContent=tx.b;
+   pop.querySelector("#tpExit").textContent=ui.exit;
+   pop.querySelector("#tpPrev").textContent=ui.prev;
    pop.querySelector("#tpPrev").style.visibility=n===0?"hidden":"visible";
-   pop.querySelector("#tpNext").textContent=n>=TOUR.length-1?"Finish":"Next";
+   pop.querySelector("#tpNext").textContent=n>=TOUR.length-1?ui.finish:ui.next;
    place(el);
    ring.classList.add("show");pop.classList.add("show");
    var bar=document.getElementById("tpBar");bar.style.transition="none";bar.style.width="0%";void bar.offsetWidth;
@@ -1113,15 +1133,16 @@ function goStep(n){
  },120);
 }
 function startTour(){if(!ring)buildTour();document.getElementById("side").classList.remove("open");goStep(0);}
-function endTour(){clearTimeout(tTimer);if(ring)ring.classList.remove("show");if(pop)pop.classList.remove("show");notify("Tour ended","Replay anytime via ‘Guided tour’");}
+function endTour(){clearTimeout(tTimer);if(ring)ring.classList.remove("show");if(pop)pop.classList.remove("show");var ui=tourUI();notify(ui.endedT,ui.endedB);}
 document.getElementById("guideBtn").addEventListener("click",startTour);
+(function(){var gb=document.getElementById("guideBtn");if(gb)gb.textContent=tourUI().guide;})();
 window.addEventListener("resize",function(){if(pop&&pop.classList.contains("show")){var el=document.querySelector(TOUR[tIdx].sel);if(el)place(el);}});
 
 /* offer the tour automatically on first load */
 setTimeout(function(){
  if(!sessionStorage.getItem("aegis_tour_seen")){
   try{sessionStorage.setItem("aegis_tour_seen","1");}catch(e){}
-  notify("👋 First time here? Press ‘Guided tour’","An auto-playing walkthrough of every capability");
+  var ui=tourUI();notify(ui.seenT,ui.seenB);
  }
 },1400);
 })();
