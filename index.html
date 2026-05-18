@@ -106,7 +106,15 @@
       <svg class="t-moon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"/></svg>
       <svg class="t-sun" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19"/></svg>
     </button>
-    <button class="lang-tg" id="langTg" aria-label="Switch language / 切換語言" title="English / 繁體中文">繁體中文</button>
+    <div class="lang-dd" id="langDd">
+      <button class="lang-tg" id="langBtn" aria-haspopup="listbox" aria-expanded="false" aria-label="Select language">English <span class="lang-caret" aria-hidden="true">▾</span></button>
+      <ul class="lang-menu" role="listbox" aria-label="Language">
+        <li role="option" data-lang="en">English</li>
+        <li role="option" data-lang="zh-Hant">繁體中文</li>
+        <li role="option" data-lang="zh-Hans">简体中文</li>
+        <li role="option" data-lang="ko">한국어</li>
+      </ul>
+    </div>
     <a href="login.html" class="nav-login">Sign in</a>
     <a href="#demo" class="btn btn-sm">Book a demo</a>
   </div>
@@ -395,8 +403,8 @@
             </div></div>
           </div>
         </article>
-        <article class="layer flagship reveal">
-          <div class="layer-no"><span>08</span><em>Flagship</em></div>
+        <article class="layer reveal">
+          <div class="layer-no"><span>08</span></div>
           <div class="layer-body">
             <h3>Continuous full-stack red team</h3>
             <p>Red teaming stops being a PDF from six weeks ago. It runs every day, inside the
@@ -507,7 +515,7 @@
           </ul>
         </article>
 
-        <article class="cap reveal flag">
+        <article class="cap reveal">
           <h3><span>08</span> Continuous full-stack red team</h3>
           <ul>
             <li>LLM: OWASP LLM Top 10, refreshed jailbreak &amp; injection libraries</li>
