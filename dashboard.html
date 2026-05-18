@@ -494,6 +494,26 @@ html[data-theme="light"] .tour-pop button.np{color:#fff}
       <div class="grid g4" id="agtScope" style="gap:1px;background:var(--line);border:1px solid var(--line)"></div>
       <div id="agtDetail" class="sub" style="margin:16px 0 0;border-left:2px solid var(--accent);padding:12px 16px;background:var(--bg-2);font-size:.92rem;color:var(--txt);min-height:44px">Select an attack class above to see how AEGIS runs it and what it proves.</div>
     </div>
+    <div class="split" style="margin-top:16px">
+      <div class="card"><div class="ch"><h3>Agentic runtime defence</h3><span class="tag">enforced live</span></div>
+        <div class="tg"><div><b>Tool-call guardrails</b><br><small>intent &amp; scope checks</small></div><span class="st ok">active</span></div>
+        <div class="tg"><div><b>JIT agent identity</b><br><small>scoped, expiring credentials</small></div><span class="st ok">active</span></div>
+        <div class="tg"><div><b>Memory &amp; RAG integrity</b><br><small>anti-poisoning monitor</small></div><span class="st ok">active</span></div>
+        <div class="tg"><div><b>Trajectory recording</b><br><small>full step-by-step replay</small></div><span class="st ok">active</span></div>
+        <div class="tg"><div><b>A2A message auth</b><br><small>peer trust policy</small></div><span class="st ok">active</span></div>
+        <div class="tg"><div><b>Spend &amp; recursion caps</b><br><small>denial-of-wallet guard</small></div><span class="st ok">active</span></div>
+        <div class="tg"><div><b>Quarantine &amp; rollback</b><br><small>one-click containment</small></div><span class="st ok">ready</span></div>
+      </div>
+      <div class="card"><div class="ch"><h3>Red-team depth, beyond OWASP</h3><span class="tag">MITRE ATLAS · NIST</span></div>
+        <div class="findrow"><span class="ft p">COVERED</span>Multi-turn jailbreaks (crescendo, many-shot, skeleton key)</div>
+        <div class="findrow"><span class="ft p">COVERED</span>Gradient &amp; adversarial-suffix attacks on open models</div>
+        <div class="findrow"><span class="ft p">COVERED</span>Indirect injection via docs, web, email, RAG</div>
+        <div class="findrow"><span class="ft p">COVERED</span>Membership inference · model &amp; data extraction</div>
+        <div class="findrow"><span class="ft p">COVERED</span>Guardrail evasion (encoding, obfuscation, multimodal)</div>
+        <div class="findrow"><span class="ft p">COVERED</span>Supply chain (namespace reuse, pickle, backdoors)</div>
+        <div class="findrow"><span class="ft r">MAPPED</span>MITRE ATLAS &amp; NIST AI RMF, not just OWASP</div>
+      </div>
+    </div>
     <div class="card" style="margin-top:16px"><div class="ch"><h3>Agentic findings</h3><span class="tag">purple-team queue</span></div>
       <div id="agtRows"></div></div>
   </section>
