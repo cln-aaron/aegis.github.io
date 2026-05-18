@@ -362,13 +362,13 @@
       "安全。攻擊在安全執行框架下,針對與正式環境等價的目標進行。發現會在同一主控台開立為事件——設計上即是紫隊。",
 
     // cta
-    "See it on your own stack.": "在你自己的技術棧上看看。",
-    "A 30-minute walkthrough on your environment. Tell us a little about your AI and your regulators, and we'll tailor it.":
-      "針對你的環境做 30 分鐘導覽。簡單告訴我們你的 AI 與適用的監理機關,我們會量身調整內容。",
+    "See the platform in action.": "看平台實際運作。",
+    "A 30-minute guided run-through of the platform. Tell us a little about your context and we'll focus on what matters to you.":
+      "30 分鐘的平台導覽解說。簡單告訴我們你的情況,我們會聚焦在你最在意的地方。",
     "That's the whole platform — not a slide deck.":
       "這就是平台的全部——不是一份簡報。",
-    "See it running on your own AI stack in a 30-minute walkthrough.":
-      "用 30 分鐘導覽,看它在你自己的 AI 技術棧上實際運行。",
+    "A 30-minute guided run-through of the whole platform.":
+      "30 分鐘,完整導覽整個平台。",
     "Name": "姓名",
     "Work email": "公司電子郵件",
     "Company": "公司",
