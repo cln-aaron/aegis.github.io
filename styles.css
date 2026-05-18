@@ -50,6 +50,8 @@ em{font-style:normal;color:var(--accent)}
 .btn-primary:hover{box-shadow:0 0 28px var(--accent-dim);transform:translateY(-1px)}
 .btn-ghost{background:transparent}
 .btn-ghost:hover,.btn-sm:hover{border-color:var(--accent);color:var(--accent)}
+.lang-tg{height:34px;padding:0 14px;display:grid;place-items:center;border:1px solid var(--line-2);border-radius:18px;background:transparent;color:var(--muted);cursor:pointer;transition:.2s;font-family:var(--mono);font-size:12.5px}
+.lang-tg:hover{color:var(--accent);border-color:var(--accent)}
 .theme-tg{width:34px;height:34px;display:grid;place-items:center;border:1px solid var(--line-2);border-radius:50%;background:transparent;color:var(--muted);cursor:pointer;transition:.2s}
 .theme-tg:hover{color:var(--accent);border-color:var(--accent)}
 .theme-tg .t-sun{display:none}

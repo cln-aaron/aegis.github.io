@@ -78,11 +78,6 @@ button:hover{box-shadow:0 0 28px rgba(90,242,196,.25);transform:translateY(-1px)
       <button type="submit">Sign in to console</button>
       <div class="err" id="err"></div>
 
-      <div class="demo">
-        <b>Single sign-on</b> Use your organisation's identity provider.
-        <br /><button type="button" id="demoBtn">Continue with SSO →</button>
-      </div>
-
       <p style="margin-top:24px"><a class="back" href="index.html">← Back to site</a></p>
     </form>
   </main>
@@ -90,20 +85,31 @@ button:hover{box-shadow:0 0 28px rgba(90,242,196,.25);transform:translateY(-1px)
 <script>
 (function(){
   var feed=document.getElementById("feed");
-  var lines=['discovery · <b>1,284</b> assets indexed','identity · scoped token issued to svc-rag-07','redteam · run rt-0517 — <b>206</b> attacks','correlation · incident #4471 <span class="w">contained</span>','provenance · llama-fraud re-scan clean','telemetry · <b>2.1M</b> events / 24h'];
+  var lines=['discovery · <b>1,284</b> assets indexed','identity · scoped token issued to svc-rag-07','redteam · run rt-0517 — <b>206</b> attacks','correlation · incident #4471 <span class="w">contained</span>','provenance · model re-scan clean','telemetry · <b>2.1M</b> events / 24h'];
   var i=0;function add(){var d=document.createElement("div");d.innerHTML="› "+lines[i%lines.length];feed.appendChild(d);if(feed.children.length>6)feed.removeChild(feed.firstChild);i++;}
   add();add();add();add();
   if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)setInterval(add,2200);
 
-  function go(){try{sessionStorage.setItem("aegis_auth","1");}catch(e){}window.location.href="dashboard.html";}
+  var GATE="23fcc79206daaf7d7ac2270d93c924eb75121bcf8cf4b48125bd8f4cf1b09a2b";
+  var SALT="aegis-portal::v1";
+  function sha256Hex(str){
+    var enc=new TextEncoder().encode(str);
+    return crypto.subtle.digest("SHA-256",enc).then(function(buf){
+      return Array.prototype.map.call(new Uint8Array(buf),function(b){return ("0"+b.toString(16)).slice(-2);}).join("");
+    });
+  }
+  function fail(){document.getElementById("err").textContent="Invalid credentials. Check your email and password and try again.";}
   document.getElementById("form").addEventListener("submit",function(e){
     e.preventDefault();
-    var em=document.getElementById("email").value.trim();
+    var em=document.getElementById("email").value.trim().toLowerCase();
     var pw=document.getElementById("pass").value;
-    if(!em||!pw){document.getElementById("err").textContent="Enter your work email and password, or continue with SSO.";return;}
-    go();
+    if(!em||!pw){document.getElementById("err").textContent="Enter your work email and password.";return;}
+    if(!window.crypto||!crypto.subtle){fail();return;}
+    sha256Hex(SALT+"|"+em+"|"+pw).then(function(h){
+      if(h===GATE){try{sessionStorage.setItem("aegis_auth","1");}catch(e){}window.location.href="dashboard.html";}
+      else fail();
+    }).catch(fail);
   });
-  document.getElementById("demoBtn").addEventListener("click",go);
 })();
 </script>
 </body>
