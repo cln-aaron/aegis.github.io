@@ -37,7 +37,7 @@ em{font-style:normal;color:var(--accent)}
 .nav-parent{font-family:var(--mono);font-size:12px;color:var(--faint);padding-left:16px;border-left:1px solid var(--line);transition:color .2s;align-self:center}
 .nav-parent:hover{color:var(--accent)}
 .nav-links{display:flex;gap:28px;margin-left:auto;font-family:var(--mono);font-size:13px}
-.nav-links a{color:var(--muted);transition:color .2s;position:relative}
+.nav-links a{color:var(--muted);transition:color .2s;position:relative;white-space:nowrap}
 .nav-links a:hover{color:var(--txt)}
 .nav-links a::after{content:"";position:absolute;left:0;right:100%;bottom:-6px;height:1px;background:var(--accent);transition:right .25s}
 .nav-links a:hover::after{right:0}
