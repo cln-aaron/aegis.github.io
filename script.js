@@ -201,4 +201,25 @@
       pause();
     }
   }
+
+  // expandable platform layers
+  var layers = document.querySelectorAll(".layer");
+  layers.forEach(function (l) {
+    if (!l.querySelector(".layer-detail")) return;
+    l.setAttribute("tabindex", "0");
+    l.setAttribute("role", "button");
+    l.setAttribute("aria-expanded", "false");
+    function toggle() {
+      var willOpen = !l.classList.contains("open");
+      layers.forEach(function (o) {
+        if (o !== l) { o.classList.remove("open"); o.setAttribute("aria-expanded", "false"); }
+      });
+      l.classList.toggle("open", willOpen);
+      l.setAttribute("aria-expanded", willOpen ? "true" : "false");
+    }
+    l.addEventListener("click", toggle);
+    l.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); }
+    });
+  });
 })();

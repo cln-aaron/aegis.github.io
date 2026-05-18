@@ -252,6 +252,10 @@
             <p>A live inventory of every model, agent, MCP server, vector store and prompt — plus
             how employees use AI across the major productivity suites — built-in office AI
             assistants and browser LLMs included. Sanctioned or shadow, you see it.</p>
+            <div class="layer-detail"><div class="ld-in">
+              <div class="ld-col"><span class="ld-k">The gap today</span><p>Most teams can't say how many models and agents they actually run, and only see the AI that passes through the browser. Shadow-AI breaches add USD 670k each — you can't protect what you can't list.</p></div>
+              <div class="ld-col"><span class="ld-k">Why you need it</span><p>One live inventory across cloud, code, OAuth and the office suites, with owners and dependencies — so the board question "how much AI do we run, and who owns it?" finally has a real answer.</p></div>
+            </div></div>
           </div>
         </article>
         <article class="layer reveal">
@@ -260,6 +264,10 @@
             <h3>Supply chain &amp; provenance</h3>
             <p>Every model and dataset is signed, verified at ingestion, and re-checked against
             new threats. Namespace-substitution and unsafe deserialisation get caught on the way in.</p>
+            <div class="layer-detail"><div class="ld-in">
+              <div class="ld-col"><span class="ld-k">The gap today</span><p>Models arrive unsigned from public hubs — roughly 352,000 unsafe issues were found across 51,700 of them, and attackers have swapped backdoored models into cloud catalogues via namespace reuse.</p></div>
+              <div class="ld-col"><span class="ld-k">Why you need it</span><p>Every model and dataset is signed and verified on the way in and re-checked against new CVEs — substitution and unsafe deserialisation are blocked before production, not found after a breach.</p></div>
+            </div></div>
           </div>
         </article>
         <article class="layer reveal">
@@ -268,6 +276,10 @@
             <h3>Identity for AI</h3>
             <p>Treat every agent and inference call as its own identity. Short-lived scoped
             credentials, just-in-time access, and a tamper-evident receipt for every action.</p>
+            <div class="layer-detail"><div class="ld-in">
+              <div class="ld-col"><span class="ld-k">The gap today</span><p>Agents run on broad, long-lived service keys; 97% of AI-breached organisations lacked proper access controls, so one compromised agent is a standing skeleton key.</p></div>
+              <div class="ld-col"><span class="ld-k">Why you need it</span><p>Each agent gets its own short-lived, scoped identity with just-in-time access and a tamper-evident receipt — damage is contained to one session and provable afterwards.</p></div>
+            </div></div>
           </div>
         </article>
         <article class="layer reveal">
@@ -276,6 +288,10 @@
             <h3>The data lake</h3>
             <p>An open telemetry schema that captures every prompt, completion, tool call, and
             inference event — and pipes straight into the SIEM you already run.</p>
+            <div class="layer-detail"><div class="ld-in">
+              <div class="ld-col"><span class="ld-k">The gap today</span><p>Prompts, tool calls and inference events never reach your SIEM, so AI incidents leave no forensic trail and the SOC is effectively blind to them.</p></div>
+              <div class="ld-col"><span class="ld-k">Why you need it</span><p>An open, OCSF-aligned record of everything the AI did flows into the SIEM you already run — AI finally has an audit trail you can investigate and retain for regulators.</p></div>
+            </div></div>
           </div>
         </article>
         <article class="layer reveal">
@@ -284,6 +300,10 @@
             <h3>Correlation</h3>
             <p>AI kill-chain logic that turns scattered, low-signal events into one incident:
             injection to tool abuse to credential reuse to exfiltration.</p>
+            <div class="layer-detail"><div class="ld-in">
+              <div class="ld-col"><span class="ld-k">The gap today</span><p>Every tool sees one weak signal; nobody joins injection → tool abuse → credential reuse → exfiltration, so multi-stage AI attacks read as background noise.</p></div>
+              <div class="ld-col"><span class="ld-k">Why you need it</span><p>Cross-layer kill-chain logic fuses those scattered signals into one high-confidence incident in seconds — the attack single-tool stacks never see.</p></div>
+            </div></div>
           </div>
         </article>
         <article class="layer reveal">
@@ -292,6 +312,10 @@
             <h3>Investigate &amp; respond</h3>
             <p>Reconstruct the full session, trace output back to its source, and respond in one
             click: revoke an agent, quarantine a model, roll back a prompt, isolate a store.</p>
+            <div class="layer-detail"><div class="ld-in">
+              <div class="ld-col"><span class="ld-k">The gap today</span><p>After an AI incident, piecing together what the model saw, did and leaked across tools takes hours — but SEC disclosure is four days and attacker hand-off is 22 seconds.</p></div>
+              <div class="ld-col"><span class="ld-k">Why you need it</span><p>Full session reconstruction and output-to-source lineage in one place, with one-click revoke, quarantine, rollback and isolate — contain in minutes, with the evidence already written.</p></div>
+            </div></div>
           </div>
         </article>
         <article class="layer reveal">
@@ -300,6 +324,10 @@
             <h3>Model assurance</h3>
             <p>Drift, bias, and hallucination tracking for the models you build — wired into the
             same engine, so a quality regression also reads as a security signal.</p>
+            <div class="layer-detail"><div class="ld-in">
+              <div class="ld-col"><span class="ld-k">The gap today</span><p>Drift, bias and hallucination sit in notebooks the SOC never sees; a regulated model going wrong is both a quality and a security failure, and nobody catches it in time.</p></div>
+              <div class="ld-col"><span class="ld-k">Why you need it</span><p>The same engine tracks PSI drift, disparate impact and hallucination on your own models — a quality regression also fires as a security signal, with regulator-ready evidence (e.g. credit-risk PD under MAS / Basel III).</p></div>
+            </div></div>
           </div>
         </article>
         <article class="layer flagship reveal">
@@ -313,6 +341,10 @@
             plane, and the cloud infrastructure underneath. Every finding sharpens a defence;
             every defence invites the next attack. Attack and defence become one loop — the
             product no point tool can rebuild.</p>
+            <div class="layer-detail"><div class="ld-in">
+              <div class="ld-col"><span class="ld-k">The gap today</span><p>Red teaming is a six-week-old PDF describing a system that has already changed — and it only tested the model, not the agents, identity, supply chain or cloud beneath it.</p></div>
+              <div class="ld-col"><span class="ld-k">Why you need it</span><p>Automated adversarial testing runs daily in the same data plane across the whole stack; every finding tunes a detection and opens a real incident — so you can answer "did our controls actually hold this quarter?" with proof.</p></div>
+            </div></div>
           </div>
         </article>
       </div>

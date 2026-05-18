@@ -110,6 +110,42 @@
     "Red teaming stops being a PDF from six weeks ago. It runs every day, inside the same data plane as your detections — and it doesn't just probe the model. It attacks the whole stack that hosts your AI: agents and their kill chains, MCP servers and tools, the model supply chain, non-human identities and secrets, the vector and data plane, and the cloud infrastructure underneath. Every finding sharpens a defence; every defence invites the next attack. Attack and defence become one loop — the product no point tool can rebuild.":
       "紅隊不再是六週前的一份 PDF。它每天執行,與你的偵測共用同一個資料平面——而且不只測試模型,而是攻擊承載 AI 的整個技術棧:代理與其攻擊鏈、MCP 伺服器與工具、模型供應鏈、非人類身分與機密、向量與資料平面,以至底層雲端基礎設施。每一項發現都讓防護更銳利,每一次防護又招來下一波攻擊。攻與守合為一個循環——這是單點工具做不出來的產品。",
 
+    // expandable layer detail
+    "The gap today": "現在的破口",
+    "Why you need it": "你為什麼需要它",
+    "Most teams can't say how many models and agents they actually run, and only see the AI that passes through the browser. Shadow-AI breaches add USD 670k each — you can't protect what you can't list.":
+      "多數團隊說不出自己到底跑了多少模型與代理,而且只看得到經過瀏覽器的 AI。影子 AI 外洩每次平均多花 67 萬美元——列不出來,就保護不了。",
+    "One live inventory across cloud, code, OAuth and the office suites, with owners and dependencies — so the board question \"how much AI do we run, and who owns it?\" finally has a real answer.":
+      "橫跨雲端、程式碼、OAuth 與辦公套裝的即時清單,附上負責單位與相依關係——讓董事會那句「我們到底跑了多少 AI?誰負責?」終於有確切答案。",
+    "Models arrive unsigned from public hubs — roughly 352,000 unsafe issues were found across 51,700 of them, and attackers have swapped backdoored models into cloud catalogues via namespace reuse.":
+      "模型多半未經簽章就從公開平台進來——其中 51,700 個模型被發現約 352,000 項不安全問題,攻擊者更曾以命名空間重用,把含後門的模型塞進雲端目錄。",
+    "Every model and dataset is signed and verified on the way in and re-checked against new CVEs — substitution and unsafe deserialisation are blocked before production, not found after a breach.":
+      "每個模型與資料集在進入時都經簽章驗證,並持續對照新 CVE 重檢——替換與不安全的反序列化在上線前就被擋下,而不是出事後才發現。",
+    "Agents run on broad, long-lived service keys; 97% of AI-breached organisations lacked proper access controls, so one compromised agent is a standing skeleton key.":
+      "代理使用權限過大、長期有效的服務金鑰;97% 發生 AI 外洩的組織缺乏妥善的存取控管,因此一個被攻陷的代理,就是一把長期有效的萬能鑰匙。",
+    "Each agent gets its own short-lived, scoped identity with just-in-time access and a tamper-evident receipt — damage is contained to one session and provable afterwards.":
+      "每個代理都有自己短效、限定範圍的身分,搭配即時授權與防竄改存證——損害被侷限在單一工作階段,事後也可舉證。",
+    "Prompts, tool calls and inference events never reach your SIEM, so AI incidents leave no forensic trail and the SOC is effectively blind to them.":
+      "提示、工具呼叫與推論事件從未進到你的 SIEM,因此 AI 事件沒有任何鑑識軌跡,SOC 形同看不見。",
+    "An open, OCSF-aligned record of everything the AI did flows into the SIEM you already run — AI finally has an audit trail you can investigate and retain for regulators.":
+      "一份對齊 OCSF 的開放紀錄,把 AI 做過的每件事導入你既有的 SIEM——AI 終於有了可調查、可留存供監理查核的稽核軌跡。",
+    "Every tool sees one weak signal; nobody joins injection → tool abuse → credential reuse → exfiltration, so multi-stage AI attacks read as background noise.":
+      "每個工具只看到一個微弱訊號;沒人把注入 → 工具濫用 → 憑證重用 → 資料外洩串起來,於是多階段 AI 攻擊被當成背景雜訊。",
+    "Cross-layer kill-chain logic fuses those scattered signals into one high-confidence incident in seconds — the attack single-tool stacks never see.":
+      "跨層攻擊鏈邏輯在數秒內把這些零散訊號融合成一起高可信度事件——這正是單點工具永遠看不到的攻擊。",
+    "After an AI incident, piecing together what the model saw, did and leaked across tools takes hours — but SEC disclosure is four days and attacker hand-off is 22 seconds.":
+      "AI 事件發生後,要跨工具拼湊模型看過、做過、外洩過什麼,得花上好幾個小時——但 SEC 揭露時限只有四天,攻擊者接手只要 22 秒。",
+    "Full session reconstruction and output-to-source lineage in one place, with one-click revoke, quarantine, rollback and isolate — contain in minutes, with the evidence already written.":
+      "在同一處完成完整對話重建與「輸出回溯來源」的譜系,並可一鍵撤銷、隔離、回滾與封鎖——數分鐘內圍堵,佐證也已自動寫好。",
+    "Drift, bias and hallucination sit in notebooks the SOC never sees; a regulated model going wrong is both a quality and a security failure, and nobody catches it in time.":
+      "漂移、偏誤與幻覺都躺在 SOC 永遠看不到的 notebook 裡;受監管模型一旦出錯,既是品質問題也是資安事故,卻沒人來得及發現。",
+    "The same engine tracks PSI drift, disparate impact and hallucination on your own models — a quality regression also fires as a security signal, with regulator-ready evidence (e.g. credit-risk PD under MAS / Basel III).":
+      "同一套引擎追蹤你自有模型的 PSI 漂移、差別影響與幻覺——品質退步同時也觸發資安訊號,並附上可供監理查核的佐證(例如 MAS / Basel III 下的信用風險 PD)。",
+    "Red teaming is a six-week-old PDF describing a system that has already changed — and it only tested the model, not the agents, identity, supply chain or cloud beneath it.":
+      "紅隊報告是一份六週前的 PDF,描述的是早已改變的系統——而且它只測了模型,沒測底下的代理、身分、供應鏈與雲端。",
+    "Automated adversarial testing runs daily in the same data plane across the whole stack; every finding tunes a detection and opens a real incident — so you can answer \"did our controls actually hold this quarter?\" with proof.":
+      "自動化對抗測試每天在同一個資料平面、橫跨整個技術棧執行;每項發現都會調校偵測並開立真實事件——讓你能用證據回答「這一季我們的控制措施真的守住了嗎?」。",
+
     // capabilities
     "Everything in AEGIS.": "AEGIS 的完整能力。",
     "AI risk isn't in one neat place — it's across your models, your agents, your supply chain and your people. Here's every gap we close, so you're not buying ten more tools to find out where you stand.":
@@ -363,7 +399,7 @@
     ".kc-node b", ".kc-node span", ".kc-note", ".ui-table th", ".ui-table td",
     ".tab", ".sec-label", ".sec-title", ".lede", ".strip-line", ".vs-head span",
     ".cap-cta p", ".cap-cta .btn",
-    ".layer-body h3", ".layer-body p", ".layer-no em",
+    ".layer-body h3", ".layer-body p", ".layer-no em", ".ld-k",
     ".cap h3", ".cap li", ".step h3", ".step p",
     ".persona-tag", ".persona h3", ".persona p",
     ".cmp .mark", ".cmp p",

@@ -161,8 +161,21 @@ html[data-theme="light"] .theme-tg .t-moon{display:none}
 
 /* layers */
 .layers{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
-.layer{background:var(--bg-alt);display:grid;grid-template-columns:84px 1fr;gap:24px;padding:36px 34px;transition:background .25s}
+.layer{background:var(--bg-alt);display:grid;grid-template-columns:84px 1fr;gap:24px;padding:36px 34px;transition:background .25s;cursor:pointer;position:relative}
 .layer:hover{background:var(--panel)}
+.layer:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.layer::after{content:"+";position:absolute;top:34px;right:30px;font-family:var(--mono);font-size:1.3rem;line-height:1;color:var(--faint);transition:transform .25s,color .2s}
+.layer:hover::after{color:var(--accent)}
+.layer.open::after{transform:rotate(45deg);color:var(--accent)}
+.layer-body p{padding-right:24px}
+.layer-detail{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s ease}
+.layer-detail .ld-in{overflow:hidden;min-height:0}
+.layer.open .layer-detail{grid-template-rows:1fr}
+.ld-in{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:18px;padding-top:18px;border-top:1px solid var(--line)}
+.ld-k{display:block;font-family:var(--mono);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.ld-col p{font-size:.92rem;color:var(--muted);padding-right:0}
+.layer.flagship .ld-col p{color:var(--muted)}
+@media(max-width:680px){.ld-in{grid-template-columns:1fr;gap:18px}}
 .layer-no span{font-family:var(--mono);font-size:2.2rem;font-weight:600;color:transparent;-webkit-text-stroke:1px var(--faint);line-height:1;display:block;transition:-webkit-text-stroke-color .25s}
 .layer:hover .layer-no span{-webkit-text-stroke-color:var(--accent)}
 .layer-no em{display:inline-block;margin-top:12px;font-family:var(--mono);font-size:10px;letter-spacing:1.5px;color:#04130d;background:var(--accent);padding:3px 8px;border-radius:2px;font-weight:600}
