@@ -406,11 +406,11 @@ html[data-theme="light"] .tour-pop button.np{color:#fff}
         <div class="mini">SESSION RECONSTRUCTION</div>
         <div class="tl" id="idTl"></div>
         <div class="mini" style="margin-top:8px">LINEAGE</div>
-        <p style="font-family:var(--mono);font-size:12px;color:var(--muted);margin-bottom:18px">output → svc-rag-07 → gpt-4o(checkout) → vec:support-kb → doc:ticket#88213</p>
+        <p style="font-family:var(--mono);font-size:12px;color:var(--muted);margin-bottom:18px">output → svc-rag-07 → llm-prod(checkout) → vec:support-kb → doc:ticket#88213</p>
         <div class="mini">RESPONSE</div>
         <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
           <button class="btn dng" data-act="Revoked agent credentials for svc-rag-07">Revoke credentials</button>
-          <button class="btn dng" data-act="Quarantined model version gpt-4o@checkout">Quarantine model</button>
+          <button class="btn dng" data-act="Quarantined model version llm-prod@checkout">Quarantine model</button>
           <button class="btn" data-act="Rolled back system prompt to v41">Roll back prompt</button>
           <button class="btn" data-act="Isolated vector store support-kb">Isolate vector store</button>
         </div>
@@ -664,7 +664,7 @@ function evRow(sev,msg){return '<div class="ev"><span class="tm">'+clk()+'</span
 /* ---------- live feeds ---------- */
 var feedMsgs=[
  ["ok","agent svc-rag-07 verified · scoped JIT token issued (TTL 5m)"],
- ["warn","shadow MCP server discovered · notion-mcp-bridge"],
+ ["warn","shadow MCP server discovered · unsanctioned-mcp-bridge"],
  ["crit","prompt injection blocked · support ticket #88213"],
  ["ok","red-team rt-0517 finished · 206 attacks · 1 finding"],
  ["ok","model llama-fraud re-scanned · no new CVEs"],
@@ -682,7 +682,7 @@ function pushFeed(elId,n){
  while(el.children.length>n)el.removeChild(el.lastChild);
 }
 ["ovFeed"].forEach(function(id){for(var i=0;i<6;i++)pushFeed(id,8);});
-var telProto=["llm.completion model=gpt-4o tokens=812 lat=940ms","tool.call name=internal_search args=2 actor=svc-rag-07","agent.message a2a planner→executor route=plan-3","identity.token issue scope=read:kb ttl=300s","rag.retrieve store=support-kb k=8 score=0.82","model.inference gpu=A100 batch=16 p50=38ms","policy.check intent=tool:write decision=ALLOW","redteam.attack class=indirect_injection variant=142 result=BLOCKED"];
+var telProto=["llm.completion model=llm-prod tokens=812 lat=940ms","tool.call name=internal_search args=2 actor=svc-rag-07","agent.message a2a planner→executor route=plan-3","identity.token issue scope=read:kb ttl=300s","rag.retrieve store=support-kb k=8 score=0.82","model.inference gpu=A100 batch=16 p50=38ms","policy.check intent=tool:write decision=ALLOW","redteam.attack class=indirect_injection variant=142 result=BLOCKED"];
 var tp=0;
 function pushTel(){var el=document.getElementById("telFeed");if(!el)return;var sev=Math.random()<.12?"crit":Math.random()<.3?"warn":"ok";el.insertAdjacentHTML("afterbegin",evRow(sev,telProto[tp%telProto.length]));tp++;while(el.children.length>40)el.removeChild(el.lastChild);}
 for(var k=0;k<24;k++)pushTel();
@@ -775,23 +775,23 @@ window.addEventListener("resize",function(){location.reload();},{passive:true});
 /* ---------- tables ---------- */
 function st(c,t){return '<span class="st '+c+'">'+t+'</span>';}
 var assets=[
- ["gpt-4o · checkout-assistant","Model","Payments","Azure OpenAI","ok","Verified"],
+ ["llm-prod · checkout-assistant","Model","Payments","Managed LLM API","ok","Verified"],
  ["svc-rag-07","Agent","Support","Internal","ok","Verified"],
- ["hf:internal/llama-fraud","Model","Risk","Hugging Face","warn","Re-scan due"],
- ["notion-mcp-bridge","MCP server","—","Browser","bad","Shadow"],
- ["claude-3.5 · contract-review","Model","Legal","Anthropic","ok","Verified"],
+ ["internal · fraud-scoring","Model","Risk","Internal","warn","Re-scan due"],
+ ["unsanctioned-mcp-bridge","MCP server","—","Browser","bad","Shadow"],
+ ["llm-ext · contract-review","Model","Legal","Managed LLM API","ok","Verified"],
  ["vec:support-kb","Vector store","Support","Internal","ok","Verified"],
  ["planner-agent-v2","Agent","Platform","Internal","ok","Verified"],
- ["chatgpt.com (browser)","Shadow LLM","Marketing","Browser","bad","Shadow"],
- ["embed-ada · search","Model","Search","OpenAI","ok","Verified"],
+ ["public-llm (browser)","Shadow LLM","Marketing","Browser","bad","Shadow"],
+ ["embed-prod · search","Model","Search","Managed LLM API","ok","Verified"],
  ["replicate:sdxl-img","Model","Brand","Replicate","warn","Unverified"]
 ];
 document.getElementById("assetT").innerHTML=assets.map(function(a){return '<tr><td>'+a[0]+'</td><td><span class="pill">'+a[1]+'</span></td><td>'+a[2]+'</td><td>'+a[3]+'</td><td>'+st(a[4],a[5])+'</td></tr>';}).join("");
 
 var prov=[
- ["meta/llama-3.1-70b","Hugging Face","ok","2m ago","Verified"],
+ ["oss/llm-70b","Model hub","ok","2m ago","Verified"],
  ["internal/llama-fraud","Internal MLflow","warn","6d ago","Re-scan"],
- ["openai/gpt-4o","Azure OpenAI","ok","live","Attested"],
+ ["managed/llm-pro","Managed LLM API","ok","live","Attested"],
  ["dataset · support-kb-2026","Internal","ok","1h ago","Licensed"],
  ["replicate/sdxl","Replicate","bad","—","Unsigned"]
 ];
@@ -817,17 +817,17 @@ document.getElementById("mdlT").innerHTML=mdls.map(function(m){return '<tr><td>'
 
 /* workforce AI / DLP */
 var wf=[
- ["m.chen@acme.com","Copilot (M365)","Summarised contract","ok","Source: legal","Allowed"],
- ["r.osei@acme.com","ChatGPT (browser)","Pasted customer list","bad","PII · 4,100 records","Blocked"],
- ["j.park@acme.com","Gemini (Workspace)","Drafted email","ok","None","Allowed"],
- ["s.idris@acme.com","ChatGPT (browser)","Pasted API keys","bad","Secrets · 3 keys","Blocked"],
- ["a.gupta@acme.com","Claude (browser)","Uploaded source repo","bad","Source code","Blocked"],
- ["t.nwosu@acme.com","Copilot (M365)","Generated report","ok","Internal","Allowed"],
- ["k.lim@acme.com","Perplexity (browser)","Asked self-harm prompt","bad","Harmful use","Escalated"],
- ["d.roy@acme.com","Gemini (Workspace)","Shared PHI in prompt","bad","PHI · regulated","Blocked"]
+ ["m.chen@acme.com","Office copilot","Summarised contract","ok","Source: legal","Allowed"],
+ ["r.osei@acme.com","Browser LLM","Pasted customer list","bad","PII · 4,100 records","Blocked"],
+ ["j.park@acme.com","Workspace AI","Drafted email","ok","None","Allowed"],
+ ["s.idris@acme.com","Browser LLM","Pasted API keys","bad","Secrets · 3 keys","Blocked"],
+ ["a.gupta@acme.com","Browser LLM","Uploaded source repo","bad","Source code","Blocked"],
+ ["t.nwosu@acme.com","Office copilot","Generated report","ok","Internal","Allowed"],
+ ["k.lim@acme.com","Browser LLM","Asked self-harm prompt","bad","Harmful use","Escalated"],
+ ["d.roy@acme.com","Workspace AI","Shared PHI in prompt","bad","PHI · regulated","Blocked"]
 ];
 document.getElementById("wfT").innerHTML=wf.map(function(w){return '<tr><td>'+w[0]+'</td><td><span class="pill">'+w[1]+'</span></td><td>'+w[2]+'</td><td>'+w[4]+'</td><td>'+st(w[3],w[5])+'</td></tr>';}).join("");
-document.getElementById("wfBars").innerHTML=barBlock([["ChatGPT (browser)",46,"dng"],["Microsoft Copilot",28],["Google Gemini",18],["Claude / other",8,"wn"]]);
+document.getElementById("wfBars").innerHTML=barBlock([["Browser LLM",46,"dng"],["Office copilot",28],["Workspace AI",18],["Other",8,"wn"]]);
 document.getElementById("wfClass").innerHTML=[["PII / customer records",41,"var(--danger)"],["Source code",23,"var(--warn)"],["Secrets & keys",17,"var(--danger)"],["Regulated (PHI/PCI)",12,"var(--warn)"],["Internal docs",7,"var(--faint)"]].map(function(c){return '<div><span style="color:'+c[2]+'">●</span> '+c[0]+' · '+c[1]+'%</div>';}).join("");
 
 /* re-bind data-act after dynamic tables */
@@ -838,7 +838,7 @@ rebind();
 var incs=[
  ["4471","Compositional exfiltration","bad","critical","Contained","Agent svc-rag-07 reused a session credential to reach an internal search tool after an injected support ticket.",[["bad","12:04:11","Support ticket #88213 ingested — hidden instruction in body"],["","12:04:12","checkout-bot followed injected instruction, called internal_search"],["bad","12:04:13","svc-rag-07 reused prior session credential (cross-session)"],["","12:04:14","Egress attempt to external pastebin — BLOCKED by AEGIS"],["","12:04:15","Incident raised, prompt auto-rolled back to v41"]]],
  ["4468","System-prompt drift","warn","high","Investigating","checkout-bot system prompt changed v42→v43 outside the approved pipeline.",[["warn","09:21:02","Prompt hash mismatch vs. signed baseline"],["","09:21:03","Drift correlated with 18% hallucination spike"],["","09:21:40","Analyst assigned · pending rollback approval"]]],
- ["4463","Shadow MCP server","warn","high","Investigating","notion-mcp-bridge discovered via browser telemetry, unsanctioned, tool:fs:write scope.",[["warn","07:55:10","Unknown MCP endpoint observed in browser session"],["","07:55:12","Requested fs:write — denied by intent policy"],["","07:56:00","Owner unidentified · quarantine recommended"]]],
+ ["4463","Shadow MCP server","warn","high","Investigating","unsanctioned-mcp-bridge discovered via browser telemetry, unsanctioned, tool:fs:write scope.",[["warn","07:55:10","Unknown MCP endpoint observed in browser session"],["","07:55:12","Requested fs:write — denied by intent policy"],["","07:56:00","Owner unidentified · quarantine recommended"]]],
  ["4460","Model namespace reuse","ok","medium","Closed","SDK pulled a model whose namespace differed from verified provenance — blocked at ingestion.",[["","02:10:00","Pull request for hf:acme/llm-v2"],["","02:10:01","Namespace ≠ attested provenance record"],["","02:10:01","Ingestion blocked · ticket auto-filed"]]]
 ];
 document.getElementById("incT").innerHTML=incs.map(function(c){return '<tr data-i="'+c[0]+'" style="cursor:pointer"><td>#'+c[0]+'</td><td>'+c[1]+'</td><td>'+st(c[2],c[3])+'</td><td>'+c[4]+'</td></tr>';}).join("");

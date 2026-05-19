@@ -7,7 +7,23 @@
 
 Site: https://aegis.hesedemet.asia/
 Vendor: Hesed & Emet Advisory Pte Ltd, Singapore. Phone +65 6829 2146.
-Languages: English and Traditional Chinese (zh-Hant).
+Languages: English, Traditional Chinese, Simplified Chinese, Korean.
+
+## Flagship: Agentic AI red team
+AEGIS·AI's flagship capability is a continuous agentic AI red team that
+attacks the whole agent loop on real targets, with safe execution
+scaffolding: goal and instruction hijacking, tool misuse and excessive
+agency, long-term memory poisoning, multi-agent collusion and A2A spoofing,
+MCP tool poisoning and rug-pull, confused-deputy escalation, compositional
+exfiltration, human-in-the-loop bypass, denial of wallet and runaway loops,
+code-tool sandbox escape, plan and reasoning manipulation, and secret and
+credential harvesting. It also delivers agentic runtime defence (tool-call
+guardrails, just-in-time agent identity, memory and RAG integrity, full
+trajectory replay, A2A authentication, spend caps, one-click quarantine) and
+red-team depth beyond OWASP (multi-turn jailbreaks, gradient and
+adversarial-suffix attacks, indirect injection, membership inference and
+model and data extraction, guardrail evasion, supply-chain simulation),
+mapped to MITRE ATLAS and NIST AI RMF.
 
 ## What it is
 AEGIS·AI is a security operations platform purpose-built for AI systems
