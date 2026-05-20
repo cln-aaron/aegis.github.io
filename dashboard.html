@@ -219,6 +219,31 @@ html[data-theme="light"] .tour-pop button.np{color:#fff}
 }
 .menu-b{display:none;width:34px;height:34px;place-items:center;border:1px solid var(--line);border-radius:5px;background:transparent;color:var(--txt);cursor:pointer}
 @media(max-width:560px){.g4{grid-template-columns:1fr}.search{display:none}}
+/* copilot */
+.cop-fab{position:fixed;right:24px;bottom:24px;z-index:90;width:56px;height:56px;border-radius:50%;border:0;cursor:pointer;background:var(--accent);color:#04130d;display:grid;place-items:center;box-shadow:0 14px 34px -10px rgba(90,242,196,.5);transition:transform .2s}
+.cop-fab:hover{transform:translateY(-2px)}
+.cop-fab svg{width:24px;height:24px}
+.cop{position:fixed;right:24px;bottom:24px;z-index:91;width:380px;max-width:calc(100vw - 32px);height:560px;max-height:calc(100vh - 48px);background:var(--panel-2);border:1px solid var(--line-2);border-radius:14px;box-shadow:0 30px 70px -24px rgba(0,0,0,.7);display:none;flex-direction:column;overflow:hidden}
+.cop.open{display:flex}
+.cop-head{display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.02)}
+.cop-head .av{width:30px;height:30px;border-radius:8px;background:var(--accent);color:#04130d;display:grid;place-items:center;font-weight:700;font-family:var(--mono);font-size:13px}
+.cop-head b{font-size:14px}.cop-head small{display:block;color:var(--faint);font-family:var(--mono);font-size:10.5px}
+.cop-head .x{margin-left:auto;background:none;border:0;color:var(--muted);cursor:pointer;font-size:18px;padding:4px 8px}
+.cop-head .x:hover{color:var(--accent)}
+.cop-log{flex:1;overflow:auto;padding:16px;display:flex;flex-direction:column;gap:12px}
+.cop-msg{max-width:84%;font-size:13.5px;line-height:1.5;padding:10px 13px;border-radius:12px}
+.cop-msg.bot{align-self:flex-start;background:var(--bg-2);border:1px solid var(--line);border-bottom-left-radius:3px}
+.cop-msg.me{align-self:flex-end;background:var(--accent-dim);border:1px solid rgba(90,242,196,.3);color:var(--txt);border-bottom-right-radius:3px}
+.cop-msg b{color:var(--accent)}
+.cop-chips{display:flex;flex-wrap:wrap;gap:7px;padding:0 16px 12px}
+.cop-chips button{font-family:var(--mono);font-size:11.5px;color:var(--muted);background:transparent;border:1px solid var(--line-2);border-radius:20px;padding:7px 12px;cursor:pointer;transition:.15s}
+.cop-chips button:hover{color:var(--accent);border-color:var(--accent)}
+.cop-in{display:flex;gap:8px;padding:12px 14px;border-top:1px solid var(--line)}
+.cop-in input{flex:1;background:var(--bg);border:1px solid var(--line);color:var(--txt);font-family:var(--sans);font-size:13.5px;padding:10px 12px;border-radius:8px;outline:none}
+.cop-in input:focus{border-color:var(--accent)}
+.cop-in button{background:var(--accent);color:#04130d;border:0;border-radius:8px;padding:0 14px;font-weight:600;cursor:pointer}
+.cop-typing{align-self:flex-start;color:var(--faint);font-family:var(--mono);font-size:12px;padding:4px 6px}
+@media(max-width:560px){.cop{height:calc(100vh - 24px);bottom:12px;right:12px}}
 </style>
 </head>
 <body>
@@ -612,6 +637,29 @@ html[data-theme="light"] .tour-pop button.np{color:#fff}
 </main>
 
 <div class="toast" id="toast"></div>
+
+<button class="cop-fab" id="copFab" aria-label="Open AEGIS copilot" title="AEGIS copilot">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 7v5c0 5 3.5 8 8 9 4.5-1 8-4 8-9V7Z"/><path d="M9 12h6M9 9h6"/></svg>
+</button>
+<section class="cop" id="cop" aria-label="AEGIS copilot">
+  <div class="cop-head">
+    <span class="av">AE</span>
+    <div><b>AEGIS Copilot</b><small>tell it what to do</small></div>
+    <button class="x" id="copClose" aria-label="Close">×</button>
+  </div>
+  <div class="cop-log" id="copLog"></div>
+  <div class="cop-chips" id="copChips">
+    <button>Run a red-team campaign</button>
+    <button>Run the agentic kill chain</button>
+    <button>Audit us against ISO 42001</button>
+    <button>Generate the board report</button>
+    <button>What's our posture?</button>
+  </div>
+  <form class="cop-in" id="copForm">
+    <input id="copInput" type="text" placeholder="e.g. start an agentic red team" autocomplete="off" />
+    <button type="submit">Send</button>
+  </form>
+</section>
 
 <script>
 (function(){
@@ -1264,6 +1312,106 @@ setTimeout(function(){
   var ui=tourUI();notify(ui.seenT,ui.seenB);
  }
 },1400);
+
+/* ---------- AEGIS Copilot (intent-driven, drives the real console) ---------- */
+(function(){
+ var fab=document.getElementById("copFab"),panel=document.getElementById("cop"),log=document.getElementById("copLog");
+ if(!fab) return;
+ function open(){panel.classList.add("open");fab.style.display="none";document.getElementById("copInput").focus();}
+ function close(){panel.classList.remove("open");fab.style.display="grid";}
+ fab.addEventListener("click",open);
+ document.getElementById("copClose").addEventListener("click",close);
+ function add(who,html){var d=document.createElement("div");d.className="cop-msg "+who;d.innerHTML=html;log.appendChild(d);log.scrollTop=log.scrollHeight;return d;}
+ function botSay(html,delay){var t=document.createElement("div");t.className="cop-typing";t.textContent="AEGIS is working…";log.appendChild(t);log.scrollTop=log.scrollHeight;setTimeout(function(){t.remove();add("bot",html);},delay||650);}
+ function click(id){var el=document.getElementById(id);if(el)el.click();}
+ function go(v){show(v);}
+
+ var VIEWS=[
+  ["overview",["overview","dashboard","home","posture","summary","kpi"]],
+  ["discovery",["discovery","asset","assets","inventory","shadow"]],
+  ["workforce",["workforce","employee","staff","dlp","data loss","copilot usage"]],
+  ["provenance",["provenance","supply chain","signed","sbom","model origin"]],
+  ["identities",["identity","identities","nhi","credential","token","non-human"]],
+  ["telemetry",["telemetry","events","event stream","logs","ocsf"]],
+  ["killchain",["kill chain","killchain","correlation","correlate"]],
+  ["incidents",["incident","incidents","investigation","investigations","investigate"]],
+  ["assurance",["assurance","drift","bias","hallucination","model risk","credit risk","credit-risk"]],
+  ["redteam",["red team","redteam","red-team","full stack","full-stack"]],
+  ["agentic",["agentic","agent red team","agent kill chain","agent loop"]],
+  ["compliance",["compliance","audit","governance","iso","eu ai act","nist","imda","mas feat","feat","owasp","conformity"]],
+  ["reports",["report","reports","reporting","board pack","executive summary"]],
+  ["settings",["settings","integration","integrations","connector","connectors"]]
+ ];
+ var FW=[["iso42001",["iso 42001","iso/iec 42001","iso42001","42001"]],["euaiact",["eu ai act","eu act","european"]],["nist",["nist"]],["imda",["imda","singapore","model ai governance"]],["feat",["mas feat","feat","mas"]],["owasp",["owasp"]]];
+ function has(t,arr){for(var i=0;i<arr.length;i++){if(t.indexOf(arr[i])>-1)return true;}return false;}
+ function viewName(v){var t=document.querySelector('.nav-i[data-v="'+v+'"]');return t?t.textContent.trim().replace(/\s*(\d+|[A-Z]{3,})$/,""):v;}
+
+ function handle(raw){
+  var t=raw.toLowerCase().trim();
+  var run=/\b(run|start|launch|kick|execute|begin|fire)\b/.test(t);
+  var gen=/\b(generate|create|produce|build|make|draft)\b/.test(t);
+  var exp=/\b(export|download|pull|get)\b/.test(t);
+
+  // Agentic red team
+  if(has(t,["agentic","agent kill chain","agent red team","agent loop"]) && (run||has(t,["kill chain","attack"]))){
+   go("agentic");setTimeout(function(){click("runAgt");},350);
+   return botSay("Launching the <b>agentic kill chain</b> against svc-rag-07. Watch the chain light up on the Agentic red team page: goal hijack, memory poison, tool-chain abuse, A2A spoof, then a blocked exfil. It opens a real incident on any gap.");
+  }
+  // Full-stack red team campaign
+  if((has(t,["red team","redteam","red-team","campaign"])) && run){
+   go("redteam");setTimeout(function(){click("runRT");},350);
+   return botSay("Starting a <b>full-stack red-team campaign</b> across all eight attack domains. The coverage grid and progress bar are updating now on the Red team page; I will surface any finding as an incident.");
+  }
+  // Audits
+  if(has(t,["audit","conformity","compliance"]) && (run||has(t,["iso","nist","owasp","feat","imda","eu ai act"]))){
+   go("compliance");
+   var fw="iso42001",label="ISO/IEC 42001";
+   for(var i=0;i<FW.length;i++){if(has(t,FW[i][1])){fw=FW[i][0];break;}}
+   setTimeout(function(){var chip=document.querySelector('#auPick [data-fw="'+fw+'"]');if(chip)chip.click();setTimeout(function(){click("auRun");},250);},350);
+   return botSay("Running a live <b>"+ (fw==="euaiact"?"EU AI Act":fw==="iso42001"?"ISO/IEC 42001":fw==="nist"?"NIST AI RMF":fw==="imda"?"Singapore IMDA":fw==="feat"?"MAS FEAT":"OWASP") +"</b> conformity audit. You will see it score control by control on the Compliance page. Click any control afterwards for findings and remediation.");
+  }
+  // Reports
+  if((gen||has(t,["report","board"])) && has(t,["report","board","executive","summary"]) && !has(t,["red team","audit"])){
+   go("reports");setTimeout(function(){click("genExec");},350);
+   return botSay("Generating the <b>executive board report</b> now: posture grade, top risks, incidents, red-team coverage and compliance, from live data. It will be ready in the report library in a moment.");
+  }
+  // Discovery sweep
+  if(has(t,["discovery","sweep","scan","inventory"]) && (run||has(t,["sweep","scan","refresh"]))){
+   go("discovery");setTimeout(function(){click("rescanBtn");},350);
+   return botSay("Kicking off a fresh <b>discovery sweep</b> across cloud, code, OAuth and browser. New assets and any shadow AI will appear in the inventory.");
+  }
+  // Guided tour
+  if(has(t,["tour","walkthrough","guide me","show me around","demo me"])){
+   close();setTimeout(startTour,200);
+   return botSay("Starting the <b>guided tour</b>. I will walk you through every capability, step by step.");
+  }
+  // Status / posture
+  if(has(t,["posture","status","summary","how are we","how is our","overview of","what's our","whats our","situation"])){
+   go("overview");
+   var k=document.querySelectorAll('.view[data-view="overview"] .ui-kpi, .view[data-view="overview"] .kpi b');
+   var assets=(document.querySelector('[data-cu="1284"]')||{}).textContent||"1,284";
+   return botSay("Here is the live posture: <b>1,284</b> AI assets governed, <b>7</b> open incidents (3 critical), <b>94%</b> red-team coverage and <b>22</b> shadow-AI items. I have opened the Overview so you can see the live feed and charts.");
+  }
+  // Contain / respond
+  if(has(t,["revoke","quarantine","contain","isolate","roll back","rollback","respond"])){
+   go("incidents");
+   return botSay("Opened <b>Investigations</b> on incident #4471. Use the one-click response row to revoke the agent, quarantine the model, roll back the prompt or isolate the store. Tell me which and I will point you to it.");
+  }
+  // Plain navigation
+  for(var v=0;v<VIEWS.length;v++){ if(has(t,VIEWS[v][1])){ go(VIEWS[v][0]); return botSay("Opening <b>"+viewName(VIEWS[v][0])+"</b>."); } }
+  // Help
+  if(has(t,["help","what can you","commands","options","capabilit"])){
+   return botSay("I can drive the console for you. Try:<br>• <b>Run a red-team campaign</b><br>• <b>Run the agentic kill chain</b><br>• <b>Audit us against ISO 42001</b> (or EU AI Act, NIST, IMDA, MAS FEAT, OWASP)<br>• <b>Generate the board report</b><br>• <b>Run a discovery sweep</b><br>• <b>What's our posture?</b><br>• Or just say <b>open</b> any page (telemetry, identities, kill chain, reports…).");
+  }
+  if(/^(hi|hey|hello|yo|sup)\b/.test(t)) return botSay("Hi. I am the AEGIS copilot. Tell me what to do, for example <b>run the agentic kill chain</b> or <b>audit us against the EU AI Act</b>. Say <b>help</b> for the full list.");
+  return botSay("I did not quite catch an action there. I can run red-team and agentic campaigns, run framework audits, generate reports, sweep discovery, or open any page. Say <b>help</b> to see examples.");
+ }
+
+ function send(text){ if(!text)return; add("me",text.replace(/</g,"&lt;")); handle(text); }
+ document.getElementById("copForm").addEventListener("submit",function(e){e.preventDefault();var i=document.getElementById("copInput");var v=i.value;i.value="";send(v);});
+ document.getElementById("copChips").addEventListener("click",function(e){if(e.target.tagName==="BUTTON")send(e.target.textContent);});
+ add("bot","I am the <b>AEGIS copilot</b>. Tell me what to do and I will run it: start a campaign, run an agentic kill chain, audit a framework, generate a report, or open any page. Try a chip below or say <b>help</b>.");
+})();
 })();
 </script>
 </body>
