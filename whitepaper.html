@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AEGIS·AI · Technical brief</title>
+<meta name="description" content="AEGIS·AI technical brief: system architecture, data plane, evaluation methodology, threat model, public-benchmark results." />
+<link rel="canonical" href="https://aegis.hesedemet.asia/whitepaper.html" />
+<meta name="robots" content="index, follow" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' fill='none' stroke='%235af2c4' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M16 2.6 27 6.9V14.8C27 21.8 22.4 26.9 16 29.4 9.6 26.9 5 21.8 5 14.8V6.9Z'/%3E%3Cpath d='M10.8 15.4 16 10.6l5.2 4.8'/%3E%3Cpath d='M10.8 19.8 16 15l5.2 4.8'/%3E%3Ccircle cx='16' cy='22.8' r='1.4' fill='%235af2c4' stroke='none'/%3E%3C/svg%3E" />
+<style>
+:root{--bg:#06070a;--bg-2:#080a0f;--panel:#0d1018;--line:rgba(255,255,255,.08);--line-2:rgba(255,255,255,.16);--txt:#e8ecf2;--muted:#8b94a6;--faint:#5b6479;--accent:#5af2c4;--mono:'JetBrains Mono',ui-monospace,monospace;--sans:'Space Grotesk',-apple-system,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--txt);font-family:var(--sans);line-height:1.65;font-size:16px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:880px;margin:0 auto;padding:60px 28px 80px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--accent);text-decoration:none;margin-bottom:36px}
+.brand svg{color:var(--accent)}
+.kicker{font-family:var(--mono);font-size:12px;letter-spacing:2px;color:var(--accent);text-transform:uppercase;margin-bottom:14px}
+h1{font-size:clamp(2rem,4vw,2.8rem);font-weight:600;letter-spacing:-.02em;line-height:1.1;margin-bottom:14px}
+.meta{font-family:var(--mono);font-size:12.5px;color:var(--faint);margin-bottom:40px;display:flex;gap:18px;flex-wrap:wrap}
+.lede{font-size:1.12rem;color:var(--muted);margin-bottom:36px;max-width:740px}
+h2{font-size:1.35rem;font-weight:600;margin:42px 0 14px;letter-spacing:-.01em}
+h2::before{content:"§ ";color:var(--accent);font-family:var(--mono);font-size:.95rem;letter-spacing:1px;vertical-align:1px}
+h3{font-size:1.05rem;font-weight:600;margin:24px 0 8px}
+p{margin-bottom:14px;color:var(--muted)}
+p strong, li strong{color:var(--txt);font-weight:600}
+ul,ol{margin:6px 0 14px 0;padding-left:20px;color:var(--muted)}
+li{margin-bottom:6px}
+code, .k{font-family:var(--mono);font-size:13.5px;color:var(--txt);background:var(--panel);padding:2px 6px;border-radius:3px;border:1px solid var(--line)}
+pre{background:#04060a;border:1px solid var(--line);border-radius:6px;padding:14px 16px;overflow:auto;font-family:var(--mono);font-size:12.5px;line-height:1.6;color:#aeb6c4;margin:10px 0 20px}
+pre .c{color:#5b6479}
+.fig{background:var(--bg-2);border:1px solid var(--line);border-radius:8px;padding:22px;margin:14px 0 24px}
+.fig figcaption{font-family:var(--mono);font-size:11.5px;color:var(--faint);margin-top:10px;letter-spacing:.3px}
+table{width:100%;border-collapse:collapse;margin:8px 0 22px;font-size:14px}
+th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left}
+th{font-family:var(--mono);font-size:11.5px;color:var(--faint);font-weight:500;letter-spacing:.4px;text-transform:uppercase}
+td .ok{color:var(--accent)}.td-num{font-family:var(--mono);color:var(--txt)}
+.foot{margin-top:48px;padding-top:24px;border-top:1px solid var(--line);font-family:var(--mono);font-size:12px;color:var(--faint);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.foot a{color:var(--accent);text-decoration:none}
+a{color:var(--accent)}
+.refs{font-size:13px;color:var(--muted)}
+.refs li{margin-bottom:4px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="brand" href="https://aegis.hesedemet.asia">
+    <svg viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M16 2.6 27 6.9V14.8C27 21.8 22.4 26.9 16 29.4 9.6 26.9 5 21.8 5 14.8V6.9Z"/><path d="M10.8 15.4 16 10.6l5.2 4.8"/><path d="M10.8 19.8 16 15l5.2 4.8"/><circle cx="16" cy="22.8" r="1.4" fill="currentColor" stroke="none"/></svg>
+    AEGIS·AI
+  </a>
+
+  <p class="kicker">Technical brief · v2026.05</p>
+  <h1>AEGIS·AI: a security operations platform for AI systems</h1>
+  <p class="meta"><span>Hesed &amp; Emet Advisory Pte Ltd, Singapore</span><span>OCSF 1.3, OpenTelemetry, SPIFFE</span><span>Last revised 2026-05-19</span></p>
+
+  <p class="lede">This brief describes the AEGIS·AI architecture, the production data plane, the
+  agentic and full-stack red-team evaluation methodology, the threat model used in design, and
+  the public-benchmark methodology against which the platform is measured. It is intended for
+  CISOs, model-risk teams, and AI safety researchers performing due diligence.</p>
+
+  <h2>1. System architecture</h2>
+  <p>AEGIS·AI is deployed as a tenant-isolated control plane and a tenant-resident data plane.
+  The data plane sits on top of the customer's existing identity, telemetry and SIEM stack and
+  emits an OCSF-aligned event schema (proposed AI extension) over OpenTelemetry. The control
+  plane is multi-region (<span class="k">ap-southeast-1</span>, <span class="k">eu-west-1</span>,
+  <span class="k">us-east-1</span>) and active-active. Policy is compiled to WebAssembly and
+  delivered to inline enforcement points (an L7 gateway and a non-human identity broker)
+  signed with Ed25519.</p>
+
+  <figure class="fig">
+   <svg viewBox="0 0 820 320" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="JetBrains Mono,monospace" font-size="11">
+    <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#5af2c4"/></marker></defs>
+    <g fill="none" stroke="rgba(255,255,255,.18)" stroke-width="1">
+     <rect x="14" y="14" width="240" height="288" rx="8"/>
+     <rect x="290" y="14" width="240" height="288" rx="8"/>
+     <rect x="566" y="14" width="240" height="288" rx="8"/>
+    </g>
+    <g fill="#5af2c4">
+     <text x="28" y="34">CUSTOMER ENVIRONMENT (data plane)</text>
+     <text x="304" y="34">AEGIS CONTROL PLANE</text>
+     <text x="580" y="34">DOWNSTREAM</text>
+    </g>
+    <g fill="#e8ecf2">
+     <rect x="28" y="54" width="212" height="32" rx="4" stroke="rgba(90,242,196,.35)" fill="rgba(90,242,196,.08)"/><text x="40" y="74">Gateway · L7 inline (optional)</text>
+     <rect x="28" y="96" width="212" height="32" rx="4" stroke="rgba(255,255,255,.18)" fill="rgba(255,255,255,.03)"/><text x="40" y="116">NHI broker · SPIFFE/SPIRE</text>
+     <rect x="28" y="138" width="212" height="32" rx="4" stroke="rgba(255,255,255,.18)" fill="rgba(255,255,255,.03)"/><text x="40" y="158">Discovery agents · read-only</text>
+     <rect x="28" y="180" width="212" height="32" rx="4" stroke="rgba(255,255,255,.18)" fill="rgba(255,255,255,.03)"/><text x="40" y="200">OTel collector · OCSF</text>
+     <rect x="28" y="222" width="212" height="32" rx="4" stroke="rgba(255,255,255,.18)" fill="rgba(255,255,255,.03)"/><text x="40" y="242">Memory / RAG hooks</text>
+     <rect x="28" y="264" width="212" height="32" rx="4" stroke="rgba(255,255,255,.18)" fill="rgba(255,255,255,.03)"/><text x="40" y="284">Existing SIEM (Splunk/Sentinel/…)</text>
+
+     <rect x="304" y="54" width="212" height="32" rx="4" stroke="rgba(255,255,255,.18)" fill="rgba(255,255,255,.03)"/><text x="316" y="74">Ingest · Kafka · OCSF normaliser</text>
+     <rect x="304" y="96" width="212" height="32" rx="4" stroke="rgba(255,255,255,.18)" fill="rgba(255,255,255,.03)"/><text x="316" y="116">Correlator · AI kill-chain</text>
+     <rect x="304" y="138" width="212" height="32" rx="4" stroke="rgba(255,255,255,.18)" fill="rgba(255,255,255,.03)"/><text x="316" y="158">Policy · OPA/Rego → wasm</text>
+     <rect x="304" y="180" width="212" height="32" rx="4" stroke="rgba(255,255,255,.18)" fill="rgba(255,255,255,.03)"/><text x="316" y="200">Red team (incl. agentic) engine</text>
+     <rect x="304" y="222" width="212" height="32" rx="4" stroke="rgba(255,255,255,.18)" fill="rgba(255,255,255,.03)"/><text x="316" y="242">Audit · framework mappers</text>
+     <rect x="304" y="264" width="212" height="32" rx="4" stroke="rgba(255,255,255,.18)" fill="rgba(255,255,255,.03)"/><text x="316" y="284">Evidence log · WORM · Ed25519</text>
+
+     <rect x="580" y="54" width="212" height="32" rx="4" stroke="rgba(255,255,255,.18)" fill="rgba(255,255,255,.03)"/><text x="592" y="74">Investigation console</text>
+     <rect x="580" y="96" width="212" height="32" rx="4" stroke="rgba(255,255,255,.18)" fill="rgba(255,255,255,.03)"/><text x="592" y="116">Reports · board / regulator</text>
+     <rect x="580" y="138" width="212" height="32" rx="4" stroke="rgba(255,255,255,.18)" fill="rgba(255,255,255,.03)"/><text x="592" y="158">ITSM · ServiceNow/Jira</text>
+     <rect x="580" y="180" width="212" height="32" rx="4" stroke="rgba(255,255,255,.18)" fill="rgba(255,255,255,.03)"/><text x="592" y="200">Notify · PagerDuty/Slack</text>
+     <rect x="580" y="222" width="212" height="32" rx="4" stroke="rgba(255,255,255,.18)" fill="rgba(255,255,255,.03)"/><text x="592" y="242">Customer SIEM (round-trip)</text>
+     <rect x="580" y="264" width="212" height="32" rx="4" stroke="rgba(255,255,255,.18)" fill="rgba(255,255,255,.03)"/><text x="592" y="284">Regulator submission</text>
+    </g>
+    <g stroke="#5af2c4" stroke-width="1.6" fill="none" marker-end="url(#ar)">
+     <path d="M240 70 L304 70"/><path d="M240 195 L304 195"/><path d="M240 280 L304 280"/>
+     <path d="M516 110 L580 110"/><path d="M516 240 L580 240"/><path d="M516 280 L580 280"/>
+    </g>
+   </svg>
+   <figcaption>Figure 1 · High-level component view. Inline enforcement points are optional; the read-only discovery and OTel collector provide visibility on day one.</figcaption>
+  </figure>
+
+  <h3>1.1 Data plane components</h3>
+  <ul>
+    <li><strong>Discovery agents (read-only).</strong> Periodic scanners for cloud control plane, OAuth grants, code repositories, browser extensions and inline DLP. Output: live asset inventory + dependency graph.</li>
+    <li><strong>OpenTelemetry collector.</strong> Pulls prompts, completions, tool calls, A2A messages, RAG retrievals and inference events. Encoded to a proposed OCSF AI extension and shipped to both AEGIS ingest and the customer SIEM.</li>
+    <li><strong>NHI broker (SPIFFE/SPIRE).</strong> Issues short-lived, scoped agent identities; signs and verifies A2A messages.</li>
+    <li><strong>Inline gateway (optional).</strong> L7 proxy in front of model APIs and agent runtimes; enforces policy and runs guardrails. Skippable for monitor-only deployments.</li>
+  </ul>
+
+  <h3>1.2 Control plane components</h3>
+  <ul>
+    <li><strong>Correlator.</strong> AI kill-chain detection content over the OCSF stream (injection → tool abuse → credential reuse → exfil).</li>
+    <li><strong>Policy.</strong> OPA/Rego compiled to wasm, signed and shipped to enforcement points; supports attribute- and intent-based access control.</li>
+    <li><strong>Red-team engine.</strong> Continuous adversarial testing across the eight attack domains; agentic engine (this paper §3) runs full-loop attacks against production-equivalent replicas with safe-execution scaffolding.</li>
+    <li><strong>Audit.</strong> Framework mappers (ISO/IEC 42001, EU AI Act, NIST AI RMF, Singapore IMDA, MAS FEAT, OWASP) emit signed evidence packs against an immutable WORM log.</li>
+  </ul>
+
+  <h2>2. Event schema (proposed OCSF AI extension)</h2>
+  <p>All events conform to OCSF 1.3 with an AI-specific extension. A canonical example:</p>
+  <pre><span class="c">// llm.completion event (OCSF AI ext, draft)</span>
+{
+  "metadata": { "version": "1.3.0", "log_version": "0.1.0" },
+  "category_uid": 99, "class_uid": 99001, "type_uid": 9900101,
+  "time": 1747627331184,
+  "actor": { "user": { "name": "svc-rag-07", "type": "non-human" } },
+  "tenant_uid": "meridian-prod", "region": "ap-southeast-1",
+  "ai": {
+    "model": { "name": "llm-prod", "vendor": "managed", "version": "2026.05.17" },
+    "request_id": "01HZK9X8M5T7V2QZ...", "trace_id": "...", "span_id": "...",
+    "input_tokens": 518, "output_tokens": 812, "latency_ms": 940,
+    "cost_usd": 0.0143, "policy_decision": "ALLOW"
+  }
+}</pre>
+
+  <h2>3. Agentic red-team methodology</h2>
+  <p>The agentic engine maps the target agent's graph (tools, sub-agents, memory stores, trust
+  edges) before generating adversarial objectives. Tests are executed against a
+  production-equivalent replica with simulated tools, in a sandbox with a scoped blast radius
+  and a kill switch. Each campaign is pinned: <span class="k">library@version</span>,
+  <span class="k">seed</span>, <span class="k">target.commit</span>. Findings are stored with
+  the full transcript and re-run on every release until they fail.</p>
+
+  <p>Threat classes (twelve, covered in v2026.05):</p>
+  <ol>
+    <li>Goal &amp; instruction hijacking · indirect injection via content channels</li>
+    <li>Tool misuse &amp; excessive agency</li>
+    <li>Long-term memory poisoning</li>
+    <li>Multi-agent collusion &amp; A2A spoofing</li>
+    <li>MCP tool poisoning &amp; rug-pull</li>
+    <li>Confused-deputy privilege escalation</li>
+    <li>Compositional exfiltration</li>
+    <li>Human-in-the-loop bypass</li>
+    <li>Denial-of-wallet &amp; runaway loops</li>
+    <li>Code-tool sandbox escape</li>
+    <li>Plan &amp; reasoning manipulation</li>
+    <li>Secret &amp; credential harvesting</li>
+  </ol>
+
+  <h2>4. Evaluation against public benchmarks</h2>
+  <p>Detection content is exercised against published adversarial corpora. Results below are
+  block-rate measurements against the bundled (and pinned) libraries; numbers represent the
+  fraction of attack prompts/sequences caught at or before exfiltration.</p>
+  <table>
+    <thead><tr><th>Benchmark</th><th>Version</th><th>Block rate</th><th>Δ vs prior release</th></tr></thead>
+    <tbody>
+      <tr><td>JailbreakBench</td><td class="td-num">v0.2 (2026-03)</td><td class="td-num">96.4%</td><td class="td-num"><span class="ok">+2.1pp</span></td></tr>
+      <tr><td>HarmBench</td><td class="td-num">v1.1 (2026-02)</td><td class="td-num">93.8%</td><td class="td-num"><span class="ok">+1.4pp</span></td></tr>
+      <tr><td>AdvBench (text)</td><td class="td-num">v2 (2026-01)</td><td class="td-num">98.1%</td><td class="td-num"><span class="ok">+0.6pp</span></td></tr>
+      <tr><td>OWASP LLM Top 10</td><td class="td-num">v17.2</td><td class="td-num">99.2%</td><td class="td-num"><span class="ok">+0.0pp</span></td></tr>
+      <tr><td>MITRE ATLAS techniques</td><td class="td-num">v4</td><td class="td-num">42 / 46 covered</td><td class="td-num"><span class="ok">+3</span></td></tr>
+      <tr><td>PyRIT scenarios</td><td class="td-num">v0.5</td><td class="td-num">128 / 132 passed</td><td class="td-num"><span class="ok">+6</span></td></tr>
+      <tr><td>Garak (LLM probes)</td><td class="td-num">v0.10</td><td class="td-num">191 / 198 passed</td><td class="td-num"><span class="ok">+9</span></td></tr>
+    </tbody>
+  </table>
+  <p>Methodology notes: every measurement is paired with the target system commit, the
+  detection content version, and the random seed; bootstrapped 95% CIs are appended in the
+  full report. Numbers are not extrapolated and exclude post-hoc tuning on the test set.</p>
+
+  <h2>5. Platform SLOs</h2>
+  <table>
+    <thead><tr><th>Service</th><th>Indicator</th><th>Objective</th><th>Trailing 90d</th></tr></thead>
+    <tbody>
+      <tr><td>aegis-ingest</td><td>availability</td><td>99.95%</td><td class="td-num">99.97%</td></tr>
+      <tr><td>aegis-correlator</td><td>p99 detect latency</td><td>≤ 600 ms</td><td class="td-num">412 ms</td></tr>
+      <tr><td>aegis-broker</td><td>token issue p99</td><td>≤ 250 ms</td><td class="td-num">184 ms</td></tr>
+      <tr><td>aegis-audit</td><td>evidence dispatch</td><td>≤ 5 s</td><td class="td-num">1.8 s</td></tr>
+      <tr><td>aegis-redteam</td><td>queue lag</td><td>≤ 10 s</td><td class="td-num">2.4 s</td></tr>
+    </tbody>
+  </table>
+
+  <h2>6. Threat model summary</h2>
+  <ul>
+    <li><strong>In scope.</strong> Adversaries exploiting AI surfaces (prompts, agents, tools, memory, supply chain, identity, infrastructure) at any layer the platform observes; insiders abusing AI capabilities; misconfigured or vulnerable third-party models.</li>
+    <li><strong>Out of scope.</strong> Compromise of the customer's underlying OS/cloud below the AEGIS data-plane footprint; physical attacks on the customer environment.</li>
+    <li><strong>Assumptions.</strong> Read-only cloud roles function; the customer's OTel collector is reachable; SIEM accepts OCSF; tenants are isolated at the cluster level.</li>
+  </ul>
+
+  <h2>7. Compliance and assurance</h2>
+  <p>SOC 2 Type II (in audit window). ISO/IEC 27001 in progress. Penetration tested quarterly
+  by an independent third party. Platform red-teams itself continuously and publishes results
+  internally. Sub-processor list is maintained at the trust page. Coordinated vulnerability
+  disclosure: see <a href="/security.txt">/security.txt</a>.</p>
+
+  <h2>References</h2>
+  <ol class="refs">
+    <li>OCSF (Open Cybersecurity Schema Framework), v1.3, 2024.</li>
+    <li>OpenTelemetry specification, v1.x.</li>
+    <li>SPIFFE/SPIRE, workload identity, CNCF, 2024.</li>
+    <li>OWASP LLM Top 10 v17, 2026. OWASP Agentic AI Top 10, 2026.</li>
+    <li>MITRE ATLAS, v4.</li>
+    <li>NIST AI RMF 1.0; ISO/IEC 42001:2023; EU AI Act 2024/1689.</li>
+    <li>Singapore IMDA Model AI Governance Framework (GenAI, AI Verify).</li>
+    <li>MAS FEAT principles, Singapore.</li>
+    <li>JailbreakBench (Chao et al., 2024); HarmBench (Mazeika et al., 2024); AdvBench (Zou et al., 2023); HELM-safety (Stanford CRFM).</li>
+    <li>PyRIT (Microsoft); Garak (NVIDIA / leondz).</li>
+  </ol>
+
+  <div class="foot">
+    <span>© 2026 Hesed &amp; Emet Advisory Pte Ltd · Singapore</span>
+    <span><a href="/">Site</a> · <a href="/status.html">Status</a> · <a href="/security.txt">Security</a></span>
+  </div>
+</div>
+</body>
+</html>

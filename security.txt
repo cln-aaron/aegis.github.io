@@ -1,0 +1,5 @@
+Contact: mailto:security@hesedemet.asia
+Expires: 2027-01-01T00:00:00Z
+Preferred-Languages: en
+Canonical: https://aegis.hesedemet.asia/security.txt
+Policy: https://aegis.hesedemet.asia/whitepaper.html#section-7
