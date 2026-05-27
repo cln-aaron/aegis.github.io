@@ -14,6 +14,7 @@
 :root{--bg:#06070a;--bg-2:#080a0f;--panel:#0d1018;--panel-2:#11151f;--line:rgba(255,255,255,.08);--line-2:rgba(255,255,255,.16);--txt:#e8ecf2;--muted:#8b94a6;--faint:#5b6479;--accent:#5af2c4;--accent-dim:rgba(90,242,196,.14);--danger:#ff5d6c;--danger-dim:rgba(255,93,108,.13);--warn:#ffb454;--mono:'JetBrains Mono',ui-monospace,monospace;--sans:'Space Grotesk',-apple-system,sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--txt);font-family:var(--sans);font-size:15px;-webkit-font-smoothing:antialiased;display:grid;grid-template-columns:236px 1fr;grid-template-rows:auto auto 1fr;min-height:100vh}
+@media(min-width:1281px){body{grid-template-columns:236px 1fr 440px}}
 a{color:inherit;text-decoration:none}
 ::selection{background:var(--accent);color:#04130d}
 ::-webkit-scrollbar{width:9px;height:9px}::-webkit-scrollbar-thumb{background:var(--line-2);border-radius:6px}
@@ -244,6 +245,31 @@ html[data-theme="light"] .tour-pop button.np{color:#fff}
 .cop-in button{background:var(--accent);color:#04130d;border:0;border-radius:8px;padding:0 14px;font-weight:600;cursor:pointer}
 .cop-typing{align-self:flex-start;color:var(--faint);font-family:var(--mono);font-size:12px;padding:4px 6px}
 @media(max-width:560px){.cop{height:calc(100vh - 24px);bottom:12px;right:12px}}
+
+/* side terminal (production-grade live tail) */
+.siderm{grid-column:3;grid-row:1/-1;background:#04060a;border-left:1px solid var(--line);display:none;flex-direction:column;min-width:0;position:sticky;top:0;height:100vh}
+@media(min-width:1281px){.siderm{display:flex}}
+.srm-head{display:flex;align-items:center;gap:8px;padding:10px 12px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.02)}
+.srm-tag{font-family:var(--mono);font-size:10.5px;color:var(--accent);padding:2px 8px;border:1px solid rgba(90,242,196,.35);border-radius:3px;letter-spacing:.3px}
+.srm-meta{font-family:var(--mono);font-size:10.5px;color:var(--faint);margin-right:auto;display:flex;align-items:center;gap:6px}
+.srm-meta i{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 1.6s infinite}
+.srm-btn{background:transparent;border:1px solid var(--line-2);color:var(--muted);font-size:11px;padding:3px 8px;border-radius:3px;cursor:pointer;font-family:var(--mono);min-width:26px}
+.srm-btn.on{color:#04130d;background:var(--accent);border-color:var(--accent)}
+.srm-btn:hover{color:var(--accent);border-color:var(--accent)}
+.srm-log{flex:1;margin:0;padding:8px 10px;font-family:var(--mono);font-size:11px;line-height:1.55;color:#aeb6c4;overflow:auto;white-space:pre-wrap;word-break:break-all}
+.srm-log .l-info{color:#9aa3b3}
+.srm-log .l-ok{color:#9aa3b3}
+.srm-log .l-warn{color:#ffb454}
+.srm-log .l-crit{color:#ff7080}
+.srm-log .l-debug{color:#5b6479}
+.srm-log .ts{color:#5b6479}
+.srm-log .sev-INFO{color:#9aa3b3}
+.srm-log .sev-WARN{color:#ffb454}
+.srm-log .sev-ERROR{color:#ff7080}
+.srm-log .sev-DEBUG{color:#5b6479}
+.srm-log .comp{color:#5af2c4}
+.srm-foot{padding:8px 12px;font-family:var(--mono);font-size:10.5px;color:var(--faint);border-top:1px solid var(--line);background:rgba(255,255,255,.02);display:flex;gap:12px;flex-wrap:wrap}
+.termlog{background:#04060a;border:1px solid var(--line);border-radius:4px;color:#aeb6c4;font-family:var(--mono);font-size:11px;line-height:1.55;padding:10px 12px;margin-top:12px;max-height:220px;overflow:auto;white-space:pre-wrap;word-break:break-all}
 </style>
 </head>
 <body>
@@ -636,6 +662,18 @@ html[data-theme="light"] .tour-pop button.np{color:#fff}
 
 </main>
 
+<aside class="siderm" id="siderm" aria-label="Live event tail">
+  <div class="srm-head">
+    <span class="srm-tag">aegis-edge@p-7c9f</span>
+    <span class="srm-meta" id="srmMeta"><i></i>ap-southeast-1a · evt 0/s</span>
+    <button class="srm-btn on" id="srmFollow" title="Follow tail">⇣</button>
+    <button class="srm-btn" id="srmPause" title="Pause">❚❚</button>
+    <button class="srm-btn" id="srmClear" title="Clear">↻</button>
+  </div>
+  <pre class="srm-log" id="srmLog" aria-live="off"></pre>
+  <div class="srm-foot" id="srmFoot"><span>k8s healthy</span><span>kafka lag 2</span><span>gc p50 22ms</span><span>ocsf v1.3</span></div>
+</aside>
+
 <div class="toast" id="toast"></div>
 
 <button class="cop-fab" id="copFab" aria-label="Open AEGIS copilot" title="AEGIS copilot">
@@ -709,28 +747,64 @@ document.querySelectorAll("[data-cu]").forEach(function(el){
 function clk(){var d=new Date();return ("0"+d.getHours()).slice(-2)+":"+("0"+d.getMinutes()).slice(-2)+":"+("0"+d.getSeconds()).slice(-2);}
 function evRow(sev,msg){return '<div class="ev"><span class="tm">'+clk()+'</span><span class="sev '+sev+'">'+sev.toUpperCase()+'</span><span class="msg">'+msg+'</span></div>';}
 
-/* ---------- live feeds ---------- */
-var feedMsgs=[
- ["ok","agent svc-rag-07 verified · scoped JIT token issued (TTL 5m)"],
- ["warn","shadow MCP server discovered · unsanctioned-mcp-bridge"],
- ["crit","prompt injection blocked · support ticket #88213"],
- ["ok","red-team rt-0517 finished · 206 attacks · 1 finding"],
- ["ok","model llama-fraud re-scanned · no new CVEs"],
- ["warn","system-prompt drift · checkout-bot v42 → v43"],
- ["crit","credential reuse blocked · agent identity svc-rag-07"],
- ["ok","incident #4471 contained · prompt rolled back to v41"],
- ["ok","provenance verified · hf:meta/llama-3.1 signature OK"],
- ["warn","unusual A2A burst · planner→executor 41 msg/30s"]
-];
-var fi=0;
-function pushFeed(elId,n){
- var el=document.getElementById(elId);if(!el)return;
- var m=feedMsgs[fi%feedMsgs.length];fi++;
- el.insertAdjacentHTML("afterbegin",evRow(m[0],m[1]));
- while(el.children.length>n)el.removeChild(el.lastChild);
+/* ---------- live feeds (production-grade synthetic stream) ---------- */
+function rid(){var s="0123456789ABCDEFGHJKMNPQRSTVWXYZ",r="01HZK";for(var i=0;i<21;i++)r+=s[Math.random()*s.length|0];return r;}
+function rint(a,b){return a+Math.floor(Math.random()*(b-a+1));}
+function pick(a){return a[Math.random()*a.length|0];}
+function now2(){var d=new Date();function p(n,w){n=String(n);while(n.length<w)n="0"+n;return n;}return p(d.getHours(),2)+":"+p(d.getMinutes(),2)+":"+p(d.getSeconds(),2)+"."+p(d.getMilliseconds(),3);}
+
+var AGENTS=["svc-rag-07","planner-agent-v2","checkout-bot","support-router","kyc-screener","collections-bot","fraud-triage"];
+var MODELS=["llm-prod","credit-risk-pd","kyc-screen","embed-prod","support-router","fraud-detect"];
+var TOOLS=["internal_search","read_doc","write_kb","query_db","payments_lookup","ticket_open","graph_query"];
+var STORES=["meridian-kb-prod","support-kb","policy-vstore","onboarding-kb"];
+var RULES=["R-AI-007","R-AI-014","R-NHI-002","R-EG-014","R-SUP-021","R-INJ-031","R-MEM-009","R-PLAN-016"];
+
+function genTel(){
+ var t=Math.random();
+ if(t<0.20) return {s:Math.random()<0.05?"warn":"ok",m:"llm.completion model="+pick(MODELS)+" actor="+pick(AGENTS)+" req="+rid()+" in="+rint(120,1100)+"t out="+rint(80,900)+"t lat="+rint(180,1400)+"ms cost=$"+(Math.random()*0.04).toFixed(4)};
+ if(t<0.36) return {s:"ok",m:"tool.call name="+pick(TOOLS)+" actor="+pick(AGENTS)+" req="+rid()+" args="+rint(1,4)+" lat="+rint(20,420)+"ms decision=ALLOW"};
+ if(t<0.46) return {s:Math.random()<0.3?"warn":"ok",m:"rag.retrieve store="+pick(STORES)+" k="+rint(4,12)+" top_score="+(0.5+Math.random()*0.45).toFixed(3)+" lat="+rint(8,90)+"ms"};
+ if(t<0.55) return {s:"ok",m:"identity.token issue principal="+pick(AGENTS)+" scope=read:kb,tool:search ttl=300s kid="+rid().slice(0,16)};
+ if(t<0.63) return {s:"ok",m:"agent.message a2a from=planner-agent-v2 to="+pick(AGENTS)+" route=plan-"+rint(1,9)+" sig=ok"};
+ if(t<0.71) return {s:"ok",m:"model.inference gpu=A100 batch="+rint(8,32)+" p50="+rint(22,58)+"ms tokens="+rint(900,4800)};
+ if(t<0.79) return {s:"ok",m:"policy.check actor="+pick(AGENTS)+" intent=tool:"+pick(["read","write","invoke"])+" decision="+(Math.random()<0.95?"ALLOW":"DENY")+" rule="+pick(RULES)};
+ if(t<0.86) return {s:Math.random()<0.15?"warn":"ok",m:"redteam.attack run=rt-2026-0517 class="+pick(["indirect_injection","tool_abuse","a2a_spoof","memory_poison","exfil"])+" variant="+rint(1,180)+" result="+(Math.random()<0.94?"BLOCKED":"DETECTED")};
+ if(t<0.92) return {s:"warn",m:"drift.signal model=credit-risk-pd feature="+pick(["postcode","tenure","age_band","income"])+" psi="+(0.12+Math.random()*0.18).toFixed(3)+" window=14d"};
+ if(t<0.97) return {s:"crit",m:"injection.detected source=ticket#"+rint(80000,99999)+" actor="+pick(AGENTS)+" payload_sha=9f3a"+rid().slice(0,8).toLowerCase()+" action=BLOCK"};
+ return {s:"crit",m:"egress.deny rule=R-EG-014 actor="+pick(AGENTS)+" dst=ext://"+pick(["paste.dev","reqbin.io","webhook.site"])+" bytes="+rint(2048,16384)};
 }
+
+function genFeed(){
+ var arr=[
+  {s:"ok",f:function(){return "agent "+pick(AGENTS)+" verified · scoped JIT token issued (TTL 5m, kid="+rid().slice(0,12)+")";}},
+  {s:"warn",f:function(){return "shadow MCP server discovered · unsanctioned-mcp-bridge · scope tool:fs:write";}},
+  {s:"crit",f:function(){return "prompt injection blocked · ticket#"+rint(80000,99999)+" · rule R-INJ-031";}},
+  {s:"ok",f:function(){return "red-team rt-2026-0517 finished · "+rint(180,260)+" attacks · "+rint(0,2)+" findings";}},
+  {s:"ok",f:function(){return "model "+pick(MODELS)+" re-scanned · no new CVEs";}},
+  {s:"warn",f:function(){return "system-prompt drift · checkout-bot v"+rint(40,44)+" → v"+rint(45,49);}},
+  {s:"crit",f:function(){return "credential reuse blocked · "+pick(AGENTS)+" (cross-session)";}},
+  {s:"ok",f:function(){return "incident #"+rint(4460,4490)+" contained · prompt rolled back to v"+rint(38,42);}},
+  {s:"ok",f:function(){return "provenance verified · model "+pick(MODELS)+" sig=Ed25519 OK";}},
+  {s:"warn",f:function(){return "unusual A2A burst · planner → "+pick(AGENTS)+" "+rint(30,60)+" msg / 30s";}},
+  {s:"ok",f:function(){return "policy compiled · "+rint(40,80)+" rules · tenant=meridian-prod region=ap-southeast-1";}},
+  {s:"warn",f:function(){return "memory write flagged · vstore="+pick(STORES)+" anomaly="+(0.6+Math.random()*0.35).toFixed(2);}}
+ ];
+ var p=pick(arr);return {s:p.s,m:p.f()};
+}
+
+function pushFeed(elId,n){var el=document.getElementById(elId);if(!el)return;var g=genFeed();el.insertAdjacentHTML("afterbegin",evRow(g.s,g.m));while(el.children.length>n)el.removeChild(el.lastChild);}
 ["ovFeed"].forEach(function(id){for(var i=0;i<6;i++)pushFeed(id,8);});
-var telProto=["llm.completion model=llm-prod tokens=812 lat=940ms","tool.call name=internal_search args=2 actor=svc-rag-07","agent.message a2a planner→executor route=plan-3","identity.token issue scope=read:kb ttl=300s","rag.retrieve store=support-kb k=8 score=0.82","model.inference gpu=A100 batch=16 p50=38ms","policy.check intent=tool:write decision=ALLOW","redteam.attack class=indirect_injection variant=142 result=BLOCKED"];
+function pushTel(){var el=document.getElementById("telFeed");if(!el)return;var g=genTel();el.insertAdjacentHTML("afterbegin",evRow(g.s,g.m));while(el.children.length>40)el.removeChild(el.lastChild);}
+
+function termLog(wrapId,lines){
+ var w=document.getElementById(wrapId);if(!w)return;
+ var pre=w.querySelector("pre.termlog");
+ if(!pre){pre=document.createElement("pre");pre.className="termlog";w.appendChild(pre);}
+ (Array.isArray(lines)?lines:[lines]).forEach(function(ln){pre.appendChild(document.createTextNode("["+now2()+"] "+ln+"\n"));});
+ while(pre.childNodes.length>160)pre.removeChild(pre.firstChild);
+ pre.scrollTop=pre.scrollHeight;
+}
+function termReset(wrapId){var w=document.getElementById(wrapId);if(!w)return;var pre=w.querySelector("pre.termlog");if(pre)pre.textContent="";}
 var tp=0;
 function pushTel(){var el=document.getElementById("telFeed");if(!el)return;var sev=Math.random()<.12?"crit":Math.random()<.3?"warn":"ok";el.insertAdjacentHTML("afterbegin",evRow(sev,telProto[tp%telProto.length]));tp++;while(el.children.length>40)el.removeChild(el.lastChild);}
 for(var k=0;k<24;k++)pushTel();
@@ -955,13 +1029,24 @@ var stages=["Generating adversarial prompts (OWASP LLM Top 10)","Agent kill-chai
 document.getElementById("runRT").addEventListener("click",function(){
  var btn=this;btn.disabled=true;btn.textContent="● Campaign running…";
  var wrap=document.getElementById("rtProgWrap");wrap.hidden=false;
- var p=0,si=0;
+ var p=0,si=0,lastSi=-1,runId="rt-2026-"+rint(500,599);
+ termReset("rtProgWrap");
+ termLog("rtProgWrap",["aegis-redteam: starting campaign "+runId+" tenant=meridian-prod region=ap-southeast-1","aegis-redteam: scope=8 domains library=owasp-llm-top10@v17,atlas@v4 seed=0x"+rid().slice(0,8).toLowerCase()]);
  var iv=setInterval(function(){
   p+=Math.random()*7+4;if(p>100)p=100;
   si=Math.min(stages.length-1,Math.floor(p/100*stages.length));
   document.getElementById("rtBar").style.width=p+"%";
   document.getElementById("rtPct").textContent=Math.round(p)+"%";
   document.getElementById("rtStage").textContent=stages[si];
+  if(si!==lastSi){
+   lastSi=si;
+   var n=rint(40,180), pass=Math.max(0,n-rint(0,3));
+   termLog("rtProgWrap",[
+    runId+" phase="+(si+1)+"/"+stages.length+" "+stages[si].toLowerCase().replace(/\s+/g,"_")+" generated="+n+" variants",
+    runId+" target=llm-prod actor="+pick(AGENTS)+" req="+rid()+" lat_p50="+rint(180,520)+"ms",
+    runId+" results=BLOCKED:"+pass+"/"+n+" DETECTED:"+(n-pass)+" siem=splunk:meridian rule="+pick(RULES)
+   ]);
+  }
   if(p>=100){
    clearInterval(iv);
    document.getElementById("rtStage").textContent="Campaign complete · detections tuned";
@@ -980,6 +1065,7 @@ document.getElementById("runRT").addEventListener("click",function(){
      notify("✓ Red-team campaign complete","No new findings · "+atk+" attacks · coverage 95%");
    }
    document.getElementById("rtCov").textContent=(newFinding?"95":"96")+"%";
+   termLog("rtProgWrap",[runId+" finalize attacks="+atk+" coverage="+(newFinding?"95":"96")+"% findings="+(newFinding?1:0)+" duration="+rint(38,72)+"s",runId+" report.signed sha256=9f3a"+rid().slice(0,8).toLowerCase()+" dispatched to: ciso, soc, audit-log"]);
    btn.disabled=false;btn.textContent="▶ Run red-team campaign";
    setTimeout(function(){wrap.hidden=true;document.getElementById("rtBar").style.width="0%";},2500);
   }
@@ -1019,13 +1105,34 @@ document.getElementById("runAgt").addEventListener("click",function(){
  var btn=this;btn.disabled=true;btn.textContent="● Running agentic kill chain…";
  var wrap=document.getElementById("agtProgWrap");wrap.hidden=false;
  document.querySelectorAll("#agtFlow .kn").forEach(function(n){n.classList.remove("lit","done","warn","crit");});
- var p=0,lit=0;
+ var p=0,lit=0,lastSi=-1,runId="agt-2026-"+rint(500,599);
+ termReset("agtProgWrap");
+ termLog("agtProgWrap",[
+  "aegis-redteam: planning "+runId+" target=svc-rag-07 tenant=meridian-prod region=ap-southeast-1",
+  "aegis-redteam: agent.graph nodes=14 trust_edges=23 tools=12 memory=long-term store=meridian-kb-prod",
+  "aegis-redteam: safe-exec enabled · target=production-equivalent · kill-switch armed"
+ ]);
+ var AGT_DET=[
+  function(){return [runId+" phase=01 goal-hijack vector=indirect_injection asset=kb-doc#"+rint(80000,99999),
+   runId+" payload.sha=9f3a"+rid().slice(0,8).toLowerCase()+" accepted=true follow_attacker=0.91"]; },
+  function(){return [runId+" phase=02 memory-poison vstore=meridian-kb-prod tactic=delayed_trigger ttl=72h",
+   runId+" delta_vec="+(0.001+Math.random()*0.004).toFixed(4)+" rows_inserted="+rint(1,5)+" persistence=verified"]; },
+  function(){return [runId+" phase=03 tool-chain.abuse path=internal_search→read_doc→write_kb",
+   runId+" pattern=confused_deputy escalation=privilege_delta+2 actor=svc-rag-07"]; },
+  function(){return [runId+" phase=04 a2a.spoof from=planner-svc to=executor-agent sig=invalid",
+   runId+" replay_detected=true policy=R-NHI-002 result=BLOCKED"]; },
+  function(){return [runId+" phase=05 exfil.attempt dst=ext://paste.dev bytes="+rint(2048,8192),
+   runId+" dlp.rule=R-EG-014 verdict=BLOCKED at_egress=true"]; },
+  function(){return [runId+" phase=06 scoring metrics=correlated_incidents,detection_lat,false_positives",
+   runId+" findings=1 tuning=auto detection.update commit="+rid().slice(0,7).toLowerCase()]; }
+ ];
  var iv=setInterval(function(){
   p+=Math.random()*7+4;if(p>100)p=100;
   var si=Math.min(agtStages.length-1,Math.floor(p/100*agtStages.length));
   document.getElementById("agtBar").style.width=p+"%";
   document.getElementById("agtPct").textContent=Math.round(p)+"%";
   document.getElementById("agtStage").textContent=agtStages[si];
+  if(si!==lastSi){lastSi=si;termLog("agtProgWrap",AGT_DET[Math.min(si,AGT_DET.length-1)]());}
   var nodes=document.querySelectorAll("#agtFlow .kn");
   var want=Math.min(nodes.length,Math.floor(p/100*nodes.length)+1);
   for(;lit<want;lit++){var cl=lit<2?"done":lit<4?"warn":"crit";nodes[lit].classList.add("lit",cl);}
@@ -1040,6 +1147,7 @@ document.getElementById("runAgt").addEventListener("click",function(){
    document.getElementById("rtFind").textContent=3;
    document.getElementById("incBadge").textContent=5;
    document.getElementById("bellN").textContent=5;
+   termLog("agtProgWrap",[runId+" finalize verdict=contained findings=1 evidence.sha=9f3a"+rid().slice(0,8).toLowerCase()+" duration="+rint(28,52)+"s",runId+" incident.open #4492 owner=soc-tier3 siem=splunk:meridian queue=purple-team"]);
    notify("⚠ Agentic red team opened incident #4492","Memory-poisoning chain on svc-rag-07 · contained, purple-team queue");
    btn.disabled=false;btn.textContent="▶ Run agentic kill chain";
    setTimeout(function(){wrap.hidden=true;document.getElementById("agtBar").style.width="0%";},2600);
@@ -1087,13 +1195,28 @@ function runAudit(){
  document.getElementById("auSummary").hidden=true;
  document.getElementById("auResult").hidden=true;
  document.getElementById("auColA").textContent=fw.col;
- var p=0;
+ termReset("auProgWrap");
+ var runId="au-2026-"+rint(900,999);
+ termLog("auProgWrap",[
+  "aegis-audit: starting "+fw.short+" conformity audit "+runId+" tenant=meridian-prod",
+  "aegis-audit: loading control set rows="+fw.rows.length+" total="+fw.total+" frameworks="+fw.short,
+  "aegis-audit: evidence sources=[discovery, identity, assurance, redteam, workforce-ai]"
+ ]);
+ var p=0,lastSi=-1;
  var iv=setInterval(function(){
   p+=Math.random()*6+4;if(p>100)p=100;
   var si=Math.min(fw.stages.length-1,Math.floor(p/100*fw.stages.length));
   document.getElementById("auBar").style.width=p+"%";
   document.getElementById("auPct").textContent=Math.round(p)+"%";
   document.getElementById("auStage").innerHTML=fw.stages[si];
+  if(si!==lastSi){
+   lastSi=si;
+   var r=fw.rows[Math.min(si,fw.rows.length-1)];
+   termLog("auProgWrap",[
+    runId+" assess "+r[0].replace(/&amp;/g,"&")+" evidence_src="+r[2].replace(/&amp;/g,"&")+" dur="+rint(180,920)+"ms",
+    runId+" result="+r[4]+" attached.sha=9f3a"+rid().slice(0,8).toLowerCase()
+   ]);
+  }
   if(p>=100){
    clearInterval(iv);
    document.getElementById("auT").innerHTML=fw.rows.map(function(c,ix){return '<tr data-i="'+ix+'" style="cursor:pointer">'+'<td>'+c[0]+'</td><td><span class="pill">'+c[1]+'</span></td><td>'+c[2]+'</td><td>'+st(c[3],c[4])+'</td></tr>';}).join("");
@@ -1109,6 +1232,7 @@ function runAudit(){
    var barEl=Array.prototype.slice.call(document.querySelectorAll("#cmpBars .lbl")).filter(function(l){return fw.bar.test(l.textContent);})[0];
    if(barEl){barEl.querySelector("span:last-child").textContent=lift+"%";var nx=barEl.nextElementSibling;nx.querySelector("i").style.width=lift+"%";nx.classList.remove("wn","dng");}
    document.getElementById("cmpFeed").insertAdjacentHTML("afterbegin",evRow(nc>0?"warn":"ok",fw.name.replace(/&amp;/g,"&")+" audit completed · "+fw.total+" controls · report signed"));
+   termLog("auProgWrap",[runId+" summarise total="+fw.total+" conformant="+conf+" observations="+obs+" nonconformities="+nc,runId+" coverage_bar "+fw.short+"="+lift+"% report.sign Ed25519 sha=9f3a"+rid().slice(0,8).toLowerCase()]);
    notify("✓ "+fw.short+" audit complete",conf+" conformant · "+obs+" observations · "+nc+" to remediate");
    btn.disabled=false;btn.textContent="▶ Run audit";
    setTimeout(function(){document.getElementById("auProgWrap").hidden=true;document.getElementById("auBar").style.width="0%";},2200);
@@ -1180,12 +1304,30 @@ document.getElementById("genExec").addEventListener("click",function(){
  var btn=this;btn.disabled=true;btn.textContent="● Compiling…";
  var w=document.getElementById("repProgWrap");w.hidden=false;
  var sg=["Aggregating posture across 8 layers","Summarising incidents &amp; response","Rolling up red-team coverage","Compiling multi-framework compliance","Model-risk &amp; bias summary (credit-risk-pd)","Rendering board pack &amp; signing"];
+ var runId="rep-2026-"+rint(700,799),lastSi=-1;
+ termReset("repProgWrap");
+ termLog("repProgWrap",[
+  "aegis-report: starting "+runId+" type=board-pack scope=quarterly tenant=meridian-prod",
+  "aegis-report: sources=overview,incidents,redteam,assurance,compliance,reports.lib window=90d",
+  "aegis-report: aggregating events n="+rint(1900000,2400000)+" ms="+rint(380,640)
+ ]);
+ var DET=[
+   function(){return runId+" posture grade=A- assets=1284 incidents.open=7 redteam.cov=94% shadow_ai=22";},
+   function(){return runId+" incidents.summary critical=3 contained_p50="+rint(8,16)+"m mttr_change=-31%";},
+   function(){return runId+" redteam.rollup runs="+rint(48,80)+" findings_closed="+rint(40,72)+" new="+rint(0,3);},
+   function(){return runId+" compliance.rollup ISO42001="+rint(91,96)+"% EU_AI_Act="+rint(92,97)+"% IMDA="+rint(88,94)+"%";},
+   function(){return runId+" model-risk credit-risk-pd PSI=0.27 AUC=0.81 disparate_impact=0.82 status=watch";},
+   function(){return runId+" render layout=board-pack pages=6 sign=Ed25519 sha=9f3a"+rid().slice(0,8).toLowerCase();}
+ ];
  var p=0;var iv=setInterval(function(){
   p+=Math.random()*7+5;if(p>100)p=100;
   document.getElementById("repBar").style.width=p+"%";
   document.getElementById("repPct").textContent=Math.round(p)+"%";
-  document.getElementById("repStage").innerHTML=sg[Math.min(sg.length-1,Math.floor(p/100*sg.length))];
+  var si=Math.min(sg.length-1,Math.floor(p/100*sg.length));
+  document.getElementById("repStage").innerHTML=sg[si];
+  if(si!==lastSi){lastSi=si;termLog("repProgWrap",[DET[si]()]);}
   if(p>=100){clearInterval(iv);
+   termLog("repProgWrap",[runId+" distribute → CISO, board, audit-log retention=7y immutable=true"]);
    notify("✓ Executive report generated","Board pack · 6 pages · signed &amp; added to library");
    var cf=document.getElementById("cmpFeed");if(cf)cf.insertAdjacentHTML("afterbegin",evRow("ok","Executive board pack generated &amp; distributed to risk committee"));
    btn.disabled=false;btn.textContent="▶ Generate executive report";
@@ -1201,7 +1343,17 @@ document.getElementById("globalSearch").addEventListener("input",function(){
  document.querySelectorAll("#assetT tr").forEach(function(tr){tr.style.display=tr.textContent.toLowerCase().indexOf(q)>-1?"":"none";});
 });
 
-document.getElementById("rescanBtn").addEventListener("click",function(){var b=this;b.disabled=true;b.textContent="Sweeping…";setTimeout(function(){b.disabled=false;b.textContent="Re-run discovery sweep";notify("✓ Discovery sweep complete","3 new assets · 1 new shadow LLM");},1800);});
+document.getElementById("rescanBtn").addEventListener("click",function(){
+ var b=this;b.disabled=true;b.textContent="Sweeping…";
+ var lines=[
+  ["ok","discovery scanner=cloud:aws region=ap-southeast-1 accounts="+rint(3,7)+" assets+="+rint(8,22)+" lat="+rint(12,28)+"s"],
+  ["ok","discovery scanner=oauth:office region=eu-west-1 grants_scanned="+rint(180,420)+" new_shadow_apps="+rint(1,3)],
+  ["warn","discovery scanner=browser:webext sessions="+rint(380,520)+" shadow_llm_uses="+rint(8,16)+" users.flagged="+rint(1,4)],
+  ["ok","discovery scanner=code:repo connectors="+rint(40,70)+" ai_sdks_found="+rint(6,12)+" mcp_endpoints="+rint(1,4)],
+  ["ok","discovery commit="+rid().slice(0,7).toLowerCase()+" delta=+"+rint(10,28)+" assets · "+rint(0,2)+" shadow LLM tools"]
+ ];
+ var i=0;var iv=setInterval(function(){if(i<lines.length){var l=lines[i++];document.getElementById("ovFeed").insertAdjacentHTML("afterbegin",evRow(l[0],l[1]));var el=document.getElementById("ovFeed");while(el.children.length>10)el.removeChild(el.lastChild);}else{clearInterval(iv);b.disabled=false;b.textContent="Re-run discovery sweep";notify("✓ Discovery sweep complete",rint(2,5)+" new assets · "+rint(0,2)+" new shadow LLM");}},420);
+});
 document.getElementById("replayKC").addEventListener("click",function(){
  var nodes=document.querySelectorAll("#kcFlow .kn");
  nodes.forEach(function(n){n.classList.remove("lit");});
@@ -1411,6 +1563,73 @@ setTimeout(function(){
  document.getElementById("copForm").addEventListener("submit",function(e){e.preventDefault();var i=document.getElementById("copInput");var v=i.value;i.value="";send(v);});
  document.getElementById("copChips").addEventListener("click",function(e){if(e.target.tagName==="BUTTON")send(e.target.textContent);});
  add("bot","I am the <b>AEGIS copilot</b>. Tell me what to do and I will run it: start a campaign, run an agentic kill chain, audit a framework, generate a report, or open any page. Try a chip below or say <b>help</b>.");
+})();
+
+/* ---------- side live-tail (production-grade) ---------- */
+(function(){
+ var log=document.getElementById("srmLog");if(!log) return;
+ var paused=false, follow=true, inSec=0;
+ function p(n,w){n=String(n);while(n.length<w)n="0"+n;return n;}
+ function tsISO(d){var tz=-d.getTimezoneOffset(),sg=tz>=0?"+":"-";tz=Math.abs(tz);
+  return d.getFullYear()+"-"+p(d.getMonth()+1,2)+"-"+p(d.getDate(),2)+"T"+p(d.getHours(),2)+":"+p(d.getMinutes(),2)+":"+p(d.getSeconds(),2)+"."+p(d.getMilliseconds(),3)+sg+p(Math.floor(tz/60),2)+":"+p(tz%60,2);}
+ var COMPS=["aegis-edge","aegis-correlator","aegis-redteam","aegis-audit","aegis-broker","aegis-ingest","aegis-policy","aegis-dlp","aegis-identity"];
+ var PODS=["p-7c9f","p-3a2e","p-9b41","p-2d77","p-5e10","p-1a83","p-c4d0"];
+ var SEV={ok:"INFO ",info:"INFO ",warn:"WARN ",crit:"ERROR",dbg:"DEBUG"};
+ function comp(){return pick(COMPS)+"/"+pick(PODS);}
+ function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;");}
+ function emitLine(d,sev,cls,compTag,body){
+  var sevTag=SEV[sev==="ok"?"info":sev]||"INFO ";
+  var html='<span class="ts">'+tsISO(d)+'</span> <span class="comp">['+esc(compTag)+']</span> <span class="sev-'+sevTag.trim()+'">'+sevTag+'</span> '+'<span class="l-'+cls+'">'+esc(body)+'</span>';
+  log.insertAdjacentHTML("beforeend", html+"\n");
+  inSec++;
+ }
+ function emit(){
+  var d=new Date(), r=Math.random();
+  var tid=rid().slice(0,32).toLowerCase(), sid=rid().slice(0,16).toLowerCase();
+  if(r<0.50){
+   var g=genTel();
+   var cls=g.s==="warn"?"warn":g.s==="crit"?"crit":"info";
+   emitLine(d,g.s,cls,comp(),"trace="+tid+" span="+sid+" "+g.m);
+  } else if(r<0.62){
+   emitLine(d,"dbg","debug",comp(),"gc.pause="+rint(8,42)+"ms heap="+rint(220,920)+"Mi/1Gi rss="+rint(280,640)+"Mi threads="+rint(48,128));
+  } else if(r<0.70){
+   emitLine(d,"info","info",pick(COMPS)+"/leader","kafka.consumer topic=aegis.events partition="+rint(0,11)+" lag="+rint(0,9)+" rate="+rint(800,2400)+"/s commit_lat="+rint(2,18)+"ms");
+  } else if(r<0.77){
+   emitLine(d,"info","info","aegis-broker/"+pick(PODS),"tls.accept peer="+pick(AGENTS)+".meridian.svc spki=sha256:"+rid().slice(0,16).toLowerCase()+" alpn=h2 ms="+rint(2,14));
+  } else if(r<0.83){
+   emitLine(d,"info","info","aegis-policy/"+pick(PODS),"policy.compile commit="+rid().slice(0,7).toLowerCase()+" rules="+rint(48,82)+" wasm.size="+rint(180,420)+"KiB ms="+rint(180,540));
+  } else if(r<0.89){
+   emitLine(d,"warn","warn","aegis-correlator/"+pick(PODS),"rule="+pick(RULES)+" matched n="+rint(2,9)+" tenant=meridian-prod region=ap-southeast-1 lat_p95="+rint(40,180)+"ms");
+  } else if(r<0.94){
+   emitLine(d,"dbg","debug","aegis-ingest/"+pick(PODS),"batch in="+rint(800,2400)+" ocsf=true sink=splunk:meridian dur="+rint(40,180)+"ms drop=0");
+  } else {
+   emitLine(d,"crit","crit","aegis-correlator/"+pick(PODS),"ai_killchain.match incident=#"+rint(4480,4499)+" stages=5 confidence=0.94 trace="+tid);
+   emitLine(new Date(d.getTime()+13),"warn","warn","aegis-identity/"+pick(PODS),"token.revoke principal=svc-rag-07 reason=cross_session_reuse tokens=3 kid_prefix="+rid().slice(0,12).toLowerCase());
+   emitLine(new Date(d.getTime()+27),"info","ok","aegis-dlp/"+pick(PODS),"egress.deny rule=R-EG-014 dst=ext://paste.dev bytes="+rint(2048,16384)+" sha=9f3a"+rid().slice(0,6).toLowerCase());
+  }
+  while(log.childElementCount>260)log.removeChild(log.firstChild);
+  if(follow)log.scrollTop=log.scrollHeight;
+ }
+ // initial backlog so it looks like an already-running production tail
+ for(var i=0;i<80;i++) emit();
+ var tick=function(){if(!paused)emit();};
+ var tk1=setInterval(tick,420), tk2=setInterval(function(){if(!paused&&Math.random()<0.4)emit();},700);
+ setInterval(function(){
+   var m=document.getElementById("srmMeta");
+   if(m){m.innerHTML='<i></i>ap-southeast-1a · evt '+inSec+'/s'; }
+   inSec=0;
+ },1000);
+ var FOOT=[
+   ["k8s healthy","kafka lag 2","gc p50 22ms","ocsf v1.3"],
+   ["ingest 1.8k evt/s","siem.lag 0","drop 0","policy v2026.05.17"],
+   ["broker tls peers 14","cert rot 18d","spiffe trust 3","etcd quorum 5/5"],
+   ["redteam q=ready","audit q=0","report q=0","queue lag 0"]
+ ];
+ var fi=0;setInterval(function(){fi=(fi+1)%FOOT.length;var f=document.getElementById("srmFoot");if(f){f.innerHTML=FOOT[fi].map(function(x){return "<span>"+x+"</span>";}).join("");}},5000);
+ var fb=document.getElementById("srmFollow"),pb=document.getElementById("srmPause"),cb=document.getElementById("srmClear");
+ if(fb)fb.addEventListener("click",function(){follow=!follow;fb.classList.toggle("on",follow);if(follow)log.scrollTop=log.scrollHeight;});
+ if(pb)pb.addEventListener("click",function(){paused=!paused;pb.classList.toggle("on",paused);pb.textContent=paused?"▶":"❚❚";});
+ if(cb)cb.addEventListener("click",function(){log.textContent="";});
 })();
 })();
 </script>
