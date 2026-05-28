@@ -59,8 +59,8 @@
       "operatingSystem": "Web, SaaS, in-VPC",
       "url": "https://aegis.hesedemet.asia/",
       "publisher": { "@id": "https://aegis.hesedemet.asia/#org" },
-      "description": "AEGIS·AI is the unified AI Security Operations platform: discover every model, agent and prompt, govern non-human identities, correlate the AI kill chain, and run continuous full-stack and agentic AI red teaming, from one console. One-click conformity audits for ISO/IEC 42001, the EU AI Act, NIST AI RMF, Singapore IMDA and MAS FEAT.",
-      "featureList": "Agentic AI red team, full-stack continuous red team, AI asset and shadow-AI discovery, non-human identity governance, OCSF telemetry data lake, AI kill-chain correlation, investigation and one-click response, model assurance, one-click compliance audits, executive reporting",
+      "description": "AEGIS·AI is the unified AI Security Operations platform: discover every model, agent and prompt, govern non-human identities, correlate the AI kill chain, run continuous full-stack and agentic AI red teaming, and extend security operations to embodied AI (robots, AMRs, drones and VLA policies). One-click conformity audits for ISO/IEC 42001, the EU AI Act, NIST AI RMF, Singapore IMDA and MAS FEAT.",
+      "featureList": "Agentic AI red team, AI Kinetics (physical / embodied AI security), full-stack continuous red team, AI asset and shadow-AI discovery, non-human identity governance, OCSF telemetry data lake, AI kill-chain correlation, investigation and one-click response, model assurance, sensor integrity and VLA policy monitoring, sim-to-real evaluation, one-click compliance audits, executive reporting",
       "offers": { "@type": "Offer", "category": "Annual platform fee plus asset- and event-based usage" }
     },
     {
@@ -78,7 +78,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css?v=8" />
+<link rel="stylesheet" href="styles.css?v=9" />
 <style>
 /* critical: language dropdown ships with the HTML so it can't desync from cached CSS */
 .lang-dd{position:relative}
@@ -112,6 +112,7 @@ html[data-theme="light"] .lang-menu{background:#fff}
     <a href="#product">Product</a>
     <a href="#platform">Platform</a>
     <a href="#agentic">Red team</a>
+    <a href="#kinetics">Kinetics</a>
     <a href="#capabilities">Capabilities</a>
     <a href="#teams">Teams</a>
     <a href="#why">Why AEGIS</a>
@@ -540,6 +541,38 @@ html[data-theme="light"] .lang-menu{background:#fff}
     </div>
   </section>
 
+  <!-- AI KINETICS (PHYSICAL AI) -->
+  <section class="section alt" id="kinetics">
+    <div class="wrap">
+      <p class="sec-label reveal">Physical AI</p>
+      <h2 class="sec-title reveal">And the AI that moves.</h2>
+      <p class="lede reveal">A robot is an agent with arms. AEGIS extends the same security
+      operations to embodied AI: robots, AMRs, drones and the vision-language-action policies
+      that drive them. Every attack is rehearsed in the digital twin first, and the hardware
+      safety chain is treated as ground truth, never overridden.</p>
+      <p class="agentic-edge reveal">Adversarial patches, LiDAR phantom returns, GNSS spoofing,
+      VLA instruction hijacks and trajectory injection over ROS 2 / DDS. The same data plane,
+      the same console, now for the AI you can hear move.</p>
+      <p class="mini-h reveal">Kinetic attack scope</p>
+      <div class="scope expl reveal">
+        <span class="scope-i">Adversarial physical patches</span>
+        <span class="scope-i">LiDAR spoofing &amp; phantom returns</span>
+        <span class="scope-i">GNSS spoofing &amp; jamming</span>
+        <span class="scope-i">Sensor blinding &amp; saturation</span>
+        <span class="scope-i">VLA instruction hijack</span>
+        <span class="scope-i">Policy distribution shift (OOD)</span>
+        <span class="scope-i">Trajectory injection via ROS 2 / DDS</span>
+        <span class="scope-i">E-stop / interlock bypass attempt</span>
+        <span class="scope-i">Teleop &amp; OTA channel takeover</span>
+        <span class="scope-i">Digital-twin to real drift</span>
+      </div>
+      <p class="agentic-safe reveal">Standards mapped, not claimed: ISO 10218-1/-2, ISO/TS 15066,
+      ISO 13849 / IEC 62061, ISO 21448 (SOTIF) and UL 4600. We integrate with your certified
+      safety controller as a read-only attestation source; we never become it.</p>
+      <div class="hero-cta reveal"><a href="whitepaper.html" class="btn btn-primary">Read the kinetics methodology</a></div>
+    </div>
+  </section>
+
   <!-- CAPABILITIES -->
   <section class="section alt" id="capabilities">
     <div class="wrap">
@@ -667,6 +700,19 @@ html[data-theme="light"] .lang-menu{background:#fff}
             <li>Per-incident, red-team campaign and workforce-AI DLP reports</li>
             <li>Signed, exportable PDF / JSON; immutable evidence log</li>
             <li>Scheduled distribution to the CISO, board and regulators</li>
+          </ul>
+        </article>
+
+        <article class="cap reveal">
+          <h3><span>11</span> AI Kinetics &amp; physical AI</h3>
+          <ul>
+            <li>Embodied agent inventory: robots, AMRs, drones, manipulators, VLA policies</li>
+            <li>Sensor integrity: LiDAR, camera, IMU, GNSS, force / torque with attestation</li>
+            <li>Kinetic red team: adversarial patches, sensor spoofing, ROS 2 / DDS injection</li>
+            <li>Trajectory and policy monitoring against signed safe-envelopes</li>
+            <li>Digital-twin replay before any real cell is touched</li>
+            <li>Standards mapped: ISO 10218, ISO/TS 15066, ISO 13849, ISO 21448, UL 4600</li>
+            <li>Hardware interlocks read as ground truth, never overridden</li>
           </ul>
         </article>
 
@@ -981,7 +1027,7 @@ html[data-theme="light"] .lang-menu{background:#fff}
   </div>
 </footer>
 
-<script src="i18n.js?v=8"></script>
-<script src="script.js?v=8"></script>
+<script src="i18n.js?v=9"></script>
+<script src="script.js?v=9"></script>
 </body>
 </html>

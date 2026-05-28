@@ -9,6 +9,19 @@ Site: https://aegis.hesedemet.asia/
 Vendor: Hesed & Emet Advisory Pte Ltd, Singapore. Phone +65 6829 2146.
 Languages: English, Traditional Chinese, Simplified Chinese, Korean.
 
+## AI Kinetics (physical / embodied AI)
+AEGIS·AI extends security operations to embodied AI: robots, AMRs, drones,
+manipulators and the vision-language-action (VLA) policies that drive
+them. Scope includes adversarial physical patches, LiDAR spoofing and
+phantom returns, GNSS spoofing and jamming, sensor blinding, VLA
+instruction hijack, policy distribution shift, trajectory injection via
+ROS 2 / DDS, e-stop / interlock bypass attempts, teleop and OTA channel
+takeover, and digital-twin to real drift. Attacks are rehearsed in the
+digital twin before any real cell is touched. Standards mapped (not
+claimed): ISO 10218-1/-2, ISO/TS 15066, ISO 13849 / IEC 62061, ISO 21448
+(SOTIF) and UL 4600. Sim-to-real evaluation against Isaac Sim, MuJoCo
+Playground, Habitat 3.0 and RoboBench.
+
 ## Flagship: Agentic AI red team
 AEGIS·AI's flagship capability is a continuous agentic AI red team that
 attacks the whole agent loop on real targets, with safe execution

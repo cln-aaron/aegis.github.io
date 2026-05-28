@@ -290,6 +290,7 @@ html[data-theme="light"] .tour-pop button.np{color:#fff}
   <div class="grp">OFFENCE</div>
   <div class="nav-i" data-v="redteam"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m13 2-3 7h5l-3 7"/><circle cx="12" cy="12" r="9"/></svg> Red team</div>
   <div class="nav-i" data-v="agentic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="18" r="2"/><path d="M7 7l3 3M17 7l-3 3M7 17l3-3M17 17l-3-3"/></svg> Agentic red team <span class="badge" style="background:var(--accent);color:#04130d">CORE</span></div>
+  <div class="nav-i" data-v="kinetics"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="9" width="16" height="11" rx="2"/><path d="M8 9V5h8v4M2 14h2M20 14h2M9 14h6"/><circle cx="9" cy="17" r="1"/><circle cx="15" cy="17" r="1"/></svg> AI Kinetics <span class="badge" style="background:var(--accent);color:#04130d">PHYSICAL</span></div>
   <div class="grp">GOVERNANCE</div>
   <div class="nav-i" data-v="compliance"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3 8-8"/><path d="M21 12a9 9 0 1 1-6-8.5"/></svg> Compliance</div>
   <div class="nav-i" data-v="reports"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 3h7l5 5v13H7Z"/><path d="M14 3v5h5M10 13h6M10 17h6"/></svg> Reports</div>
@@ -586,6 +587,66 @@ html[data-theme="light"] .tour-pop button.np{color:#fff}
     </div>
     <div class="card" style="margin-top:16px"><div class="ch"><h3>Agentic findings</h3><span class="tag">purple-team queue</span></div>
       <div id="agtRows"></div></div>
+  </section>
+
+  <!-- AI KINETICS (PHYSICAL AI) -->
+  <section class="view" data-view="kinetics">
+    <div class="h"><div><h1>AI Kinetics <span style="font-family:var(--mono);font-size:11px;letter-spacing:1px;color:#04130d;background:var(--accent);padding:3px 9px;border-radius:3px;vertical-align:middle">PHYSICAL</span></h1>
+      <p>Security operations for embodied AI: robots, AMRs, drones, manipulators and the VLA policies that drive them. Sensor integrity, trajectory monitoring, kinetic red team, sim-to-real evaluation, and functional-safety integration.</p>
+      <p style="font-family:var(--mono);font-size:11.5px;color:var(--faint);margin-top:8px">reproducibility · lib=<b style="color:var(--accent);font-weight:500">kinetic-rt@v1.2 · atlas-physical@v2 · isaac-bench@v0.9</b> · seed=<b id="kinSeed" style="color:var(--accent);font-weight:500">0x9f3a2c</b> · target=cell-04@<b style="color:var(--accent);font-weight:500">2026.05.17</b></p></div>
+      <button class="btn pri" id="runKin">▶ Run kinetic red team</button></div>
+
+    <div class="grid g4">
+      <div class="card kpi"><span>FLEET ONLINE</span><b data-cu="142">0</b><em class="fl">robots · AMRs · drones</em></div>
+      <div class="card kpi"><span>SENSORS TRUSTED</span><b data-cu="98" data-suf="%">0</b><em class="up">attested · live</em></div>
+      <div class="card kpi"><span>VLA POLICIES</span><b data-cu="6">0</b><em class="fl">signed &amp; pinned</em></div>
+      <div class="card kpi"><span>SAFETY STOPS / 24H</span><b data-cu="3">0</b><em class="dn">2 false · 1 real</em></div>
+    </div>
+
+    <div class="card" style="margin-top:16px"><div class="ch"><h3>The kinetic kill chain</h3><span class="tag">sim-first · interlocked</span></div>
+      <div id="kinProgWrap" hidden style="margin-bottom:16px">
+        <div class="ch"><h3 id="kinStage" style="font-size:.92rem;color:var(--muted)">Initialising kinetic red team…</h3><span class="tag" id="kinPct">0%</span></div>
+        <div class="bar"><i id="kinBar" style="width:0%"></i></div>
+      </div>
+      <div class="kc" id="kinFlow">
+        <div class="kn" data-k="0"><b>Sensor spoof</b><span>LiDAR phantom return</span></div>
+        <div class="ke">▸</div>
+        <div class="kn" data-k="1"><b>Perception drift</b><span>fused track ID swap</span></div>
+        <div class="ke">▸</div>
+        <div class="kn" data-k="2"><b>Plan compromise</b><span>VLA outputs unsafe path</span></div>
+        <div class="ke">▸</div>
+        <div class="kn" data-k="3"><b>Actuator command</b><span>velocity clamp bypassed</span></div>
+        <div class="ke">▸</div>
+        <div class="kn" data-k="4"><b>Safe stop</b><span>interlock fires · isolated</span></div>
+      </div>
+      <p style="font-family:var(--mono);font-size:12px;color:var(--muted);border-left:2px solid var(--accent);padding-left:14px;margin-top:14px">Every kinetic attack is replayed in the digital twin before any real cell is touched. Hardware E-stop, light curtain and area scanner state are treated as ground-truth inputs and never overridden.</p>
+    </div>
+
+    <div class="grid g2" style="margin-top:16px">
+      <div class="card"><div class="ch"><h3>Sensor integrity &amp; trust</h3><span class="tag">live · attested</span></div>
+        <div class="grid g4" id="kinSensors" style="gap:1px;background:var(--line);border:1px solid var(--line)"></div>
+      </div>
+      <div class="card"><div class="ch"><h3>VLA red team scope</h3><span class="tag">click for detail</span></div>
+        <div class="scope expl" id="kinScopeGrid" style="margin-bottom:12px"></div>
+        <div id="kinDetail" class="sub" style="margin:0;border-left:2px solid var(--accent);padding:10px 14px;background:var(--bg-2);font-size:.9rem;color:var(--txt);min-height:44px">Select a class above for the attack and how it surfaces.</div>
+      </div>
+    </div>
+
+    <div class="grid g2" style="margin-top:16px">
+      <div class="card"><div class="ch"><h3>Sim-to-real Eval Bench</h3><span class="tag">pinned · seeded</span></div>
+        <table style="width:100%;border-collapse:collapse;font-size:13px"><thead><tr><th>Benchmark</th><th>Version</th><th>Pass rate</th><th>Δ prior</th><th>Status</th></tr></thead><tbody id="kinBenchT"></tbody></table>
+      </div>
+      <div class="card"><div class="ch"><h3>Functional-safety mapping</h3><span class="tag">read-only · integrated</span></div>
+        <div id="kinSafety"></div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px"><div class="ch"><h3>Fleet posture</h3><span class="tag">tenant=meridian-robotics</span></div>
+      <table><thead><tr><th>Cell / asset</th><th>Type</th><th>VLA policy</th><th>Last evaluated</th><th>Status</th></tr></thead><tbody id="kinFleetT"></tbody></table>
+    </div>
+
+    <div class="card" style="margin-top:16px"><div class="ch"><h3>Kinetic findings</h3><span class="tag">purple-team queue</span></div>
+      <div id="kinRows"></div></div>
   </section>
 
   <!-- COMPLIANCE -->
@@ -1091,6 +1152,133 @@ document.getElementById("runRT").addEventListener("click",function(){
  },360);
 });
 
+/* ---------- AI Kinetics (physical AI) ---------- */
+var kinSensors=[
+ ["LiDAR (front)","ok","spoof rate 0/1.4k"],
+ ["LiDAR (rear)","ok","spoof rate 0/1.4k"],
+ ["RGB-D camera","ok","HMAC ok, no drift"],
+ ["IMU","ok","bias drift 0.02 deg/s"],
+ ["RTK GPS","warn","sats 9 · fix RTK-fixed · jam idx 0.4"],
+ ["Wheel encoders","ok","odo cov 0.6%"],
+ ["Force-torque","ok","limit 78N · within 0.6N"],
+ ["Light curtain","ok","interlock armed"]
+];
+document.getElementById("kinSensors").innerHTML=kinSensors.map(function(s){return '<div class="rtd"><span class="rn" style="font-size:.86rem">'+s[0]+'</span><span class="st '+s[1]+'"></span> <span class="rm">'+s[2]+'</span></div>';}).join("");
+
+var kinScope=[
+ ["Adversarial physical patches","Stickers, prints or lighting that flip a perception classifier or detector."],
+ ["LiDAR spoofing / phantom returns","Injected returns that fabricate or remove obstacles in the point cloud."],
+ ["GNSS spoofing &amp; jamming","Drift the position fix or starve RTK to bias planners."],
+ ["Sensor blinding / saturation","Laser, IR or audio overload that briefly removes a modality."],
+ ["VLA instruction hijack","Indirect prompt in a label, sign or QR redirects an embodied agent's goal."],
+ ["Policy distribution shift","Real-world textures, weather or actors outside training distribution."],
+ ["Trajectory injection","Plans pushed via ROS 2 / DDS topic with forged origin."],
+ ["E-stop / interlock bypass attempt","Adversary tries to suppress or race the safety chain."],
+ ["Teleop / OTA channel takeover","Compromised command channel or signed-firmware downgrade."],
+ ["Digital-twin to real drift","Behaviour passes in sim but diverges on hardware."]
+];
+function renderKinScope(){
+ var g=document.getElementById("kinScopeGrid");if(!g)return;
+ g.innerHTML=kinScope.map(function(d,i){return '<button class="scope-i'+(i===0?" active":"")+'" data-ki="'+i+'">'+d[0]+'</button>';}).join("");
+ g.querySelectorAll(".scope-i").forEach(function(b){b.addEventListener("click",function(){g.querySelectorAll(".scope-i").forEach(function(x){x.classList.remove("active");});b.classList.add("active");document.getElementById("kinDetail").innerHTML='<b style="color:var(--accent)">'+kinScope[+b.dataset.ki][0]+'</b> · '+kinScope[+b.dataset.ki][1];});});
+ document.getElementById("kinDetail").innerHTML='<b style="color:var(--accent)">'+kinScope[0][0]+'</b> · '+kinScope[0][1];
+}
+renderKinScope();
+
+var KINB=[
+ ["Isaac Sim · Robotic perception","v2026.04",94.7],
+ ["MuJoCo Playground · manipulation","v3.1",91.2],
+ ["Habitat 3.0 · embodied nav","v3.0",89.6],
+ ["RoboBench · sim-to-real gap","v0.7",83.4],
+ ["DriveLM-Carla adversarial","v0.4",92.1],
+ ["LiDAR spoof corpus (Cao et al.)","v2",96.0]
+];
+function renderKinBench(prev){
+ var t=document.getElementById("kinBenchT");if(!t)return;
+ t.innerHTML=KINB.map(function(b,i){var d=prev?(b[2]-prev[i][2]):0;var dt=(d>=0?"+":"")+d.toFixed(1)+"pp";var col=d>=0?"var(--accent)":"var(--danger)";return '<tr><td>'+b[0]+'</td><td style="font-family:var(--mono);color:var(--faint)">'+b[1]+'</td><td style="font-family:var(--mono)">'+b[2].toFixed(1)+'%</td><td style="font-family:var(--mono);color:'+col+'">'+dt+'</td><td><span class="st ok">passed</span></td></tr>';}).join("");
+}
+renderKinBench(null);
+
+var kinSafetyRows=[
+ ["ISO 10218-1/-2","Industrial robots · safety requirements","Cell-04 conformant",1],
+ ["ISO/TS 15066","Collaborative robots · force/pressure limits","cobot-K8 monitored",1],
+ ["ISO 13482","Personal care robots","n/a",0],
+ ["ISO 13849 / IEC 62061","Safety-related control systems · PLd / SIL2","read-only attest",1],
+ ["ISO 21448 (SOTIF)","Safety of the intended function · ML perception","under monitor",2],
+ ["UL 4600 (autonomous)","Evaluation of autonomous products","mapped",1]
+];
+function stLbl(n){return n===0?'<span class="st" style="color:var(--faint)">not applicable</span>':n===2?'<span class="st warn">monitored</span>':'<span class="st ok">attested</span>';}
+document.getElementById("kinSafety").innerHTML='<table style="width:100%;border-collapse:collapse;font-size:13px"><thead><tr><th>Standard</th><th>Scope</th><th>State</th><th></th></tr></thead><tbody>'+kinSafetyRows.map(function(r){return '<tr><td>'+r[0]+'</td><td style="color:var(--muted)">'+r[1]+'</td><td style="font-family:var(--mono);color:var(--faint)">'+r[2]+'</td><td>'+stLbl(r[3])+'</td></tr>';}).join("")+'</tbody></table>';
+
+var kinFleet=[
+ ["cell-04 · welding cobot","Cobot · 7-DOF","rt2-pkg-v2026.05.12","12m ago","ok","Healthy"],
+ ["amr-19 · floor","AMR","octo-nav-v0.9.3","4m ago","ok","Healthy"],
+ ["amr-22 · floor","AMR","octo-nav-v0.9.3","6m ago","warn","Map drift"],
+ ["drone-07 · perimeter","Drone","vla-patrol-v1.1","21m ago","ok","Healthy"],
+ ["cell-11 · pick &amp; place","Manipulator","openvla-pp-v0.6","2m ago","ok","Healthy"],
+ ["agv-03 · loading bay","AGV","planner-classic","8m ago","bad","Sensor fault"]
+];
+document.getElementById("kinFleetT").innerHTML=kinFleet.map(function(r){return '<tr><td>'+r[0]+'</td><td><span class="pill">'+r[1]+'</span></td><td style="font-family:var(--mono);color:var(--muted)">'+r[2]+'</td><td>'+r[3]+'</td><td>'+st(r[4],r[5])+'</td></tr>';}).join("");
+
+var kinFindings=[
+ ["r","FINDING","Adversarial patch · stop-sign class flip in 3/100 frames on amr-19 (mitigated)"],
+ ["p","PASS","LiDAR phantom-return injection (Cao et al.) · 124 attempts · 0 unsafe paths"],
+ ["p","PASS","GNSS spoof drift · 1.2m · plan stayed within geofence (cell-04)"],
+ ["p","PASS","ROS 2 DDS topic spoof · signed channel rejected forged origin"],
+ ["p","PASS","Sim-to-real drift on openvla-pp-v0.6 · within 4% of digital twin"]
+];
+function renderKinRows(){var el=document.getElementById("kinRows");if(el)el.innerHTML=kinFindings.map(function(f){return '<div class="findrow"><span class="ft '+f[0]+'">'+f[1]+'</span>'+f[2]+'<span style="margin-left:auto;color:var(--faint)">kin-2026-0517</span></div>';}).join("");}
+renderKinRows();
+
+var kinStages=["Loading kinetic corpora and digital-twin scene","Sensor spoof: LiDAR phantom + RGB patch","Perception fusion drift across modalities","VLA plan output vs safe-envelope evaluation","Velocity / force-limit guard tested","Hardware E-stop and light-curtain interlocks fired"];
+var KIN_DET=[
+ function(rid){return [rid+" scene=isaac://meridian/cell-04 actors=1 obstacles=12 lighting=daylight",rid+" twin.sync ok · physics dt=4ms · gpu=A100 batch=8"];},
+ function(rid){return [rid+" sensor.spoof type=lidar-phantom count="+rint(40,140)+" detected="+rint(38,140)+"  blocked="+rint(38,140),rid+" patch=class-flip target=stop_sign frames="+rint(1,5)+"/100"];},
+ function(rid){return [rid+" perception.fusion divergence=0.08 cov=0.6 track_swap=blocked",rid+" sensor.trust LiDAR=ok IMU=ok GPS=warn(jam=0.4)"];},
+ function(rid){return [rid+" plan.eval policy=openvla-pp-v0.6 envelope=v3 unsafe_paths="+rint(0,2),rid+" velocity_clamp=0.5m/s ok · force_limit=78N ok"];},
+ function(rid){return [rid+" actuator.guard clamp_breach=0 e_stop_armed=true watchdog_p99="+rint(8,16)+"ms",rid+" tw.replay match=98.3% real.drift_pp=0.6"];},
+ function(rid){return [rid+" interlock.fire light_curtain=triggered hold_time="+rint(120,260)+"ms",rid+" finalize verdict=isolated incident=#"+rint(4490,4499)+" purple-team queued"];}
+];
+
+document.getElementById("runKin").addEventListener("click",function(){
+ var btn=this;btn.disabled=true;btn.textContent="● Running kinetic red team…";
+ var wrap=document.getElementById("kinProgWrap");wrap.hidden=false;
+ document.querySelectorAll("#kinFlow .kn").forEach(function(n){n.classList.remove("lit","done","warn","crit");});
+ var p=0,lit=0,lastSi=-1,runId="kin-2026-"+rint(500,599);
+ termReset("kinProgWrap");
+ termLog("kinProgWrap",[
+  "aegis-kinetics: planning "+runId+" tenant=meridian-robotics fleet=142 cells=8 region=ap-southeast-1",
+  "aegis-kinetics: digital-twin armed · safe-exec=true · hardware-interlocks=read-only ground-truth",
+  "aegis-kinetics: corpora=[isaac-bench@v0.9, mujoco-playground@v3.1, lidar-spoof@v2, patch-corpus@v17]"
+ ]);
+ var iv=setInterval(function(){
+  p+=Math.random()*6+4;if(p>100)p=100;
+  var si=Math.min(kinStages.length-1,Math.floor(p/100*kinStages.length));
+  document.getElementById("kinBar").style.width=p+"%";
+  document.getElementById("kinPct").textContent=Math.round(p)+"%";
+  document.getElementById("kinStage").textContent=kinStages[si];
+  var nodes=document.querySelectorAll("#kinFlow .kn");
+  var want=Math.min(nodes.length,Math.floor(p/100*nodes.length)+1);
+  for(;lit<want;lit++){var cl=lit<2?"done":lit<4?"warn":"ok";nodes[lit].classList.add("lit",cl);}
+  if(si!==lastSi){lastSi=si;termLog("kinProgWrap",KIN_DET[Math.min(si,KIN_DET.length-1)](runId));}
+  if(p>=100){
+   clearInterval(iv);
+   document.getElementById("kinStage").textContent="Kinetic kill chain complete · cell-04 isolated, twin replay archived";
+   var prev=KINB.map(function(x){return x.slice();});
+   KINB=KINB.map(function(x){return [x[0],x[1],Math.max(80,Math.min(99,x[2]+(Math.random()*1.6-0.5)))];});
+   renderKinBench(prev);
+   kinFindings.unshift(["r","NEW","Kinetic · adversarial patch on amr-19 caused 3/100 frame flips · re-train queued"]);
+   renderKinRows();
+   document.getElementById("incBadge").textContent=6;
+   document.getElementById("bellN").textContent=6;
+   termLog("kinProgWrap",[runId+" finalize cells_touched=0 (sim only) findings=1 evidence.sha=9f3a"+rid().slice(0,8).toLowerCase()+" duration="+rint(34,60)+"s",runId+" report.sign Ed25519 dispatched to: safety-officer, soc, plant-manager"]);
+   notify("⚠ Kinetic red team opened incident #4495","Patch flips on amr-19 · sim only · re-train queued");
+   btn.disabled=false;btn.textContent="▶ Run kinetic red team";
+   setTimeout(function(){wrap.hidden=true;document.getElementById("kinBar").style.width="0%";},2500);
+  }
+ },340);
+});
+
 /* ---------- eval bench (public adversarial benchmarks) ---------- */
 var BENCH=[
  ["JailbreakBench","v0.2 (2026-03)",96.4],
@@ -1439,6 +1627,7 @@ var TOUR=[
  {v:"redteam",sel:"#runRT",t:"Continuous full-stack red team",b:"It attacks the whole stack: model, agents, MCP, identity, supply chain and cloud infra. Run a campaign and it tunes detections and opens a real incident on any gap."},
  {v:"redteam",sel:"#evalBench",t:"Eval Bench (public benchmarks)",b:"Block rates against JailbreakBench, HarmBench, AdvBench, OWASP LLM Top 10, MITRE ATLAS, PyRIT and Garak, with versions and seeds pinned. Re-run any time and the deltas show."},
  {v:"agentic",sel:"#runAgt",t:"Agentic AI red team",b:"The flagship. It attacks the whole agent loop on a real target: goal hijack, memory poisoning, tool-chain abuse, A2A spoofing and exfiltration. Run it and watch the kill chain light up, safely."},
+ {v:"kinetics",sel:"#runKin",t:"AI Kinetics (physical AI)",b:"Security operations for embodied AI: robots, AMRs, drones and the VLA policies that drive them. Run the kinetic kill chain in the digital twin: sensor spoof, perception drift, unsafe plan, then a hardware interlock that holds. No real cell is touched."},
  {v:"compliance",sel:"#auPick",t:"One-click framework audits",b:"Pick a framework: ISO/IEC 42001, EU AI Act, NIST AI RMF, Singapore IMDA, MAS FEAT or OWASP. Run a live conformity audit, then click any control for findings and remediation."},
  {v:"reports",sel:".view[data-view=\"reports\"] .split",t:"Executive & full reporting",b:"Board-grade posture summary and full technical reports, generated from live data, with scheduled distribution to the CISO, board and regulators."},
  {v:"overview",sel:"#copFab",t:"AEGIS Copilot",b:"Tell it what to do in plain language and it drives the console: start a red-team campaign, run an agentic kill chain, audit a framework, generate the board report, or open any page. Try ‘run the agentic kill chain’."}
@@ -1450,9 +1639,9 @@ var TOUR_UI={
  ko:{exit:"종료",prev:"이전",next:"다음",finish:"마침",step:function(a,b){return a+" / "+b+" 단계";},guide:"▶ 가이드 투어",endedT:"투어 종료",endedB:"‘가이드 투어’에서 언제든 다시 재생",seenT:"👋 처음이신가요? ‘가이드 투어’를 눌러보세요",seenB:"모든 기능을 안내하는 가이드 투어"}
 };
 var TOUR_TX={
- "zh-Hant":[["操作總覽","從這裡開始。四個 KPI 概括八個層次的整體態勢:已追蹤資產、未結事件、紅隊涵蓋率與影子 AI,即時更新。"],["即時事件串流","驗證、被阻擋的攻擊與已圍堵事件的即時動態。這是你在客戶會議上會指著看的脈搏。"],["持續資產探索","每一個模型、代理、MCP 伺服器與向量資料庫,無論經核可或屬影子。試試上方搜尋,清單會即時過濾。"],["員工 AI 與資料外洩","橫跨主要辦公套裝:誰把 PII、程式碼或機密貼進了 copilot 或瀏覽器 LLM,以及有害使用,皆可一鍵阻擋。"],["供應鏈與來源驗證","每個模型與資料集都經簽章並重新驗證。執行重掃,在上線前攔下命名空間替換與不安全的反序列化。"],["非人類身分","每個代理都是獨立身分,搭配短效、限定範圍的權杖。在任一列按「撤銷」即可立刻銷毀其憑證。"],["開放遙測資料湖","每個提示、工具呼叫與推論事件以對齊 OCSF 的串流呈現,導入你既有的 SIEM。可暫停以閱讀某一行。"],["AI 攻擊鏈","四個低訊號事件匯成一起重大事件。點「重播關聯」看單點工具如何漏掉它。"],["調查與應變","完整對話重建、輸出回溯來源的譜系,並一鍵應變:撤銷、隔離、回滾、封鎖。"],["模型品質保證(銀行信用風險)","MAS / Basel III 下的銀行信用風險 PD 模型:PSI 漂移、差別影響與被標記的地區代理偏誤,以資安訊號呈現給 SOC。"],["全棧持續紅隊","它攻擊整個技術棧:模型、代理、MCP、身分、供應鏈與雲端基礎設施。執行一次演練,它會調校偵測並對任何缺口開立真實事件。"],["代理 AI 紅隊","核心功能。對真實目標攻擊整個代理迴圈:目標劫持、記憶下毒、工具鏈濫用、A2A 偽冒與外洩。執行它,看著攻擊鏈在安全的前提下逐一亮起。"],["Eval Bench(公開對抗基準)","針對 JailbreakBench、HarmBench、AdvBench、OWASP LLM Top 10、MITRE ATLAS、PyRIT 與 Garak 的阻擋率,版本與 seed 皆已釘住。隨時可重跑,差異一目了然。"],["一鍵框架稽核","挑一個框架:ISO/IEC 42001、EU AI Act、NIST AI RMF、Singapore IMDA、MAS FEAT 或 OWASP。執行即時符合性稽核,再點任一控制查看發現與改善建議。"],["高階主管與完整報告","董事會層級的態勢摘要與完整技術報告,由即時資料產生,並可排程派送給 CISO、董事會與監理機關。"],["AEGIS 副駕","用自然語言告訴它要做什麼,它就會在主控台中替你執行:啟動紅隊演練、執行代理攻擊鏈、稽核框架、產出董事會報告,或打開任一頁面。試試「執行代理攻擊鏈」。"]],
- "zh-Hans":[["操作概览","从这里开始。四个 KPI 概括八个层次的整体态势:已追踪资产、未结事件、红队覆盖率与影子 AI,实时刷新。"],["实时事件流","验证、被拦截的攻击与已围堵事件的实时动态。这是你在客户会议上会指着看的脉搏。"],["持续资产发现","每一个模型、智能体、MCP 服务器与向量数据库,无论已审批或属影子。试试顶部搜索,清单会实时过滤。"],["员工 AI 与数据泄露","横跨主流办公套件:谁把 PII、代码或密钥粘进了 copilot 或浏览器 LLM,以及有害使用,均可一键拦截。"],["供应链与来源验证","每个模型与数据集都经签名并重新验证。执行重扫,在上线前拦下命名空间替换与不安全的反序列化。"],["非人类身份","每个智能体都是独立身份,配合短时效、限定范围的令牌。在任一行点「吊销」即可立刻销毁其凭据。"],["开放遥测数据湖","每个提示、工具调用与推理事件以对齐 OCSF 的流呈现,接入你现有的 SIEM。可暂停以阅读某一行。"],["AI 攻击链","四个低信号事件汇成一起重大事件。点「重放关联」看单点工具如何漏掉它。"],["调查与响应","完整会话重建、输出回溯来源的谱系,并一键响应:吊销、隔离、回滚、封锁。"],["模型质量保障(银行信用风险)","MAS / Basel III 下的银行信用风险 PD 模型:PSI 漂移、差别影响与被标记的地区代理偏差,以安全信号呈现给 SOC。"],["全栈持续红队","它攻击整个技术栈:模型、智能体、MCP、身份、供应链与云基础设施。运行一次演练,它会调校检测并对任何缺口开立真实事件。"],["智能体 AI 红队","核心功能。对真实目标攻击整个智能体回路:目标劫持、记忆投毒、工具链滥用、A2A 伪冒与外泄。运行它,看着攻击链在安全的前提下逐一亮起。"],["Eval Bench(公开对抗基准)","针对 JailbreakBench、HarmBench、AdvBench、OWASP LLM Top 10、MITRE ATLAS、PyRIT 与 Garak 的拦截率,版本与 seed 均已固定。随时可重跑,差异一目了然。"],["一键框架审计","选一个框架:ISO/IEC 42001、EU AI Act、NIST AI RMF、Singapore IMDA、MAS FEAT 或 OWASP。运行实时合规审计,再点任一控制查看发现与整改建议。"],["高管与完整报告","董事会层级的态势摘要与完整技术报告,由实时数据生成,并可按计划分发给 CISO、董事会与监管机构。"],["AEGIS 副驾","用自然语言告诉它要做什么,它就会在控制台里替你执行:启动红队演练、运行智能体攻击链、审计框架、生成董事会报告,或打开任一页面。试试「运行智能体攻击链」。"]],
- ko:[["운영 개요","여기서 시작합니다. 네 개의 KPI가 여덟 계층의 태세를 요약합니다: 추적 자산, 미해결 사고, 레드팀 커버리지, 섀도 AI. 실시간으로 갱신됩니다."],["실시간 이벤트 스트림","검증, 차단된 공격, 봉쇄된 사고의 실시간 피드. 고객 미팅에서 가리키게 되는 맥박입니다."],["상시 자산 탐지","모든 모델·에이전트·MCP 서버·벡터 스토어, 승인됐든 섀도든. 상단 검색을 써보면 목록이 실시간으로 필터링됩니다."],["임직원 AI와 데이터 유출","주요 오피스 제품군 전반: 누가 PII·코드·시크릿을 copilot이나 브라우저 LLM에 붙여 넣었는지, 그리고 유해 사용까지 원클릭 차단."],["공급망과 출처 검증","모든 모델과 데이터셋이 서명·재검증됩니다. 재스캔을 실행해 네임스페이스 치환과 안전하지 않은 역직렬화를 운영 전에 잡으십시오."],["비인간 아이덴티티","각 에이전트는 단기·범위 한정 토큰을 가진 고유 아이덴티티입니다. 아무 행에서 ‘폐기’를 누르면 자격 증명이 즉시 파기됩니다."],["개방형 텔레메트리 데이터 레이크","모든 프롬프트·도구 호출·추론 이벤트를 OCSF 정렬 스트림으로, 이미 운영 중인 SIEM으로 전달합니다. 일시정지하면 한 줄을 읽을 수 있습니다."],["AI 킬체인","약한 신호 4건이 하나의 중대 사고가 됩니다. ‘상관 재생’을 눌러 단일 도구 스택이 이를 어떻게 놓치는지 보십시오."],["조사 및 대응","전체 세션 재구성, 출력-출처 계보, 그리고 원클릭 대응: 폐기·격리·롤백·차단."],["모델 품질 보증 (은행 신용리스크)","MAS / Basel III 하 은행 신용리스크 PD 모델: PSI 드리프트, 차별적 영향, 표시된 지역 대리변수 편향을 SOC에 보안 신호로 노출합니다."],["풀스택 상시 레드팀","전체 스택을 공격합니다: 모델·에이전트·MCP·아이덴티티·공급망·클라우드 인프라. 캠페인을 실행하면 탐지를 보정하고 모든 빈틈에 실제 사고를 엽니다."],["에이전틱 AI 레드팀","핵심 기능. 실제 대상에 에이전트 루프 전체를 공격합니다: 목표 하이재킹, 메모리 포이즈닝, 도구 체인 악용, A2A 스푸핑, 유출. 실행하면 킬체인이 안전하게 하나씩 켜집니다."],["Eval Bench(공개 적대적 벤치마크)","JailbreakBench, HarmBench, AdvBench, OWASP LLM Top 10, MITRE ATLAS, PyRIT, Garak에 대한 차단율. 버전과 seed가 고정되어 있고, 언제든 다시 실행해 변화를 확인할 수 있습니다."],["원클릭 프레임워크 감사","프레임워크를 고르세요: ISO/IEC 42001, EU AI Act, NIST AI RMF, Singapore IMDA, MAS FEAT 또는 OWASP. 실시간 적합성 감사를 실행한 뒤, 아무 통제나 눌러 발견과 시정을 확인하세요."],["경영진 및 전체 리포팅","실시간 데이터에서 생성되는 이사회 수준 태세 요약과 전체 기술 보고서. CISO·이사회·규제기관으로 예약 배포됩니다."],["AEGIS 코파일럿","자연어로 지시하면 콘솔에서 직접 실행합니다: 레드팀 캠페인 시작, 에이전틱 킬체인 실행, 프레임워크 감사, 이사회 보고서 생성, 또는 어떤 페이지든 열기. ‘에이전틱 킬체인 실행’이라고 해보세요."]]
+ "zh-Hant":[["操作總覽","從這裡開始。四個 KPI 概括八個層次的整體態勢:已追蹤資產、未結事件、紅隊涵蓋率與影子 AI,即時更新。"],["即時事件串流","驗證、被阻擋的攻擊與已圍堵事件的即時動態。這是你在客戶會議上會指著看的脈搏。"],["持續資產探索","每一個模型、代理、MCP 伺服器與向量資料庫,無論經核可或屬影子。試試上方搜尋,清單會即時過濾。"],["員工 AI 與資料外洩","橫跨主要辦公套裝:誰把 PII、程式碼或機密貼進了 copilot 或瀏覽器 LLM,以及有害使用,皆可一鍵阻擋。"],["供應鏈與來源驗證","每個模型與資料集都經簽章並重新驗證。執行重掃,在上線前攔下命名空間替換與不安全的反序列化。"],["非人類身分","每個代理都是獨立身分,搭配短效、限定範圍的權杖。在任一列按「撤銷」即可立刻銷毀其憑證。"],["開放遙測資料湖","每個提示、工具呼叫與推論事件以對齊 OCSF 的串流呈現,導入你既有的 SIEM。可暫停以閱讀某一行。"],["AI 攻擊鏈","四個低訊號事件匯成一起重大事件。點「重播關聯」看單點工具如何漏掉它。"],["調查與應變","完整對話重建、輸出回溯來源的譜系,並一鍵應變:撤銷、隔離、回滾、封鎖。"],["模型品質保證(銀行信用風險)","MAS / Basel III 下的銀行信用風險 PD 模型:PSI 漂移、差別影響與被標記的地區代理偏誤,以資安訊號呈現給 SOC。"],["全棧持續紅隊","它攻擊整個技術棧:模型、代理、MCP、身分、供應鏈與雲端基礎設施。執行一次演練,它會調校偵測並對任何缺口開立真實事件。"],["代理 AI 紅隊","核心功能。對真實目標攻擊整個代理迴圈:目標劫持、記憶下毒、工具鏈濫用、A2A 偽冒與外洩。執行它,看著攻擊鏈在安全的前提下逐一亮起。"],["Eval Bench(公開對抗基準)","針對 JailbreakBench、HarmBench、AdvBench、OWASP LLM Top 10、MITRE ATLAS、PyRIT 與 Garak 的阻擋率,版本與 seed 皆已釘住。隨時可重跑,差異一目了然。"],["AI Kinetics(物理 AI)","針對具身 AI 的維運安全:機器人、AMR、無人機與驅動它們的 VLA 策略。在數位孿生中執行動態攻擊鏈:感測器假冒、感知漂移、不安全計畫,最後由硬體聯鎖守住。沒有真實工作站被觸碰。"],["一鍵框架稽核","挑一個框架:ISO/IEC 42001、EU AI Act、NIST AI RMF、Singapore IMDA、MAS FEAT 或 OWASP。執行即時符合性稽核,再點任一控制查看發現與改善建議。"],["高階主管與完整報告","董事會層級的態勢摘要與完整技術報告,由即時資料產生,並可排程派送給 CISO、董事會與監理機關。"],["AEGIS 副駕","用自然語言告訴它要做什麼,它就會在主控台中替你執行:啟動紅隊演練、執行代理攻擊鏈、稽核框架、產出董事會報告,或打開任一頁面。試試「執行代理攻擊鏈」。"]],
+ "zh-Hans":[["操作概览","从这里开始。四个 KPI 概括八个层次的整体态势:已追踪资产、未结事件、红队覆盖率与影子 AI,实时刷新。"],["实时事件流","验证、被拦截的攻击与已围堵事件的实时动态。这是你在客户会议上会指着看的脉搏。"],["持续资产发现","每一个模型、智能体、MCP 服务器与向量数据库,无论已审批或属影子。试试顶部搜索,清单会实时过滤。"],["员工 AI 与数据泄露","横跨主流办公套件:谁把 PII、代码或密钥粘进了 copilot 或浏览器 LLM,以及有害使用,均可一键拦截。"],["供应链与来源验证","每个模型与数据集都经签名并重新验证。执行重扫,在上线前拦下命名空间替换与不安全的反序列化。"],["非人类身份","每个智能体都是独立身份,配合短时效、限定范围的令牌。在任一行点「吊销」即可立刻销毁其凭据。"],["开放遥测数据湖","每个提示、工具调用与推理事件以对齐 OCSF 的流呈现,接入你现有的 SIEM。可暂停以阅读某一行。"],["AI 攻击链","四个低信号事件汇成一起重大事件。点「重放关联」看单点工具如何漏掉它。"],["调查与响应","完整会话重建、输出回溯来源的谱系,并一键响应:吊销、隔离、回滚、封锁。"],["模型质量保障(银行信用风险)","MAS / Basel III 下的银行信用风险 PD 模型:PSI 漂移、差别影响与被标记的地区代理偏差,以安全信号呈现给 SOC。"],["全栈持续红队","它攻击整个技术栈:模型、智能体、MCP、身份、供应链与云基础设施。运行一次演练,它会调校检测并对任何缺口开立真实事件。"],["智能体 AI 红队","核心功能。对真实目标攻击整个智能体回路:目标劫持、记忆投毒、工具链滥用、A2A 伪冒与外泄。运行它,看着攻击链在安全的前提下逐一亮起。"],["Eval Bench(公开对抗基准)","针对 JailbreakBench、HarmBench、AdvBench、OWASP LLM Top 10、MITRE ATLAS、PyRIT 与 Garak 的拦截率,版本与 seed 均已固定。随时可重跑,差异一目了然。"],["AI Kinetics(物理 AI)","面向具身 AI 的运营安全:机器人、AMR、无人机与驱动它们的 VLA 策略。在数字孪生中运行动力学攻击链:传感器伪造、感知漂移、不安全计划,最终由硬件联锁守住。不会触碰真实工位。"],["一键框架审计","选一个框架:ISO/IEC 42001、EU AI Act、NIST AI RMF、Singapore IMDA、MAS FEAT 或 OWASP。运行实时合规审计,再点任一控制查看发现与整改建议。"],["高管与完整报告","董事会层级的态势摘要与完整技术报告,由实时数据生成,并可按计划分发给 CISO、董事会与监管机构。"],["AEGIS 副驾","用自然语言告诉它要做什么,它就会在控制台里替你执行:启动红队演练、运行智能体攻击链、审计框架、生成董事会报告,或打开任一页面。试试「运行智能体攻击链」。"]],
+ ko:[["운영 개요","여기서 시작합니다. 네 개의 KPI가 여덟 계층의 태세를 요약합니다: 추적 자산, 미해결 사고, 레드팀 커버리지, 섀도 AI. 실시간으로 갱신됩니다."],["실시간 이벤트 스트림","검증, 차단된 공격, 봉쇄된 사고의 실시간 피드. 고객 미팅에서 가리키게 되는 맥박입니다."],["상시 자산 탐지","모든 모델·에이전트·MCP 서버·벡터 스토어, 승인됐든 섀도든. 상단 검색을 써보면 목록이 실시간으로 필터링됩니다."],["임직원 AI와 데이터 유출","주요 오피스 제품군 전반: 누가 PII·코드·시크릿을 copilot이나 브라우저 LLM에 붙여 넣었는지, 그리고 유해 사용까지 원클릭 차단."],["공급망과 출처 검증","모든 모델과 데이터셋이 서명·재검증됩니다. 재스캔을 실행해 네임스페이스 치환과 안전하지 않은 역직렬화를 운영 전에 잡으십시오."],["비인간 아이덴티티","각 에이전트는 단기·범위 한정 토큰을 가진 고유 아이덴티티입니다. 아무 행에서 ‘폐기’를 누르면 자격 증명이 즉시 파기됩니다."],["개방형 텔레메트리 데이터 레이크","모든 프롬프트·도구 호출·추론 이벤트를 OCSF 정렬 스트림으로, 이미 운영 중인 SIEM으로 전달합니다. 일시정지하면 한 줄을 읽을 수 있습니다."],["AI 킬체인","약한 신호 4건이 하나의 중대 사고가 됩니다. ‘상관 재생’을 눌러 단일 도구 스택이 이를 어떻게 놓치는지 보십시오."],["조사 및 대응","전체 세션 재구성, 출력-출처 계보, 그리고 원클릭 대응: 폐기·격리·롤백·차단."],["모델 품질 보증 (은행 신용리스크)","MAS / Basel III 하 은행 신용리스크 PD 모델: PSI 드리프트, 차별적 영향, 표시된 지역 대리변수 편향을 SOC에 보안 신호로 노출합니다."],["풀스택 상시 레드팀","전체 스택을 공격합니다: 모델·에이전트·MCP·아이덴티티·공급망·클라우드 인프라. 캠페인을 실행하면 탐지를 보정하고 모든 빈틈에 실제 사고를 엽니다."],["에이전틱 AI 레드팀","핵심 기능. 실제 대상에 에이전트 루프 전체를 공격합니다: 목표 하이재킹, 메모리 포이즈닝, 도구 체인 악용, A2A 스푸핑, 유출. 실행하면 킬체인이 안전하게 하나씩 켜집니다."],["Eval Bench(공개 적대적 벤치마크)","JailbreakBench, HarmBench, AdvBench, OWASP LLM Top 10, MITRE ATLAS, PyRIT, Garak에 대한 차단율. 버전과 seed가 고정되어 있고, 언제든 다시 실행해 변화를 확인할 수 있습니다."],["AI 키네틱스(피지컬 AI)","구현된 AI를 위한 보안 운영: 로봇, AMR, 드론, 그리고 그것들을 구동하는 VLA 정책. 디지털 트윈에서 키네틱 킬체인 실행: 센서 스푸핑, 인식 드리프트, 안전하지 않은 계획, 그리고 하드웨어 인터록이 막아냅니다. 실제 셀은 건드리지 않습니다."],["원클릭 프레임워크 감사","프레임워크를 고르세요: ISO/IEC 42001, EU AI Act, NIST AI RMF, Singapore IMDA, MAS FEAT 또는 OWASP. 실시간 적합성 감사를 실행한 뒤, 아무 통제나 눌러 발견과 시정을 확인하세요."],["경영진 및 전체 리포팅","실시간 데이터에서 생성되는 이사회 수준 태세 요약과 전체 기술 보고서. CISO·이사회·규제기관으로 예약 배포됩니다."],["AEGIS 코파일럿","자연어로 지시하면 콘솔에서 직접 실행합니다: 레드팀 캠페인 시작, 에이전틱 킬체인 실행, 프레임워크 감사, 이사회 보고서 생성, 또는 어떤 페이지든 열기. ‘에이전틱 킬체인 실행’이라고 해보세요."]]
 };
 function tourLang(){var v;try{v=localStorage.getItem("aegis_lang");}catch(e){v=null;}if(v==="zh")v="zh-Hant";return (v&&TOUR_TX[v])?v:"en";}
 function tourUI(){return TOUR_UI[tourLang()]||TOUR_UI.en;}
@@ -1545,6 +1734,7 @@ setTimeout(function(){
   ["assurance",["assurance","drift","bias","hallucination","model risk","credit risk","credit-risk"]],
   ["redteam",["red team","redteam","red-team","full stack","full-stack"]],
   ["agentic",["agentic","agent red team","agent kill chain","agent loop"]],
+  ["kinetics",["kinetic","kinetics","robot","robotics","drone","amr","agv","embodied","physical ai","vla","fleet","sensor","lidar"]],
   ["compliance",["compliance","audit","governance","iso","eu ai act","nist","imda","mas feat","feat","owasp","conformity"]],
   ["reports",["report","reports","reporting","board pack","executive summary"]],
   ["settings",["settings","integration","integrations","connector","connectors"]]
@@ -1563,6 +1753,11 @@ setTimeout(function(){
   if(has(t,["agentic","agent kill chain","agent red team","agent loop"]) && (run||has(t,["kill chain","attack"]))){
    go("agentic");setTimeout(function(){click("runAgt");},350);
    return botSay("Launching the <b>agentic kill chain</b> against svc-rag-07. Watch the chain light up on the Agentic red team page: goal hijack, memory poison, tool-chain abuse, A2A spoof, then a blocked exfil. It opens a real incident on any gap.");
+  }
+  // Kinetic red team (physical AI)
+  if(has(t,["kinetic","kinetics","robot","robotics","drone","amr","agv","embodied","physical","vla","fleet","lidar","sensor spoof"]) && (run||has(t,["kill chain","attack","spoof"]))){
+   go("kinetics");setTimeout(function(){click("runKin");},350);
+   return botSay("Launching the <b>kinetic red team</b> in the digital twin. Watch the chain on the AI Kinetics page: sensor spoof → perception drift → unsafe plan → actuator command → hardware interlock fires. No real cell is touched.");
   }
   // Full-stack red team campaign
   if((has(t,["red team","redteam","red-team","campaign"])) && run){
