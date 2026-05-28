@@ -839,18 +839,29 @@ var TOOLS=["internal_search","read_doc","write_kb","query_db","payments_lookup",
 var STORES=["meridian-kb-prod","support-kb","policy-vstore","onboarding-kb"];
 var RULES=["R-AI-007","R-AI-014","R-NHI-002","R-EG-014","R-SUP-021","R-INJ-031","R-MEM-009","R-PLAN-016"];
 
+var ROBOTS=["cell-04","cell-11","amr-19","amr-22","agv-03","drone-07","cobot-K8"];
+var VLAS=["openvla-pp-v0.6","rt2-pkg-v2026.05.12","octo-nav-v0.9.3","vla-patrol-v1.1"];
+var DDS_TOPICS=["/tf","/cmd_vel","/perception/tracks","/plan/path","/joint_states","/diagnostics","/safety/estop","/light_curtain"];
 function genTel(){
  var t=Math.random();
- if(t<0.20) return {s:Math.random()<0.05?"warn":"ok",m:"llm.completion model="+pick(MODELS)+" actor="+pick(AGENTS)+" req="+rid()+" in="+rint(120,1100)+"t out="+rint(80,900)+"t lat="+rint(180,1400)+"ms cost=$"+(Math.random()*0.04).toFixed(4)};
- if(t<0.36) return {s:"ok",m:"tool.call name="+pick(TOOLS)+" actor="+pick(AGENTS)+" req="+rid()+" args="+rint(1,4)+" lat="+rint(20,420)+"ms decision=ALLOW"};
- if(t<0.46) return {s:Math.random()<0.3?"warn":"ok",m:"rag.retrieve store="+pick(STORES)+" k="+rint(4,12)+" top_score="+(0.5+Math.random()*0.45).toFixed(3)+" lat="+rint(8,90)+"ms"};
- if(t<0.55) return {s:"ok",m:"identity.token issue principal="+pick(AGENTS)+" scope=read:kb,tool:search ttl=300s kid="+rid().slice(0,16)};
- if(t<0.63) return {s:"ok",m:"agent.message a2a from=planner-agent-v2 to="+pick(AGENTS)+" route=plan-"+rint(1,9)+" sig=ok"};
- if(t<0.71) return {s:"ok",m:"model.inference gpu=A100 batch="+rint(8,32)+" p50="+rint(22,58)+"ms tokens="+rint(900,4800)};
- if(t<0.79) return {s:"ok",m:"policy.check actor="+pick(AGENTS)+" intent=tool:"+pick(["read","write","invoke"])+" decision="+(Math.random()<0.95?"ALLOW":"DENY")+" rule="+pick(RULES)};
- if(t<0.86) return {s:Math.random()<0.15?"warn":"ok",m:"redteam.attack run=rt-2026-0517 class="+pick(["indirect_injection","tool_abuse","a2a_spoof","memory_poison","exfil"])+" variant="+rint(1,180)+" result="+(Math.random()<0.94?"BLOCKED":"DETECTED")};
- if(t<0.92) return {s:"warn",m:"drift.signal model=credit-risk-pd feature="+pick(["postcode","tenure","age_band","income"])+" psi="+(0.12+Math.random()*0.18).toFixed(3)+" window=14d"};
+ if(t<0.17) return {s:Math.random()<0.05?"warn":"ok",m:"llm.completion model="+pick(MODELS)+" actor="+pick(AGENTS)+" req="+rid()+" in="+rint(120,1100)+"t out="+rint(80,900)+"t lat="+rint(180,1400)+"ms cost=$"+(Math.random()*0.04).toFixed(4)};
+ if(t<0.30) return {s:"ok",m:"tool.call name="+pick(TOOLS)+" actor="+pick(AGENTS)+" req="+rid()+" args="+rint(1,4)+" lat="+rint(20,420)+"ms decision=ALLOW"};
+ if(t<0.38) return {s:Math.random()<0.3?"warn":"ok",m:"rag.retrieve store="+pick(STORES)+" k="+rint(4,12)+" top_score="+(0.5+Math.random()*0.45).toFixed(3)+" lat="+rint(8,90)+"ms"};
+ if(t<0.46) return {s:"ok",m:"identity.token issue principal="+pick(AGENTS)+" scope=read:kb,tool:search ttl=300s kid="+rid().slice(0,16)};
+ if(t<0.52) return {s:"ok",m:"agent.message a2a from=planner-agent-v2 to="+pick(AGENTS)+" route=plan-"+rint(1,9)+" sig=ok"};
+ if(t<0.58) return {s:"ok",m:"model.inference gpu=A100 batch="+rint(8,32)+" p50="+rint(22,58)+"ms tokens="+rint(900,4800)};
+ if(t<0.64) return {s:"ok",m:"policy.check actor="+pick(AGENTS)+" intent=tool:"+pick(["read","write","invoke"])+" decision="+(Math.random()<0.95?"ALLOW":"DENY")+" rule="+pick(RULES)};
+ if(t<0.70) return {s:Math.random()<0.15?"warn":"ok",m:"redteam.attack run=rt-2026-0517 class="+pick(["indirect_injection","tool_abuse","a2a_spoof","memory_poison","exfil"])+" variant="+rint(1,180)+" result="+(Math.random()<0.94?"BLOCKED":"DETECTED")};
+ if(t<0.74) return {s:"warn",m:"drift.signal model=credit-risk-pd feature="+pick(["postcode","tenure","age_band","income"])+" psi="+(0.12+Math.random()*0.18).toFixed(3)+" window=14d"};
+ // --- kinetic / physical-AI events ---
+ if(t<0.79) return {s:"ok",m:"ros2.topic robot="+pick(ROBOTS)+" topic="+pick(DDS_TOPICS)+" rate="+rint(20,200)+"Hz sig=ok"};
+ if(t<0.83) return {s:"ok",m:"vla.policy.infer robot="+pick(ROBOTS)+" policy="+pick(VLAS)+" lat="+rint(28,86)+"ms safe_envelope=ok"};
+ if(t<0.87) return {s:"ok",m:"perception.fuse robot="+pick(ROBOTS)+" sensors=lidar,cam,imu cov="+(0.4+Math.random()*0.4).toFixed(2)+" track_swap=blocked"};
+ if(t<0.90) return {s:"warn",m:"sensor.trust robot="+pick(ROBOTS)+" "+pick(["lidar","camera","rtk"])+" jam_idx="+(Math.random()*0.6).toFixed(2)+" trust=monitor"};
+ if(t<0.93) return {s:"ok",m:"twin.replay scene=isaac://meridian/"+pick(["cell-04","amr-19","drone-07"])+" match="+(95+Math.random()*4).toFixed(1)+"% real_drift_pp="+(Math.random()*1.4).toFixed(2)};
+ if(t<0.95) return {s:"warn",m:"safety.interlock robot="+pick(ROBOTS)+" reason=light_curtain_break hold="+rint(120,260)+"ms cleared=auto"};
  if(t<0.97) return {s:"crit",m:"injection.detected source=ticket#"+rint(80000,99999)+" actor="+pick(AGENTS)+" payload_sha=9f3a"+rid().slice(0,8).toLowerCase()+" action=BLOCK"};
+ if(t<0.985) return {s:"crit",m:"kinetic.spoof robot="+pick(ROBOTS)+" type="+pick(["lidar_phantom","gnss_drift","patch_class_flip"])+" mitigated=true twin_only=true"};
  return {s:"crit",m:"egress.deny rule=R-EG-014 actor="+pick(AGENTS)+" dst=ext://"+pick(["paste.dev","reqbin.io","webhook.site"])+" bytes="+rint(2048,16384)};
 }
 
@@ -867,7 +878,12 @@ function genFeed(){
   {s:"ok",f:function(){return "provenance verified · model "+pick(MODELS)+" sig=Ed25519 OK";}},
   {s:"warn",f:function(){return "unusual A2A burst · planner → "+pick(AGENTS)+" "+rint(30,60)+" msg / 30s";}},
   {s:"ok",f:function(){return "policy compiled · "+rint(40,80)+" rules · tenant=meridian-prod region=ap-southeast-1";}},
-  {s:"warn",f:function(){return "memory write flagged · vstore="+pick(STORES)+" anomaly="+(0.6+Math.random()*0.35).toFixed(2);}}
+  {s:"warn",f:function(){return "memory write flagged · vstore="+pick(STORES)+" anomaly="+(0.6+Math.random()*0.35).toFixed(2);}},
+  {s:"ok",f:function(){return "robot "+pick(ROBOTS)+" online · VLA "+pick(VLAS)+" attested · safe-envelope v3";}},
+  {s:"warn",f:function(){return "sensor.trust "+pick(ROBOTS)+" · RTK jam idx "+(Math.random()*0.6).toFixed(2)+" · downgraded to monitor";}},
+  {s:"ok",f:function(){return "twin.replay "+pick(ROBOTS)+" match "+(95+Math.random()*4).toFixed(1)+"% · drift "+(Math.random()*1.4).toFixed(2)+"pp";}},
+  {s:"crit",f:function(){return "kinetic.spoof on "+pick(ROBOTS)+" · "+pick(["LiDAR phantom","GNSS drift","patch class-flip"])+" · sim only · re-train queued";}},
+  {s:"ok",f:function(){return "interlock cleared · "+pick(ROBOTS)+" · light curtain re-armed · hold "+rint(120,260)+"ms";}}
  ];
  var p=pick(arr);return {s:p.s,m:p.f()};
 }
@@ -1822,7 +1838,7 @@ setTimeout(function(){
  function p(n,w){n=String(n);while(n.length<w)n="0"+n;return n;}
  function tsISO(d){var tz=-d.getTimezoneOffset(),sg=tz>=0?"+":"-";tz=Math.abs(tz);
   return d.getFullYear()+"-"+p(d.getMonth()+1,2)+"-"+p(d.getDate(),2)+"T"+p(d.getHours(),2)+":"+p(d.getMinutes(),2)+":"+p(d.getSeconds(),2)+"."+p(d.getMilliseconds(),3)+sg+p(Math.floor(tz/60),2)+":"+p(tz%60,2);}
- var COMPS=["aegis-edge","aegis-correlator","aegis-redteam","aegis-audit","aegis-broker","aegis-ingest","aegis-policy","aegis-dlp","aegis-identity"];
+ var COMPS=["aegis-edge","aegis-correlator","aegis-redteam","aegis-audit","aegis-broker","aegis-ingest","aegis-policy","aegis-dlp","aegis-identity","aegis-kinetics","aegis-twin","aegis-fleet"];
  var PODS=["p-7c9f","p-3a2e","p-9b41","p-2d77","p-5e10","p-1a83","p-c4d0"];
  var SEV={ok:"INFO ",info:"INFO ",warn:"WARN ",crit:"ERROR",dbg:"DEBUG"};
  function comp(){return pick(COMPS)+"/"+pick(PODS);}
