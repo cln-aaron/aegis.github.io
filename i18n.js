@@ -408,7 +408,6 @@
     "E-stop / interlock bypass attempt": "繞過急停 / 聯鎖",
     "Teleop & OTA channel takeover": "遠端遙控與 OTA 通道接管",
     "Digital-twin to real drift": "數位孿生與現場漂移",
-    "Standards mapped, not claimed: ISO 10218-1/-2, ISO/TS 15066, ISO 13849 / IEC 62061, ISO 21448 (SOTIF) and UL 4600. We integrate with your certified safety controller as a read-only attestation source; we never become it.": "對應對應的標準,而非宣稱認證:ISO 10218-1/-2、ISO/TS 15066、ISO 13849 / IEC 62061、ISO 21448(SOTIF)以及 UL 4600。我們以唯讀的證明來源整合你已認證的安全控制器,絕不取而代之。",
     "Read the kinetics methodology": "閱讀動態方法論",
     "11 AI Kinetics & physical AI": "<span>11</span> AI Kinetics 與物理 AI",
     "Embodied agent inventory: robots, AMRs, drones, manipulators, VLA policies": "具身代理清單:機器人、AMR、無人機、機械手臂、VLA 策略",
@@ -416,7 +415,6 @@
     "Kinetic red team: adversarial patches, sensor spoofing, ROS 2 / DDS injection": "動態紅隊:對抗貼紙、感測器假冒、ROS 2 / DDS 注入",
     "Trajectory and policy monitoring against signed safe-envelopes": "軌跡與策略監控,對照已簽章的安全包絡",
     "Digital-twin replay before any real cell is touched": "在任何真實工作站被碰到之前,先在數位孿生中重播",
-    "Standards mapped: ISO 10218, ISO/TS 15066, ISO 13849, ISO 21448, UL 4600": "對應標準:ISO 10218、ISO/TS 15066、ISO 13849、ISO 21448、UL 4600",
     "Hardware interlocks read as ground truth, never overridden": "硬體聯鎖作為事實基準,絕不被覆蓋",
 
     "← Back to Hesed & Emet": "← 返回 Hesed & Emet",
@@ -830,7 +828,6 @@
     "E-stop / interlock bypass attempt": "绕过急停 / 联锁",
     "Teleop & OTA channel takeover": "远程遥控与 OTA 通道接管",
     "Digital-twin to real drift": "数字孪生与现场漂移",
-    "Standards mapped, not claimed: ISO 10218-1/-2, ISO/TS 15066, ISO 13849 / IEC 62061, ISO 21448 (SOTIF) and UL 4600. We integrate with your certified safety controller as a read-only attestation source; we never become it.": "对应到相应标准,而不是声称取得认证:ISO 10218-1/-2、ISO/TS 15066、ISO 13849 / IEC 62061、ISO 21448(SOTIF)以及 UL 4600。我们以只读证明来源集成你已认证的安全控制器,绝不取而代之。",
     "Read the kinetics methodology": "阅读动力学方法论",
     "11 AI Kinetics & physical AI": "<span>11</span> AI Kinetics 与物理 AI",
     "Embodied agent inventory: robots, AMRs, drones, manipulators, VLA policies": "具身智能体清单:机器人、AMR、无人机、机械臂、VLA 策略",
@@ -838,7 +835,6 @@
     "Kinetic red team: adversarial patches, sensor spoofing, ROS 2 / DDS injection": "动力学红队:对抗贴纸、传感器伪造、ROS 2 / DDS 注入",
     "Trajectory and policy monitoring against signed safe-envelopes": "轨迹与策略监控,对照已签名的安全包络",
     "Digital-twin replay before any real cell is touched": "在任何真实工位被触碰之前,先在数字孪生中重放",
-    "Standards mapped: ISO 10218, ISO/TS 15066, ISO 13849, ISO 21448, UL 4600": "对应标准:ISO 10218、ISO/TS 15066、ISO 13849、ISO 21448、UL 4600",
     "Hardware interlocks read as ground truth, never overridden": "硬件联锁作为事实基准,绝不被覆盖",
 
     "← Back to Hesed & Emet": "← 返回 Hesed & Emet",
@@ -1252,7 +1248,6 @@
     "E-stop / interlock bypass attempt": "E-stop / 인터록 우회 시도",
     "Teleop & OTA channel takeover": "원격 조작·OTA 채널 탈취",
     "Digital-twin to real drift": "디지털 트윈과 실측 간 드리프트",
-    "Standards mapped, not claimed: ISO 10218-1/-2, ISO/TS 15066, ISO 13849 / IEC 62061, ISO 21448 (SOTIF) and UL 4600. We integrate with your certified safety controller as a read-only attestation source; we never become it.": "주장하지 않고 매핑된 표준: ISO 10218-1/-2, ISO/TS 15066, ISO 13849 / IEC 62061, ISO 21448 (SOTIF), UL 4600. 인증된 안전 컨트롤러와 읽기 전용 인증 소스로 연동할 뿐, 그것을 대체하지 않습니다.",
     "Read the kinetics methodology": "키네틱스 방법론 읽기",
     "11 AI Kinetics & physical AI": "<span>11</span> AI 키네틱스·피지컬 AI",
     "Embodied agent inventory: robots, AMRs, drones, manipulators, VLA policies": "임바디드 에이전트 인벤토리: 로봇, AMR, 드론, 매니퓰레이터, VLA 정책",
@@ -1260,7 +1255,6 @@
     "Kinetic red team: adversarial patches, sensor spoofing, ROS 2 / DDS injection": "키네틱 레드팀: 적대적 패치, 센서 스푸핑, ROS 2 / DDS 주입",
     "Trajectory and policy monitoring against signed safe-envelopes": "서명된 안전 엔벨로프 대비 궤적·정책 모니터링",
     "Digital-twin replay before any real cell is touched": "실제 셀을 건드리기 전에 디지털 트윈에서 재생",
-    "Standards mapped: ISO 10218, ISO/TS 15066, ISO 13849, ISO 21448, UL 4600": "매핑 표준: ISO 10218, ISO/TS 15066, ISO 13849, ISO 21448, UL 4600",
     "Hardware interlocks read as ground truth, never overridden": "하드웨어 인터록은 사실 기준으로 읽으며 결코 덮어쓰지 않음",
 
     "← Back to Hesed & Emet": "← Hesed & Emet로 돌아가기",
